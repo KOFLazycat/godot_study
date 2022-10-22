@@ -24,7 +24,7 @@ func _physics_process(_delta):
 	else:
 		velocity = Vector2.ZERO
 	move_and_slide()
-
+	
 
 func select_new_direction():
 	move_direction = Vector2(
@@ -40,6 +40,7 @@ func select_new_direction():
 
 func pick_new_state():
 	if (current_state == COW_STATE.IDLE):
+		select_new_direction()
 		while move_direction == Vector2.ZERO:
 			select_new_direction()
 		state_machine.travel("Walk")

@@ -735,7 +735,7 @@ rotation_smoothing_enabled = true
 position = Vector2(328, 120)
 
 [node name="Cow2" parent="." instance=ExtResource("8_cvr83")]
-position = Vector2(232, 232)
+position = Vector2(208, 208)
 
 [node name="Cow3" parent="." instance=ExtResource("8_cvr83")]
-position = Vector2(424, 312)
+position = Vector2(296, 208)

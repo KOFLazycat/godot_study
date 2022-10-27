@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1glwc3mka86o"]
+
+[ext_resource type="PackedScene" uid="uid://fiita588qgmv" path="res://scenes/Scene.tscn" id="1_awsgr"]
+[ext_resource type="Texture2D" uid="uid://euhe2sxa6jah" path="res://assets/H2/H2.png" id="2_ynxa4"]
+
+[node name="Background" instance=ExtResource("1_awsgr")]
+texture = ExtResource("2_ynxa4")

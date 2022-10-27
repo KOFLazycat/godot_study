@@ -13,17 +13,27 @@ _global_script_classes=[{
 "class": &"Interactable",
 "language": &"GDScript",
 "path": "res://objects/Interactable.gd"
+}, {
+"base": "Interactable",
+"class": &"Teleporter",
+"language": &"GDScript",
+"path": "res://objects/Teleporter.gd"
 }]
 _global_script_class_icons={
-"Interactable": ""
+"Interactable": "",
+"Teleporter": ""
 }
 
 [application]
 
 config/name="CottonPuzzle"
-run/main_scene="res://scenes/h1.tscn"
+run/main_scene="res://scenes/H1.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SceneChanger="*res://globals/SceneChanger.gd"
 
 [display]
 

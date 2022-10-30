@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcbpxlvhktow0"]
+
+[ext_resource type="FontFile" uid="uid://dwo20txgiw2r7" path="res://assets/UI/font/HarmonyOS_Sans_SC_Medium.ttf" id="1_5a015"]
+[ext_resource type="Texture2D" uid="uid://ehb3462thfgp" path="res://assets/UI/对话框点9图.9.png" id="1_b5m2k"]
+[ext_resource type="Script" path="res://ui/DialogBubble.gd" id="1_i5p3x"]
+[ext_resource type="Texture2D" uid="uid://bwrw334qt762m" path="res://assets/UI/对话框把手.png" id="1_yvkbr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cml82"]
+texture = ExtResource("1_b5m2k")
+margin_left = 33.0651
+margin_top = 100.0
+margin_right = 28.449
+margin_bottom = 102.805
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 143, 132)
+
+[node name="DialogBubble" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i5p3x")
+
+[node name="Content" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = -276.0
+offset_right = 721.0
+offset_bottom = -20.1951
+grow_vertical = 0
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.2, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_5a015")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = SubResource("StyleBoxTexture_cml82")
+text = "垂死病中惊坐起，笑问客从何处来"
+autowrap_mode = 3
+
+[node name="Handle" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -59.0
+offset_right = 61.0
+grow_vertical = 0
+texture = ExtResource("1_yvkbr")
+flip_h = true
+
+[connection signal="gui_input" from="Content" to="." method="_on_content_gui_input"]

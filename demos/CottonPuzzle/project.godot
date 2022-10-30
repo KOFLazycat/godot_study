@@ -33,7 +33,11 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SceneChanger="*res://globals/SceneChanger.gd"
+SceneChanger="*res://globals/SceneChanger.tscn"
+
+[debug]
+
+gdscript/warnings/unused_parameter=0
 
 [display]
 

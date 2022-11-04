@@ -2,7 +2,7 @@ extends Line2D
 
 @onready var flash_animation = $FlashAnimation
 
-@export var Arc: int = 80 #扭曲次数（随机数）
+@export var Arc: int = 100 #扭曲次数（随机数）
 @export var RandRange: int = 10 #随机偏移量
 @export var LightingPath: PackedVector2Array #闪电路径
 @export var LightingSpeed: float = 0.002 #闪电速度

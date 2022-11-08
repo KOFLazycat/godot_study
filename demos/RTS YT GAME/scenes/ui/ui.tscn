@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bw0pw58bgrvwg"]
+
+[ext_resource type="Script" path="res://scenes/ui/Camera.gd" id="1_p3j3f"]
+[ext_resource type="Texture2D" uid="uid://cet5bfo250f7b" path="res://assets/MiniWorldSprites/Characters/Soldiers/Melee/LimeMelee/AxemanLime.png" id="2_bwxie"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_beonq"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 0.364706)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="Camera" type="Camera2D" parent="."]
+ignore_rotation = false
+current = true
+zoom = Vector2(3, 3)
+limit_left = 0
+limit_top = 0
+script = ExtResource("1_p3j3f")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_beonq")
+
+[node name="AxemanLime" type="Sprite2D" parent="."]
+position = Vector2(148, 91)
+texture = ExtResource("2_bwxie")

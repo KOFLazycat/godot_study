@@ -128,6 +128,7 @@ transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_ps0jq"]
 
 [node name="Cow" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_wsfl0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

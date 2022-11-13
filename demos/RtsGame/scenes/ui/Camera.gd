@@ -68,13 +68,14 @@ func _input(event):
 		zoomFactor = 1.0
 	if abs(zoomPos.y - get_global_mouse_position().y) > zoom_margin:
 		zoomFactor = 1.0
+	
 	if event is InputEventMouseButton:
 		if event.is_pressed():
 			zooming = true
-			if event.is_action("WheelDown"):
+			if event.is_action("ZoomDown"):
 				zoomFactor -= 0.01 * zoom_speed
 				zoomPos = get_global_mouse_position()
-			if event.is_action("WheelUp"):
+			if event.is_action("ZoomUp"):
 				zoomFactor += 0.01 * zoom_speed
 				zoomPos = get_global_mouse_position()
 		else:

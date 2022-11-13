@@ -1,42 +1,60 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8w0iykjf8o2k"]
+[gd_scene load_steps=8 format=3 uid="uid://c8w0iykjf8o2k"]
 
-[ext_resource type="Script" path="res://scenes/world/World.gd" id="1_f0kjq"]
-[ext_resource type="Script" path="res://scenes/ui/Camera.gd" id="1_mi2lq"]
-[ext_resource type="PackedScene" uid="uid://btdto7ikh13or" path="res://scenes/unit/Unit.tscn" id="2_sy3f5"]
-[ext_resource type="PackedScene" uid="uid://csfqccuela8ls" path="res://scenes/objects/Tree.tscn" id="4_wsoae"]
-[ext_resource type="PackedScene" uid="uid://bw0pw58bgrvwg" path="res://scenes/ui/Ui.tscn" id="5_musu1"]
+[ext_resource type="Script" path="res://scenes/world/World.gd" id="1_b4jdv"]
+[ext_resource type="Texture2D" uid="uid://dtgbj6mnwf771" path="res://assets/MiniWorldSprites/Ground/TexturedGrass.png" id="2_grqix"]
+[ext_resource type="PackedScene" uid="uid://bw0pw58bgrvwg" path="res://scenes/ui/Ui.tscn" id="3_xh3qf"]
+[ext_resource type="Script" path="res://scenes/ui/Camera.gd" id="4_mrhhu"]
+[ext_resource type="PackedScene" uid="uid://btdto7ikh13or" path="res://scenes/unit/Unit.tscn" id="5_wnrcv"]
+[ext_resource type="PackedScene" uid="uid://csfqccuela8ls" path="res://scenes/objects/Tree.tscn" id="6_6gg15"]
+[ext_resource type="PackedScene" uid="uid://cln08ublctly4" path="res://scenes/houses/BarbHouse.tscn" id="7_yety1"]
 
 [node name="World" type="Node2D"]
-script = ExtResource("1_f0kjq")
+y_sort_enabled = true
+script = ExtResource("1_b4jdv")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -153.0
+offset_top = -125.0
+offset_right = 2050.0
+offset_bottom = 1364.0
+texture = ExtResource("2_grqix")
+ignore_texture_size = true
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="UI" parent="." instance=ExtResource("3_xh3qf")]
 
 [node name="Camera" type="Camera2D" parent="."]
+anchor_mode = 0
 ignore_rotation = false
 current = true
 zoom = Vector2(3, 3)
 limit_left = 0
 limit_top = 0
-script = ExtResource("1_mi2lq")
+script = ExtResource("4_mrhhu")
 
 [node name="Units" type="Node2D" parent="."]
+y_sort_enabled = true
 
-[node name="Unit" parent="Units" groups=["units"] instance=ExtResource("2_sy3f5")]
+[node name="Unit" parent="Units" instance=ExtResource("5_wnrcv")]
 position = Vector2(268, 124)
 
-[node name="Unit2" parent="Units" groups=["units"] instance=ExtResource("2_sy3f5")]
-position = Vector2(408, 266)
-
-[node name="Unit3" parent="Units" groups=["units"] instance=ExtResource("2_sy3f5")]
-position = Vector2(390, 86)
-
-[node name="Unit4" parent="Units" groups=["units"] instance=ExtResource("2_sy3f5")]
-position = Vector2(202, 252)
-
-[node name="Unit5" parent="Units" groups=["units"] instance=ExtResource("2_sy3f5")]
-position = Vector2(106, 136)
-
 [node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
 
-[node name="Tree" parent="Objects" instance=ExtResource("4_wsoae")]
+[node name="Tree" parent="Objects" instance=ExtResource("6_6gg15")]
 position = Vector2(317, 196)
 
-[node name="UI" parent="." instance=ExtResource("5_musu1")]
+[node name="Houses" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="BarbHouse" parent="Houses" instance=ExtResource("7_yety1")]
+position = Vector2(170, 188)
+
+[node name="BarbHouse2" parent="Houses" instance=ExtResource("7_yety1")]
+position = Vector2(259, 240)
+
+[connection signal="mouse_entered" from="Houses/BarbHouse" to="Houses/BarbHouse" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Houses/BarbHouse" to="Houses/BarbHouse" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Houses/BarbHouse2" to="Houses/BarbHouse2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Houses/BarbHouse2" to="Houses/BarbHouse2" method="_on_mouse_exited"]

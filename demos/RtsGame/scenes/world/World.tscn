@@ -46,9 +46,6 @@ y_sort_enabled = true
 [node name="Tree" parent="Objects" instance=ExtResource("6_6gg15")]
 position = Vector2(317, 196)
 
-[node name="CoinHouse" parent="Objects" instance=ExtResource("7_3emms")]
-position = Vector2(155, 99)
-
 [node name="Houses" type="Node2D" parent="."]
 y_sort_enabled = true
 
@@ -57,6 +54,11 @@ position = Vector2(170, 188)
 
 [node name="BarbHouse2" parent="Houses" instance=ExtResource("7_yety1")]
 position = Vector2(259, 240)
+
+[node name="Resources" type="Node2D" parent="."]
+
+[node name="CoinHouse" parent="Resources" instance=ExtResource("7_3emms")]
+position = Vector2(155, 99)
 
 [connection signal="mouse_entered" from="Houses/BarbHouse" to="Houses/BarbHouse" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Houses/BarbHouse" to="Houses/BarbHouse" method="_on_mouse_exited"]

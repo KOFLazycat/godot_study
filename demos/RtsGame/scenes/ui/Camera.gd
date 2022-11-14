@@ -103,5 +103,8 @@ func draw_area(s = true):
 	pos.y = min(startV.y, endV.y)
 	panel.position = pos
 	panel.size *= int(s)
+	var minMapPath = get_tree().get_root().get_node("World/UI/MinMap/SubViewportContainer/SubViewport")
+	# 加载新单元
+	minMapPath._ready()
 
 

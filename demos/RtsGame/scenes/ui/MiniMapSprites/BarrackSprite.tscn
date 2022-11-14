@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://5a5t8cpotdo5"]
+
+[ext_resource type="Texture2D" uid="uid://c7cnobiubik80" path="res://assets/MiniWorldSprites/Buildings/Wood/Barracks.png" id="1_loelr"]
+
+[node name="Barracks" type="Sprite2D"]
+texture = ExtResource("1_loelr")
+hframes = 4
+vframes = 5

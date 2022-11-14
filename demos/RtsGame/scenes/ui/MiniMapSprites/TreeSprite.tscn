@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://wytb3gxpwylv"]
+
+[ext_resource type="Texture2D" uid="uid://d1cketcuto1ni" path="res://assets/MiniWorldSprites/Nature/Trees.png" id="1_k4qfi"]
+
+[node name="Trees" type="Sprite2D"]
+texture = ExtResource("1_k4qfi")
+hframes = 4
+frame = 2

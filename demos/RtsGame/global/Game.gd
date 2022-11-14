@@ -3,6 +3,7 @@ extends Node
 @onready var spawn = preload("res://global/SpawnUnit.tscn")
 
 var Wood:int = 0
+var Coin:int = 0
 var hasSpawn:bool = false
 
 func spawnUnit(pos):

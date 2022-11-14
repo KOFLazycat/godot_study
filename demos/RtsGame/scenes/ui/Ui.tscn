@@ -20,6 +20,11 @@ script = ExtResource("1_y6g2o")
 [node name="Panel" type="Panel" parent="."]
 theme_override_styles/panel = SubResource("StyleBoxFlat_beonq")
 
-[node name="Label" type="Label" parent="."]
+[node name="WoodLabel" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="CoinLabel" type="Label" parent="."]
+offset_top = 28.0
+offset_right = 40.0
+offset_bottom = 51.0

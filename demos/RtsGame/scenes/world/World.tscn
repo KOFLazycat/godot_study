@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8w0iykjf8o2k"]
+[gd_scene load_steps=9 format=3 uid="uid://c8w0iykjf8o2k"]
 
 [ext_resource type="Script" path="res://scenes/world/World.gd" id="1_b4jdv"]
 [ext_resource type="Texture2D" uid="uid://dtgbj6mnwf771" path="res://assets/MiniWorldSprites/Ground/TexturedGrass.png" id="2_grqix"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/ui/Camera.gd" id="4_mrhhu"]
 [ext_resource type="PackedScene" uid="uid://btdto7ikh13or" path="res://scenes/unit/Unit.tscn" id="5_wnrcv"]
 [ext_resource type="PackedScene" uid="uid://csfqccuela8ls" path="res://scenes/objects/Tree.tscn" id="6_6gg15"]
+[ext_resource type="PackedScene" uid="uid://dha5opehqeant" path="res://scenes/houses/CoinHouse.tscn" id="7_3emms"]
 [ext_resource type="PackedScene" uid="uid://cln08ublctly4" path="res://scenes/houses/BarbHouse.tscn" id="7_yety1"]
 
 [node name="World" type="Node2D"]
@@ -44,6 +45,9 @@ y_sort_enabled = true
 
 [node name="Tree" parent="Objects" instance=ExtResource("6_6gg15")]
 position = Vector2(317, 196)
+
+[node name="CoinHouse" parent="Objects" instance=ExtResource("7_3emms")]
+position = Vector2(155, 99)
 
 [node name="Houses" type="Node2D" parent="."]
 y_sort_enabled = true

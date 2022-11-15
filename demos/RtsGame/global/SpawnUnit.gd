@@ -20,6 +20,9 @@ func _on_yes_pressed():
 	unit1.position = housePos + Vector2(randomPosX, randomPosY)
 	unitPath.add_child(unit1)
 	worldPath.get_units()
+	var minMapPath = get_tree().get_root().get_node("World/UI/MinMap/SubViewportContainer/SubViewport")
+	# 加载新单元
+	minMapPath._ready()
 
 
 func _on_no_pressed():

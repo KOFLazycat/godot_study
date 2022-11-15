@@ -23,9 +23,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -1920.0
 offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Bg" type="Panel" parent="."]
-layout_mode = 0
 offset_left = 11.0
 offset_top = 12.0
 offset_right = 171.0
@@ -33,7 +34,6 @@ offset_bottom = 172.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_c0mim")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-layout_mode = 0
 offset_left = 16.0
 offset_top = 16.0
 offset_right = 316.0

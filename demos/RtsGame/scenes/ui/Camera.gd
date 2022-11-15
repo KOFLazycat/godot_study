@@ -80,16 +80,16 @@ func _input(event):
 				zoomPos = get_global_mouse_position()
 		else:
 				zooming = false
-#
-#	zooming = false	
-#	if Input.is_action_just_pressed("ZoomUp"):
-#		zooming = true
-#		zoomFactor += 0.01 * zoom_speed
-#		zoomPos = get_global_mouse_position()
-#	if Input.is_action_just_pressed("ZoomDown"):
-#		zooming = true
-#		zoomFactor -= 0.01 * zoom_speed
-#		zoomPos = get_global_mouse_position()
+	else:
+		zooming = false	
+		if Input.is_action_just_pressed("ZoomUp"):
+			zooming = true
+			zoomFactor += 0.01 * zoom_speed
+			zoomPos = get_global_mouse_position()
+		if Input.is_action_just_pressed("ZoomDown"):
+			zooming = true
+			zoomFactor -= 0.01 * zoom_speed
+			zoomPos = get_global_mouse_position()
 	
 	if event is InputEventMouse:
 		mousePos = event.position

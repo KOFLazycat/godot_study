@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8w0iykjf8o2k"]
+[gd_scene load_steps=10 format=3 uid="uid://c8w0iykjf8o2k"]
 
 [ext_resource type="Script" path="res://scenes/world/World.gd" id="1_b4jdv"]
 [ext_resource type="Texture2D" uid="uid://dtgbj6mnwf771" path="res://assets/MiniWorldSprites/Ground/TexturedGrass.png" id="2_grqix"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/ui/Camera.gd" id="4_mrhhu"]
 [ext_resource type="PackedScene" uid="uid://btdto7ikh13or" path="res://scenes/unit/Unit.tscn" id="5_wnrcv"]
 [ext_resource type="PackedScene" uid="uid://csfqccuela8ls" path="res://scenes/objects/Tree.tscn" id="6_6gg15"]
+[ext_resource type="Script" path="res://scenes/world/Objects.gd" id="6_yuji6"]
 [ext_resource type="PackedScene" uid="uid://dha5opehqeant" path="res://scenes/houses/CoinHouse.tscn" id="7_3emms"]
 [ext_resource type="PackedScene" uid="uid://cln08ublctly4" path="res://scenes/houses/BarbHouse.tscn" id="7_yety1"]
 
@@ -29,7 +30,6 @@ metadata/_edit_lock_ = true
 anchor_mode = 0
 ignore_rotation = false
 current = true
-zoom = Vector2(3, 3)
 limit_left = 0
 limit_top = 0
 script = ExtResource("4_mrhhu")
@@ -42,6 +42,7 @@ position = Vector2(268, 124)
 
 [node name="Objects" type="Node2D" parent="."]
 y_sort_enabled = true
+script = ExtResource("6_yuji6")
 
 [node name="Tree" parent="Objects" instance=ExtResource("6_6gg15")]
 position = Vector2(317, 196)

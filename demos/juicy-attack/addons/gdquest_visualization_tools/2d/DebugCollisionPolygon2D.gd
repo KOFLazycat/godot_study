@@ -1,4 +1,4 @@
-tool
+@tool
 class_name DebugCollisionPolygon2D
 extends CollisionPolygon2D
 
@@ -15,23 +15,23 @@ func _ready() -> void:
 
 
 func _draw() -> void:
-	material.shader = _theme.get_shader(get_class())
+	material.gdshader = _theme.get_shader(get_class())
 	match _theme.theme:
 		DebugCollisionTheme.ThemeType.SIMPLE, DebugCollisionTheme.ThemeType.DASHED:
 			if _theme.theme_width != 0:
 				_draw_collisionpolygon2d()
 
 		DebugCollisionTheme.ThemeType.HALO:
-			VisualServer.canvas_item_clear(get_canvas_item())
+			RenderingServer.canvas_item_clear(get_canvas_item())
 			var rect := _get_rect_poligon2d()
-			draw_rect(rect, Color.white)
+			draw_rect(rect, Color.WHITE)
 			var xform := Transform2D(0, -rect.position)
 			xform.origin = -rect.position
 			xform = xform.scaled(Vector2.ONE / rect.size)
-			var normalized_points: Array = xform.xform(polygon)
-			material.set_shader_param("points_size", normalized_points.size())
-			material.set_shader_param("points", DebugUtils.array_to_texture(normalized_points))
-	property_list_changed_notify()
+			var normalized_points: Array = xform * polygon
+			material.set_shader_parameter("points_size", normalized_points.size())
+			material.set_shader_parameter("points", DebugUtils.array_to_texture(normalized_points))
+	notify_property_list_changed()
 
 
 func _draw_collisionpolygon2d() -> void:

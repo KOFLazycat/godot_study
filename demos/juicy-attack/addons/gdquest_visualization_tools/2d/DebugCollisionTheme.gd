@@ -22,7 +22,7 @@ const THEME_SAMPLE_PROPERTY := {
 }
 const THEME_FALLOFF_PROPERTY := {
 	"name": "theme_falloff",
-	"type": TYPE_REAL,
+	"type": TYPE_FLOAT,
 	"hint": PROPERTY_HINT_RANGE,
 	"hint_string": "0.025,1"
 }
@@ -51,7 +51,7 @@ var color: Color = DebugPalette.COLORS[palette]
 var is_implemented := false
 
 
-func _init(node: Node2D) -> void:
+func _init(node: Node2D):
 	_node = node
 	_node.material = ShaderMaterial.new()
 	is_implemented = _node is CollisionPolygon2D
@@ -112,7 +112,7 @@ func _set_palette(new_palette: int) -> bool:
 
 func _set_theme(new_theme: int) -> bool:
 	theme = new_theme
-	_node.property_list_changed_notify()
+	_node.notify_property_list_changed()
 	_node.update()
 	return true
 
@@ -131,5 +131,5 @@ func _set_theme_sample(new_theme_sample: int) -> bool:
 
 func _set_theme_falloff(new_theme_falloff: float) -> bool:
 	theme_falloff = new_theme_falloff
-	_node.material.set_shader_param("falloff", theme_falloff)
+	_node.material.set_shader_parameter("falloff", theme_falloff)
 	return true

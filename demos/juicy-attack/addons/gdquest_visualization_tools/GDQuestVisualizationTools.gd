@@ -1,8 +1,16 @@
 extends Node
 
 
-var is_debug_collision_visible := true setget set_is_debug_collision_visible
-var is_debug_navigation_visible := true setget set_is_debug_navigation_visible
+var is_debug_collision_visible := true :
+	get:
+		return is_debug_collision_visible # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_is_debug_collision_visible
+var is_debug_navigation_visible := true :
+	get:
+		return is_debug_navigation_visible # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_is_debug_navigation_visible
 
 
 func _ready() -> void:

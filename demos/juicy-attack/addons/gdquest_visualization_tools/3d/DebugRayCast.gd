@@ -1,6 +1,6 @@
-tool
+@tool
 class_name DebugRayCast
-extends RayCast
+extends RayCast3D
 
 
 const DebugUtils := preload("../DebugUtils.gd")
@@ -29,17 +29,17 @@ func _notification(what: int) -> void:
 	match what:
 		NOTIFICATION_TRANSFORM_CHANGED:
 			var xform := global_transform
-			var global_cast_to: Vector3 = xform.xform(_cast_to)
+			var global_cast_to: Vector3 = xform * _cast_to
 			var global_cast_to_normal = DebugUtils.v3normal(global_cast_to)
 			xform = xform.looking_at(global_cast_to, global_cast_to_normal)
 
 			match _theme.theme:
 				DebugTheme.ThemeType.WIREFRAME:
-					if not _theme.rids.instances.empty():
+					if not _theme.rids.instances.is_empty():
 						xform = xform.translated(_cast_to.length() * Vector3.FORWARD)
 						for rid in _theme.rids.instances:
-							VisualServer.instance_set_transform(rid, xform)
-							VisualServer.instance_set_transform(rid, xform)
+							RenderingServer.instance_set_transform(rid, xform)
+							RenderingServer.instance_set_transform(rid, xform)
 
 				DebugTheme.ThemeType.HALO:
 					xform.origin = Vector3.ZERO
@@ -48,22 +48,22 @@ func _notification(what: int) -> void:
 					var midway: Vector3 = 0.5 * _cast_to.length() * Vector3.DOWN
 					for rid in _theme.rids.instances:
 						xform = xform.translated(midway)
-						VisualServer.instance_set_transform(rid, xform)
+						RenderingServer.instance_set_transform(rid, xform)
 
 
 func _physics_process(delta: float) -> void:
 	if is_colliding():
-		_theme.material.set_shader_param("color", DebugPalette.COLORS[_theme.palette].contrasted())
-		_cast_to = transform.xform_inv(get_collision_point())
+		_theme.material.set_shader_parameter("color", DebugPalette.COLORS[_theme.palette].contrasted())
+		_cast_to = get_collision_point() * transform
 	else:
-		_theme.material.set_shader_param("color", DebugPalette.COLORS[_theme.palette])
+		_theme.material.set_shader_parameter("color", DebugPalette.COLORS[_theme.palette])
 		_cast_to = cast_to
 	_draw()
 
 
 func refresh() -> void:
 	_draw()
-	property_list_changed_notify()
+	notify_property_list_changed()
 
 
 func _draw() -> void:
@@ -73,18 +73,18 @@ func _draw() -> void:
 	var meshes_info := []
 	match _theme.theme:
 		DebugTheme.ThemeType.WIREFRAME:
-			var shape: Shape = RayShape.new()
+			var shape: Shape3D = SeparationRayShape3D.new()
 			shape.length = _cast_to.length()
 			var mesh := shape.get_debug_mesh()
 			if mesh.get_surface_count() > 0:
 				meshes_info.push_back({
-					"primitive_type": VisualServer.PRIMITIVE_LINES,
+					"primitive_type": RenderingServer.PRIMITIVE_LINES,
 					"arrays": mesh.surface_get_arrays(0)
 				})
-				shape = SphereShape.new()
+				shape = SphereShape3D.new()
 				shape.radius = 0.03
 				meshes_info.push_back({
-					"primitive_type": VisualServer.PRIMITIVE_LINES,
+					"primitive_type": RenderingServer.PRIMITIVE_LINES,
 					"arrays": shape.get_debug_mesh().surface_get_arrays(0)
 				})
 
@@ -96,7 +96,7 @@ func _draw() -> void:
 			mesh.radial_segments = 4
 			mesh.rings = 0
 			meshes_info.push_back({
-				"primitive_type": VisualServer.PRIMITIVE_TRIANGLES,
+				"primitive_type": RenderingServer.PRIMITIVE_TRIANGLES,
 				"arrays": mesh.get_mesh_arrays()
 			})
 			mesh = SphereMesh.new()
@@ -105,11 +105,11 @@ func _draw() -> void:
 			mesh.radial_segments = 16
 			mesh.rings = 8
 			meshes_info.push_back({
-				"primitive_type": VisualServer.PRIMITIVE_TRIANGLES,
+				"primitive_type": RenderingServer.PRIMITIVE_TRIANGLES,
 				"arrays": mesh.get_mesh_arrays()
 			})
 
-	if not meshes_info.empty():
+	if not meshes_info.is_empty():
 		_theme.draw_meshes(meshes_info)
 		_notification(NOTIFICATION_TRANSFORM_CHANGED)
 

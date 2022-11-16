@@ -1,4 +1,4 @@
-tool
+@tool
 extends EditorPlugin
 
 
@@ -27,4 +27,4 @@ func _on_EditorInspector_property_edited(property: String) -> void:
 			for node in selected_nodes:
 				if node is DebugCollisionShape or node is DebugCollisionPolygon or node is DebugRayCast:
 					node.refresh()
-					node.property_list_changed_notify()
+					node.notify_property_list_changed()

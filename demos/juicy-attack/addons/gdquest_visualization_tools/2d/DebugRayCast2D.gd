@@ -1,4 +1,4 @@
-tool
+@tool
 class_name DebugRayCast2D
 extends RayCast2D
 
@@ -10,9 +10,13 @@ const DebugPalette := preload("../DebugPalette.gd")
 
 const THEME_SAMPLE := 48
 
-export(DebugPalette.Type) var palette := DebugPalette.Type.INTERACT setget set_palette
-export(ThemeType) var theme := ThemeType.SIMPLE setget set_theme
-export(int, 0, 10) var theme_width := 4 setget set_theme_width
+@export var palette := DebugPalette.Type.INTERACT setget set_palette # (DebugPalette.Type)
+@export var theme: ThemeType := ThemeType.SIMPLE :
+	get:
+		return theme # TODOConverter40 Non existent get function 
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_theme
+@export var theme_width := 4 setget set_theme_width # (int, 0, 10)
 
 var _previous_palette: int = palette
 var _color: Color = DebugPalette.COLORS[palette]
@@ -27,7 +31,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if is_colliding():
 		_color = DebugPalette.COLORS[palette].contrasted()
-		_cast_to = transform.xform_inv(get_collision_point())
+		_cast_to = get_collision_point() * transform
 	else:
 		_color = DebugPalette.COLORS[palette]
 		_cast_to = cast_to

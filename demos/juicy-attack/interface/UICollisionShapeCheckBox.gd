@@ -2,7 +2,7 @@ extends CheckBox
 
 
 func _ready() -> void:
-	connect("toggled", self, "_on_toggled")
+	connect("toggled",Callable(self,"_on_toggled"))
 
 
 func _on_toggled(toggled: bool) -> void:

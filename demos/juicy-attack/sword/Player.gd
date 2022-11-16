@@ -1,9 +1,9 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 const DRAG_FACTOR := 15.0
 const RUN_SPEED := 600.0
 
-onready var weapon := $WeaponSword
+@onready var weapon := $WeaponSword
 
 var _velocity := Vector2.ZERO
 
@@ -16,4 +16,6 @@ func _physics_process(delta: float) -> void:
 	var desired_velocity := input_direction * RUN_SPEED
 	var steering = (desired_velocity - _velocity) * DRAG_FACTOR * delta
 	_velocity += steering
-	_velocity = move_and_slide(_velocity)
+	set_velocity(_velocity)
+	move_and_slide()
+	_velocity = velocity

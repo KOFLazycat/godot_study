@@ -1,4 +1,4 @@
-tool
+@tool
 class_name DebugCollisionShape2D
 extends CollisionShape2D
 
@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func _draw() -> void:
 	_theme.is_implemented = false
-	material.shader = _theme.get_shader(shape.get_class())
+	material.gdshader = _theme.get_shader(shape.get_class())
 	match _theme.theme:
 		DebugCollisionTheme.ThemeType.SIMPLE, DebugCollisionTheme.ThemeType.DASHED:
 			var method_name := "" if shape == null else "_draw_%s" % shape.get_class().to_lower()
@@ -32,26 +32,26 @@ func _draw() -> void:
 			_theme.is_implemented = has_method(method_name)
 			if _theme.is_implemented:
 				# We need to clear the canvas item first to prevent drawing the
-				# default shape on top of the rectangle.
-				VisualServer.canvas_item_clear(get_canvas_item())
+				# default shape checked top of the rectangle.
+				RenderingServer.canvas_item_clear(get_canvas_item())
 				var rect: Rect2 = funcref(self, method_name).call_func()
-				draw_rect(rect, Color.white)
+				draw_rect(rect, Color.WHITE)
 				match shape.get_class():
 					"CapsuleShape2D":
-						material.set_shader_param("ratio", 0.5 * shape.height / shape.radius)
+						material.set_shader_parameter("ratio", 0.5 * shape.height / shape.radius)
 					"ConvexPolygonShape2D":
 						var xform := Transform2D(0, -rect.position)
 						xform = xform.scaled(Vector2.ONE / rect.size)
 #						var xform := Transform2D.IDENTITY.scaled(Vector2.ONE / rect.size)
 #						xform.origin = -rect.position
-						var normalized_points: Array = xform.xform(shape.points)
-						material.set_shader_param("points_size", normalized_points.size())
-						material.set_shader_param(
+						var normalized_points: Array = xform * shape.points
+						material.set_shader_parameter("points_size", normalized_points.size())
+						material.set_shader_parameter(
 							"points", DebugUtils.array_to_texture(normalized_points)
 						)
 
 	if not _theme.is_implemented:
-		property_list_changed_notify()
+		notify_property_list_changed()
 
 
 func _draw_capsuleshape2d() -> void:

@@ -1,0 +1,94 @@
+[gd_scene load_steps=14 format=3 uid="uid://c0wvgmc0tpaif"]
+
+[ext_resource type="Texture2D" uid="uid://b2hlwhyi6luvt" path="res://sword/sword_ice.png" id="1_d014s"]
+[ext_resource type="Shader" uid="uid://cnh10sq0n2tfl" path="res://addons/gdquest_visualization_tools/2d/shaders/Shape2D.tres" id="1_laj8j"]
+[ext_resource type="Texture2D" uid="uid://b3lpbmrqo2t4j" path="res://sword/trail.png" id="2_n080i"]
+[ext_resource type="Texture2D" uid="uid://bgc07g6i60lnn" path="res://sword/ice_2.png" id="4_w8aqk"]
+[ext_resource type="Texture2D" uid="uid://buodxje6qkpcp" path="res://assets/shadow_circle.png" id="5_symi5"]
+[ext_resource type="AudioStream" uid="uid://bcvljqk76tuk1" path="res://sword/mixkit-sword-slash-swoosh-1476.mp3" id="5_u24uv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mnsjr"]
+shader = ExtResource("1_laj8j")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81udv"]
+size = Vector2(65, 43.5)
+
+[sub_resource type="Curve" id="Curve_o5b60"]
+max_value = 100.0
+_data = [Vector2(0, 1), 0.0, -35.7582, 0, 0, Vector2(0.997006, 100), -35.278, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_03ad7"]
+width = 2048
+curve = SubResource("Curve_o5b60")
+
+[sub_resource type="Curve" id="Curve_fexup"]
+_data = [Vector2(0.00598802, 0.0270271), 0.0, 0.0, 0, 0, Vector2(0.488024, 1), 0.0, 0.0, 0, 0, Vector2(0.994012, 0.0315316), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_cc8xn"]
+width = 2048
+curve = SubResource("Curve_fexup")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jffn8"]
+emission_shape = 3
+emission_box_extents = Vector3(40, 10, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 25.0
+gravity = Vector3(0, 200, 0)
+angular_velocity_min = 20.0
+angular_velocity_max = 100.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_max = 5.0
+damping_curve = SubResource("CurveTexture_03ad7")
+scale_min = 0.01
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_cc8xn")
+color = Color(0.85098, 1, 1, 1)
+
+[node name="WeaponSword" type="Node2D"]
+
+[node name="Pivot" type="Marker2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Pivot"]
+texture = ExtResource("1_d014s")
+offset = Vector2(40, 0)
+
+[node name="Trail" type="Sprite2D" parent="Pivot/Sprite"]
+show_behind_parent = true
+position = Vector2(55, -31)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_n080i")
+
+[node name="HitBox" type="Area2D" parent="Pivot"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/HitBox"]
+visible = false
+self_modulate = Color(0.376471, 0.376471, 0.439216, 1)
+material = SubResource("ShaderMaterial_mnsjr")
+position = Vector2(70, 0)
+shape = SubResource("RectangleShape2D_81udv")
+disabled = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Pivot"]
+position = Vector2(61, 1)
+amount = 6
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_jffn8")
+texture = ExtResource("4_w8aqk")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_u24uv")
+volume_db = -22.4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="ShadowCircle" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.545098)
+show_behind_parent = true
+position = Vector2(8, 42)
+scale = Vector2(0.6, 0.6)
+z_index = -1
+texture = ExtResource("5_symi5")

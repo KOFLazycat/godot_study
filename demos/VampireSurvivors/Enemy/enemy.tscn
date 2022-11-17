@@ -1,14 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://be4e72nbg23gh"]
+[gd_scene load_steps=7 format=3 uid="uid://d2j0x5tio7f2o"]
 
-[ext_resource type="Texture2D" uid="uid://dh7nfieyl6esu" path="res://Textures/Player/player_sprite.png" id="1_63ql2"]
-[ext_resource type="Script" path="res://Player/player.gd" id="1_dkc32"]
+[ext_resource type="Script" path="res://Enemy/enemy.gd" id="1_3si5s"]
+[ext_resource type="Texture2D" uid="uid://mbeqd5hvda0y" path="res://Textures/Enemy/kolbold_weak.png" id="1_uqjbr"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e4iyd"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y5cas"]
 radius = 5.0
-height = 20.0
+height = 18.0
 
-[sub_resource type="Animation" id="Animation_bdmbm"]
-resource_name = "player_walk"
+[sub_resource type="Animation" id="Animation_qglb8"]
+resource_name = "enemy_kolbold_weak_walk"
 length = 0.2
 loop_mode = 1
 step = 0.02
@@ -25,7 +25,7 @@ tracks/0/keys = {
 "values": [0, 1]
 }
 
-[sub_resource type="Animation" id="Animation_5oybh"]
+[sub_resource type="Animation" id="Animation_wuc3y"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -40,28 +40,25 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_65skl"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vq50c"]
 _data = {
-"RESET": SubResource("Animation_5oybh"),
-"player_walk": SubResource("Animation_bdmbm")
+"RESET": SubResource("Animation_wuc3y"),
+"enemy_kolbold_weak_walk": SubResource("Animation_qglb8")
 }
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="EnemyKolboldWeak" type="CharacterBody2D"]
 motion_mode = 1
-script = ExtResource("1_dkc32")
+script = ExtResource("1_3si5s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_63ql2")
+texture = ExtResource("1_uqjbr")
 hframes = 2
-
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 3)
-shape = SubResource("CapsuleShape2D_e4iyd")
+shape = SubResource("CapsuleShape2D_y5cas")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_65skl")
+"": SubResource("AnimationLibrary_vq50c")
 }

@@ -14,13 +14,11 @@ grow_vertical = 2
 script = ExtResource("1_cwtjw")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
 offset_right = 683.0
 offset_bottom = 413.0
 color = Color(0.321569, 0.172549, 0.172549, 1)
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 0
 offset_right = 640.0
 offset_bottom = 100.0
 theme_override_fonts/font = ExtResource("1_x4hy8")
@@ -31,7 +29,6 @@ vertical_alignment = 1
 
 [node name="btn_play" parent="." instance=ExtResource("2_8l8in")]
 custom_minimum_size = Vector2(80, 30)
-layout_mode = 0
 offset_left = 280.0
 offset_top = 250.0
 offset_right = 360.0
@@ -40,7 +37,6 @@ text = "Play"
 
 [node name="btn_exit" parent="." instance=ExtResource("2_8l8in")]
 custom_minimum_size = Vector2(80, 30)
-layout_mode = 0
 offset_left = 280.0
 offset_top = 290.0
 offset_right = 360.0

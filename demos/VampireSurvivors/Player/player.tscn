@@ -1,11 +1,27 @@
-[gd_scene load_steps=7 format=3 uid="uid://be4e72nbg23gh"]
+[gd_scene load_steps=9 format=3 uid="uid://be4e72nbg23gh"]
 
 [ext_resource type="Texture2D" uid="uid://dh7nfieyl6esu" path="res://Textures/Player/player_sprite.png" id="1_63ql2"]
 [ext_resource type="Script" path="res://Player/player.gd" id="1_dkc32"]
+[ext_resource type="PackedScene" uid="uid://d4eho7uljf2rc" path="res://Utility/hurt_box.tscn" id="3_07cy1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e4iyd"]
 radius = 5.0
 height = 20.0
+
+[sub_resource type="Animation" id="Animation_5oybh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_bdmbm"]
 resource_name = "player_walk"
@@ -25,26 +41,14 @@ tracks/0/keys = {
 "values": [0, 1]
 }
 
-[sub_resource type="Animation" id="Animation_5oybh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_65skl"]
 _data = {
 "RESET": SubResource("Animation_5oybh"),
 "player_walk": SubResource("Animation_bdmbm")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wmgbq"]
+size = Vector2(14, 22)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 motion_mode = 1
@@ -65,3 +69,14 @@ shape = SubResource("CapsuleShape2D_e4iyd")
 libraries = {
 "": SubResource("AnimationLibrary_65skl")
 }
+
+[node name="HurtBox" parent="." instance=ExtResource("3_07cy1")]
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_wmgbq")
+
+[connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+
+[editable path="HurtBox"]

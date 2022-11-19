@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bvo7gcljbr0to" path="res://Textures/dirt_full_new.png" id="1_k6toa"]
 [ext_resource type="PackedScene" uid="uid://be4e72nbg23gh" path="res://Player/player.tscn" id="2_0uq1i"]
-[ext_resource type="PackedScene" uid="uid://d2j0x5tio7f2o" path="res://Enemy/enemy.tscn" id="3_256o7"]
+[ext_resource type="PackedScene" uid="uid://bmb7wrhyfx85p" path="res://Utility/enemy_spawner.tscn" id="3_76r85"]
 
 [node name="World" type="Node2D"]
 metadata/_edit_vertical_guides_ = []
@@ -16,5 +16,4 @@ region_rect = Rect2(0, 0, 4000, 4000)
 
 [node name="Player" parent="." instance=ExtResource("2_0uq1i")]
 
-[node name="EnemyKolboldWeak" parent="." instance=ExtResource("3_256o7")]
-position = Vector2(59, 11)
+[node name="EnemySpawner" parent="." instance=ExtResource("3_76r85")]

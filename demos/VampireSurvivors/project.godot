@@ -8,6 +8,16 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Resource",
+"class": &"SpawnInfo",
+"language": &"GDScript",
+"path": "res://Utility/spawn_info.gd"
+}]
+_global_script_class_icons={
+"SpawnInfo": ""
+}
+
 [application]
 
 config/name="VampireSurvivors"

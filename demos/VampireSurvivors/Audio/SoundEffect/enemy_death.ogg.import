@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/enemy_death.ogg-cf25858d37698493bfa29b4923236
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
 bpm=0
 beat_count=0

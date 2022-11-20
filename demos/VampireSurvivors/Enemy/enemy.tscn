@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2j0x5tio7f2o"]
+[gd_scene load_steps=12 format=3 uid="uid://d2j0x5tio7f2o"]
 
 [ext_resource type="Script" path="res://Enemy/enemy.gd" id="1_3si5s"]
 [ext_resource type="Texture2D" uid="uid://mbeqd5hvda0y" path="res://Textures/Enemy/kolbold_weak.png" id="1_uqjbr"]
 [ext_resource type="PackedScene" uid="uid://d4eho7uljf2rc" path="res://Utility/hurt_box.tscn" id="3_1uguy"]
 [ext_resource type="PackedScene" uid="uid://cc2xg2kuwfpq1" path="res://Utility/hit_box.tscn" id="4_ei4gr"]
+[ext_resource type="AudioStream" uid="uid://crs00272a3xo5" path="res://Audio/SoundEffect/enemy_hit.ogg" id="5_qkd63"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y5cas"]
 radius = 5.0
@@ -75,6 +76,7 @@ libraries = {
 
 [node name="HurtBox" parent="." instance=ExtResource("3_1uguy")]
 collision_mask = 4
+hurt_box_type = 1
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 visible = false
@@ -87,6 +89,11 @@ collision_layer = 2
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 position = Vector2(2, 3)
 shape = SubResource("RectangleShape2D_bh8ee")
+
+[node name="SndHit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_qkd63")
+volume_db = -15.0
+pitch_scale = 2.0
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 

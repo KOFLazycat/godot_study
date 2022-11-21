@@ -3,17 +3,27 @@ extends CharacterBody2D
 
 var movement_speed = 40.0
 var hp = 80
+var last_movement = Vector2.UP
 
 #Attacks
 var iceSpear = preload("res://Player/Attack/ice_spear.tscn")
+var tornado = preload("res://Player/Attack/tornado.tscn")
 #AttackNodes
-@onready var ice_spear_timer = $Attack/IceSpearTimer
-@onready var ice_spear_attack_timer = $Attack/IceSpearTimer/IceSpearAttackTimer
+@onready var ice_spear_timer = %IceSpearTimer
+@onready var ice_spear_attack_timer = %IceSpearAttackTimer
+@onready var tornado_timer = %TornadoTimer
+@onready var tornado_attack_timer = %TornadoAttackTimer
+
 #IceSpear
 var icespear_ammo = 0
 var icespear_baseammo = 1
 var icespear_attackspeed = 1.5
-var icespear_level = 1
+var icespear_level = 0
+#Tornado
+var tornado_ammo = 0
+var tornado_baseammo = 1
+var tornado_attackspeed = 3
+var tornado_level = 1
 #Enemy Related
 var enemy_close = []
 
@@ -43,6 +53,7 @@ func movement():
 	if mov == Vector2.ZERO:
 		animation_player.stop()
 	else:
+		last_movement = mov
 		animation_player.play("player_walk")
 	
 	velocity = mov.normalized() * movement_speed
@@ -58,6 +69,10 @@ func attack():
 		ice_spear_timer.wait_time = icespear_attackspeed
 		if ice_spear_timer.is_stopped():
 			ice_spear_timer.start()
+	if tornado_level > 0:
+		tornado_timer.wait_time = tornado_attackspeed
+		if tornado_timer.is_stopped():
+			tornado_timer.start()
 
 
 func _on_ice_spear_timer_timeout():
@@ -81,12 +96,32 @@ func _on_ice_spear_attack_timer_timeout():
 		ice_spear_attack_timer.stop()
 
 
+func _on_tornado_timer_timeout():
+	tornado_ammo += tornado_baseammo
+	tornado_attack_timer.start()
+
+
+func _on_tornado_attack_timer_timeout():
+	if tornado_ammo > 0:
+		var tornado_attack = tornado.instantiate()
+		tornado_attack.position = position
+		tornado_attack.last_movement = last_movement
+		tornado_attack.level = tornado_level
+		add_child(tornado_attack)
+		tornado_ammo -= 1
+		if tornado_ammo > 0:
+			tornado_attack_timer.start()
+		else:
+			tornado_attack_timer.stop()
+	else:
+		tornado_attack_timer.stop()
+
+
 func get_random_target():
 	if enemy_close.size() > 0:
 		return enemy_close.pick_random().global_position
 	else:
 		return Vector2.UP
-
 
 
 func _on_enemy_detection_area_body_entered(body):

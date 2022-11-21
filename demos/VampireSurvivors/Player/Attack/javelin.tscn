@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfv7ixbmxr6ob"]
+
+[ext_resource type="Script" path="res://Player/Attack/javelin.gd" id="1_541h4"]
+[ext_resource type="Texture2D" uid="uid://b6ibgk2xoq7d6" path="res://Textures/Items/Weapons/javelin_3_new.png" id="1_lvske"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qs7o"]
+size = Vector2(33.9411, 2.82843)
+
+[node name="Javelin" type="Area2D"]
+script = ExtResource("1_541h4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lvske")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.98023e-08, 4.47035e-07)
+rotation = 0.785398
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_0qs7o")
+disabled = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="ChangeDirectionTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="ResetPosTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="SndAttack" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

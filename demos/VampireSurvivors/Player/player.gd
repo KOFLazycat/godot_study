@@ -8,11 +8,13 @@ var last_movement = Vector2.UP
 #Attacks
 var iceSpear = preload("res://Player/Attack/ice_spear.tscn")
 var tornado = preload("res://Player/Attack/tornado.tscn")
+var javlin = preload("res://Player/Attack/javelin.tscn")
 #AttackNodes
 @onready var ice_spear_timer = %IceSpearTimer
 @onready var ice_spear_attack_timer = %IceSpearAttackTimer
 @onready var tornado_timer = %TornadoTimer
 @onready var tornado_attack_timer = %TornadoAttackTimer
+@onready var javelin_base = $Attack/JavelinBase
 
 #IceSpear
 var icespear_ammo = 0
@@ -23,7 +25,10 @@ var icespear_level = 0
 var tornado_ammo = 0
 var tornado_baseammo = 1
 var tornado_attackspeed = 3
-var tornado_level = 1
+var tornado_level = 0
+#Javelin
+var javelin_ammo = 0
+var javelin_level = 1
 #Enemy Related
 var enemy_close = []
 
@@ -73,6 +78,8 @@ func attack():
 		tornado_timer.wait_time = tornado_attackspeed
 		if tornado_timer.is_stopped():
 			tornado_timer.start()
+	if javelin_level > 0:
+		spawn_javelin()
 
 
 func _on_ice_spear_timer_timeout():
@@ -115,6 +122,16 @@ func _on_tornado_attack_timer_timeout():
 			tornado_attack_timer.stop()
 	else:
 		tornado_attack_timer.stop()
+
+
+func spawn_javelin():
+	var get_javelin_total = javelin_base.get_child_count()
+	var calc_spawns = javelin_ammo - get_javelin_total
+	while calc_spawns > 0:
+		var javelin_spawn = javlin.instantiate()
+		javelin_spawn.global_position = global_position
+		javelin_base.add_child(javelin_spawn)
+		calc_spawns -= 1
 
 
 func get_random_target():

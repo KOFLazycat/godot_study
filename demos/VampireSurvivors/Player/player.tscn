@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://be4e72nbg23gh"]
+[gd_scene load_steps=12 format=3 uid="uid://be4e72nbg23gh"]
 
 [ext_resource type="Texture2D" uid="uid://dh7nfieyl6esu" path="res://Textures/Player/player_sprite.png" id="1_63ql2"]
 [ext_resource type="Script" path="res://Player/player.gd" id="1_dkc32"]
@@ -53,6 +53,11 @@ size = Vector2(14, 22)
 [sub_resource type="CircleShape2D" id="CircleShape2D_wwnmb"]
 radius = 370.984
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_cdm32"]
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5220y"]
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_dkc32")
@@ -101,12 +106,27 @@ wait_time = 0.2
 [node name="JavelinBase" type="Node2D" parent="Attack"]
 
 [node name="EnemyDetectionArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 4
 collision_mask = 4
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectionArea"]
 shape = SubResource("CircleShape2D_wwnmb")
+
+[node name="GrabArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabArea"]
+shape = SubResource("CircleShape2D_cdm32")
+
+[node name="CollectArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea"]
+shape = SubResource("CircleShape2D_5220y")
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="timeout" from="Attack/IceSpearTimer" to="." method="_on_ice_spear_timer_timeout"]
@@ -115,5 +135,7 @@ shape = SubResource("CircleShape2D_wwnmb")
 [connection signal="timeout" from="Attack/TornadoTimer/TornadoAttackTimer" to="." method="_on_tornado_attack_timer_timeout"]
 [connection signal="body_entered" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_entered"]
 [connection signal="body_exited" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_exited"]
+[connection signal="area_entered" from="GrabArea" to="." method="_on_grab_area_area_entered"]
+[connection signal="area_entered" from="CollectArea" to="." method="_on_collect_area_area_entered"]
 
 [editable path="HurtBox"]

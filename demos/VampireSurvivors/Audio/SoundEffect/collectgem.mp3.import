@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/collectgem.mp3-63efac066a0a395abbf10c284e8a88
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
 bpm=0
 beat_count=0

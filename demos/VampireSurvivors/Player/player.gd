@@ -40,10 +40,13 @@ var enemy_close = []
 
 @onready var sprite_2d = $Sprite2D
 @onready var animation_player = $AnimationPlayer
+@onready var experience_bar = %ExperienceBar
+@onready var lbl_level = %LblLevel
 
 
 func _ready():
 	attack()
+	set_expbar(experience, calculate_expriencecap())
 
 
 func _physics_process(delta):
@@ -164,3 +167,37 @@ func _on_grab_area_area_entered(area):
 func _on_collect_area_area_entered(area):
 	if area.is_in_group("loot"):
 		var gem_exp = area.collect()
+		calculate_exprience(gem_exp)
+
+
+func calculate_exprience(gem_exp):
+	var exp_required = calculate_expriencecap()
+	collected_exprience += gem_exp
+	if experience + collected_exprience > exp_required:#level up
+		collected_exprience -= exp_required - experience
+		experience_level += 1
+		lbl_level.text = ("Level: " + str(experience_level))
+		experience = 0
+		exp_required = calculate_expriencecap()
+		calculate_exprience(0)
+	else:
+		experience += collected_exprience
+		collected_exprience = 0
+	set_expbar(experience, exp_required)
+	
+	
+func calculate_expriencecap():
+	var exp_cap = experience_level
+	if experience_level < 20:
+		exp_cap += experience_level * 5
+	elif experience_level < 40:
+		exp_cap += 95 + (experience_level - 19) * 8
+	else:
+		exp_cap += 255 + (experience_level - 39) * 12
+	return exp_cap
+
+
+func set_expbar(set_value = 1, set_max_value = 100):
+	experience_bar.value = set_value
+	experience_bar.max_value = set_max_value
+	

@@ -141,7 +141,6 @@ offset_bottom = 360.0
 
 [node name="ExperienceBar" type="TextureProgressBar" parent="GUILayer/GUI"]
 unique_name_in_owner = true
-layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture_under = ExtResource("4_jaq6x")
@@ -149,7 +148,6 @@ texture_progress = ExtResource("5_whxy6")
 
 [node name="LblLevel" type="Label" parent="GUILayer/GUI/ExperienceBar"]
 unique_name_in_owner = true
-layout_mode = 0
 offset_left = 540.0
 offset_right = 640.0
 offset_bottom = 20.0

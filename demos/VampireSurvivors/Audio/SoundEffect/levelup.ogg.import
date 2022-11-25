@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/levelup.ogg-4b512de2ede418690231f1a46589de88.
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
 bpm=0
 beat_count=0

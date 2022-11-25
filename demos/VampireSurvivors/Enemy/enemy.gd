@@ -56,6 +56,7 @@ func death():
 	get_parent().call_deferred("add_child", enemy_death)
 	var new_gem = exp_gem.instantiate()
 	new_gem.global_position = global_position
+	print(new_gem.experience)
 	new_gem.experience = experience
 	loot_base.call_deferred("add_child", new_gem)
 	queue_free()

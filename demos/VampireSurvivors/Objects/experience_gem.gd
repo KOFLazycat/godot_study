@@ -1,5 +1,9 @@
 extends Area2D
 
+@onready var sprite_2d = $Sprite2D
+@onready var snd_collected = $SndCollected
+@onready var collision_shape_2d = $CollisionShape2D
+
 @export var experience = 1
 
 var spr_green = preload("res://Textures/Items/Gems/Gem_green.png")
@@ -8,10 +12,6 @@ var spr_red = preload("res://Textures/Items/Gems/Gem_red.png")
 
 var target = null
 var speed = -1
-
-@onready var sprite_2d = $Sprite2D
-@onready var snd_collected = $SndCollected
-@onready var collision_shape_2d = $CollisionShape2D
 
 
 func _ready():

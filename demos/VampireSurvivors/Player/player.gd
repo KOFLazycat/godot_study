@@ -40,8 +40,14 @@ var enemy_close = []
 
 @onready var sprite_2d = $Sprite2D
 @onready var animation_player = $AnimationPlayer
+
+#GUI
 @onready var experience_bar = %ExperienceBar
 @onready var lbl_level = %LblLevel
+@onready var level_up = %LevelUp
+@onready var upgrade_options = %UpgradeOptions
+@onready var snd_level_up = %SndLevelUp
+@onready var item_option = preload("res://Utility/item_option.tscn")
 
 
 func _ready():
@@ -176,10 +182,9 @@ func calculate_exprience(gem_exp):
 	if experience + collected_exprience > exp_required:#level up
 		collected_exprience -= exp_required - experience
 		experience_level += 1
-		lbl_level.text = ("Level: " + str(experience_level))
 		experience = 0
 		exp_required = calculate_expriencecap()
-		calculate_exprience(0)
+		levelup()
 	else:
 		experience += collected_exprience
 		collected_exprience = 0
@@ -200,4 +205,36 @@ func calculate_expriencecap():
 func set_expbar(set_value = 1, set_max_value = 100):
 	experience_bar.value = set_value
 	experience_bar.max_value = set_max_value
-	
+
+
+# 升级
+func levelup():
+	snd_level_up.play()
+	lbl_level.text = ("Level: " + str(experience_level))
+	var tween = create_tween()
+	tween.tween_property(level_up, "position", Vector2(220, 50), 0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
+	tween.play()
+	level_up.visible = true
+	var options = 0
+	var options_max = 3
+	while options < options_max:
+		var option_choice = item_option.instantiate()
+		upgrade_options.add_child(option_choice)
+		options += 1
+	await tween.finished
+	get_tree().paused = true
+
+
+func upgrade_character(upgrade):
+	# 先取消暂停
+	get_tree().paused = false
+	var tween = create_tween()
+	tween.tween_property(level_up, "position", Vector2(-350, 50), 0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.play()
+	await tween.finished
+	var option_children = upgrade_options.get_children()
+	for i in option_children:
+		i.queue_free()
+	level_up.visible = false
+	level_up.position = Vector2(800, 50)
+	calculate_exprience(0)

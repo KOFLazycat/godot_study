@@ -36,7 +36,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_j6poh")
-time_for_each_flash = 0.8
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

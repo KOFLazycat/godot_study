@@ -5,6 +5,7 @@ var movement_speed = 40.0
 var hp = 80
 var maxhp = 80
 var last_movement = Vector2.UP
+var time = 0
 
 #经验
 var experience = 0
@@ -58,12 +59,18 @@ var enemy_close = []
 @onready var upgrade_options = %UpgradeOptions
 @onready var snd_level_up = %SndLevelUp
 @onready var item_option = preload("res://Utility/item_option.tscn")
+@onready var health_bar = %HealthBar
+@onready var lbl_timer = %LblTimer
+@onready var collected_weapons_grid = %CollectedWeaponsGrid
+@onready var collected_upgrades_grid = %CollectedUpgradesGrid
+@onready var item_container = preload("res://Player/GUI/item_container.tscn")
 
 
 func _ready():
 	upgrade_character("icespear1")
 	attack()
 	set_expbar(experience, calculate_expriencecap())
+	_on_hurt_box_hurt(0, 0, 0)
 
 
 func _physics_process(delta):
@@ -92,6 +99,8 @@ func movement():
 
 func _on_hurt_box_hurt(damage, _angle, _knockback_amount):
 	hp -= clamp(damage - armor, 1.0, 999.0)
+	health_bar.max_value = maxhp
+	health_bar.value = hp
 
 
 func attack():
@@ -289,7 +298,7 @@ func upgrade_character(upgrade):
 		"food":
 			hp += 20
 			hp = clamp(hp,0,maxhp)
-	
+	adjust_gui_collection(upgrade)
 	attack()
 	# 先取消暂停
 	get_tree().paused = false
@@ -332,8 +341,33 @@ func get_random_item():
 	else:
 		return null
 			
+func change_time(argtime = 0):
+	time = argtime
+	var get_m = int(time/60)
+	var get_s = time%60
+	if get_m < 10:
+		get_m = str(0, get_m)
+	if get_s < 10:
+		get_s = str(0, get_s)
+	lbl_timer.text = str(get_m, ":", get_s)
 			
-			
+
+func adjust_gui_collection(upgrade):
+	var get_upgraded_displayname = UpgradeDb.UPGRADES[upgrade]["displayname"]
+	var get_type = UpgradeDb.UPGRADES[upgrade]["type"]
+	if get_type != "item":
+		var get_collected_displaynames = []
+		for i in collected_upgrades:
+			get_collected_displaynames.append(UpgradeDb.UPGRADES[i]["displayname"]) 
+		if not get_upgraded_displayname in get_collected_displaynames:
+			var new_item = item_container.instantiate()
+			new_item.upgrade = upgrade
+			match get_type:
+				"weapon":
+					collected_weapons_grid.add_child(new_item)
+				"upgrade":
+					collected_upgrades_grid.add_child(new_item)
+		
 			
 			
 			

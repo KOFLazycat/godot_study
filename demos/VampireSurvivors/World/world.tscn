@@ -1,9 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://bm21nrltlnv4w"]
+[gd_scene load_steps=8 format=3 uid="uid://bm21nrltlnv4w"]
 
 [ext_resource type="Texture2D" uid="uid://bvo7gcljbr0to" path="res://Textures/dirt_full_new.png" id="1_k6toa"]
 [ext_resource type="PackedScene" uid="uid://be4e72nbg23gh" path="res://Player/player.tscn" id="2_0uq1i"]
 [ext_resource type="PackedScene" uid="uid://bmb7wrhyfx85p" path="res://Utility/enemy_spawner.tscn" id="3_76r85"]
+[ext_resource type="PackedScene" uid="uid://d2j0x5tio7f2o" path="res://Enemy/enemy.tscn" id="4_0palh"]
 [ext_resource type="PackedScene" uid="uid://b63xvwna4a7cy" path="res://Objects/experience_gem.tscn" id="4_p64s7"]
+[ext_resource type="Script" path="res://Utility/spawn_info.gd" id="5_e4mpp"]
+
+[sub_resource type="Resource" id="Resource_66sgu"]
+script = ExtResource("5_e4mpp")
+time_start = null
+time_end = 60
+enemy = ExtResource("4_0palh")
+enemy_num = 5
+enemy_spawn_delay = null
 
 [node name="World" type="Node2D"]
 metadata/_edit_vertical_guides_ = []
@@ -20,6 +30,7 @@ region_rect = Rect2(0, 0, 4000, 4000)
 position = Vector2(0, 16)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_76r85")]
+spawns = [SubResource("Resource_66sgu")]
 
 [node name="Loot" type="Node2D" parent="." groups=["loot"]]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://be4e72nbg23gh"]
+[gd_scene load_steps=18 format=3 uid="uid://be4e72nbg23gh"]
 
 [ext_resource type="Texture2D" uid="uid://dh7nfieyl6esu" path="res://Textures/Player/player_sprite.png" id="1_63ql2"]
 [ext_resource type="Script" path="res://Player/player.gd" id="1_dkc32"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://c5hn0pt6a58d" path="res://Textures/GUI/exp_progress.png" id="5_whxy6"]
 [ext_resource type="FontFile" uid="uid://c51j5f0lydu65" path="res://Font/tenderness.otf" id="6_amhwv"]
 [ext_resource type="AudioStream" uid="uid://b7qbbprqqfy43" path="res://Audio/SoundEffect/levelup.ogg" id="7_q5sc8"]
+[ext_resource type="Texture2D" uid="uid://lsc5abt5tsku" path="res://Textures/GUI/healthbar.png" id="8_lybjd"]
+[ext_resource type="Texture2D" uid="uid://my02ndtp285a" path="res://Textures/GUI/health.png" id="9_6jaie"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e4iyd"]
 radius = 5.0
@@ -161,6 +163,18 @@ text = "Level: 1"
 horizontal_alignment = 1
 vertical_alignment = 2
 
+[node name="HealthBar" type="TextureProgressBar" parent="GUILayer/GUI"]
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 0
+offset_left = 304.0
+offset_top = 200.0
+offset_right = 336.0
+offset_bottom = 208.0
+value = 50.0
+texture_over = ExtResource("8_lybjd")
+texture_progress = ExtResource("9_6jaie")
+
 [node name="LevelUp" type="Panel" parent="GUILayer/GUI"]
 unique_name_in_owner = true
 process_mode = 2
@@ -192,6 +206,37 @@ unique_name_in_owner = true
 stream = ExtResource("7_q5sc8")
 volume_db = -20.0
 pitch_scale = 1.2
+
+[node name="LblTimer" type="Label" parent="GUILayer/GUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 280.0
+offset_top = 20.0
+offset_right = 360.0
+offset_bottom = 44.0
+theme_override_fonts/font = ExtResource("6_amhwv")
+theme_override_font_sizes/font_size = 20
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollectedWeaponsGrid" type="GridContainer" parent="GUILayer/GUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 208.0
+offset_bottom = 40.0
+columns = 10
+
+[node name="CollectedUpgradesGrid" type="GridContainer" parent="GUILayer/GUI"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 8.0
+offset_top = 40.0
+offset_right = 208.0
+offset_bottom = 56.0
+columns = 10
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="timeout" from="Attack/IceSpearTimer" to="." method="_on_ice_spear_timer_timeout"]

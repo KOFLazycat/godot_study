@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bvlfq5yxtjmwi" path="res://Textures/Items/Weapons/tornado.png" id="1_vun5r"]
 [ext_resource type="AudioStream" uid="uid://3ki8s2lxbdyg" path="res://Audio/SoundEffect/tornado.ogg" id="3_22rx8"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kxya4"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mv2tc"]
 size = Vector2(11, 24)
 
 [node name="Tornado" type="Area2D" groups=["attack"]]
@@ -19,7 +19,7 @@ texture = ExtResource("1_vun5r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 1)
-shape = SubResource("RectangleShape2D_kxya4")
+shape = SubResource("RectangleShape2D_mv2tc")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 20.0

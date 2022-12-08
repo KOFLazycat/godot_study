@@ -13,7 +13,7 @@ var angle = Vector2.ZERO
 var angle_less = Vector2.ZERO
 var angle_more = Vector2.ZERO
 
-signal remove_from_array(ogject)
+signal remove_from_array(object)
 
 @onready var player = get_tree().get_first_node_in_group("player")
 
@@ -99,5 +99,5 @@ func enemy_hit(charge = 1):
 
 
 func _on_ss_timeout():
-	emit_signal("remove_from_array")
+	emit_signal("remove_from_array", self)
 	queue_free()

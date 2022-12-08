@@ -10,7 +10,7 @@ func _ready():
 	look_at(position + direction)
 
 
-func _physics_process(delta: float):
+func _physics_process(delta):
 	position += direction * speed * delta
 
 

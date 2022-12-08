@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfi1gbgmaikqb"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/turret/turret.gd" id="1_ay5py"]
+[ext_resource type="Texture2D" uid="uid://bm3tj1o2ujx6v" path="res://src/main/assets/texture/role/turret/wand_fire.png" id="1_h0p2p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6v6u0"]
+radius = 44.0
+
+[node name="Turret" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_ay5py")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6v6u0")
+
+[node name="Weapon" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Weapon"]
+position = Vector2(53, 0)
+texture = ExtResource("1_h0p2p")
+
+[node name="ProjectileSpawner" type="Marker2D" parent="Weapon"]
+position = Vector2(69, 0)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true

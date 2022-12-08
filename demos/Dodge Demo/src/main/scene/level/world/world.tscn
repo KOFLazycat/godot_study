@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://pkwaw4yjn53e"]
+
+[ext_resource type="PackedScene" uid="uid://mnwo8333sgqh" path="res://src/main/scene/role/player/player.tscn" id="1_yc6nu"]
+[ext_resource type="PackedScene" uid="uid://cfi1gbgmaikqb" path="res://src/main/scene/role/turret/turret.tscn" id="2_b23up"]
+
+[node name="World" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_yc6nu")]
+position = Vector2(610, 578)
+
+[node name="Turret" parent="." instance=ExtResource("2_b23up")]
+position = Vector2(1438, 273)
+player_path = NodePath("../Player")

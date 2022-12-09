@@ -6,8 +6,20 @@
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_yc6nu")]
-position = Vector2(610, 578)
+position = Vector2(884, 564)
 
 [node name="Turret" parent="." instance=ExtResource("2_b23up")]
 position = Vector2(1438, 273)
+player_path = NodePath("../Player")
+
+[node name="Turret2" parent="." instance=ExtResource("2_b23up")]
+position = Vector2(1432, 810)
+player_path = NodePath("../Player")
+
+[node name="Turret3" parent="." instance=ExtResource("2_b23up")]
+position = Vector2(202, 854)
+player_path = NodePath("../Player")
+
+[node name="Turret4" parent="." instance=ExtResource("2_b23up")]
+position = Vector2(208, 188)
 player_path = NodePath("../Player")

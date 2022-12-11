@@ -64,6 +64,13 @@ var enemy_close = []
 @onready var collected_weapons_grid = %CollectedWeaponsGrid
 @onready var collected_upgrades_grid = %CollectedUpgradesGrid
 @onready var item_container = preload("res://Player/GUI/item_container.tscn")
+@onready var death_panel = %DeathPanel
+@onready var lbl_result = %LblResult
+@onready var snd_victory = %SndVictory
+@onready var snd_lose = %SndLose
+
+
+signal playerdeath
 
 
 func _ready():
@@ -101,6 +108,8 @@ func _on_hurt_box_hurt(damage, _angle, _knockback_amount):
 	hp -= clamp(damage - armor, 1.0, 999.0)
 	health_bar.max_value = maxhp
 	health_bar.value = hp
+	if hp <= 0:
+		death()
 
 
 func attack():
@@ -369,15 +378,22 @@ func adjust_gui_collection(upgrade):
 					collected_upgrades_grid.add_child(new_item)
 		
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+func death():
+	death_panel.visible = true
+	emit_signal("playerdeath")
+	get_tree().paused = true
+	var tween = death_panel.create_tween()
+	tween.tween_property(death_panel, "position", Vector2(220, 50), 3.0).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.play()
+	if time >= 300:
+		lbl_result.text = "You Win."
+		snd_victory.play()
+	else:
+		lbl_result.text = "You Lose."
+		snd_lose.play()
+
+
+func _on_btn_menu_click_end():
+	get_tree().paused = false
+	var _level = get_tree().change_scene_to_file("res://TitleScreen/menu.tscn")
+	

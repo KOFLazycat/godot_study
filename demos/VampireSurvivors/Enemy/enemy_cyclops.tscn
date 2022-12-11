@@ -64,7 +64,6 @@ movement_speed = 16.0
 hp = 100
 knockback_recovery = 10.0
 experience = 5
-damage = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_f07mq")

@@ -65,7 +65,7 @@ movement_speed = 150.0
 hp = 99999
 knockback_recovery = 99999.0
 experience = 100
-damage = 200
+enemy_damage = 20
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.75, 0.75)

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cw0c7bjdljh1h"]
+
+[ext_resource type="FontFile" uid="uid://c51j5f0lydu65" path="res://Font/tenderness.otf" id="1_d0g3u"]
+[ext_resource type="Script" path="res://Utility/base_button.gd" id="1_e6lns"]
+[ext_resource type="AudioStream" uid="uid://6x6g3nv4iuej" path="res://Audio/GUI/hover.wav" id="2_7hbt8"]
+[ext_resource type="AudioStream" uid="uid://udspcd6piml2" path="res://Audio/GUI/click.wav" id="3_yum4l"]
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(80, 30)
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_fonts/font = ExtResource("1_d0g3u")
+theme_override_font_sizes/font_size = 20
+text = "Example"
+script = ExtResource("1_e6lns")
+
+[node name="SndHover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_7hbt8")
+
+[node name="SndClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_yum4l")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="finished" from="SndClick" to="." method="_on_snd_click_finished"]

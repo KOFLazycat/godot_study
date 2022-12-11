@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Lose.ogg-0788453e3ffc9ad97722e89fbc3b4a93.ogg
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
 bpm=0
 beat_count=0

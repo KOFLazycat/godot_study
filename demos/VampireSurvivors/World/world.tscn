@@ -1,15 +1,16 @@
-[gd_scene load_steps=20 format=3 uid="uid://bm21nrltlnv4w"]
+[gd_scene load_steps=21 format=3 uid="uid://bm21nrltlnv4w"]
 
 [ext_resource type="Texture2D" uid="uid://bvo7gcljbr0to" path="res://Textures/dirt_full_new.png" id="1_k6toa"]
 [ext_resource type="PackedScene" uid="uid://be4e72nbg23gh" path="res://Player/player.tscn" id="2_0uq1i"]
 [ext_resource type="PackedScene" path="res://Utility/enemy_spawner.tscn" id="3_76r85"]
 [ext_resource type="PackedScene" uid="uid://b6ipgfyjeeccm" path="res://Enemy/enemy_kolbold_weak.tscn" id="4_33t0h"]
-[ext_resource type="PackedScene" uid="uid://b63xvwna4a7cy" path="res://Objects/experience_gem.tscn" id="4_p64s7"]
 [ext_resource type="Script" path="res://Utility/spawn_info.gd" id="5_e4mpp"]
 [ext_resource type="PackedScene" uid="uid://d2j0x5tio7f2o" path="res://Enemy/enemy_kolbold_strong.tscn" id="6_g60gb"]
 [ext_resource type="PackedScene" uid="uid://bm346kp4tyexh" path="res://Enemy/enemy_cyclops.tscn" id="7_qiwmx"]
 [ext_resource type="PackedScene" uid="uid://dhafft7dmq4ic" path="res://Enemy/enemy_juggernaut.tscn" id="8_kberm"]
 [ext_resource type="PackedScene" uid="uid://d3e306gtoheg6" path="res://Enemy/enemy_super.tscn" id="9_lq5s6"]
+[ext_resource type="AudioStream" uid="uid://cobqlruqtbp2r" path="res://Audio/Music/battleThemeA.mp3" id="10_vo7pp"]
+[ext_resource type="Script" path="res://Audio/Music/snd_music.gd" id="11_l3cqp"]
 
 [sub_resource type="Resource" id="Resource_ty6we"]
 script = ExtResource("5_e4mpp")
@@ -98,14 +99,16 @@ region_rect = Rect2(0, 0, 4000, 4000)
 position = Vector2(0, 16)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_76r85")]
+time = 0
 spawns = [SubResource("Resource_ty6we"), SubResource("Resource_ki2f6"), SubResource("Resource_n7r2x"), SubResource("Resource_y3ddj"), SubResource("Resource_y672e"), SubResource("Resource_x6mfr"), SubResource("Resource_p1o8v"), SubResource("Resource_6ehtb"), SubResource("Resource_3dr8m")]
 
 [node name="Loot" type="Node2D" parent="." groups=["loot"]]
 
-[node name="ExperienceGem" parent="Loot" instance=ExtResource("4_p64s7")]
-position = Vector2(53, -40)
-experience = 10
+[node name="SndMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("10_vo7pp")
+volume_db = -15.0
+autoplay = true
+script = ExtResource("11_l3cqp")
 
-[node name="ExperienceGem2" parent="Loot" instance=ExtResource("4_p64s7")]
-position = Vector2(-53, -64)
-experience = 10
+[connection signal="playerdeath" from="Player" to="SndMusic" method="_on_player_playerdeath"]

@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="VampireSurvivors"
-run/main_scene="res://World/world.tscn"
+run/main_scene="res://TitleScreen/menu.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.svg"
 

@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Dodge Demo"
-run/main_scene="res://src/main/scene/level/world/world.tscn"
+config/name="DQuestDemo"
+run/main_scene="res://src/main/scene/level/world/doge_demo_world.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.svg"
 

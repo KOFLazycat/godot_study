@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://brysmku0uwvvt" path="res://src/main/assets/texture/role/projectile/fire.png" id="2_7ueb7"]
 [ext_resource type="Script" path="res://src/main/scene/role/projectile/hit_box.gd" id="4_njd1u"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ggfxp"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_4adto"]
 radius = 11.0
 
 [node name="Projectile" type="Node2D"]
@@ -26,7 +26,7 @@ script = ExtResource("4_njd1u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(3, 0)
-shape = SubResource("CircleShape2D_ggfxp")
+shape = SubResource("CircleShape2D_4adto")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 visible = false

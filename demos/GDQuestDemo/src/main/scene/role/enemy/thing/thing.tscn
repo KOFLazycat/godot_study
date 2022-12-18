@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=3 uid="uid://ch4fms705ukcg"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/enemy/thing/thing.gd" id="1_6kuuy"]
+[ext_resource type="Script" path="res://src/main/component/hurtbox/common_hurt_box.gd" id="1_uino7"]
+[ext_resource type="Texture2D" uid="uid://b8vt8x16hic7h" path="res://src/main/assets/texture/role/enemy/thing/enemy.png" id="2_0jso4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rogi1"]
+size = Vector2(67, 95)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iyoyc"]
+size = Vector2(67, 91)
+
+[sub_resource type="Animation" id="Animation_3v4xa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.174533]
+}
+
+[sub_resource type="Animation" id="Animation_idgk5"]
+resource_name = "thing_hit"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.174533, 0.226893, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pbilt"]
+_data = {
+"RESET": SubResource("Animation_3v4xa"),
+"thing_hit": SubResource("Animation_idgk5")
+}
+
+[node name="Thing" type="CharacterBody2D"]
+rotation = -0.174533
+script = ExtResource("1_6kuuy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -34)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_0jso4")
+offset = Vector2(0, -55)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -50)
+shape = SubResource("RectangleShape2D_rogi1")
+disabled = true
+
+[node name="CommonHurtBox" type="Area2D" parent="."]
+script = ExtResource("1_uino7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CommonHurtBox"]
+position = Vector2(0, -50)
+shape = SubResource("RectangleShape2D_iyoyc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pbilt")
+}

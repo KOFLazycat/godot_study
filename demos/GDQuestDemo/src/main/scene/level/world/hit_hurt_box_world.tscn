@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d03k3mvdl6n0s"]
+
+[ext_resource type="PackedScene" uid="uid://ch4fms705ukcg" path="res://src/main/scene/role/enemy/thing/thing.tscn" id="1_skgk0"]
+[ext_resource type="PackedScene" uid="uid://wrqaghmuro4c" path="res://src/main/scene/role/sword/weapon_sword.tscn" id="2_ewopc"]
+
+[node name="HitHurtBoxWorld" type="Node2D"]
+
+[node name="Thing" parent="." instance=ExtResource("1_skgk0")]
+position = Vector2(1025, 278)
+
+[node name="Thing2" parent="." instance=ExtResource("1_skgk0")]
+position = Vector2(964, 665)
+
+[node name="WeaponSword" parent="." instance=ExtResource("2_ewopc")]
+position = Vector2(523, 451)

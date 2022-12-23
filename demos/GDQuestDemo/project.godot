@@ -18,10 +18,22 @@ _global_script_classes=[{
 "class": &"CommonHurtBox",
 "language": &"GDScript",
 "path": "res://src/main/component/hurtbox/common_hurt_box.gd"
+}, {
+"base": "CharacterBody2D",
+"class": &"EnemyThing2",
+"language": &"GDScript",
+"path": "res://src/main/scene/role/enemy/thing/thing_2.gd"
+}, {
+"base": "Node2D",
+"class": &"Missile",
+"language": &"GDScript",
+"path": "res://src/main/scene/role/weapon/missile.gd"
 }]
 _global_script_class_icons={
 "CommonHitBox": "",
-"CommonHurtBox": ""
+"CommonHurtBox": "",
+"EnemyThing2": "",
+"Missile": ""
 }
 
 [application]

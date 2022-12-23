@@ -5,23 +5,23 @@
 [ext_resource type="Texture2D" uid="uid://bvtbd3iehyft3" path="res://src/main/assets/texture/role/projectile/particle_bullet.png" id="2_fa8n7"]
 [ext_resource type="Script" path="res://src/main/component/hitbox/common_hit_box.gd" id="2_vsjck"]
 
-[sub_resource type="Gradient" id="Gradient_6jrww"]
+[sub_resource type="Gradient" id="Gradient_grl3u"]
 offsets = PackedFloat32Array(0, 0.188976, 0.385827, 0.748031, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.992157, 1, 0, 1, 1, 0.305882, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_4jf25"]
-gradient = SubResource("Gradient_6jrww")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xmihi"]
+gradient = SubResource("Gradient_grl3u")
 width = 2048
 
-[sub_resource type="Curve" id="Curve_j8w2p"]
+[sub_resource type="Curve" id="Curve_ducuh"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.585185, 0.954545), -1.04132, -1.04132, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_vs0gp"]
+[sub_resource type="CurveTexture" id="CurveTexture_lhfi4"]
 width = 2048
-curve = SubResource("Curve_j8w2p")
+curve = SubResource("Curve_ducuh")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u3shh"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ofunq"]
 emission_shape = 1
 emission_sphere_radius = 6.99
 particle_flag_disable_z = true
@@ -38,15 +38,15 @@ linear_accel_min = 23.39
 linear_accel_max = 23.39
 scale_min = 4.0
 scale_max = 4.0
-scale_curve = SubResource("CurveTexture_vs0gp")
-color_ramp = SubResource("GradientTexture1D_4jf25")
+scale_curve = SubResource("CurveTexture_lhfi4")
+color_ramp = SubResource("GradientTexture1D_xmihi")
 hue_variation_min = 1.0
 hue_variation_max = 1.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_o4fa1"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_b22wa"]
 radius = 26.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tikqy"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_x5lw0"]
 radius = 127.566
 
 [node name="FireBall" type="Node2D"]
@@ -59,7 +59,7 @@ texture = ExtResource("1_27grq")
 [node name="ExplosionParticles" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 100
-process_material = SubResource("ParticleProcessMaterial_u3shh")
+process_material = SubResource("ParticleProcessMaterial_ofunq")
 texture = ExtResource("2_fa8n7")
 lifetime = 0.6
 one_shot = true
@@ -71,13 +71,13 @@ draw_order = 0
 [node name="ImpactDetector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ImpactDetector"]
-shape = SubResource("CircleShape2D_o4fa1")
+shape = SubResource("CircleShape2D_b22wa")
 
 [node name="CommonHitBox" type="Area2D" parent="."]
 script = ExtResource("2_vsjck")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CommonHitBox"]
-shape = SubResource("CircleShape2D_tikqy")
+shape = SubResource("CircleShape2D_x5lw0")
 disabled = true
 
 [node name="Timer" type="Timer" parent="."]

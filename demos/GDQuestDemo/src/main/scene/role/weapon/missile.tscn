@@ -1,0 +1,76 @@
+[gd_scene load_steps=12 format=3 uid="uid://b24h2kob2v4fk"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/weapon/missile.gd" id="1_0tuf4"]
+[ext_resource type="Texture2D" uid="uid://bk5vqp0wqpu3l" path="res://src/main/assets/texture/role/weapon/t_40_02.png" id="1_pxuwq"]
+[ext_resource type="Texture2D" uid="uid://bvtbd3iehyft3" path="res://src/main/assets/texture/role/projectile/particle_bullet.png" id="2_a7dbk"]
+[ext_resource type="Script" path="res://src/main/component/hitbox/common_hit_box.gd" id="3_kp8kx"]
+
+[sub_resource type="Gradient" id="Gradient_l25mc"]
+offsets = PackedFloat32Array(0, 0.313, 0.778, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.929412, 0.8, 0.113725, 1, 0.933333, 0.0745098, 0.0745098, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pyeoq"]
+gradient = SubResource("Gradient_l25mc")
+
+[sub_resource type="Curve" id="Curve_v4urr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.451852, 0.454545), -2.38235, -2.38235, 0, 0, Vector2(0.992593, 0.0090909), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_aa5wp"]
+width = 2048
+curve = SubResource("Curve_v4urr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lcgkf"]
+lifetime_randomness = 0.65
+emission_shape = 1
+emission_sphere_radius = 10.0
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 10.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 25.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_aa5wp")
+color_ramp = SubResource("GradientTexture1D_pyeoq")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4q2nd"]
+radius = 12.0
+height = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6jw3n"]
+radius = 610.296
+
+[node name="Missile" type="Node2D"]
+script = ExtResource("1_0tuf4")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-32, 0)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_lcgkf")
+texture = ExtResource("2_a7dbk")
+lifetime = 0.5
+randomness = 0.57
+draw_order = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3, 0)
+rotation = 0.785398
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_pxuwq")
+
+[node name="CommonHitBox" type="Area2D" parent="."]
+script = ExtResource("3_kp8kx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CommonHitBox"]
+position = Vector2(-1, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_4q2nd")
+
+[node name="EnemyDetector" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
+shape = SubResource("CircleShape2D_6jw3n")

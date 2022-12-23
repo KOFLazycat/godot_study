@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://b77235kj47xw8"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/world/homing_missile_demo_world.gd" id="1_6crxu"]
+[ext_resource type="PackedScene" uid="uid://bvs0hv2jhumnw" path="res://src/main/scene/role/player/player_missile.tscn" id="1_lwufj"]
+[ext_resource type="PackedScene" uid="uid://d2d2uspuqrthk" path="res://src/main/scene/role/enemy/thing/thing_2.tscn" id="2_ll15n"]
+
+[sub_resource type="Animation" id="Animation_qr23i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Thing2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1501, 189)]
+}
+
+[sub_resource type="Animation" id="Animation_ba576"]
+resource_name = "enemy_move"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Thing2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1501, 189), Vector2(1510, 549), Vector2(1522, 927)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ofxm3"]
+_data = {
+"RESET": SubResource("Animation_qr23i"),
+"enemy_move": SubResource("Animation_ba576")
+}
+
+[node name="HomingMissileDemoWorld" type="Node2D"]
+script = ExtResource("1_6crxu")
+
+[node name="PlayerMissile" parent="." instance=ExtResource("1_lwufj")]
+position = Vector2(263, 447)
+
+[node name="Thing2" parent="." instance=ExtResource("2_ll15n")]
+position = Vector2(1501, 189)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ofxm3")
+}

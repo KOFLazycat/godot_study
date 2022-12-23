@@ -1,3 +1,4 @@
+class_name EnemyThing2
 extends CharacterBody2D
 
 @onready var animation_player = $AnimationPlayer

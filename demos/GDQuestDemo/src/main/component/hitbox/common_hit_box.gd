@@ -4,7 +4,7 @@ class_name CommonHitBox
 
 @onready var collision_shape_2d = $CollisionShape2D
 @export var damage = 10
-@export var collision_mask_init = 0
+@export var collision_mask_init = 4
 @export var collision_layer_init = 2
 
 func _init():

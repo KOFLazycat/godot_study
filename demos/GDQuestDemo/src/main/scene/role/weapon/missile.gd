@@ -39,8 +39,7 @@ func _physics_process(delta):
 	look_at(global_position + _current_velocity)
 
 
-func _on_HitBox_body_entered(enemy: EnemyThing2):
-	print(enemy)
+func _on_HitBox_body_entered(_body: Node2D):
 	queue_free()
 
 

@@ -6,8 +6,8 @@ const missile_scene := preload("res://src/main/scene/role/weapon/missile.tscn")
 @onready var shoot_position = $ShootPosition
 
 
-var drag_factor = 0.15
-var max_speed = 500
+var drag_factor = 0.3
+var max_speed = 200
 
 
 func _physics_process(_delta: float):

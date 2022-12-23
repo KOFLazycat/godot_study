@@ -50,6 +50,7 @@ _data = {
 }
 
 [node name="Thing2" type="CharacterBody2D"]
+collision_layer = 4
 script = ExtResource("1_ucr40")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

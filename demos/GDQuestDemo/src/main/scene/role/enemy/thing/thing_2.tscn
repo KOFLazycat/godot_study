@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://d2d2uspuqrthk"]
+
+[ext_resource type="Texture2D" uid="uid://b8vt8x16hic7h" path="res://src/main/assets/texture/role/enemy/thing/enemy.png" id="1_3vn44"]
+[ext_resource type="Script" path="res://src/main/scene/role/enemy/thing/thing_2.gd" id="1_ucr40"]
+[ext_resource type="Script" path="res://src/main/component/hurtbox/common_hurt_box.gd" id="2_5xbgx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2p883"]
+radius = 31.0
+height = 114.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ip0c"]
+radius = 30.0
+height = 116.0
+
+[sub_resource type="Animation" id="Animation_725pk"]
+resource_name = "hit"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.00254365, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.785398, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_upilx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qm2hs"]
+_data = {
+"RESET": SubResource("Animation_upilx"),
+"hit": SubResource("Animation_725pk")
+}
+
+[node name="Thing2" type="CharacterBody2D"]
+script = ExtResource("1_ucr40")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_3vn44")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_2p883")
+
+[node name="CommonHurtBox" type="Area2D" parent="."]
+script = ExtResource("2_5xbgx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CommonHurtBox"]
+shape = SubResource("CapsuleShape2D_3ip0c")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qm2hs")
+}

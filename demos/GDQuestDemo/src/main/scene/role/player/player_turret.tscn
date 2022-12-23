@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d87lemt8mxgp"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/player/player_turret.gd" id="1_s5jgp"]
+[ext_resource type="Texture2D" uid="uid://bm3tj1o2ujx6v" path="res://src/main/assets/texture/role/turret/wand_fire.png" id="2_pgbui"]
+
+[node name="PlayerTurret" type="Node2D"]
+script = ExtResource("1_s5jgp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_pgbui")
+offset = Vector2(39, 0)
+
+[node name="ShootPosition" type="Marker2D" parent="."]
+position = Vector2(61, 0)

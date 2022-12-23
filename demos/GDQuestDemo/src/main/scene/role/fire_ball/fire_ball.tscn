@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://d0p36bruburc2"]
+
+[ext_resource type="Texture2D" uid="uid://brysmku0uwvvt" path="res://src/main/assets/texture/role/projectile/fire.png" id="1_27grq"]
+[ext_resource type="Script" path="res://src/main/scene/role/fire_ball/fire_ball.gd" id="1_72fns"]
+[ext_resource type="Texture2D" uid="uid://bvtbd3iehyft3" path="res://src/main/assets/texture/role/projectile/particle_bullet.png" id="2_fa8n7"]
+[ext_resource type="Script" path="res://src/main/component/hitbox/common_hit_box.gd" id="2_vsjck"]
+
+[sub_resource type="Gradient" id="Gradient_6jrww"]
+offsets = PackedFloat32Array(0, 0.188976, 0.385827, 0.748031, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.992157, 1, 0, 1, 1, 0.305882, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4jf25"]
+gradient = SubResource("Gradient_6jrww")
+width = 2048
+
+[sub_resource type="Curve" id="Curve_j8w2p"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.585185, 0.954545), -1.04132, -1.04132, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_vs0gp"]
+width = 2048
+curve = SubResource("Curve_j8w2p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u3shh"]
+emission_shape = 1
+emission_sphere_radius = 6.99
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 432.75
+initial_velocity_max = 432.75
+angular_velocity_min = 92.63
+angular_velocity_max = 92.63
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_min = 23.39
+linear_accel_max = 23.39
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_vs0gp")
+color_ramp = SubResource("GradientTexture1D_4jf25")
+hue_variation_min = 1.0
+hue_variation_max = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o4fa1"]
+radius = 26.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tikqy"]
+radius = 127.566
+
+[node name="FireBall" type="Node2D"]
+script = ExtResource("1_72fns")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_27grq")
+
+[node name="ExplosionParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_u3shh")
+texture = ExtResource("2_fa8n7")
+lifetime = 0.6
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.6
+local_coords = true
+draw_order = 0
+
+[node name="ImpactDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ImpactDetector"]
+shape = SubResource("CircleShape2D_o4fa1")
+
+[node name="CommonHitBox" type="Area2D" parent="."]
+script = ExtResource("2_vsjck")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CommonHitBox"]
+shape = SubResource("CircleShape2D_tikqy")
+disabled = true
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

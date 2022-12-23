@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl8fu6qx54k6m"]
+
+[ext_resource type="PackedScene" uid="uid://d2d2uspuqrthk" path="res://src/main/scene/role/enemy/thing/thing_2.tscn" id="1_qu736"]
+[ext_resource type="PackedScene" uid="uid://d87lemt8mxgp" path="res://src/main/scene/role/player/player_turret.tscn" id="2_qvsdb"]
+
+[node name="RangedAttacksDemoWorld" type="Node2D"]
+
+[node name="PlayerTurret" parent="." instance=ExtResource("2_qvsdb")]
+position = Vector2(486, 540)
+
+[node name="Thing2" parent="." instance=ExtResource("1_qu736")]
+position = Vector2(1313, 195)
+
+[node name="Thing6" parent="." instance=ExtResource("1_qu736")]
+position = Vector2(1085, 776)
+
+[node name="Thing3" parent="." instance=ExtResource("1_qu736")]
+position = Vector2(1346, 570)
+
+[node name="Thing4" parent="." instance=ExtResource("1_qu736")]
+position = Vector2(1322, 497)
+
+[node name="Thing5" parent="." instance=ExtResource("1_qu736")]
+position = Vector2(1272, 561)

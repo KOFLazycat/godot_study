@@ -1,0 +1,224 @@
+[gd_scene load_steps=19 format=3 uid="uid://523wjajr87an"]
+
+[ext_resource type="Script" path="res://src/main/component/hitbox/common_hit_box.gd" id="1_2ty0h"]
+[ext_resource type="Texture2D" uid="uid://bl1l863qplhg8" path="res://src/main/assets/texture/role/weapon/sword_ice.png" id="1_el8ye"]
+[ext_resource type="Script" path="res://src/main/scene/role/weapon/weapon_sword.gd" id="1_sgukf"]
+[ext_resource type="Texture2D" uid="uid://dw287l4eknig4" path="res://src/main/assets/texture/role/weapon/trail.png" id="2_v38qh"]
+[ext_resource type="Texture2D" uid="uid://dor03stcy0i4l" path="res://src/main/assets/texture/particle/ice_2.png" id="4_30muf"]
+[ext_resource type="Texture2D" uid="uid://djlegr4amheag" path="res://src/main/assets/texture/role/weapon/shadow_circle.png" id="5_8vhli"]
+[ext_resource type="AudioStream" uid="uid://dfalmu6q5x683" path="res://src/main/assets/sound/weapon/sword/mixkit-sword-slash-swoosh-1476.mp3" id="6_65cp5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v253f"]
+size = Vector2(75, 40)
+
+[sub_resource type="Gradient" id="Gradient_512of"]
+offsets = PackedFloat32Array(0, 0.284, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.690196, 1, 0.945098, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5yhxp"]
+gradient = SubResource("Gradient_512of")
+width = 2048
+
+[sub_resource type="Curve" id="Curve_jp5mk"]
+max_value = 100.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2s0sc"]
+width = 2048
+curve = SubResource("Curve_jp5mk")
+
+[sub_resource type="Curve" id="Curve_iyas0"]
+_data = [Vector2(0, 0.0090909), 0.0, 0.0, 0, 0, Vector2(0.496296, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0272727), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xqdo3"]
+width = 2048
+curve = SubResource("Curve_iyas0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_etugc"]
+emission_shape = 3
+emission_box_extents = Vector3(40, 10, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 25.0
+gravity = Vector3(0, 200, 0)
+angular_velocity_min = 30.0
+angular_velocity_max = 85.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_min = 100.0
+linear_accel_max = 200.0
+damping_min = 5.0
+damping_max = 10.0
+damping_curve = SubResource("CurveTexture_2s0sc")
+scale_min = 0.12
+scale_max = 0.18
+scale_curve = SubResource("CurveTexture_xqdo3")
+color_ramp = SubResource("GradientTexture1D_5yhxp")
+
+[sub_resource type="Animation" id="Animation_rh5fb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sword:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Sword/CommonHitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Sword/Trail:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_upvih"]
+resource_name = "slash"
+length = 0.4
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sword:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.3),
+"transitions": PackedFloat32Array(-2, 0.318, 2, 1),
+"update": 0,
+"values": [0.0, -2.44346, 1.5708, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Sword/CommonHitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Sword/Trail:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g8lmg"]
+_data = {
+"RESET": SubResource("Animation_rh5fb"),
+"slash": SubResource("Animation_upvih")
+}
+
+[node name="WeaponSword" type="Node2D"]
+script = ExtResource("1_sgukf")
+
+[node name="Pivot" type="Marker2D" parent="."]
+
+[node name="Sword" type="Sprite2D" parent="Pivot"]
+texture = ExtResource("1_el8ye")
+offset = Vector2(40, 0)
+
+[node name="Trail" type="Sprite2D" parent="Pivot/Sword"]
+visible = false
+show_behind_parent = true
+position = Vector2(55, -31)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_v38qh")
+
+[node name="CommonHitBox" type="Area2D" parent="Pivot/Sword"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_2ty0h")
+damage = 5
+collision_mask_init = 2
+collision_layer_init = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Sword/CommonHitBox"]
+self_modulate = Color(0.376471, 0.376471, 0.439216, 1)
+position = Vector2(65, 0)
+shape = SubResource("RectangleShape2D_v253f")
+disabled = true
+
+[node name="FrozenParticles" type="GPUParticles2D" parent="Pivot"]
+position = Vector2(66, 1)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_etugc")
+texture = ExtResource("4_30muf")
+randomness = 1.0
+draw_order = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g8lmg")
+}
+
+[node name="ShadowCircle" type="Sprite2D" parent="."]
+self_modulate = Color(0.501961, 1, 1, 0.501961)
+show_behind_parent = true
+z_index = -1
+position = Vector2(8, 42)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_8vhli")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_65cp5")
+volume_db = -22.0
+pitch_scale = 2.2

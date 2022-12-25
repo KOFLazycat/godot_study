@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://xt4h1el0jx0q"]
+
+[ext_resource type="PackedScene" uid="uid://d21gpj44r4kg6" path="res://src/main/scene/role/enemy/thing/scarecrow.tscn" id="1_3uho2"]
+[ext_resource type="Script" path="res://src/main/scene/level/world/juicy_demo_world.gd" id="1_oi7p1"]
+[ext_resource type="Script" path="res://src/main/scene/level/world/juicy_demo_world_player.gd" id="2_wfb1l"]
+[ext_resource type="PackedScene" uid="uid://523wjajr87an" path="res://src/main/scene/role/weapon/weapon_sword.tscn" id="2_x1c2b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kmmcw"]
+radius = 13.0384
+
+[node name="JuicyDemoWorld" type="Node2D"]
+script = ExtResource("1_oi7p1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2(0.7, 0.7)
+
+[node name="Scarecrow" parent="." instance=ExtResource("1_3uho2")]
+position = Vector2(1600, 494)
+
+[node name="Scarecrow2" parent="." instance=ExtResource("1_3uho2")]
+position = Vector2(1002, 340)
+
+[node name="Scarecrow3" parent="." instance=ExtResource("1_3uho2")]
+position = Vector2(1358, 768)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("2_wfb1l")
+
+[node name="WeaponSword" parent="Player" instance=ExtResource("2_x1c2b")]
+position = Vector2(1132, 534)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CircleShape2D_kmmcw")

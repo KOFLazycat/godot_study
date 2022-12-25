@@ -1,0 +1,203 @@
+[gd_scene load_steps=16 format=3 uid="uid://d21gpj44r4kg6"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/enemy/thing/scarecrow.gd" id="1_7uy3f"]
+[ext_resource type="Script" path="res://src/main/component/hurtbox/common_hurt_box.gd" id="1_dywdg"]
+[ext_resource type="Shader" path="res://src/main/scene/role/enemy/thing/scarecrow.gdshader" id="2_gc068"]
+[ext_resource type="Texture2D" uid="uid://b8vt8x16hic7h" path="res://src/main/assets/texture/role/enemy/thing/enemy.png" id="2_gu8hn"]
+[ext_resource type="Texture2D" uid="uid://cwk1quq8ep0yl" path="res://src/main/assets/texture/particle/ice_particle_white.png" id="5_3ltv7"]
+[ext_resource type="Texture2D" uid="uid://djlegr4amheag" path="res://src/main/assets/texture/role/weapon/shadow_circle.png" id="6_im3qx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dncyx"]
+shader = ExtResource("2_gc068")
+shader_parameter/active = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yj4q5"]
+size = Vector2(60, 93)
+
+[sub_resource type="Animation" id="Animation_v1tpc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scarecrow:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.349066]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scarecrow:material:shader_parameter/active")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitParticles")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_rgqie"]
+resource_name = "hit"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scarecrow:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.349066, 0.174533, 0.349066, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scarecrow:material:shader_parameter/active")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitParticles")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"restart"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HitParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vq6ex"]
+_data = {
+"RESET": SubResource("Animation_v1tpc"),
+"hit": SubResource("Animation_rgqie")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vc7m8"]
+size = Vector2(64, 106)
+
+[sub_resource type="Curve" id="Curve_7wxhd"]
+_data = [Vector2(0, 0.327273), 0.0, 0.0, 0, 0, Vector2(0.244444, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.163636), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4mmlj"]
+width = 2048
+curve = SubResource("Curve_7wxhd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0mon1"]
+emission_shape = 1
+emission_sphere_radius = 16.0
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 600.0
+initial_velocity_max = 600.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_min = -850.0
+damping_min = 150.0
+damping_max = 150.0
+scale_curve = SubResource("CurveTexture_4mmlj")
+
+[node name="Scarecrow" type="CharacterBody2D"]
+script = ExtResource("1_7uy3f")
+
+[node name="Scarecrow" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_dncyx")
+position = Vector2(0, -39)
+rotation = -0.349066
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_gu8hn")
+offset = Vector2(0, -40)
+
+[node name="CommonHurtBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_dywdg")
+collision_mask_init = 0
+collision_layer_init = 2
+monitorable_init = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CommonHurtBox"]
+visible = false
+self_modulate = Color(0.560784, 0.870588, 0.364706, 1)
+position = Vector2(0, -49.5)
+shape = SubResource("RectangleShape2D_yj4q5")
+
+[node name="Timer" type="Timer" parent="CommonHurtBox"]
+process_callback = 0
+wait_time = 0.2
+one_shot = true
+
+[node name="DamageLabelPivot" type="Marker2D" parent="CommonHurtBox"]
+position = Vector2(0, -105)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vq6ex")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -54)
+shape = SubResource("RectangleShape2D_vc7m8")
+
+[node name="HitParticles" type="GPUParticles2D" parent="."]
+position = Vector2(0, -39)
+emitting = false
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_0mon1")
+texture = ExtResource("5_3ltv7")
+lifetime = 0.3
+one_shot = true
+preprocess = 0.03
+explosiveness = 1.0
+randomness = 0.59
+draw_order = 0
+
+[node name="ShadowCircle" type="Sprite2D" parent="."]
+self_modulate = Color(0.501961, 1, 1, 0.501961)
+show_behind_parent = true
+z_index = -1
+texture = ExtResource("6_im3qx")
+
+[node name="DamageSpawningPoint" type="Marker2D" parent="."]
+position = Vector2(0, -105)

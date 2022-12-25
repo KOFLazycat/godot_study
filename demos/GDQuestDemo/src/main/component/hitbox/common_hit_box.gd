@@ -14,3 +14,7 @@ func _init():
 
 func set_disabled(is_disabled: bool):
 	collision_shape_2d.set_deferred("disabled", is_disabled)
+
+
+func get_damage():
+	return damage + randi() % 7 - 3

@@ -7,7 +7,7 @@ const missile_scene := preload("res://src/main/scene/role/weapon/missile.tscn")
 
 
 var drag_factor = 0.3
-var max_speed = 200
+var max_speed = 500
 
 
 func _physics_process(_delta: float):

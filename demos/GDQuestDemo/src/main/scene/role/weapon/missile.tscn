@@ -5,22 +5,22 @@
 [ext_resource type="Texture2D" uid="uid://bvtbd3iehyft3" path="res://src/main/assets/texture/role/projectile/particle_bullet.png" id="2_a7dbk"]
 [ext_resource type="Script" path="res://src/main/component/hitbox/common_hit_box.gd" id="3_kp8kx"]
 
-[sub_resource type="Gradient" id="Gradient_1cy5t"]
+[sub_resource type="Gradient" id="Gradient_2hgdv"]
 offsets = PackedFloat32Array(0, 0.313, 0.778, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.929412, 0.8, 0.113725, 1, 0.933333, 0.0745098, 0.0745098, 1, 0, 0, 0, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_5d8v0"]
-gradient = SubResource("Gradient_1cy5t")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0tnhn"]
+gradient = SubResource("Gradient_2hgdv")
 
-[sub_resource type="Curve" id="Curve_6b4ja"]
+[sub_resource type="Curve" id="Curve_qhq2v"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.451852, 0.454545), -2.38235, -2.38235, 0, 0, Vector2(0.992593, 0.0090909), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_78qs8"]
+[sub_resource type="CurveTexture" id="CurveTexture_rsvb8"]
 width = 2048
-curve = SubResource("Curve_6b4ja")
+curve = SubResource("Curve_qhq2v")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pri0u"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_53025"]
 lifetime_randomness = 0.65
 emission_shape = 1
 emission_sphere_radius = 10.0
@@ -33,14 +33,14 @@ initial_velocity_max = 25.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_min = 0.5
-scale_curve = SubResource("CurveTexture_78qs8")
-color_ramp = SubResource("GradientTexture1D_5d8v0")
+scale_curve = SubResource("CurveTexture_rsvb8")
+color_ramp = SubResource("GradientTexture1D_0tnhn")
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ntwy3"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pg1ii"]
 radius = 12.0
 height = 64.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_lma3p"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_flww0"]
 radius = 610.296
 
 [node name="Missile" type="Node2D"]
@@ -49,7 +49,7 @@ script = ExtResource("1_0tuf4")
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(-32, 0)
 amount = 200
-process_material = SubResource("ParticleProcessMaterial_pri0u")
+process_material = SubResource("ParticleProcessMaterial_53025")
 texture = ExtResource("2_a7dbk")
 lifetime = 0.5
 randomness = 0.57
@@ -67,11 +67,11 @@ script = ExtResource("3_kp8kx")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CommonHitBox"]
 position = Vector2(-1, 0)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_ntwy3")
+shape = SubResource("CapsuleShape2D_pg1ii")
 
 [node name="EnemyDetector" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
-shape = SubResource("CircleShape2D_lma3p")
+shape = SubResource("CircleShape2D_flww0")

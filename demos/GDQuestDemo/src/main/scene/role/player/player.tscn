@@ -245,9 +245,9 @@ shape = SubResource("RectangleShape2D_f2pty")
 position = Vector2(0, 25)
 emitting = false
 amount = 16
-lifetime = 0.8
 process_material = SubResource("ParticleProcessMaterial_r08lh")
 texture = ExtResource("5_35pwf")
+lifetime = 0.8
 
 [node name="DodgeTimer" type="Timer" parent="."]
 process_callback = 0

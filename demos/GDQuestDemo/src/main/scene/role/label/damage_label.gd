@@ -25,6 +25,5 @@ func _process(delta: float):
 func set_damage(amount: int):
 	if not label:
 		await self.ready
-		
 	label.text = "-" + str(amount)
 	animation_player.play("show")

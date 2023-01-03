@@ -182,7 +182,6 @@ shape = SubResource("RectangleShape2D_vc7m8")
 
 [node name="HitParticles" type="GPUParticles2D" parent="."]
 position = Vector2(0, -39)
-emitting = false
 amount = 6
 process_material = SubResource("ParticleProcessMaterial_0mon1")
 texture = ExtResource("5_3ltv7")

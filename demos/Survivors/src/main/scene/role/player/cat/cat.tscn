@@ -1,10 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://83u4ydery45h"]
+[gd_scene load_steps=16 format=3 uid="uid://dc4s2546exwym"]
 
-[ext_resource type="Script" path="res://src/main/scene/role/player/player.gd" id="1_5x4fl"]
-[ext_resource type="Texture2D" uid="uid://rflr7p5ft7jh" path="res://src/main/assets/texture/role/player/cat/Cat Sprite Sheet.png" id="1_oddil"]
+[ext_resource type="Script" path="res://src/main/scene/role/player/cat/cat.gd" id="1_6wem7"]
+[ext_resource type="Texture2D" uid="uid://rflr7p5ft7jh" path="res://src/main/assets/texture/role/player/cat/Cat Sprite Sheet.png" id="2_vg7rj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_laalu"]
-size = Vector2(15, 7)
+size = Vector2(12, 7)
 
 [sub_resource type="Animation" id="Animation_a8fy2"]
 length = 0.001
@@ -199,19 +199,21 @@ _data = {
 "walk2": SubResource("Animation_sp75e")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Cat" type="CharacterBody2D" groups=["player"]]
+y_sort_enabled = true
 scale = Vector2(2, 2)
 motion_mode = 1
-script = ExtResource("1_5x4fl")
+script = ExtResource("1_6wem7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -17)
-texture = ExtResource("1_oddil")
+texture = ExtResource("2_vg7rj")
+offset = Vector2(0, 4)
 hframes = 8
 vframes = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -5.5)
+position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_laalu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

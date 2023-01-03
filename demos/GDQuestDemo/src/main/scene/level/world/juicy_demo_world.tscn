@@ -11,10 +11,6 @@ radius = 13.0384
 [node name="JuicyDemoWorld" type="Node2D"]
 script = ExtResource("1_oi7p1")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-zoom = Vector2(0.7, 0.7)
-
 [node name="Scarecrow" parent="." instance=ExtResource("1_3uho2")]
 position = Vector2(1600, 494)
 

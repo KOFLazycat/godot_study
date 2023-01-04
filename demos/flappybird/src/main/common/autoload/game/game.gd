@@ -2,8 +2,8 @@ extends Node
 #游戏中的一些状态和功能
 
 #场景
-var mainScene="res://scenes/main.tscn"
-var welcomeScene="res://scenes/welcome.tscn"
+var mainScene="res://src/main/scene/level/main/main.tscn"
+var welcomeScene="res://src/main/scene/level/welcome/welcome.tscn"
 
 #得分显示不同的奖牌 铜牌到白金
 const MEDAL_BRONZE   = 1
@@ -48,8 +48,8 @@ signal scoreChange	#分数变化
 
 func _ready():
 	printFont()
-	winWidth=ProjectSettings.get_setting("display/window/size/width")
-	winHeight=ProjectSettings.get_setting("display/window/size/height")
+	winWidth=ProjectSettings.get_setting("display/window/size/viewport_width")
+	winHeight=ProjectSettings.get_setting("display/window/size/viewport_height")
 	#OS.center_window()
 	print(winHeight)
 	print("[Screen Metrics]")
@@ -62,25 +62,26 @@ func _ready():
 	
 
 #更改场景
-#func changeScene(stagePath):
-#	set_process_input(false)
-#
-#	if AudioPlayer:
-#		AudioPlayer.playSfxSwooshing()
-#
-#	if splash:
-#		var ani=splash.get_node("ani")
-#		ani.play("fade_in")
-#		yield(ani,"animation_finished")
-#
-#	get_tree().change_scene(stagePath)
-#
-#	if splash:
-#		var ani=splash.get_node("ani")
-#		ani.play("fade_out")
-#		yield(ani,"animation_finished")
-#
-#	set_process_input(true)
+func changeScene(stagePath):
+	set_process_input(false)
+
+	if AudioPlayer:
+		AudioPlayer.playSfxSwooshing()
+
+	if Splash:
+		var ani=Splash.get_node("AnimationPlayer")
+		ani.play("fade_in")
+		await ani.animation_finished
+
+	get_tree().change_scene_to_file(stagePath)
+
+	if Splash:
+		var ani=Splash.get_node("AnimationPlayer")
+		ani.play("fade_out")
+		await ani.animation_finished
+
+	set_process_input(true)
+	
 	
 #获取每个数字
 func get_digits(number):

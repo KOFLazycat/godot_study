@@ -1,0 +1,250 @@
+[gd_scene load_steps=26 format=3 uid="uid://hwqd6x83guea"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/main/main.gd" id="1_0yelo"]
+[ext_resource type="Texture2D" uid="uid://d0d2jk7wbxu4" path="res://src/main/assets/texture/background/background_day1.png" id="2_frxoa"]
+[ext_resource type="PackedScene" uid="uid://bfdx5fgawtbtw" path="res://src/main/scene/role/pipe/pipe.tscn" id="3_ciie0"]
+[ext_resource type="Texture2D" uid="uid://db7vj433xrvvv" path="res://src/main/assets/texture/label/label_get_ready1.png" id="3_kncvg"]
+[ext_resource type="PackedScene" uid="uid://b47l82m8e6wal" path="res://src/main/scene/role/ground/ground.tscn" id="4_nqjfy"]
+[ext_resource type="PackedScene" uid="uid://d2ijcbw5hbs5j" path="res://src/main/scene/role/player/bird.tscn" id="5_3f2sa"]
+[ext_resource type="Texture2D" uid="uid://mklgdm8b8fq3" path="res://src/main/assets/texture/number/number_large_01.png" id="6_x3shw"]
+[ext_resource type="Texture2D" uid="uid://bf6nkr0j7rjrs" path="res://src/main/assets/texture/button/button_pause1.png" id="7_0ai5t"]
+[ext_resource type="Texture2D" uid="uid://cdpij6703aumt" path="res://src/main/assets/texture/instructions/instructions1.png" id="8_rdghe"]
+[ext_resource type="Texture2D" uid="uid://cdo5s1q85s8l" path="res://src/main/assets/texture/label/label_game_over1.png" id="10_0m65m"]
+[ext_resource type="Texture2D" uid="uid://p7f6gcimmt0l" path="res://src/main/assets/texture/button/button_resume1.png" id="10_obje7"]
+[ext_resource type="Texture2D" uid="uid://bbcyx5fuybo8f" path="res://src/main/assets/texture/button/button_menu1.png" id="11_armrs"]
+[ext_resource type="Texture2D" uid="uid://uhq402c4ibva" path="res://src/main/assets/texture/panel/panel_score1.png" id="11_mak6y"]
+[ext_resource type="Texture2D" uid="uid://b7p6mu2djoy1m" path="res://src/main/assets/texture/number/number_middle_0.png" id="12_gxyws"]
+[ext_resource type="Texture2D" uid="uid://0pv1qqx33d7k" path="res://src/main/assets/texture/label/label_new1.png" id="13_x4a7f"]
+[ext_resource type="Texture2D" uid="uid://7x5rrcjwimsw" path="res://src/main/assets/texture/role/spark/spark_01.png" id="14_n17rp"]
+[ext_resource type="Texture2D" uid="uid://i5ir80jc5hxg" path="res://src/main/assets/texture/role/spark/spark_11.png" id="15_myeib"]
+[ext_resource type="Texture2D" uid="uid://khsoceo3pjiw" path="res://src/main/assets/texture/role/spark/spark_21.png" id="16_nih2v"]
+[ext_resource type="Texture2D" uid="uid://bjxg7us00f3uv" path="res://src/main/assets/texture/button/button_play_normal1.png" id="17_3k2ox"]
+[ext_resource type="Texture2D" uid="uid://cymvq4kljnnjm" path="res://src/main/assets/texture/button/button_play_pressed1.png" id="18_oenvo"]
+[ext_resource type="Texture2D" uid="uid://d1w5shydnp1e8" path="res://src/main/assets/texture/button/button_score_norma1l.png" id="19_3dqfq"]
+[ext_resource type="Texture2D" uid="uid://bw761hbmp2l5e" path="res://src/main/assets/texture/button/button_score_pressed1.png" id="20_7luny"]
+
+[sub_resource type="Animation" id="Animation_8qi2v"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y4npn"]
+_data = {
+"fade_out": SubResource("Animation_8qi2v")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b505v"]
+animations = [{
+"frames": [ExtResource("14_n17rp"), ExtResource("15_myeib"), ExtResource("16_nih2v"), ExtResource("15_myeib"), ExtResource("14_n17rp")],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_0yelo")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(144, 256)
+texture = ExtResource("2_frxoa")
+
+[node name="Ready" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(144, 100)
+texture = ExtResource("3_kncvg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ready"]
+libraries = {
+"": SubResource("AnimationLibrary_y4npn")
+}
+
+[node name="Pipe" parent="." instance=ExtResource("3_ciie0")]
+position = Vector2(334, 80)
+
+[node name="Pipe2" parent="." instance=ExtResource("3_ciie0")]
+position = Vector2(516, 80)
+
+[node name="Pipe3" parent="." instance=ExtResource("3_ciie0")]
+position = Vector2(698, 80)
+
+[node name="Ground" parent="." instance=ExtResource("4_nqjfy")]
+position = Vector2(0, 387)
+
+[node name="Ground2" parent="." instance=ExtResource("4_nqjfy")]
+position = Vector2(375, 387)
+
+[node name="Bird" parent="." instance=ExtResource("5_3f2sa")]
+z_index = 1
+position = Vector2(70, 180)
+
+[node name="Score" type="BoxContainer" parent="."]
+offset_top = 10.0
+offset_right = 288.0
+offset_bottom = 46.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Score"]
+layout_mode = 2
+texture = ExtResource("6_x3shw")
+
+[node name="PauseBtn" type="TextureButton" parent="."]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 36.0
+offset_bottom = 38.0
+texture_normal = ExtResource("7_0ai5t")
+
+[node name="TipBtn" type="TextureButton" parent="."]
+offset_left = 87.0
+offset_top = 150.0
+offset_right = 201.0
+offset_bottom = 248.0
+texture_normal = ExtResource("8_rdghe")
+
+[node name="GameOverPanel" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 288.0
+offset_bottom = 512.0
+
+[node name="GameOver" type="Sprite2D" parent="GameOverPanel"]
+position = Vector2(144, 100)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("10_0m65m")
+
+[node name="Panel" type="TextureRect" parent="GameOverPanel"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 610.0
+offset_right = 257.0
+offset_bottom = 724.0
+texture = ExtResource("11_mak6y")
+
+[node name="ScoreContainer" type="BoxContainer" parent="GameOverPanel/Panel"]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 34.0
+offset_right = 200.0
+offset_bottom = 54.0
+alignment = 2
+
+[node name="Score" type="TextureRect" parent="GameOverPanel/Panel/ScoreContainer"]
+layout_mode = 2
+texture = ExtResource("12_gxyws")
+
+[node name="BestContainer" type="BoxContainer" parent="GameOverPanel/Panel"]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 75.0
+offset_right = 200.0
+offset_bottom = 95.0
+alignment = 2
+
+[node name="Best" type="TextureRect" parent="GameOverPanel/Panel/BestContainer"]
+layout_mode = 2
+texture = ExtResource("12_gxyws")
+
+[node name="NewHighScore" type="TextureRect" parent="GameOverPanel/Panel"]
+visible = false
+layout_mode = 0
+offset_left = 129.0
+offset_top = 58.0
+offset_right = 161.0
+offset_bottom = 72.0
+texture = ExtResource("13_x4a7f")
+
+[node name="Medal" type="TextureRect" parent="GameOverPanel/Panel"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 41.0
+offset_right = 69.0
+offset_bottom = 85.0
+
+[node name="Spark" type="AnimatedSprite2D" parent="GameOverPanel/Panel/Medal"]
+visible = false
+position = Vector2(0, 3)
+frames = SubResource("SpriteFrames_b505v")
+frame = 3
+
+[node name="BtnContainer" type="BoxContainer" parent="GameOverPanel"]
+visible = false
+layout_mode = 0
+offset_left = 38.0
+offset_top = 280.0
+offset_right = 250.0
+offset_bottom = 338.0
+metadata/_edit_group_ = true
+
+[node name="RestartBtn" type="TextureButton" parent="GameOverPanel/BtnContainer"]
+layout_mode = 2
+texture_normal = ExtResource("17_3k2ox")
+texture_pressed = ExtResource("18_oenvo")
+
+[node name="ScoreBtn" type="TextureButton" parent="GameOverPanel/BtnContainer"]
+layout_mode = 2
+texture_normal = ExtResource("19_3dqfq")
+texture_pressed = ExtResource("20_7luny")
+
+[node name="PausePanel" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 288.0
+offset_bottom = 512.0
+
+[node name="Bg" type="ColorRect" parent="PausePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.223529)
+
+[node name="ResumeBtn" type="TextureButton" parent="PausePanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 36.0
+offset_bottom = 38.0
+texture_normal = ExtResource("10_obje7")
+
+[node name="MenuBtn" type="TextureButton" parent="PausePanel"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 242.0
+offset_right = 184.0
+offset_bottom = 270.0
+texture_normal = ExtResource("11_armrs")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(144, 256)
+current = true

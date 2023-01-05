@@ -63,7 +63,6 @@ animations = [{
 radius = 11.0
 
 [node name="Bird" type="RigidBody2D"]
-mass = 10.2
 max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_d2er5")

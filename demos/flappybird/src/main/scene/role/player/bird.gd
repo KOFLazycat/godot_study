@@ -43,7 +43,7 @@ func setState(newState:int):
 		gravity_scale=0
 		animated_sprite_2d.play(list[index][1])
 	elif newState==Game.play:
-		gravity_scale=5
+		gravity_scale=0.8
 		flap()
 	elif newState==Game.dead:
 		angular_velocity=1.4

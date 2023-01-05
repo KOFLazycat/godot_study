@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://hwqd6x83guea"]
+[gd_scene load_steps=29 format=3 uid="uid://hwqd6x83guea"]
 
 [ext_resource type="Script" path="res://src/main/scene/level/main/main.gd" id="1_0yelo"]
 [ext_resource type="Texture2D" uid="uid://d0d2jk7wbxu4" path="res://src/main/assets/texture/background/background_day1.png" id="2_frxoa"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://i5ir80jc5hxg" path="res://src/main/assets/texture/role/spark/spark_11.png" id="15_myeib"]
 [ext_resource type="Texture2D" uid="uid://khsoceo3pjiw" path="res://src/main/assets/texture/role/spark/spark_21.png" id="16_nih2v"]
 [ext_resource type="Texture2D" uid="uid://bjxg7us00f3uv" path="res://src/main/assets/texture/button/button_play_normal1.png" id="17_3k2ox"]
+[ext_resource type="Script" path="res://src/main/scene/level/main/Spark.gd" id="17_8cx45"]
 [ext_resource type="Texture2D" uid="uid://cymvq4kljnnjm" path="res://src/main/assets/texture/button/button_play_pressed1.png" id="18_oenvo"]
 [ext_resource type="Texture2D" uid="uid://d1w5shydnp1e8" path="res://src/main/assets/texture/button/button_score_norma1l.png" id="19_3dqfq"]
 [ext_resource type="Texture2D" uid="uid://bw761hbmp2l5e" path="res://src/main/assets/texture/button/button_score_pressed1.png" id="20_7luny"]
@@ -64,6 +65,38 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="Animation" id="Animation_yx3ad"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameOver:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(31, 610), Vector2(31, 150)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5bpaf"]
+_data = {
+"idle": SubResource("Animation_yx3ad")
+}
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0yelo")
 
@@ -71,12 +104,11 @@ script = ExtResource("1_0yelo")
 position = Vector2(144, 256)
 texture = ExtResource("2_frxoa")
 
-[node name="Ready" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
+[node name="GetReady" type="Sprite2D" parent="."]
 position = Vector2(144, 100)
 texture = ExtResource("3_kncvg")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Ready"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GetReady"]
 libraries = {
 "": SubResource("AnimationLibrary_y4npn")
 }
@@ -133,15 +165,14 @@ offset_bottom = 512.0
 
 [node name="GameOver" type="Sprite2D" parent="GameOverPanel"]
 position = Vector2(144, 100)
-scale = Vector2(0.1, 0.1)
 texture = ExtResource("10_0m65m")
 
 [node name="Panel" type="TextureRect" parent="GameOverPanel"]
 layout_mode = 0
 offset_left = 31.0
-offset_top = 610.0
+offset_top = 150.0
 offset_right = 257.0
-offset_bottom = 724.0
+offset_bottom = 264.0
 texture = ExtResource("11_mak6y")
 
 [node name="ScoreContainer" type="BoxContainer" parent="GameOverPanel/Panel"]
@@ -189,6 +220,7 @@ visible = false
 position = Vector2(0, 3)
 frames = SubResource("SpriteFrames_b505v")
 frame = 3
+script = ExtResource("17_8cx45")
 
 [node name="BtnContainer" type="BoxContainer" parent="GameOverPanel"]
 visible = false
@@ -209,7 +241,13 @@ layout_mode = 2
 texture_normal = ExtResource("19_3dqfq")
 texture_pressed = ExtResource("20_7luny")
 
+[node name="GameOverAni" type="AnimationPlayer" parent="GameOverPanel"]
+libraries = {
+"": SubResource("AnimationLibrary_5bpaf")
+}
+
 [node name="PausePanel" type="Control" parent="."]
+process_mode = 3
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -248,3 +286,10 @@ one_shot = true
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(144, 256)
 current = true
+
+[connection signal="pressed" from="PauseBtn" to="." method="_on_pause_btn_pressed"]
+[connection signal="pressed" from="TipBtn" to="." method="_on_tip_btn_pressed"]
+[connection signal="animation_finished" from="GameOverPanel/Panel/Medal/Spark" to="GameOverPanel/Panel/Medal/Spark" method="_on_animation_finished"]
+[connection signal="pressed" from="GameOverPanel/BtnContainer/RestartBtn" to="." method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="PausePanel/ResumeBtn" to="." method="_on_resume_btn_pressed"]
+[connection signal="pressed" from="PausePanel/MenuBtn" to="." method="_on_menu_btn_pressed"]

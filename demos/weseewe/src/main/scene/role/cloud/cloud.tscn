@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnhsxo3qwuuid"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/cloud/cloud.gd" id="1_a31oo"]
+[ext_resource type="Texture2D" uid="uid://cpt71ewmoc20o" path="res://src/main/assets/texture/other/cloudTop.png" id="2_y7v0l"]
+
+[node name="Cloud" type="Node2D"]
+position = Vector2(100, 100)
+script = ExtResource("1_a31oo")
+
+[node name="Top" type="Sprite2D" parent="."]
+texture = ExtResource("2_y7v0l")

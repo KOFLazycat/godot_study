@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://thvhu6l8hhya"]
+
+[ext_resource type="AudioStream" uid="uid://wjyqeedudt1x" path="res://src/main/assets/sound/jumpA.wav" id="1_g38tr"]
+[ext_resource type="Script" path="res://src/main/common/util/sound/sound.gd" id="1_nwlbg"]
+[ext_resource type="AudioStream" uid="uid://1dn86eq62s3p" path="res://src/main/assets/sound/jumpB.wav" id="2_iuyk6"]
+[ext_resource type="AudioStream" uid="uid://dcouo4uf06wca" path="res://src/main/assets/sound/color.wav" id="3_nfupc"]
+[ext_resource type="AudioStream" uid="uid://bvcfjfssn7pnm" path="res://src/main/assets/sound/pop.wav" id="4_8ok8y"]
+[ext_resource type="AudioStream" uid="uid://47qakhp3bm5g" path="res://src/main/assets/sound/track1.ogg" id="5_hocn5"]
+
+[node name="Sound" type="Node2D"]
+script = ExtResource("1_nwlbg")
+
+[node name="JumpA" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_g38tr")
+
+[node name="JumpB" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_iuyk6")
+
+[node name="Color" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_nfupc")
+
+[node name="Pop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_8ok8y")
+
+[node name="Track" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_hocn5")

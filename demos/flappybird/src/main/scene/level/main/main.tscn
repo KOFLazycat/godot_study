@@ -139,7 +139,6 @@ offset_bottom = 46.0
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Score"]
-layout_mode = 2
 texture = ExtResource("6_x3shw")
 
 [node name="PauseBtn" type="TextureButton" parent="."]
@@ -168,7 +167,6 @@ position = Vector2(144, 100)
 texture = ExtResource("10_0m65m")
 
 [node name="Panel" type="TextureRect" parent="GameOverPanel"]
-layout_mode = 0
 offset_left = 31.0
 offset_top = 150.0
 offset_right = 257.0
@@ -176,7 +174,6 @@ offset_bottom = 264.0
 texture = ExtResource("11_mak6y")
 
 [node name="ScoreContainer" type="BoxContainer" parent="GameOverPanel/Panel"]
-layout_mode = 0
 offset_left = 115.0
 offset_top = 34.0
 offset_right = 200.0
@@ -184,11 +181,9 @@ offset_bottom = 54.0
 alignment = 2
 
 [node name="Score" type="TextureRect" parent="GameOverPanel/Panel/ScoreContainer"]
-layout_mode = 2
 texture = ExtResource("12_gxyws")
 
 [node name="BestContainer" type="BoxContainer" parent="GameOverPanel/Panel"]
-layout_mode = 0
 offset_left = 111.0
 offset_top = 75.0
 offset_right = 200.0
@@ -196,12 +191,10 @@ offset_bottom = 95.0
 alignment = 2
 
 [node name="Best" type="TextureRect" parent="GameOverPanel/Panel/BestContainer"]
-layout_mode = 2
 texture = ExtResource("12_gxyws")
 
 [node name="NewHighScore" type="TextureRect" parent="GameOverPanel/Panel"]
 visible = false
-layout_mode = 0
 offset_left = 129.0
 offset_top = 58.0
 offset_right = 161.0
@@ -209,7 +202,6 @@ offset_bottom = 72.0
 texture = ExtResource("13_x4a7f")
 
 [node name="Medal" type="TextureRect" parent="GameOverPanel/Panel"]
-layout_mode = 0
 offset_left = 25.0
 offset_top = 41.0
 offset_right = 69.0
@@ -224,7 +216,6 @@ script = ExtResource("17_8cx45")
 
 [node name="BtnContainer" type="BoxContainer" parent="GameOverPanel"]
 visible = false
-layout_mode = 0
 offset_left = 38.0
 offset_top = 280.0
 offset_right = 250.0
@@ -232,12 +223,10 @@ offset_bottom = 338.0
 metadata/_edit_group_ = true
 
 [node name="RestartBtn" type="TextureButton" parent="GameOverPanel/BtnContainer"]
-layout_mode = 2
 texture_normal = ExtResource("17_3k2ox")
 texture_pressed = ExtResource("18_oenvo")
 
 [node name="ScoreBtn" type="TextureButton" parent="GameOverPanel/BtnContainer"]
-layout_mode = 2
 texture_normal = ExtResource("19_3dqfq")
 texture_pressed = ExtResource("20_7luny")
 
@@ -255,7 +244,6 @@ offset_right = 288.0
 offset_bottom = 512.0
 
 [node name="Bg" type="ColorRect" parent="PausePanel"]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -264,7 +252,6 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.223529)
 
 [node name="ResumeBtn" type="TextureButton" parent="PausePanel"]
-layout_mode = 0
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 36.0
@@ -272,7 +259,6 @@ offset_bottom = 38.0
 texture_normal = ExtResource("10_obje7")
 
 [node name="MenuBtn" type="TextureButton" parent="PausePanel"]
-layout_mode = 0
 offset_left = 104.0
 offset_top = 242.0
 offset_right = 184.0

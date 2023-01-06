@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxkmgutoxe5i8"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/word/word.gd" id="1_8aldm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vy653"]
+size = Vector2(320, 5)
+
+[node name="Word" type="Node2D"]
+script = ExtResource("1_8aldm")
+
+[node name="Top" type="StaticBody2D" parent="."]
+position = Vector2(160, -50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
+shape = SubResource("RectangleShape2D_vy653")

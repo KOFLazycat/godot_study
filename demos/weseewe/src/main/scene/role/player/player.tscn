@@ -1,0 +1,106 @@
+[gd_scene load_steps=11 format=3 uid="uid://dn6bchg5rgvhf"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/player/player.gd" id="1_j7byb"]
+[ext_resource type="Texture2D" uid="uid://tljiel07u87g" path="res://src/main/assets/texture/other/confettiPop.png" id="2_l8mmb"]
+[ext_resource type="Texture2D" uid="uid://syg240rrirnk" path="res://src/main/assets/texture/other/player.png" id="3_e85ay"]
+[ext_resource type="Texture2D" uid="uid://cbmqw433s2wt7" path="res://src/main/assets/texture/other/playerBlink.png" id="4_tuh8j"]
+[ext_resource type="Texture2D" uid="uid://c3qcj3fb7x3ne" path="res://src/main/assets/texture/other/panel2.png" id="5_q6j2h"]
+[ext_resource type="FontFile" uid="uid://boutjgnaso6j5" path="res://src/main/assets/fonts/Xolonium-Regular.ttf" id="6_ludik"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_22r0f"]
+animations = [{
+"frames": [ExtResource("3_e85ay"), ExtResource("4_tuh8j"), ExtResource("3_e85ay")],
+"loop": true,
+"name": &"blink",
+"speed": 5.0
+}, {
+"frames": [ExtResource("3_e85ay")],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_omsim"]
+size = Vector2(32, 32)
+
+[sub_resource type="Animation" id="Animation_dsfvv"]
+resource_name = "show"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.6, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4j4mv"]
+_data = {
+"show": SubResource("Animation_dsfvv")
+}
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_j7byb")
+
+[node name="Bg" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(3.4, 3.4)
+texture = ExtResource("2_l8mmb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+frames = SubResource("SpriteFrames_22r0f")
+animation = &"blink"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_omsim")
+
+[node name="Panel" type="Control" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Panel"]
+layout_mode = 0
+offset_top = -60.0
+offset_right = 127.0
+offset_bottom = -11.0
+texture = ExtResource("5_q6j2h")
+
+[node name="Label" type="Label" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 10.0
+offset_top = -52.0
+offset_right = 97.0
+offset_bottom = -29.0
+theme_override_colors/font_color = Color(0.372549, 0.388235, 0.501961, 1)
+theme_override_fonts/font = ExtResource("6_ludik")
+theme_override_font_sizes/font_size = 15
+text = "Hello World"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4j4mv")
+}

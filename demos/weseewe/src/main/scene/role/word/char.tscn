@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/main/scene/role/word/char.gd" id="1_ys21c"]
 [ext_resource type="Texture2D" uid="uid://c1noxm7n5fnrf" path="res://src/main/assets/texture/other/title.png" id="2_24aoc"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_thutb"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_u1ubc"]
 radius = 15.0
 
 [node name="Char" type="RigidBody2D"]
@@ -15,4 +15,4 @@ region_enabled = true
 region_rect = Rect2(57, 21, 38.1024, 40)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_thutb")
+shape = SubResource("CircleShape2D_u1ubc")

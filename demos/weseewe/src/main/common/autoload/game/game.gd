@@ -55,11 +55,10 @@ func changeScene(stagePath):
 
 
 #保存数据
-func save(data_str):
-	if data_str != "":
-		var file = FileAccess.open(FILE_NAME, FileAccess.WRITE)
-		file.store_string(JSON.stringify(data_str))
-		file = null
+func save(data):
+	var file = FileAccess.open(FILE_NAME, FileAccess.WRITE)
+	file.store_string(JSON.stringify(data))
+	file = null
 
 
 #载入文件

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://ch4qsf04os42w"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/block/block.gd" id="1_qheql"]
+[ext_resource type="Texture2D" uid="uid://dmonvewt08duu" path="res://src/main/assets/texture/other/blockBottom.png" id="2_sbrge"]
+[ext_resource type="Texture2D" uid="uid://bh0p7qk8vg47n" path="res://src/main/assets/texture/other/blockTop.png" id="3_1dakp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vd58n"]
+size = Vector2(102, 227.5)
+
+[node name="Block" type="StaticBody2D"]
+position = Vector2(0, 480)
+script = ExtResource("1_qheql")
+
+[node name="BlockBottom" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("2_sbrge")
+
+[node name="BlockTop" type="Sprite2D" parent="."]
+z_index = 5
+texture = ExtResource("3_1dakp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_vd58n")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1.90735e-06, 8.49999)
+scale = Vector2(5, 11.95)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

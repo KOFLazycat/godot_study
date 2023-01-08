@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://12ap1foyur35"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/block/spawn_block.gd" id="1_cv5td"]
+
+[node name="SpawnBlock" type="Node2D"]
+script = ExtResource("1_cv5td")

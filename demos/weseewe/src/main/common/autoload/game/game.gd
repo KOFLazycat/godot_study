@@ -15,7 +15,7 @@ enum playerState{IDLE,STAND,JUMP,DEAD}
 
 var nextState=state.STATE_IDLE
 
-signal blockExit(pos)
+signal blockExit(pos_x)
 
 var sound=true	#声音开关
 

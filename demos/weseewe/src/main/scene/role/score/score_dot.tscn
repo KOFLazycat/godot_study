@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://4kvfk1hikk6h"]
+
+[ext_resource type="Texture2D" uid="uid://bas4noc1bux7r" path="res://src/main/assets/texture/other/scoreDot.png" id="1_82jif"]
+[ext_resource type="Script" path="res://src/main/scene/role/score/score_dot.gd" id="1_nwd33"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2w7h6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bo42k"]
+radius = 5.0
+
+[node name="ScoreDot" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_2w7h6")
+gravity_scale = 0.8
+script = ExtResource("1_nwd33")
+
+[node name="Ball" type="Sprite2D" parent="."]
+modulate = Color(0.372549, 0.388235, 0.501961, 1)
+texture = ExtResource("1_82jif")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bo42k")

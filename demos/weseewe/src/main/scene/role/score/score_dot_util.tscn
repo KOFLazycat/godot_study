@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://t028lntulovy"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/score/score_dot_util.gd" id="1_ot2i7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_badx8"]
+size = Vector2(320, 5)
+
+[node name="ScoreDotUtil" type="Node2D"]
+script = ExtResource("1_ot2i7")
+
+[node name="Top" type="StaticBody2D" parent="."]
+position = Vector2(160, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
+shape = SubResource("RectangleShape2D_badx8")

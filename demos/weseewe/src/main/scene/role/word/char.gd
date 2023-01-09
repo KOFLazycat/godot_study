@@ -5,7 +5,7 @@ var size=Vector2(320,78)
 var word_width=48
 
 func _ready():
-#	physics_material_override.friction=0
+	physics_material_override.friction=0
 	pass
 
 

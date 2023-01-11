@@ -1,0 +1,768 @@
+[gd_scene load_steps=30 format=3 uid="uid://cgaf5i84vo4ho"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/welcome/welcome.gd" id="1_gxns8"]
+[ext_resource type="PackedScene" uid="uid://bxkmgutoxe5i8" path="res://src/main/scene/role/word/word.tscn" id="2_7ab2n"]
+[ext_resource type="FontFile" uid="uid://boutjgnaso6j5" path="res://src/main/assets/fonts/Xolonium-Regular.ttf" id="3_u6iwa"]
+[ext_resource type="Texture2D" uid="uid://c0u0golt0014w" path="res://src/main/assets/texture/other/help.png" id="4_caxxi"]
+[ext_resource type="Texture2D" uid="uid://4xftyh21csnd" path="res://src/main/assets/texture/other/start.png" id="6_kje8u"]
+[ext_resource type="Texture2D" uid="uid://cv44egs22ewxx" path="res://src/main/assets/texture/other/sound.png" id="7_8sqnr"]
+[ext_resource type="Script" path="res://src/main/scene/level/welcome/texture_btn.gd" id="7_hhtyv"]
+[ext_resource type="Texture2D" uid="uid://tmx63y341c3o" path="res://src/main/assets/texture/other/soundOff.png" id="8_sa0o1"]
+[ext_resource type="Texture2D" uid="uid://27f0f37ipmrn" path="res://src/main/assets/texture/other/score.png" id="9_27uex"]
+[ext_resource type="Texture2D" uid="uid://ciwcn4elhvt8f" path="res://src/main/assets/texture/other/achievements.png" id="10_kk6lp"]
+[ext_resource type="Texture2D" uid="uid://dejfrdm7qxvdh" path="res://src/main/assets/texture/other/home.png" id="11_ddde0"]
+[ext_resource type="Texture2D" uid="uid://c0fptamjetnwu" path="res://src/main/assets/texture/other/leaderboard.png" id="12_eabrt"]
+[ext_resource type="Texture2D" uid="uid://d3ogn7cklefun" path="res://src/main/assets/texture/other/pause.png" id="13_mw2fh"]
+[ext_resource type="Texture2D" uid="uid://b06vds1xjur6b" path="res://src/main/assets/texture/other/pausePlay.png" id="14_bb5gu"]
+[ext_resource type="Texture2D" uid="uid://c4ywi3clhrb7i" path="res://src/main/assets/texture/other/pauseRestart.png" id="15_dbobx"]
+[ext_resource type="PackedScene" uid="uid://dnhsxo3qwuuid" path="res://src/main/scene/role/cloud/cloud.tscn" id="16_87nox"]
+[ext_resource type="PackedScene" uid="uid://dyb5vnj37a1gp" path="res://src/main/scene/particle/particle_util.tscn" id="17_la042"]
+[ext_resource type="PackedScene" uid="uid://12ap1foyur35" path="res://src/main/scene/role/block/spawn_block.tscn" id="18_kdeit"]
+[ext_resource type="PackedScene" uid="uid://dn6bchg5rgvhf" path="res://src/main/scene/role/player/player.tscn" id="19_gwsej"]
+[ext_resource type="PackedScene" uid="uid://t028lntulovy" path="res://src/main/scene/role/score/score_dot_util.tscn" id="20_ldmjr"]
+[ext_resource type="PackedScene" uid="uid://bvdvhgo75w3p2" path="res://src/main/scene/role/color/color_dot_util.tscn" id="21_7qxw5"]
+
+[sub_resource type="Animation" id="Animation_0iwrc"]
+resource_name = "help"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(160, 240), Vector2(160, 300)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ui/HelpBtn:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(252, 229), Vector2(320, 229)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ui/StartBtn:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(73, 190), Vector2(320, 190)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Ui/StartBtn:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Ui/ScoreBtn:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(237, 397), Vector2(320, 397)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Ui/MainBtn:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3, 500), Vector2(3, 394)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Ui/MainBtn:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Ui/SoundBtn:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3, 394), Vector2(3, 500)]
+}
+
+[sub_resource type="Animation" id="Animation_kle3p"]
+resource_name = "idle"
+length = 0.1
+
+[sub_resource type="Animation" id="Animation_kl50u"]
+resource_name = "new_score"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(160, 300)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ui/SoundBtn:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 500)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ui/HelpBtn:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(320, 229)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Ui/ScoreBtn:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(397, 397)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Ui/StartBtn:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(320, 190)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Ui/StartBtn:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_vne3y"]
+resource_name = "new_score _back"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(160, 300), Vector2(160, 240)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ui/SoundBtn:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3, 500), Vector2(3, 394)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ui/HelpBtn:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(320, 229), Vector2(252, 229)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Ui/ScoreBtn:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(320, 397), Vector2(237, 397)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Ui/StartBtn:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(320, 190), Vector2(73, 190)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Ui/StartBtn:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_4ay27"]
+resource_name = "pause"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ui/RestartBtn:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(120, 500), Vector2(120, 200)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ui/RestartBtn:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ui/ResumeBtn:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(320, 200), Vector2(200, 200)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Ui/MainBtn:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3, 500), Vector2(40, 200)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Ui/MainBtn:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Ui/PauseBtn:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_h2js7"]
+resource_name = "score"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Player:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ui/MainBtn:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3, 500), Vector2(3, 394)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ui/MainBtn:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Ui/ScoreBtn:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(237, 397), Vector2(237, 500)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Ui/SoundBtn:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3, 394), Vector2(3, 500)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Ui/RankBtn:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(320, 400), Vector2(237, 400)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Ui/NetBtn:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(400, 400), Vector2(157, 400)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Ui/StartBtn:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(73, 190), Vector2(320, 190)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Ui/StartBtn:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Ui/HelpBtn:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(252, 229), Vector2(320, 229), Vector2(320, 229)]
+}
+
+[sub_resource type="Animation" id="Animation_mjxwj"]
+resource_name = "start"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(160, 240), Vector2(160, 300)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ui/StartBtn:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ui/ScoreBtn:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Ui/SoundBtn:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Ui/HelpBtn:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Ui/PauseBtn:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6uita"]
+_data = {
+"help": SubResource("Animation_0iwrc"),
+"idle": SubResource("Animation_kle3p"),
+"new_score": SubResource("Animation_kl50u"),
+"new_score _back": SubResource("Animation_vne3y"),
+"pause": SubResource("Animation_4ay27"),
+"score": SubResource("Animation_h2js7"),
+"start": SubResource("Animation_mjxwj")
+}
+
+[node name="Welcome" type="Node2D"]
+script = ExtResource("1_gxns8")
+
+[node name="Ui" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Word" parent="Ui" instance=ExtResource("2_7ab2n")]
+
+[node name="Author" type="Label" parent="Ui"]
+visible = false
+offset_left = 110.0
+offset_top = 196.0
+offset_right = 210.0
+offset_bottom = 284.0
+theme_override_fonts/font = ExtResource("3_u6iwa")
+theme_override_font_sizes/font_size = 15
+text = "The end
+
+Created by  
+Koflazycat"
+horizontal_alignment = 1
+
+[node name="HelpBtn" type="TextureButton" parent="Ui"]
+offset_left = 252.0
+offset_top = 229.0
+offset_right = 306.0
+offset_bottom = 283.0
+texture_normal = ExtResource("4_caxxi")
+script = ExtResource("7_hhtyv")
+
+[node name="StartBtn" type="TextureButton" parent="Ui"]
+offset_left = 73.0
+offset_top = 190.0
+offset_right = 247.0
+offset_bottom = 290.0
+texture_normal = ExtResource("6_kje8u")
+script = ExtResource("7_hhtyv")
+
+[node name="SoundBtn" type="TextureButton" parent="Ui"]
+offset_left = 3.0
+offset_top = 394.0
+offset_right = 83.0
+offset_bottom = 474.0
+toggle_mode = true
+texture_normal = ExtResource("7_8sqnr")
+texture_pressed = ExtResource("8_sa0o1")
+script = ExtResource("7_hhtyv")
+
+[node name="ScoreBtn" type="TextureButton" parent="Ui"]
+offset_left = 237.0
+offset_top = 397.0
+offset_right = 317.0
+offset_bottom = 477.0
+texture_normal = ExtResource("9_27uex")
+script = ExtResource("7_hhtyv")
+
+[node name="RankBtn" type="TextureButton" parent="Ui"]
+offset_left = 320.0
+offset_top = 400.0
+offset_right = 400.0
+offset_bottom = 480.0
+texture_normal = ExtResource("10_kk6lp")
+script = ExtResource("7_hhtyv")
+
+[node name="MainBtn" type="TextureButton" parent="Ui"]
+offset_left = 3.0
+offset_top = 500.0
+offset_right = 83.0
+offset_bottom = 580.0
+texture_normal = ExtResource("11_ddde0")
+script = ExtResource("7_hhtyv")
+
+[node name="NetBtn" type="TextureButton" parent="Ui"]
+offset_left = 400.0
+offset_top = 400.0
+offset_right = 480.0
+offset_bottom = 480.0
+texture_normal = ExtResource("12_eabrt")
+script = ExtResource("7_hhtyv")
+
+[node name="PauseBtn" type="TextureButton" parent="Ui"]
+visible = false
+offset_left = 256.0
+offset_right = 316.0
+offset_bottom = 60.0
+texture_normal = ExtResource("13_mw2fh")
+script = ExtResource("7_hhtyv")
+
+[node name="ResumeBtn" type="TextureButton" parent="Ui"]
+offset_left = 320.0
+offset_top = 200.0
+offset_right = 400.0
+offset_bottom = 280.0
+texture_normal = ExtResource("14_bb5gu")
+script = ExtResource("7_hhtyv")
+
+[node name="RestartBtn" type="TextureButton" parent="Ui"]
+offset_left = 120.0
+offset_top = 500.0
+offset_right = 200.0
+offset_bottom = 580.0
+texture_normal = ExtResource("15_dbobx")
+script = ExtResource("7_hhtyv")
+
+[node name="Bg" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Bg"]
+offset_right = 320.0
+offset_bottom = 480.0
+mouse_filter = 2
+color = Color(0.627451, 0.819608, 0.807843, 1)
+
+[node name="Cloud" parent="Bg" instance=ExtResource("16_87nox")]
+position = Vector2(92, 86)
+
+[node name="Cloud2" parent="Bg" instance=ExtResource("16_87nox")]
+position = Vector2(230, 185)
+angle = -1
+
+[node name="ParticleUtil" parent="Bg" instance=ExtResource("17_la042")]
+process_mode = 3
+z_index = 1
+
+[node name="Block" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="SpawnBlock" parent="Block" instance=ExtResource("18_kdeit")]
+
+[node name="Player" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Player" parent="Player" instance=ExtResource("19_gwsej")]
+z_index = 1
+position = Vector2(120, 352)
+
+[node name="Dot" type="CanvasLayer" parent="."]
+
+[node name="ScoreDotUtil" parent="Dot" instance=ExtResource("20_ldmjr")]
+
+[node name="ColorDotUtil" parent="Dot" instance=ExtResource("21_7qxw5")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(160, 240)
+current = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6uita")
+}
+
+[node name="GameOverTimer" type="Timer" parent="."]
+wait_time = 3.5
+one_shot = true
+
+[node name="ColorTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 20.0
+
+[node name="GamePassTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 5.0
+one_shot = true
+
+[connection signal="_pressed" from="Ui/HelpBtn" to="." method="_on_help_btn__pressed"]
+[connection signal="button_down" from="Ui/HelpBtn" to="Ui/HelpBtn" method="_on_button_down"]
+[connection signal="button_up" from="Ui/HelpBtn" to="Ui/HelpBtn" method="_on_button_up"]
+[connection signal="pressed" from="Ui/HelpBtn" to="Ui/HelpBtn" method="_on_pressed"]
+[connection signal="_pressed" from="Ui/StartBtn" to="." method="_on_start_btn__pressed"]
+[connection signal="button_down" from="Ui/StartBtn" to="Ui/StartBtn" method="_on_button_down"]
+[connection signal="button_up" from="Ui/StartBtn" to="Ui/StartBtn" method="_on_button_up"]
+[connection signal="pressed" from="Ui/StartBtn" to="Ui/StartBtn" method="_on_pressed"]
+[connection signal="_pressed" from="Ui/SoundBtn" to="." method="_on_sound_btn__pressed"]
+[connection signal="button_down" from="Ui/SoundBtn" to="Ui/SoundBtn" method="_on_button_down"]
+[connection signal="button_up" from="Ui/SoundBtn" to="Ui/SoundBtn" method="_on_button_up"]
+[connection signal="pressed" from="Ui/SoundBtn" to="Ui/SoundBtn" method="_on_pressed"]
+[connection signal="_pressed" from="Ui/ScoreBtn" to="." method="_on_score_btn__pressed"]
+[connection signal="button_down" from="Ui/ScoreBtn" to="Ui/ScoreBtn" method="_on_button_down"]
+[connection signal="button_up" from="Ui/ScoreBtn" to="Ui/ScoreBtn" method="_on_button_up"]
+[connection signal="pressed" from="Ui/ScoreBtn" to="Ui/ScoreBtn" method="_on_pressed"]
+[connection signal="button_down" from="Ui/RankBtn" to="Ui/RankBtn" method="_on_button_down"]
+[connection signal="button_up" from="Ui/RankBtn" to="Ui/RankBtn" method="_on_button_up"]
+[connection signal="pressed" from="Ui/RankBtn" to="Ui/RankBtn" method="_on_pressed"]
+[connection signal="_pressed" from="Ui/MainBtn" to="." method="_on_main_btn__pressed"]
+[connection signal="button_down" from="Ui/MainBtn" to="Ui/MainBtn" method="_on_button_down"]
+[connection signal="button_up" from="Ui/MainBtn" to="Ui/MainBtn" method="_on_button_up"]
+[connection signal="pressed" from="Ui/MainBtn" to="Ui/MainBtn" method="_on_pressed"]
+[connection signal="button_down" from="Ui/NetBtn" to="Ui/NetBtn" method="_on_button_down"]
+[connection signal="button_up" from="Ui/NetBtn" to="Ui/NetBtn" method="_on_button_up"]
+[connection signal="pressed" from="Ui/NetBtn" to="Ui/NetBtn" method="_on_pressed"]
+[connection signal="_pressed" from="Ui/PauseBtn" to="." method="_on_pause_btn__pressed"]
+[connection signal="button_down" from="Ui/PauseBtn" to="Ui/PauseBtn" method="_on_button_down"]
+[connection signal="button_up" from="Ui/PauseBtn" to="Ui/PauseBtn" method="_on_button_up"]
+[connection signal="pressed" from="Ui/PauseBtn" to="Ui/PauseBtn" method="_on_pressed"]
+[connection signal="_pressed" from="Ui/ResumeBtn" to="." method="_on_resume_btn__pressed"]
+[connection signal="button_down" from="Ui/ResumeBtn" to="Ui/ResumeBtn" method="_on_button_down"]
+[connection signal="button_up" from="Ui/ResumeBtn" to="Ui/ResumeBtn" method="_on_button_up"]
+[connection signal="pressed" from="Ui/ResumeBtn" to="Ui/ResumeBtn" method="_on_pressed"]
+[connection signal="_pressed" from="Ui/RestartBtn" to="." method="_on_restart_btn__pressed"]
+[connection signal="button_down" from="Ui/RestartBtn" to="Ui/RestartBtn" method="_on_button_down"]
+[connection signal="button_up" from="Ui/RestartBtn" to="Ui/RestartBtn" method="_on_button_up"]
+[connection signal="pressed" from="Ui/RestartBtn" to="Ui/RestartBtn" method="_on_pressed"]

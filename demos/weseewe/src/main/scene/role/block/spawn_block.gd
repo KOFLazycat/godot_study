@@ -11,7 +11,7 @@ var index=0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	init()
+#	init()
 	randomize()
 	Game.connect("blockExit", Callable(self,"_block_exit"))
 	allColor.shuffle()

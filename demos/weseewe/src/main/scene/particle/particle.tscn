@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvd5h2do5oi5f"]
+
+[ext_resource type="Script" path="res://src/main/scene/particle/particle.gd" id="1_nhy85"]
+[ext_resource type="Texture2D" uid="uid://c0inee2jvc4gx" path="res://src/main/assets/texture/other/particle.png" id="1_u1pi4"]
+
+[node name="Particle" type="Sprite2D"]
+z_index = 1
+position = Vector2(84, 44)
+texture = ExtResource("1_u1pi4")
+script = ExtResource("1_nhy85")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 50.0
+one_shot = true

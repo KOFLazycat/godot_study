@@ -1,0 +1,103 @@
+[gd_scene load_steps=8 format=3 uid="uid://5n1t7ec1ontu"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/help/help_info.gd" id="1_2vmpn"]
+[ext_resource type="Texture2D" uid="uid://de572jvdpe6sf" path="res://src/main/assets/texture/other/panel.png" id="1_t6qpi"]
+[ext_resource type="FontFile" uid="uid://boutjgnaso6j5" path="res://src/main/assets/fonts/Xolonium-Regular.ttf" id="2_4gbsp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jsh4b"]
+size = Vector2(320, 5)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fkfsf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_opehb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vp23r"]
+texture = ExtResource("1_t6qpi")
+region_rect = Rect2(0, 0, 512, 512)
+
+[node name="HelpInfo" type="Node2D"]
+script = ExtResource("1_2vmpn")
+
+[node name="Top" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
+position = Vector2(160, -100)
+shape = SubResource("RectangleShape2D_jsh4b")
+
+[node name="Tip1" type="RigidBody2D" parent="."]
+position = Vector2(100, -8)
+collision_layer = 16
+collision_mask = 16
+physics_material_override = SubResource("PhysicsMaterial_fkfsf")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tip1"]
+shape = SubResource("CircleShape2D_opehb")
+
+[node name="Panel" type="Panel" parent="Tip1"]
+offset_left = -90.0
+offset_top = -60.0
+offset_right = 90.0
+offset_bottom = 11.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_vp23r")
+
+[node name="Label" type="Label" parent="Tip1/Panel"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 165.0
+offset_bottom = 59.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_4gbsp")
+theme_override_font_sizes/font_size = 15
+text = "Tap to jump,agani 
+  to double jump."
+
+[node name="Tip2" type="RigidBody2D" parent="."]
+position = Vector2(230, -40)
+collision_layer = 16
+collision_mask = 16
+physics_material_override = SubResource("PhysicsMaterial_fkfsf")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tip2"]
+shape = SubResource("CircleShape2D_opehb")
+
+[node name="Panel" type="Panel" parent="Tip2"]
+offset_left = -90.0
+offset_top = -60.0
+offset_right = 90.0
+offset_bottom = 11.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_vp23r")
+
+[node name="Label" type="Label" parent="Tip2/Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 14.0
+offset_right = 175.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_4gbsp")
+theme_override_font_sizes/font_size = 15
+text = "Jump on your colors,
+    earn 10 to win!"
+
+[node name="DampedSpringJoint2D1" type="DampedSpringJoint2D" parent="."]
+position = Vector2(100, -90)
+node_a = NodePath("../Top")
+node_b = NodePath("../Tip1")
+length = 15.0
+stiffness = 4.0
+damping = 0.3
+
+[node name="DampedSpringJoint2D2" type="DampedSpringJoint2D" parent="."]
+position = Vector2(230, -90)
+node_a = NodePath("../Top")
+node_b = NodePath("../Tip2")
+length = 15.0
+stiffness = 6.0
+damping = 0.3

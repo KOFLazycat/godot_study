@@ -46,12 +46,12 @@ func _ready():
 
 #更改场景
 func changeScene(stagePath):
-	Splash.find_node("AnimationPlayer").play("moveIn")
-	await Splash.find_node("AnimationPlayer").animation_finished
+	Splash.get_node("AnimationPlayer").play("moveIn")
+	await Splash.get_node("AnimationPlayer").animation_finished
 	set_process_input(false)
 	get_tree().change_scene(stagePath)
 	set_process_input(true)
-	Splash.find_node("AnimationPlayer").play("moveOut")
+	Splash.get_node("AnimationPlayer").play("moveOut")
 
 
 #保存数据

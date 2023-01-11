@@ -1,0 +1,141 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6u2yd4kmqhdr"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/score/score_board.gd" id="1_78l02"]
+[ext_resource type="Texture2D" uid="uid://de572jvdpe6sf" path="res://src/main/assets/texture/other/panel.png" id="2_8yq2e"]
+[ext_resource type="FontFile" uid="uid://boutjgnaso6j5" path="res://src/main/assets/fonts/Xolonium-Regular.ttf" id="3_27hjh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lvcjl"]
+size = Vector2(320, 5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e5ir7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_82oku"]
+texture = ExtResource("2_8yq2e")
+region_rect = Rect2(0, 0, 512, 512)
+
+[node name="ScoreBoard" type="Node2D"]
+script = ExtResource("1_78l02")
+
+[node name="Top" type="StaticBody2D" parent="."]
+position = Vector2(160, -200)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
+shape = SubResource("RectangleShape2D_lvcjl")
+
+[node name="Msg" type="RigidBody2D" parent="."]
+position = Vector2(160, -32)
+collision_layer = 128
+collision_mask = 128
+mass = 3.0
+linear_velocity = Vector2(0, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Msg"]
+shape = SubResource("CircleShape2D_e5ir7")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Panel" type="Panel" parent="Msg"]
+offset_left = -87.0
+offset_top = -131.0
+offset_right = 87.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_82oku")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Msg/Panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 154.0
+offset_bottom = 131.0
+
+[node name="Lable" type="VBoxContainer" parent="Msg/Panel/HBoxContainer"]
+layout_mode = 2
+
+[node name="BestRound" type="Label" parent="Msg/Panel/HBoxContainer/Lable"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.372549, 0.388235, 0.501961, 1)
+theme_override_fonts/font = ExtResource("3_27hjh")
+theme_override_font_sizes/font_size = 15
+text = "Best round"
+horizontal_alignment = 2
+
+[node name="LastRound" type="Label" parent="Msg/Panel/HBoxContainer/Lable"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.372549, 0.388235, 0.501961, 1)
+theme_override_fonts/font = ExtResource("3_27hjh")
+theme_override_font_sizes/font_size = 15
+text = "Last round"
+horizontal_alignment = 2
+
+[node name="RoundsPlayed" type="Label" parent="Msg/Panel/HBoxContainer/Lable"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.372549, 0.388235, 0.501961, 1)
+theme_override_fonts/font = ExtResource("3_27hjh")
+theme_override_font_sizes/font_size = 15
+text = "Rounds played"
+horizontal_alignment = 2
+
+[node name="AvgPerRound" type="Label" parent="Msg/Panel/HBoxContainer/Lable"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.372549, 0.388235, 0.501961, 1)
+theme_override_fonts/font = ExtResource("3_27hjh")
+theme_override_font_sizes/font_size = 15
+text = "Avg per round"
+horizontal_alignment = 2
+
+[node name="ColorsEarned" type="Label" parent="Msg/Panel/HBoxContainer/Lable"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.372549, 0.388235, 0.501961, 1)
+theme_override_fonts/font = ExtResource("3_27hjh")
+theme_override_font_sizes/font_size = 15
+text = "Colors earned"
+horizontal_alignment = 2
+
+[node name="Score" type="VBoxContainer" parent="Msg/Panel/HBoxContainer"]
+layout_mode = 2
+
+[node name="BestRound" type="Label" parent="Msg/Panel/HBoxContainer/Score"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.262745, 0.321569, 1)
+theme_override_fonts/font = ExtResource("3_27hjh")
+theme_override_font_sizes/font_size = 15
+text = "0"
+horizontal_alignment = 1
+
+[node name="LastRound" type="Label" parent="Msg/Panel/HBoxContainer/Score"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.262745, 0.321569, 1)
+theme_override_fonts/font = ExtResource("3_27hjh")
+theme_override_font_sizes/font_size = 15
+text = "0"
+horizontal_alignment = 1
+
+[node name="RoundsPlayed" type="Label" parent="Msg/Panel/HBoxContainer/Score"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.262745, 0.321569, 1)
+theme_override_fonts/font = ExtResource("3_27hjh")
+theme_override_font_sizes/font_size = 15
+text = "0"
+horizontal_alignment = 1
+
+[node name="AvgPerRound" type="Label" parent="Msg/Panel/HBoxContainer/Score"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.262745, 0.321569, 1)
+theme_override_fonts/font = ExtResource("3_27hjh")
+theme_override_font_sizes/font_size = 15
+text = "0"
+horizontal_alignment = 1
+
+[node name="ColorsEarned" type="Label" parent="Msg/Panel/HBoxContainer/Score"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.262745, 0.321569, 1)
+theme_override_fonts/font = ExtResource("3_27hjh")
+theme_override_font_sizes/font_size = 15
+text = "0"
+horizontal_alignment = 1
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="."]
+position = Vector2(160, -180)
+node_a = NodePath("../Top")
+node_b = NodePath("../Msg")
+length = 100.0
+stiffness = 10.0

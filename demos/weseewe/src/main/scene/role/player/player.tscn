@@ -9,12 +9,24 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_22r0f"]
 animations = [{
-"frames": [ExtResource("3_e85ay"), ExtResource("4_tuh8j"), ExtResource("3_e85ay")],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_e85ay")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tuh8j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_e85ay")
+}],
 "loop": true,
 "name": &"blink",
 "speed": 5.0
 }, {
-"frames": [ExtResource("3_e85ay")],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_e85ay")
+}],
 "loop": true,
 "name": &"idle",
 "speed": 5.0

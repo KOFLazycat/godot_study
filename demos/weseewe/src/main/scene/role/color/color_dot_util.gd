@@ -21,7 +21,7 @@ func _process(_delta):
 
 #添加三个分数球
 func add3Dot(color:Array):
-	for i in range(3):
+	for i in range(color.size()):
 		var temp = color_dot.instantiate()
 		temp.position.x=120+i*40+randf_range(-1,1)
 		temp.position.y=-16

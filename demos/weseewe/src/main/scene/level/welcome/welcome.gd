@@ -49,7 +49,7 @@ func _ready():
 		if Game.nextState==Game.state.STATE_START:
 			setState(Game.state.STATE_START)
 		elif Game.nextState==Game.state.STATE_NEWSCORE:
-			animation_player.current_animation="newScore"
+			animation_player.current_animation="new_score"
 			score_dot_util.clear()
 			word.clear()
 			player.playMewScoreAni()
@@ -122,7 +122,9 @@ func setState(state):
 		bg.add_child(_helpInfo)
 		score_dot_util.clear()
 		word.clear()
-		color_dot_util.add3Dot(spawn_block.allColor.slice(0,2))
+		# slice(begin: int, end: int = 0x7FFFFFFF, step: int = 1, deep: bool = false)
+		# 含begin 不含end
+		color_dot_util.add3Dot(spawn_block.allColor.slice(0,3))
 		spawn_block.setGameState(Game.state.STATE_HELP)
 		self.state=state
 	elif state==Game.state.STATE_IDLE:
@@ -180,17 +182,18 @@ func setState(state):
 	elif state==Game.state.STATE_NEWSCORE:
 		self.state=state
 	elif state==Game.state.STATE_PAUSE:
-		get_tree().paused=true
 		if Game.data['sound']:
 			Sound.stopTrack()
 		animation_player.play("pause")
 		player.setState(Game.playerState.IDLE)
 		spawn_block.setState(Game.blockState.STOP)
 		self.state=state
+		await animation_player.animation_finished
+		get_tree().paused=true
 	elif state==Game.state.STATE_RESUME:
 		get_tree().paused=false
 		if Game.data['sound']:
-			Sound.playWelcomMusic()
+			Sound.playGameStartMusic()
 		animation_player.play_backwards("pause")
 		player.setState(Game.playerState.STAND)
 		spawn_block.setState(Game.blockState.FAST)
@@ -212,11 +215,12 @@ func setState(state):
 			await get_tree().physics_frame
 		self.state=state
 	elif state==Game.state.STATE_SCORE:	#分数显示
+		player.setState(Game.playerState.STAND)
 		self.state=state
 		score_dot_util.clear()
 		word.clear()
 		_scoreBoard = scoreInfo.instantiate()
-		$ui.add_child(_scoreBoard)
+		$Ui.add_child(_scoreBoard)
 		animation_player.play("score")
 
 

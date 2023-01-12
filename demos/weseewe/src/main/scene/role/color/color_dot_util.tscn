@@ -9,7 +9,7 @@ size = Vector2(320, 5)
 script = ExtResource("1_fc72v")
 
 [node name="Top" type="StaticBody2D" parent="."]
-position = Vector2(0, -40)
+position = Vector2(0, -50)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
 position = Vector2(160, 0)

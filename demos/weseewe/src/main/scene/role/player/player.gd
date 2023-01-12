@@ -105,15 +105,15 @@ func dead(delta):
 	pass
 
 
-#func _unhandled_input(event):
-#	if event is InputEventScreenTouch or event is InputEventMouseButton:
-#		if event.pressed or (event is InputEventMouseButton and 
-#							event.button_index == MOUSE_BUTTON_LEFT and event.pressed):
-#			if state==Game.playerState.STAND:
-#				Sound.playJumpA()
-#				velocity.y=-speed
-#				state=Game.playerState.JUMP
-#			elif state==Game.playerState.JUMP and jumpAgain:
-#				Sound.playJumpB()
-#				velocity.y=-speed
-#				jumpAgain=false
+func _unhandled_input(event):
+	if event is InputEventScreenTouch or event is InputEventMouseButton:
+		if event.pressed or (event is InputEventMouseButton and 
+							event.button_index == MOUSE_BUTTON_LEFT and event.pressed):
+			if state==Game.playerState.STAND:
+				Sound.playJumpA()
+				velocity.y=-speed
+				state=Game.playerState.JUMP
+			elif state==Game.playerState.JUMP and jumpAgain:
+				Sound.playJumpB()
+				velocity.y=-speed
+				jumpAgain=false

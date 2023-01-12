@@ -348,10 +348,10 @@ tracks/5/path = NodePath("Ui/PauseBtn:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false]
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_h2js7"]
@@ -359,7 +359,7 @@ resource_name = "score"
 length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("Player/Player:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -629,11 +629,14 @@ offset_bottom = 480.0
 texture_normal = ExtResource("10_kk6lp")
 script = ExtResource("7_hhtyv")
 
-[node name="MainBtn" type="TextureButton" parent="Ui"]
+[node name="MainBtn" type="TextureButton" parent="Ui" node_paths=PackedStringArray("shortcut_context")]
+process_mode = 3
 offset_left = 3.0
 offset_top = 500.0
 offset_right = 83.0
 offset_bottom = 580.0
+shortcut_context = NodePath("")
+shortcut_in_tooltip = false
 texture_normal = ExtResource("11_ddde0")
 script = ExtResource("7_hhtyv")
 
@@ -654,6 +657,7 @@ texture_normal = ExtResource("13_mw2fh")
 script = ExtResource("7_hhtyv")
 
 [node name="ResumeBtn" type="TextureButton" parent="Ui"]
+process_mode = 2
 offset_left = 320.0
 offset_top = 200.0
 offset_right = 400.0
@@ -662,6 +666,7 @@ texture_normal = ExtResource("14_bb5gu")
 script = ExtResource("7_hhtyv")
 
 [node name="RestartBtn" type="TextureButton" parent="Ui"]
+process_mode = 2
 offset_left = 120.0
 offset_top = 500.0
 offset_right = 200.0

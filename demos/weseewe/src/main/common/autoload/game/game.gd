@@ -3,7 +3,7 @@ extends Node
 
 var _author="lazycat"
 
-var mainScene="res://scenes/welcome.tscn"
+var mainScene="res://src/main/scene/level/welcome/welcome.tscn"
 
 #游戏状态
 enum state {STATE_IDLE, STATE_START, STATE_OVER,STATE_HELP,
@@ -46,12 +46,14 @@ func _ready():
 
 #更改场景
 func changeScene(stagePath):
-	Splash.get_node("AnimationPlayer").play("moveIn")
-	await Splash.get_node("AnimationPlayer").animation_finished
+	var splash_ani = Splash.get_node("AnimationPlayer")
+	splash_ani.play("moveIn")
+	await splash_ani.animation_finished
 	set_process_input(false)
-	get_tree().change_scene(stagePath)
+	get_tree().change_scene_to_file(stagePath)
 	set_process_input(true)
-	Splash.get_node("AnimationPlayer").play("moveOut")
+	splash_ani.play("moveOut")
+	await splash_ani.animation_finished
 
 
 #保存数据

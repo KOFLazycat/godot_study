@@ -30,10 +30,10 @@ func init(num):
 		add_child(temp)	
 		var joint= DampedSpringJoint2D.new()
 		joint.name=str("joint2D",i)
-		joint.length=70
+		joint.length=30
 		joint.rest_length=4
 		joint.stiffness=10
-		joint.damping=1
+		joint.damping=0.4
 		joint.position.x=70+i*18
 		joint.position.y=0
 		#joint.node_a=NodePath("../top")

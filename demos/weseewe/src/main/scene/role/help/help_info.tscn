@@ -4,14 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://de572jvdpe6sf" path="res://src/main/assets/texture/other/panel.png" id="1_t6qpi"]
 [ext_resource type="FontFile" uid="uid://boutjgnaso6j5" path="res://src/main/assets/fonts/Xolonium-Regular.ttf" id="2_4gbsp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jsh4b"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_86h0j"]
 size = Vector2(320, 5)
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fkfsf"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_doivr"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_opehb"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_518av"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vp23r"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lxb1r"]
 texture = ExtResource("1_t6qpi")
 region_rect = Rect2(0, 0, 512, 512)
 
@@ -24,17 +24,18 @@ collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
 position = Vector2(160, -100)
-shape = SubResource("RectangleShape2D_jsh4b")
+shape = SubResource("RectangleShape2D_86h0j")
 
 [node name="Tip1" type="RigidBody2D" parent="."]
+z_index = 1
 position = Vector2(100, -8)
 collision_layer = 16
 collision_mask = 16
-physics_material_override = SubResource("PhysicsMaterial_fkfsf")
+physics_material_override = SubResource("PhysicsMaterial_doivr")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tip1"]
-shape = SubResource("CircleShape2D_opehb")
+shape = SubResource("CircleShape2D_518av")
 
 [node name="Panel" type="Panel" parent="Tip1"]
 offset_left = -90.0
@@ -42,7 +43,7 @@ offset_top = -60.0
 offset_right = 90.0
 offset_bottom = 11.0
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_vp23r")
+theme_override_styles/panel = SubResource("StyleBoxTexture_lxb1r")
 
 [node name="Label" type="Label" parent="Tip1/Panel"]
 layout_mode = 0
@@ -57,14 +58,16 @@ text = "Tap to jump,agani
   to double jump."
 
 [node name="Tip2" type="RigidBody2D" parent="."]
+z_index = 1
 position = Vector2(230, -40)
 collision_layer = 16
 collision_mask = 16
-physics_material_override = SubResource("PhysicsMaterial_fkfsf")
+mass = 1.3
+physics_material_override = SubResource("PhysicsMaterial_doivr")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tip2"]
-shape = SubResource("CircleShape2D_opehb")
+shape = SubResource("CircleShape2D_518av")
 
 [node name="Panel" type="Panel" parent="Tip2"]
 offset_left = -90.0
@@ -72,7 +75,7 @@ offset_top = -60.0
 offset_right = 90.0
 offset_bottom = 11.0
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_vp23r")
+theme_override_styles/panel = SubResource("StyleBoxTexture_lxb1r")
 
 [node name="Label" type="Label" parent="Tip2/Panel"]
 layout_mode = 0

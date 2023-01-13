@@ -135,6 +135,7 @@ func setState(state):
 			Game.changeScene(Game.mainScene)
 		elif self.state==Game.state.STATE_SCORE:	#分数
 			animation_player.play_backwards("score")
+			await animation_player.animation_finished
 			score_dot_util.init(Game.data['best_round'])
 			word.init()
 			_scoreBoard.queue_free()
@@ -170,11 +171,11 @@ func setState(state):
 		if player.position.x<-player.size/2:
 			particle_util.addEdgeParticle(Vector2(0,player.position.y),false)
 		else:
-			particle_util.addRandomPosParticle(Vector2(player.position.x,400),false)
+			particle_util.addRandomPosParticle(Vector2(player.position.x,300),false)
 		
 		Sound.playPop()
 		Sound.stopTrack()
-#		saveData()	#保存数据
+		saveData()	#保存数据
 		
 		pause_btn.visible=false
 		game_over_timer.start()
@@ -206,7 +207,7 @@ func setState(state):
 		spawn_block.setGameState(Game.state.STATE_PASS)
 		rank_btn.visible=false
 		author.visible=true
-#		saveData()	#保存数据
+		saveData()	#保存数据
 		var delay=0
 		while delay<300:
 			delay+=1
@@ -251,7 +252,7 @@ func _gamePass():
 
 #保存数据
 func saveData():
-	var colorsNum= spawn_block.useColor.size()
+	var colorsNum = spawn_block.useColor.size()
 	if colorsNum>Game.data['best_round']:
 		Game.nextState=Game.state.STATE_NEWSCORE
 	Game.recordGameData(colorsNum)#记录数据

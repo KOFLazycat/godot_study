@@ -4,12 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://de572jvdpe6sf" path="res://src/main/assets/texture/other/panel.png" id="2_8yq2e"]
 [ext_resource type="FontFile" uid="uid://boutjgnaso6j5" path="res://src/main/assets/fonts/Xolonium-Regular.ttf" id="3_27hjh"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vs3oy"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iqisx"]
 size = Vector2(320, 5)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ll6wp"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_vkxjc"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0fxsb"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s5iv8"]
 texture = ExtResource("2_8yq2e")
 region_rect = Rect2(0, 0, 512, 512)
 
@@ -22,7 +22,7 @@ collision_layer = 128
 collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
-shape = SubResource("RectangleShape2D_vs3oy")
+shape = SubResource("RectangleShape2D_iqisx")
 
 [node name="Msg" type="RigidBody2D" parent="."]
 position = Vector2(160, -32)
@@ -32,14 +32,14 @@ mass = 3.0
 linear_velocity = Vector2(0, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Msg"]
-shape = SubResource("CircleShape2D_ll6wp")
+shape = SubResource("CircleShape2D_vkxjc")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Panel" type="Panel" parent="Msg"]
 offset_left = -87.0
 offset_top = -131.0
 offset_right = 87.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_0fxsb")
+theme_override_styles/panel = SubResource("StyleBoxTexture_s5iv8")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Msg/Panel"]
 layout_mode = 0

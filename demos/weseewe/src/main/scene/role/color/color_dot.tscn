@@ -4,13 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://bdv4pwellms8i" path="res://src/main/assets/texture/other/colorDot.png" id="2_dp026"]
 [ext_resource type="Texture2D" uid="uid://b0vwwtdbwq7a3" path="res://src/main/assets/texture/other/colorDotBottom.png" id="3_qmjgg"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fal63"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s3f4h"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_i5hry"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_a40eo"]
 radius = 15.0
 
 [node name="ColorDot" type="RigidBody2D"]
-physics_material_override = SubResource("PhysicsMaterial_fal63")
+physics_material_override = SubResource("PhysicsMaterial_s3f4h")
 gravity_scale = 0.8
 script = ExtResource("1_j6kxx")
 metadata/_edit_group_ = true
@@ -25,4 +25,4 @@ scale = Vector2(0.7, 0.7)
 texture = ExtResource("3_qmjgg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_i5hry")
+shape = SubResource("CircleShape2D_a40eo")

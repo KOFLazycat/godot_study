@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dmonvewt08duu" path="res://src/main/assets/texture/other/blockBottom.png" id="2_sbrge"]
 [ext_resource type="Texture2D" uid="uid://bh0p7qk8vg47n" path="res://src/main/assets/texture/other/blockTop.png" id="3_1dakp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vd58n"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xbick"]
 size = Vector2(102, 227.5)
 
 [node name="Block" type="StaticBody2D"]
@@ -21,7 +21,7 @@ texture = ExtResource("3_1dakp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_vd58n")
+shape = SubResource("RectangleShape2D_xbick")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(1.90735e-06, 8.49999)

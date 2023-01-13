@@ -13,6 +13,7 @@ var height=128	#高度128
 var width=102 # 方块宽度，周边有多余的空白边框
 var sendExit=false
 var offsetY=22
+var colorStr=""#设置颜色
 
 
 # Called when the node enters the scene tree for the first time.
@@ -45,6 +46,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 
 func setColor(color:String):
+	colorStr = color
 	$BlockTop.modulate=Color(color)
 
 

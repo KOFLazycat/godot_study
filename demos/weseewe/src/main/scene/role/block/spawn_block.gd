@@ -104,4 +104,10 @@ func _block_exit(pos_x):
 			temp.setColor(useColor[useColor.size()-1])
 		else:
 			temp.setColor(allColor[0])
-	add_child(temp)	
+	add_child(temp)
+	# 如果新加的方块可以站立，需要遍历之前的方块，同颜色的也需要修改为可站立
+	if !temp.noCollision:
+		for i in range(get_child_count()):
+			if get_child(i).colorStr == temp.colorStr && get_child(i).get_node("CollisionShape2D").disabled:
+				print(get_child(i))
+				get_child(i).get_node("CollisionShape2D").disabled = false

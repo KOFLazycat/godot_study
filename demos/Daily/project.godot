@@ -14,6 +14,10 @@ config/name="Daily"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*res://src/main/common/autoload/global.gd"
+
 [display]
 
 window/size/viewport_width=960

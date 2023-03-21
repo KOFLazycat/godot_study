@@ -1,0 +1,84 @@
+[gd_scene load_steps=18 format=3 uid="uid://c5i76fl3k1nh2"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/basic_animation/stone.gd" id="1_fbhnb"]
+[ext_resource type="Texture2D" uid="uid://c0ddmak70fsl" path="res://src/main/assets/texture/role/player/stone/idle (1).png" id="1_puiho"]
+[ext_resource type="Texture2D" uid="uid://6eltsa2pr34n" path="res://src/main/assets/texture/role/player/stone/idle (2).png" id="2_8ot4x"]
+[ext_resource type="Texture2D" uid="uid://du2xoq1lrjfhq" path="res://src/main/assets/texture/role/player/stone/idle (3).png" id="3_l7vyy"]
+[ext_resource type="Texture2D" uid="uid://op4bvob750d1" path="res://src/main/assets/texture/role/player/stone/idle (4).png" id="4_6rc5t"]
+[ext_resource type="Texture2D" uid="uid://juhwogpum02m" path="res://src/main/assets/texture/role/player/stone/walk (1).png" id="5_rimip"]
+[ext_resource type="Texture2D" uid="uid://v2uh728k7vws" path="res://src/main/assets/texture/role/player/stone/walk (2).png" id="6_yxqgs"]
+[ext_resource type="Texture2D" uid="uid://cmyt4li02etea" path="res://src/main/assets/texture/role/player/stone/walk (3).png" id="7_mmp6c"]
+[ext_resource type="Texture2D" uid="uid://bcjif066vfnpp" path="res://src/main/assets/texture/role/player/stone/walk (4).png" id="8_p1pgb"]
+[ext_resource type="Texture2D" uid="uid://cwrn82h17n72x" path="res://src/main/assets/texture/role/player/stone/walk (5).png" id="9_imtmo"]
+[ext_resource type="Texture2D" uid="uid://dvr4s5mb03kw1" path="res://src/main/assets/texture/role/player/stone/walk (6).png" id="10_g6x3d"]
+[ext_resource type="Texture2D" uid="uid://bjohv7ckickgv" path="res://src/main/assets/texture/role/player/stone/walk (7).png" id="11_6d5m0"]
+[ext_resource type="Texture2D" uid="uid://d1n8obqyyf5de" path="res://src/main/assets/texture/role/player/stone/walk (8).png" id="12_vqmtn"]
+[ext_resource type="Texture2D" uid="uid://b7aeahbp4uavi" path="res://src/main/assets/texture/role/player/stone/walk (9).png" id="13_75lgg"]
+[ext_resource type="Texture2D" uid="uid://cku1mfve5u61t" path="res://src/main/assets/texture/role/player/stone/walk (10).png" id="14_tc4fk"]
+[ext_resource type="Texture2D" uid="uid://cthxxsbo2k7ud" path="res://src/main/assets/texture/role/player/stone/walk (11).png" id="15_soesj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tpa1l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_puiho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_8ot4x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_l7vyy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6rc5t")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_rimip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_yxqgs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_mmp6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_p1pgb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_imtmo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_g6x3d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_6d5m0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_vqmtn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_75lgg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_tc4fk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_soesj")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 11.0
+}]
+
+[node name="Stone" type="Node2D"]
+script = ExtResource("1_fbhnb")
+
+[node name="Player" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tpa1l")
+animation = &"walk"
+frame_progress = 0.241983

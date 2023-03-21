@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://btobx3w1hwtox"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/basic_animation/path_finding.gd" id="1_70m2x"]
+[ext_resource type="Texture2D" uid="uid://dr5uw7vff6dhc" path="res://src/main/assets/texture/background/bg.png" id="1_pilb7"]
+[ext_resource type="Texture2D" uid="uid://jiy77tnambah" path="res://src/main/assets/texture/bullet/ice_particle_white.png" id="2_xvwvk"]
+
+[sub_resource type="Curve2D" id="Curve2D_iignf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 822, 124, 0, 0, 0, 0, 818, 143, 0, 0, 0, 0, 818, 168, 0, 0, 0, 0, 807, 199, 0, 0, 0, 0, 791, 248, 0, 0, 0, 0, 759, 284, 0, 0, 0, 0, 719, 314, 0, 0, 0, 0, 671, 368, 0, 0, 0, 0, 627, 417, 0, 0, 0, 0, 593, 465, 0, 0, 0, 0, 569, 501, 0, 0, 0, 0, 544, 549, 0, 0, 0, 0, 525, 571, 0, 0, 0, 0, 487, 592, 0, 0, 0, 0, 414, 583, 0, 0, 0, 0, 374, 573, 0, 0, 0, 0, 333, 582, 0, 0, 0, 0, 271, 581, 0, 0, 0, 0, 189, 583, 0, 0, 0, 0, 153, 563, 0, 0, 0, 0, 103, 525, 0, 0, 0, 0, 141, 475, 0, 0, 0, 0, 164, 489, 0, 0, 0, 0, 190, 511, 0, 0, 0, 0, 242, 509, 0, 0, 0, 0, 304, 504, 0, 0, 0, 0, 346, 502, 0, 0, 0, 0, 403, 504, 0, 0, 0, 0, 451, 489, 0, 0, 0, 0, 499, 476, 0, 0, 0, 0, 533, 463, 0, 0, 0, 0, 574, 441, 0, 0, 0, 0, 560, 406, 0, 0, 0, 0, 521, 414, 0, 0, 0, 0, 478, 427, 0, 0, 0, 0, 397, 432, 0, 0, 0, 0, 339, 435, 0, 0, 0, 0, 275, 437, 0, 0, 0, 0, 238, 425, 0, 0, 0, 0, 247, 383, 0, 0, 0, 0, 307, 350, 0, 0, 0, 0, 378, 325, 0, 0, 0, 0, 427, 336, 0, 0, 0, 0, 476, 342, 0, 0, 0, 0, 534, 344, 0, 0, 0, 0, 584, 339, 0, 0, 0, 0, 647, 309, 0, 0, 0, 0, 672, 273, 0, 0, 0, 0, 685, 212, 0, 0, 0, 0, 661, 179, 0, 0, 0, 0, 588, 184, 0, 0, 0, 0, 559, 197, 0, 0, 0, 0, 518, 210, 0, 0, 0, 0, 415, 226, 0, 0, 0, 0, 363, 203, 0, 0, 0, 0, 324, 182, 0, 0, 0, 0, 263, 200, 0, 0, 0, 0, 204, 249, 0, 0, 0, 0, 171, 303, 0, 0, 0, 0, 150, 339, 0, 0, 0, 0, 126, 369, 0, 0, 0, 0, 109, 385)
+}
+point_count = 62
+
+[node name="PathFinding" type="Node2D"]
+script = ExtResource("1_70m2x")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(480, 360)
+texture = ExtResource("1_pilb7")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_iignf")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(822, 124)
+rotation = 1.77829
+
+[node name="Ball" type="Sprite2D" parent="Path2D/PathFollow2D"]
+texture = ExtResource("2_xvwvk")

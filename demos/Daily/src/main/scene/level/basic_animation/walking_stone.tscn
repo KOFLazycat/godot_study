@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyvmg46khvldr"]
+
+[ext_resource type="PackedScene" uid="uid://c10dr8yfymnd8" path="res://src/main/scene/level/basic_animation/parallax.tscn" id="1_jimd3"]
+[ext_resource type="PackedScene" uid="uid://c5i76fl3k1nh2" path="res://src/main/scene/level/basic_animation/stone.tscn" id="2_g60wr"]
+
+[node name="WalkingStone" type="Node2D"]
+
+[node name="Parallax" parent="." instance=ExtResource("1_jimd3")]
+
+[node name="Stone" parent="." instance=ExtResource("2_g60wr")]
+position = Vector2(439, 606)

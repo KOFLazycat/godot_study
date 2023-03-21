@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://c10dr8yfymnd8"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/basic_animation/parallax.gd" id="1_6wc08"]
+[ext_resource type="Texture2D" uid="uid://dr5uw7vff6dhc" path="res://src/main/assets/texture/background/bg.png" id="1_fg327"]
+[ext_resource type="Texture2D" uid="uid://cucgmjd7j2mua" path="res://src/main/assets/texture/background/back_bg.png" id="2_08qfl"]
+[ext_resource type="Texture2D" uid="uid://bywq5hn8nc7bs" path="res://src/main/assets/texture/background/mid_bg.png" id="3_sqx5h"]
+[ext_resource type="Texture2D" uid="uid://cllqgards1ht1" path="res://src/main/assets/texture/background/front_bg.png" id="4_l8qu1"]
+
+[node name="Parallax" type="Node2D"]
+script = ExtResource("1_6wc08")
+
+[node name="bg" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="bg"]
+
+[node name="Sprite2D" type="Sprite2D" parent="bg/ParallaxLayer"]
+position = Vector2(480, 360)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_fg327")
+
+[node name="back_bg" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="back_bg"]
+motion_mirroring = Vector2(960, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="back_bg/ParallaxLayer"]
+position = Vector2(480, 360)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_08qfl")
+
+[node name="mid_bg" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="mid_bg"]
+motion_mirroring = Vector2(960, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="mid_bg/ParallaxLayer"]
+position = Vector2(480, 490)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_sqx5h")
+
+[node name="front_bg" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="front_bg"]
+motion_mirroring = Vector2(960, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="front_bg/ParallaxLayer"]
+position = Vector2(480, 600)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_l8qu1")

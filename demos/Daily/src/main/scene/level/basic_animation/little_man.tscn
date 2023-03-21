@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbjo3fuhbg6qu"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/basic_animation/little_man.gd" id="1_lrieq"]
+[ext_resource type="Texture2D" uid="uid://c3c4ra7qxi6r" path="res://src/main/assets/texture/role/player/little_man.png" id="1_wts62"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_najc4"]
+size = Vector2(20, 32)
+
+[node name="LittleMan" type="Node2D"]
+script = ExtResource("1_lrieq")
+
+[node name="Area2D" type="Area2D" parent="." groups=["player"]]
+
+[node name="Player" type="Sprite2D" parent="Area2D"]
+texture = ExtResource("1_wts62")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_najc4")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

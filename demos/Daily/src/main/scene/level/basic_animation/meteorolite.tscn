@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://db830xi2742sp"]
+
+[ext_resource type="Texture2D" uid="uid://bepbrgdcohmh6" path="res://src/main/assets/texture/role/enemy/meteorolite.png" id="1_3pq3l"]
+[ext_resource type="Script" path="res://src/main/scene/level/basic_animation/meteorolite.gd" id="1_6e8up"]
+[ext_resource type="Texture2D" uid="uid://dfhnav7edqil8" path="res://src/main/assets/texture/particle/explosion/explosion1.png" id="1_wdrv5"]
+[ext_resource type="Texture2D" uid="uid://b3ybs4384jnjv" path="res://src/main/assets/texture/particle/explosion/explosion2.png" id="2_ajaek"]
+[ext_resource type="Texture2D" uid="uid://cxrbq6au8b0go" path="res://src/main/assets/texture/particle/explosion/explosion3.png" id="3_7e0tx"]
+[ext_resource type="Texture2D" uid="uid://b7eg513vkyg18" path="res://src/main/assets/texture/particle/explosion/explosion4.png" id="4_oc13h"]
+[ext_resource type="Texture2D" uid="uid://b0wljvhpu6480" path="res://src/main/assets/texture/particle/explosion/explosion5.png" id="5_2ti5q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iswqf"]
+radius = 18.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ctecb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wdrv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ajaek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7e0tx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_oc13h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2ti5q")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 30.0
+}]
+
+[node name="Meteorolite" type="Node2D"]
+script = ExtResource("1_6e8up")
+
+[node name="Area2D" type="Area2D" parent="." groups=["meteorolite"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+texture = ExtResource("1_3pq3l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_iswqf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_ctecb")
+animation = &"explosion"
+frame = 4
+frame_progress = 1.0
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

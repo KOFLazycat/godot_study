@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://dad5k4tykhsfu"]
+
+[ext_resource type="Texture2D" uid="uid://bdun74ftmdi8r" path="res://src/main/assets/texture/background/bg_black.png" id="1_1trf1"]
+[ext_resource type="Script" path="res://src/main/scene/level/basic_animation/meteorolite_escape.gd" id="1_3ayya"]
+[ext_resource type="Texture2D" uid="uid://tyrkrgbi0dkt" path="res://src/main/assets/texture/background/ice_ground.png" id="2_omdce"]
+[ext_resource type="PackedScene" uid="uid://dbjo3fuhbg6qu" path="res://src/main/scene/level/basic_animation/little_man.tscn" id="3_e8m7o"]
+[ext_resource type="PackedScene" uid="uid://b1k8quae8usft" path="res://src/main/scene/level/basic_animation/player_blood.tscn" id="5_50bou"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gywd6"]
+size = Vector2(960, 100)
+
+[node name="MeteoroliteEscape" type="Node2D"]
+script = ExtResource("1_3ayya")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(480, 360)
+texture = ExtResource("1_1trf1")
+
+[node name="Area2D" type="Area2D" parent="." groups=["ground"]]
+
+[node name="Ground" type="Sprite2D" parent="Area2D"]
+position = Vector2(480, 660)
+texture = ExtResource("2_omdce")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(480, 658)
+shape = SubResource("RectangleShape2D_gywd6")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="LittleMan" parent="." instance=ExtResource("3_e8m7o")]
+position = Vector2(180, 587)
+
+[node name="PlayerBlood" parent="." instance=ExtResource("5_50bou")]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

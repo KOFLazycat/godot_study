@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://cfldv63mwi1ae"]
+
+[ext_resource type="Texture2D" uid="uid://c6v8wykyycuic" path="res://src/main/assets/texture/background/background_day1.png" id="1_5epin"]
+[ext_resource type="Script" path="res://src/main/scene/level/basic_animation/dabble.gd" id="1_a0sht"]
+[ext_resource type="Texture2D" uid="uid://bljvuqorvwf3r" path="res://src/main/assets/texture/background/ground1.png" id="2_sdvuc"]
+[ext_resource type="Texture2D" uid="uid://qw27p1uxx3ma" path="res://src/main/assets/texture/role/bird/bird_blue_11.png" id="3_uxdtq"]
+[ext_resource type="Texture2D" uid="uid://cj0vkn0c0hoo7" path="res://src/main/assets/texture/role/bird/bird_blue_21.png" id="4_w7g6q"]
+[ext_resource type="Texture2D" uid="uid://cukm0qqonc5pp" path="res://src/main/assets/texture/pipe/pipe_green_bottom1.png" id="5_lwmfg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0w6rl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_uxdtq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_w7g6q")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vvmbr"]
+size = Vector2(65, 441.901)
+
+[node name="Dabble" type="Node2D"]
+script = ExtResource("1_a0sht")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(488, -40)
+scale = Vector2(4, 4)
+texture = ExtResource("1_5epin")
+
+[node name="Ground" type="Sprite2D" parent="Bg"]
+position = Vector2(-2, 199.25)
+texture = ExtResource("2_sdvuc")
+
+[node name="Bird" type="AnimatedSprite2D" parent="."]
+position = Vector2(313, 144)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_0w6rl")
+animation = &"fly"
+frame = 1
+
+[node name="Marker2D" type="Marker2D" parent="Bird"]
+position = Vector2(24, 0)
+
+[node name="Pipe" type="Sprite2D" parent="."]
+position = Vector2(711, 427.25)
+scale = Vector2(1, 0.454853)
+texture = ExtResource("5_lwmfg")
+
+[node name="Area2D" type="Area2D" parent="Pipe" groups=["pipe"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pipe/Area2D"]
+position = Vector2(0.5, 2.74811)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_vvmbr")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

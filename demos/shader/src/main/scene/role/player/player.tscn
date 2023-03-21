@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci3o4if18ldx4"]
+
+[ext_resource type="Shader" path="res://src/main/scene/role/player/player.gdshader" id="1_7adve"]
+[ext_resource type="Texture2D" uid="uid://wbbuo4n0y8n3" path="res://icon.svg" id="1_p3cek"]
+[ext_resource type="Script" path="res://src/main/scene/role/player/player.gd" id="2_psr6y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c5qti"]
+shader = ExtResource("1_7adve")
+shader_parameter/aaa = ExtResource("1_p3cek")
+
+[node name="Player" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_psr6y")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_c5qti")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

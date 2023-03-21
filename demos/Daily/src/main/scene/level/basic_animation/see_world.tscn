@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://bnx0bvsvcjup5"]
+
+[ext_resource type="Texture2D" uid="uid://qw27p1uxx3ma" path="res://src/main/assets/texture/role/bird/bird_blue_11.png" id="1_tss6a"]
+[ext_resource type="Script" path="res://src/main/scene/level/basic_animation/see_world.gd" id="1_uwp4n"]
+[ext_resource type="Texture2D" uid="uid://c6v8wykyycuic" path="res://src/main/assets/texture/background/background_day1.png" id="2_mhsxv"]
+[ext_resource type="Texture2D" uid="uid://cj0vkn0c0hoo7" path="res://src/main/assets/texture/role/bird/bird_blue_21.png" id="2_q71bq"]
+[ext_resource type="Texture2D" uid="uid://d2jc70igeixpq" path="res://src/main/assets/texture/background/background_night1.png" id="3_ff8p2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ccad6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mhsxv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ff8p2")
+}],
+"loop": true,
+"name": &"bg",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_84gbp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_tss6a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_q71bq")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 4.0
+}]
+
+[node name="SeeWorld" type="Node2D"]
+script = ExtResource("1_uwp4n")
+
+[node name="Bg" type="AnimatedSprite2D" parent="."]
+position = Vector2(480, 360)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ccad6")
+animation = &"bg"
+
+[node name="Bird" type="AnimatedSprite2D" parent="."]
+position = Vector2(116, 297)
+sprite_frames = SubResource("SpriteFrames_84gbp")
+animation = &"fly"

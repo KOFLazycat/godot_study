@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://d02w2teayjrhx"]
+
+[ext_resource type="Texture2D" uid="uid://jiy77tnambah" path="res://src/main/assets/texture/bullet/ice_particle_white.png" id="1_aevbq"]
+[ext_resource type="Script" path="res://src/main/scene/level/basic_animation/bullet.gd" id="1_isu4e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d7fet"]
+radius = 25.02
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4gbtn"]
+radius = 12.1655
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource("1_isu4e")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+mass = 10.0
+inertia = 1.0
+gravity_scale = 8.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_d7fet")
+
+[node name="Ball" type="Sprite2D" parent="RigidBody2D"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_aevbq")
+
+[node name="Area2D" type="Area2D" parent="RigidBody2D/Ball"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Ball/Area2D"]
+shape = SubResource("CircleShape2D_4gbtn")
+
+[connection signal="area_entered" from="RigidBody2D/Ball/Area2D" to="." method="_on_area_2d_area_entered"]

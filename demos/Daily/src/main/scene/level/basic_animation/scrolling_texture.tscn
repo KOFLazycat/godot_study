@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://biomuqocu716c"]
+
+[ext_resource type="Texture2D" uid="uid://c6v8wykyycuic" path="res://src/main/assets/texture/background/background_day1.png" id="1_whxfx"]
+[ext_resource type="Shader" path="res://src/main/scene/level/basic_animation/scrolling_texture.gdshader" id="1_ysi3l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_whi8v"]
+shader = ExtResource("1_ysi3l")
+shader_parameter/direction = Vector2(1, 0)
+shader_parameter/speed = 0.1
+
+[node name="ScrollingTexture" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_whi8v")
+offset_top = -760.0
+offset_right = 288.0
+offset_bottom = -248.0
+scale = Vector2(3.35, 3.35)
+texture = ExtResource("1_whxfx")
+stretch_mode = 1

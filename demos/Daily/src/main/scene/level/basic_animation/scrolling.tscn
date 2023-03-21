@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf8ewgnxdajno"]
+
+[ext_resource type="Texture2D" uid="uid://c6v8wykyycuic" path="res://src/main/assets/texture/background/background_day1.png" id="1_crbxu"]
+[ext_resource type="Script" path="res://src/main/scene/level/basic_animation/scrolling.gd" id="1_vdicb"]
+[ext_resource type="Texture2D" uid="uid://d2jc70igeixpq" path="res://src/main/assets/texture/background/background_night1.png" id="3_f5wri"]
+
+[node name="Scrolling" type="Node2D"]
+script = ExtResource("1_vdicb")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(480, 60)
+scale = Vector2(3.35, 3.35)
+texture = ExtResource("1_crbxu")
+
+[node name="Bg2" type="Sprite2D" parent="."]
+position = Vector2(1440, 60)
+scale = Vector2(3.35, 3.35)
+texture = ExtResource("3_f5wri")

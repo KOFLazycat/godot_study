@@ -49,7 +49,7 @@ func _ready():
 		if Game.nextState==Game.state.STATE_START:
 			setState(Game.state.STATE_START)
 		elif Game.nextState==Game.state.STATE_NEWSCORE:
-			animation_player.current_animation="new_score"
+#			animation_player.current_animation="new_score"
 			score_dot_util.clear()
 			word.clear()
 			player.playMewScoreAni()

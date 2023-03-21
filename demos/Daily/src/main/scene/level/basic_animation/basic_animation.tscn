@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://0vwrxet6b6u3"]
+
+[ext_resource type="Texture2D" uid="uid://r4eksla3lmy4" path="res://icon.svg" id="1_ygxug"]
+[ext_resource type="Script" path="res://src/main/scene/level/basic_animation/rotation.gd" id="2_lu7g7"]
+[ext_resource type="Script" path="res://src/main/scene/level/basic_animation/scale.gd" id="3_uqvjw"]
+[ext_resource type="Script" path="res://src/main/scene/level/basic_animation/movement.gd" id="4_fqw10"]
+[ext_resource type="Texture2D" uid="uid://qw27p1uxx3ma" path="res://src/main/assets/texture/role/bird/bird_blue_11.png" id="5_5vuc3"]
+[ext_resource type="Texture2D" uid="uid://cj0vkn0c0hoo7" path="res://src/main/assets/texture/role/bird/bird_blue_21.png" id="6_r360l"]
+[ext_resource type="Script" path="res://src/main/scene/level/basic_animation/animated_sprite2d.gd" id="7_4yavx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ibc0u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_5vuc3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_r360l")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 4.0
+}]
+
+[node name="BasicAnimation" type="Node2D"]
+
+[node name="Rotation" type="Sprite2D" parent="."]
+position = Vector2(85, 90)
+texture = ExtResource("1_ygxug")
+script = ExtResource("2_lu7g7")
+
+[node name="Scale" type="Sprite2D" parent="."]
+position = Vector2(501, 683)
+texture = ExtResource("1_ygxug")
+offset = Vector2(0, -60)
+script = ExtResource("3_uqvjw")
+
+[node name="Movement" type="Sprite2D" parent="."]
+position = Vector2(246, 90)
+texture = ExtResource("1_ygxug")
+script = ExtResource("4_fqw10")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(116, 297)
+sprite_frames = SubResource("SpriteFrames_ibc0u")
+animation = &"fly"
+script = ExtResource("7_4yavx")

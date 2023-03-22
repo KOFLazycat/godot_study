@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyaa7ex5t583v"]
+
+[ext_resource type="Texture2D" uid="uid://bhjxlnonbtbhy" path="res://src/main/assets/texture/health/healthbar_over.png" id="1_60ypm"]
+[ext_resource type="Script" path="res://src/main/scene/level/plane/player_blood.gd" id="1_q8hw4"]
+[ext_resource type="Texture2D" uid="uid://684r5dyrc2dv" path="res://src/main/assets/texture/health/healthbar_green.png" id="2_phen3"]
+
+[node name="PlayerBlood" type="Node2D"]
+script = ExtResource("1_q8hw4")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+value = 50.0
+texture_over = ExtResource("1_60ypm")
+texture_progress = ExtResource("2_phen3")

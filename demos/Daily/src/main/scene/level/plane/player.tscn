@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5alibsvn8paa"]
+
+[ext_resource type="Texture2D" uid="uid://bi4gws8dd0ljh" path="res://src/main/assets/texture/role/player/plane.png" id="1_akyxu"]
+[ext_resource type="Script" path="res://src/main/scene/level/plane/player.gd" id="1_mgb15"]
+[ext_resource type="PackedScene" uid="uid://dyaa7ex5t583v" path="res://src/main/scene/level/plane/player_blood.tscn" id="2_6ympv"]
+[ext_resource type="PackedScene" uid="uid://fve07w7ya3na" path="res://src/main/scene/level/plane/tail_gas.tscn" id="3_jgi0p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2kxbe"]
+radius = 33.0151
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_mgb15")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_akyxu")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_2kxbe")
+
+[node name="PlayerBlood" parent="." instance=ExtResource("2_6ympv")]
+position = Vector2(-34, -52)
+scale = Vector2(0.15, 0.15)
+
+[node name="TailGas" parent="." instance=ExtResource("3_jgi0p")]
+position = Vector2(-16, -19)
+scale = Vector2(0.8, 0.8)
+
+[node name="TailGas2" parent="." instance=ExtResource("3_jgi0p")]
+position = Vector2(-16, 20)
+scale = Vector2(0.8, 0.8)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

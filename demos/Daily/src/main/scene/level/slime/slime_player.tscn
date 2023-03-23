@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfq5k1cro180i"]
+
+[ext_resource type="Texture2D" uid="uid://drpjqt5winkwn" path="res://src/main/assets/texture/slime/down.png" id="1_4nbqy"]
+[ext_resource type="Script" path="res://src/main/scene/level/slime/slime_player.gd" id="1_rlunr"]
+[ext_resource type="Texture2D" uid="uid://de4q3a2lcoboq" path="res://src/main/assets/texture/slime/up.png" id="2_pftu5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qwfm2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4nbqy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_pftu5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wyn87"]
+size = Vector2(92, 77)
+
+[node name="SlimePlayer" type="Node2D"]
+script = ExtResource("1_rlunr")
+
+[node name="Player" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qwfm2")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_wyn87")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

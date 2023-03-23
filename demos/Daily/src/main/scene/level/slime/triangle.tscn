@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://brbxg2o6lfjfb"]
+
+[ext_resource type="Texture2D" uid="uid://cnf2jtt5fx8ex" path="res://src/main/assets/texture/slime/triangle.svg" id="1_k6i0j"]
+[ext_resource type="Script" path="res://src/main/scene/level/slime/triangle.gd" id="1_vw2hp"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_gc2fq"]
+a = Vector2(-1, -29)
+b = Vector2(31, 33)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_3sy5g"]
+a = Vector2(-1, -30)
+b = Vector2(-31, 32)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_nancr"]
+a = Vector2(30, 32)
+b = Vector2(-30, 32)
+
+[node name="Triangle" type="Node2D"]
+script = ExtResource("1_vw2hp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_k6i0j")
+
+[node name="Area2D" type="Area2D" parent="." groups=["triangle"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("SegmentShape2D_gc2fq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("SegmentShape2D_3sy5g")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("SegmentShape2D_nancr")

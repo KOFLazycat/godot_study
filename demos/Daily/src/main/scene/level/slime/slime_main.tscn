@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://oy515wxbe1p5"]
+
+[ext_resource type="Texture2D" uid="uid://bdvfh8ihsewwf" path="res://src/main/assets/texture/slime/cover.png" id="1_7vnkp"]
+[ext_resource type="Script" path="res://src/main/scene/level/slime/slime_main.gd" id="1_jv86w"]
+[ext_resource type="AudioStream" uid="uid://dk0kyuyajei3a" path="res://src/main/assets/texture/slime/bg_music.wav" id="2_dlb8x"]
+[ext_resource type="PackedScene" uid="uid://dwys65a7xrxrc" path="res://src/main/scene/level/slime/back_ground.tscn" id="3_1ws5a"]
+[ext_resource type="PackedScene" uid="uid://bxypkya62tqlj" path="res://src/main/scene/level/slime/play_btn.tscn" id="4_lt1bo"]
+[ext_resource type="PackedScene" uid="uid://bfq5k1cro180i" path="res://src/main/scene/level/slime/slime_player.tscn" id="5_v88ul"]
+[ext_resource type="PackedScene" uid="uid://brbxg2o6lfjfb" path="res://src/main/scene/level/slime/triangle.tscn" id="6_0dqop"]
+[ext_resource type="Texture2D" uid="uid://do64y6lphbdj4" path="res://src/main/assets/texture/slime/gameover.png" id="7_5tqmx"]
+
+[node name="SlimeMain" type="Node2D"]
+script = ExtResource("1_jv86w")
+
+[node name="Cover" type="Sprite2D" parent="."]
+position = Vector2(480, 360)
+texture = ExtResource("1_7vnkp")
+metadata/_edit_lock_ = true
+
+[node name="BgMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_dlb8x")
+autoplay = true
+
+[node name="BackGround" parent="." instance=ExtResource("3_1ws5a")]
+
+[node name="PlayBtn" parent="." instance=ExtResource("4_lt1bo")]
+position = Vector2(263, 438)
+
+[node name="SlimePlayer" parent="." instance=ExtResource("5_v88ul")]
+position = Vector2(200, 580)
+
+[node name="Triangle" parent="." instance=ExtResource("6_0dqop")]
+position = Vector2(42, 207)
+rotation = 3.14159
+
+[node name="Triangle2" parent="." instance=ExtResource("6_0dqop")]
+position = Vector2(35, 588)
+
+[node name="GameOver" type="Sprite2D" parent="."]
+position = Vector2(480, 360)
+texture = ExtResource("7_5tqmx")
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 400.0
+offset_top = 20.0
+offset_right = 461.0
+offset_bottom = 46.0
+scale = Vector2(3, 3)
+text = "Score: 0"
+horizontal_alignment = 1
+
+[connection signal="finished" from="BgMusic" to="." method="_on_bg_music_finished"]
+[connection signal="game_start" from="PlayBtn" to="." method="_on_play_btn_game_start"]
+[connection signal="game_over" from="SlimePlayer" to="." method="_on_slime_player_game_over"]

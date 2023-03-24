@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=3 uid="uid://b8dgjyf6e0dqd"]
+
+[ext_resource type="Texture2D" uid="uid://c7yobvf7ea5lr" path="res://src/main/assets/texture/dogge/art/playerGrey_walk1.png" id="1_0blu0"]
+[ext_resource type="Script" path="res://src/main/scene/level/dogge/player.gd" id="1_3hxeo"]
+[ext_resource type="Texture2D" uid="uid://cuwl8dce34iiu" path="res://src/main/assets/texture/dogge/art/playerGrey_up1.png" id="1_t2rlt"]
+[ext_resource type="Texture2D" uid="uid://cv2qmmvhdxwgo" path="res://src/main/assets/texture/dogge/art/playerGrey_walk2.png" id="2_1wg30"]
+[ext_resource type="Texture2D" uid="uid://ckegggipb7tvv" path="res://src/main/assets/texture/dogge/art/playerGrey_up2.png" id="2_jos7h"]
+
+[sub_resource type="Gradient" id="Gradient_acxi4"]
+offsets = PackedFloat32Array(0, 0.977778)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b4gx8"]
+gradient = SubResource("Gradient_acxi4")
+
+[sub_resource type="Curve" id="Curve_fkudk"]
+_data = [Vector2(0, 0.663636), 0.0, 0.0, 0, 0, Vector2(0.993976, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_b3f6w"]
+curve = SubResource("Curve_fkudk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h5sdu"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_b3f6w")
+color_ramp = SubResource("GradientTexture1D_b4gx8")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cb1te"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_t2rlt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_jos7h")
+}],
+"loop": true,
+"name": &"up",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0blu0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1wg30")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eyqce"]
+radius = 17.0
+height = 62.0
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_3hxeo")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_h5sdu")
+texture = ExtResource("1_0blu0")
+
+[node name="PlayerDogger" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_cb1te")
+animation = &"up"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_eyqce")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

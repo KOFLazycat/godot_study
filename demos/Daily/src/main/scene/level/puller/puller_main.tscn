@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://crtqfu4me356w"]
+
+[ext_resource type="Texture2D" uid="uid://b7tl0ddld21kr" path="res://src/main/assets/texture/puller/sprites/白板.png" id="1_0j041"]
+[ext_resource type="Script" path="res://src/main/scene/level/puller/puller_main.gd" id="1_hr6is"]
+[ext_resource type="Texture2D" uid="uid://dn3nqixxehdsb" path="res://src/main/assets/texture/puller/sprites/兑奖规则.png" id="2_wjsrk"]
+[ext_resource type="Texture2D" uid="uid://5mw3apf7u31j" path="res://src/main/assets/texture/puller/sprites/拉霸机.png" id="3_cs3aa"]
+[ext_resource type="FontFile" uid="uid://bs2aw4jnmtbwr" path="res://src/main/assets/texture/puller/Fonts/arial.ttf" id="4_rg5fe"]
+[ext_resource type="Texture2D" uid="uid://wvprn67kv1wn" path="res://src/main/assets/texture/puller/sprites/拉杆.png" id="5_c6la6"]
+[ext_resource type="PackedScene" uid="uid://c1erq3265jjg2" path="res://src/main/scene/level/puller/lottery.tscn" id="6_ia2f6"]
+
+[node name="PullerMain" type="Node2D"]
+script = ExtResource("1_hr6is")
+
+[node name="Bg" type="Sprite2D" parent="."]
+self_modulate = Color(0.788235, 0.509804, 0.65098, 1)
+position = Vector2(480, 360)
+scale = Vector2(6.5, 6.5)
+texture = ExtResource("1_0j041")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2DRules" type="Sprite2D" parent="."]
+position = Vector2(480, 60)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_wjsrk")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2DPuller" type="Sprite2D" parent="."]
+position = Vector2(450, 450)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("3_cs3aa")
+metadata/_edit_lock_ = true
+
+[node name="LabelScore" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 440.0
+offset_top = 150.0
+offset_right = 491.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_rg5fe")
+theme_override_font_sizes/font_size = 50
+text = "WIN: 0"
+horizontal_alignment = 1
+
+[node name="TextureButtonPullBar" type="TextureButton" parent="."]
+offset_left = 550.0
+offset_top = -78.0
+offset_right = 753.0
+offset_bottom = 548.0
+scale = Vector2(0.35, 0.35)
+pivot_offset = Vector2(0, 600)
+texture_normal = ExtResource("5_c6la6")
+
+[node name="Lottery" parent="." instance=ExtResource("6_ia2f6")]
+position = Vector2(389, 405)
+scale = Vector2(0.35, 0.35)
+
+[node name="Lottery2" parent="." instance=ExtResource("6_ia2f6")]
+position = Vector2(495, 405)
+scale = Vector2(0.35, 0.35)
+
+[node name="Lottery3" parent="." instance=ExtResource("6_ia2f6")]
+position = Vector2(441, 405)
+scale = Vector2(0.35, 0.35)
+
+[connection signal="pressed" from="TextureButtonPullBar" to="." method="_on_texture_button_pull_bar_pressed"]

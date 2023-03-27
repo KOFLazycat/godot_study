@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxo7ks5t47g3p"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/fish/big_fish.gd" id="1_a7hou"]
+[ext_resource type="Texture2D" uid="uid://6j1jksbx4bri" path="res://src/main/assets/texture/fish/大鱼张嘴.png" id="1_hidsj"]
+[ext_resource type="Texture2D" uid="uid://dyim00bfa1ua5" path="res://src/main/assets/texture/fish/大鱼闭嘴.png" id="2_jg7ku"]
+[ext_resource type="AudioStream" uid="uid://cdhdrrfyskycj" path="res://src/main/assets/texture/fish/chomp.wav" id="3_2v1y4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_irx3r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hidsj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_jg7ku")
+}],
+"loop": true,
+"name": &"eat",
+"speed": 5.0
+}]
+
+[node name="BigFish" type="Node2D"]
+script = ExtResource("1_a7hou")
+
+[node name="Fish" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_irx3r")
+animation = &"eat"
+metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="." groups=["big_fish"]]
+position = Vector2(213, -20)
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(1, 0, -8, -1, -12, -7, -23, -6, -31, 2, -47, -1, -61, -3, -78, -9, -86, -7, -85, 8, -81, 8, -81, 25, -66, 26, -67, 45, -46, 43, -47, 57, -41, 56, -41, 33, -61, 37, -61, 19, -75, 20, -76, 4, -60, 7, -54, 11, -44, 11, -34, 9, -29, 11, -23, 7, -18, 0, -13, 7, -8, 11)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_2v1y4")
+metadata/_edit_lock_ = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

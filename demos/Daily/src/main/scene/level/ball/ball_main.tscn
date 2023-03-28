@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://bxps6v4i7pdql"]
+
+[ext_resource type="Texture2D" uid="uid://cby7sfkqdnwtg" path="res://src/main/assets/texture/ball/背景.png" id="1_lisqm"]
+[ext_resource type="Script" path="res://src/main/scene/level/ball/ball_main.gd" id="1_ndh3v"]
+[ext_resource type="FontFile" uid="uid://bci5mtpbli88b" path="res://src/main/assets/texture/ball/fonts/Xolonium-Regular.ttf" id="2_yehd8"]
+[ext_resource type="PackedScene" uid="uid://sk3nt3teykt3" path="res://src/main/scene/level/ball/board.tscn" id="3_6qemp"]
+[ext_resource type="PackedScene" uid="uid://dhsccildf0dxg" path="res://src/main/scene/level/ball/ball.tscn" id="4_k12yt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_taptd"]
+size = Vector2(20, 732)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dkqn"]
+size = Vector2(23, 729)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u47tv"]
+size = Vector2(975, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yus5x"]
+size = Vector2(966, 21)
+
+[node name="BallMain" type="Node2D"]
+script = ExtResource("1_ndh3v")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(480, 360)
+texture = ExtResource("1_lisqm")
+
+[node name="LabelScore" type="Label" parent="."]
+offset_left = 208.0
+offset_top = 200.0
+offset_right = 754.0
+offset_bottom = 509.0
+theme_override_colors/font_color = Color(0.262745, 0.262745, 0.262745, 1)
+theme_override_fonts/font = ExtResource("2_yehd8")
+theme_override_font_sizes/font_size = 200
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Area2DLeft" type="Area2D" parent="." groups=["fence"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DLeft"]
+position = Vector2(0, 356)
+shape = SubResource("RectangleShape2D_taptd")
+
+[node name="Area2DRight" type="Area2D" parent="." groups=["fence"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DRight"]
+position = Vector2(954.5, 359.5)
+shape = SubResource("RectangleShape2D_7dkqn")
+
+[node name="Area2DUp" type="Area2D" parent="." groups=["fence"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DUp"]
+position = Vector2(477.5, 0)
+shape = SubResource("RectangleShape2D_u47tv")
+
+[node name="Area2DDown" type="Area2D" parent="." groups=["fence"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DDown"]
+position = Vector2(478, 714.5)
+shape = SubResource("RectangleShape2D_yus5x")
+
+[node name="Board" parent="." instance=ExtResource("3_6qemp")]
+position = Vector2(480, 360)
+
+[node name="Ball" parent="." instance=ExtResource("4_k12yt")]
+position = Vector2(480, 360)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="hit" from="Ball" to="." method="_on_ball_hit"]

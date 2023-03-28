@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://sk3nt3teykt3"]
+
+[ext_resource type="Texture2D" uid="uid://b4a4jorweu3xd" path="res://src/main/assets/texture/ball/杠子.png" id="1_ci0wh"]
+[ext_resource type="Script" path="res://src/main/scene/level/ball/board.gd" id="1_kwof1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ruca0"]
+size = Vector2(13, 208)
+
+[node name="Board" type="Node2D"]
+script = ExtResource("1_kwof1")
+
+[node name="Player" type="Sprite2D" parent="."]
+texture = ExtResource("1_ci0wh")
+offset = Vector2(-300, 0)
+
+[node name="Area2D" type="Area2D" parent="." groups=["board"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-282.5, 0)
+shape = SubResource("RectangleShape2D_ruca0")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

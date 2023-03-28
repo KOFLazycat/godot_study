@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://1gxjnvke5apf"]
+
+[ext_resource type="Texture2D" uid="uid://cuvo05jjbosqi" path="res://src/main/assets/texture/bomb_hero/背景对象.png" id="1_osk0v"]
+[ext_resource type="PackedScene" uid="uid://c34vgr3ritsk2" path="res://src/main/scene/level/bomb_hero/hero.tscn" id="1_rm078"]
+[ext_resource type="Script" path="res://src/main/scene/level/bomb_hero/bomb_hero_main.gd" id="1_sdegq"]
+[ext_resource type="FontFile" uid="uid://bci5mtpbli88b" path="res://src/main/assets/texture/ball/fonts/Xolonium-Regular.ttf" id="3_o7j56"]
+
+[sub_resource type="Curve2D" id="Curve2D_hvis3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -68, -98, 0, 0, 0, 0, -68, 776, 0, 0, 0, 0, 1036, 768, 0, 0, 0, 0, 1028, -92, 0, 0, 0, 0, -68, -96)
+}
+point_count = 5
+
+[node name="BombHeroMain" type="Node2D"]
+script = ExtResource("1_sdegq")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(480, 360)
+scale = Vector2(5, 5)
+texture = ExtResource("1_osk0v")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_hvis3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-68, -98)
+rotation = 1.5708
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Hero" parent="." instance=ExtResource("1_rm078")]
+position = Vector2(466, 352)
+
+[node name="GameOver" type="Label" parent="."]
+visible = false
+offset_left = 48.0
+offset_top = 236.0
+offset_right = 923.0
+offset_bottom = 420.0
+theme_override_fonts/font = ExtResource("3_o7j56")
+theme_override_font_sizes/font_size = 150
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="game_over" from="Hero" to="." method="_on_hero_game_over"]

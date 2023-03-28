@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://c346ro45cdvlq"]
+
+[ext_resource type="Texture2D" uid="uid://bqorobhgjsjev" path="res://src/main/assets/texture/bomb_hero/e1.png" id="1_rva66"]
+[ext_resource type="Script" path="res://src/main/scene/level/bomb_hero/monster.gd" id="1_swxqd"]
+[ext_resource type="Texture2D" uid="uid://bisp8lpbr75ix" path="res://src/main/assets/texture/bomb_hero/e2.png" id="2_nr6bk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ppkwx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rva66")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_nr6bk")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 2.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4h7dd"]
+radius = 21.0238
+
+[node name="Monster" type="Node2D"]
+script = ExtResource("1_swxqd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_ppkwx")
+animation = &"walk"
+frame_progress = 0.859919
+speed_scale = 10.0
+
+[node name="Area2D" type="Area2D" parent="." groups=["monster"]]
+z_index = 5
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_4h7dd")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

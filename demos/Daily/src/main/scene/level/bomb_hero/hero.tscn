@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://c34vgr3ritsk2"]
+
+[ext_resource type="Texture2D" uid="uid://ciwrgfa2xdowe" path="res://src/main/assets/texture/bomb_hero/d1.png" id="1_hc02r"]
+[ext_resource type="Script" path="res://src/main/scene/level/bomb_hero/hero.gd" id="1_ohysn"]
+[ext_resource type="Texture2D" uid="uid://4f5i37ijv8uo" path="res://src/main/assets/texture/bomb_hero/d2.png" id="2_c0sqv"]
+[ext_resource type="Texture2D" uid="uid://bru7asa23us4v" path="res://src/main/assets/texture/bomb_hero/d3.png" id="3_6l8tv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qi6mm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hc02r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_c0sqv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6l8tv")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 2.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_c5ip6"]
+colors = PackedColorArray(0, 0, 0, 0.823529, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_m80pw"]
+gradient = SubResource("Gradient_c5ip6")
+
+[sub_resource type="Curve" id="Curve_jqnb4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.552995, 0.654545), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_dmbob"]
+curve = SubResource("Curve_jqnb4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0gwpj"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 3.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_dmbob")
+color_ramp = SubResource("GradientTexture1D_m80pw")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oe84c"]
+radius = 21.0238
+
+[node name="Hero" type="Node2D"]
+script = ExtResource("1_ohysn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 10
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_qi6mm")
+animation = &"walk"
+frame_progress = 0.875782
+speed_scale = 10.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="AnimatedSprite2D"]
+show_behind_parent = true
+scale = Vector2(0.333333, 0.333333)
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_0gwpj")
+texture = ExtResource("1_hc02r")
+lifetime = 0.5
+
+[node name="Area2D" type="Area2D" parent="." groups=["hero"]]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_oe84c")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

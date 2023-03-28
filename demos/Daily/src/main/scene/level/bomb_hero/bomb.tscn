@@ -1,0 +1,96 @@
+[gd_scene load_steps=15 format=3 uid="uid://dwbqprtm2jt87"]
+
+[ext_resource type="Texture2D" uid="uid://cfa04e6c8u4ue" path="res://src/main/assets/texture/bomb_hero/b1.png" id="1_0a6lx"]
+[ext_resource type="Script" path="res://src/main/scene/level/bomb_hero/bomb.gd" id="1_v3tfc"]
+[ext_resource type="Texture2D" uid="uid://1sg7jvwbnnf0" path="res://src/main/assets/texture/bomb_hero/b2.png" id="2_lq4y5"]
+[ext_resource type="Texture2D" uid="uid://c2gumbpa14upe" path="res://src/main/assets/texture/bomb_hero/a1.png" id="3_qmwyi"]
+[ext_resource type="Texture2D" uid="uid://insejuhbfgv5" path="res://src/main/assets/texture/bomb_hero/a2.png" id="4_bqgt7"]
+[ext_resource type="Texture2D" uid="uid://cghlf5738o7rp" path="res://src/main/assets/texture/bomb_hero/a3.png" id="5_d65le"]
+[ext_resource type="Texture2D" uid="uid://c02nvm3f146u3" path="res://src/main/assets/texture/bomb_hero/a4.png" id="6_i636f"]
+[ext_resource type="Texture2D" uid="uid://cmsohp5i73ghb" path="res://src/main/assets/texture/bomb_hero/a5.png" id="7_5b3ef"]
+[ext_resource type="Texture2D" uid="uid://ck52wue16chsg" path="res://src/main/assets/texture/bomb_hero/a6.png" id="8_18klq"]
+[ext_resource type="Texture2D" uid="uid://c0fq0pm31mftv" path="res://src/main/assets/texture/bomb_hero/a7.png" id="9_osptj"]
+[ext_resource type="Texture2D" uid="uid://beeivvb4lxxac" path="res://src/main/assets/texture/bomb_hero/a8.png" id="10_hacn8"]
+[ext_resource type="FontFile" uid="uid://bci5mtpbli88b" path="res://src/main/assets/texture/ball/fonts/Xolonium-Regular.ttf" id="11_ijqqo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_48gdj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0a6lx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_lq4y5")
+}],
+"loop": true,
+"name": &"countdown",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qmwyi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bqgt7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_d65le")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_i636f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5b3ef")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_18klq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_osptj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_hacn8")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 32.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6p75x"]
+radius = 15.0
+
+[node name="Bomb" type="Node2D"]
+position = Vector2(187, 136)
+script = ExtResource("1_v3tfc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_48gdj")
+animation = &"explosion"
+
+[node name="LabelTimer" type="Label" parent="AnimatedSprite2D"]
+z_index = 5
+offset_left = -5.0
+offset_top = -4.0
+offset_right = 5.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("11_ijqqo")
+theme_override_font_sizes/font_size = 8
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_6p75x")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -21.412
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

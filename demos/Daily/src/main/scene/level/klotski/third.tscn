@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://bo22psmb8vnkh"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/klotski/third.gd" id="1_mssra"]
+[ext_resource type="PackedScene" uid="uid://meybornqs2v1" path="res://src/main/scene/level/klotski/box.tscn" id="2_1kni8"]
+[ext_resource type="PackedScene" uid="uid://cdjb7kpjhkxwd" path="res://src/main/scene/level/klotski/red_wood.tscn" id="3_asnwa"]
+[ext_resource type="Texture2D" uid="uid://bsdsck8hkmika" path="res://src/main/assets/texture/klotski/赢提示.png" id="4_lxch0"]
+[ext_resource type="PackedScene" uid="uid://si6c5fp8iy1a" path="res://src/main/scene/level/klotski/long_wood.tscn" id="5_1kpso"]
+[ext_resource type="PackedScene" uid="uid://c184rnkw0dkmx" path="res://src/main/scene/level/klotski/short_wood.tscn" id="6_1p4pd"]
+
+[node name="Third" type="Node2D"]
+script = ExtResource("1_mssra")
+
+[node name="Box" parent="." instance=ExtResource("2_1kni8")]
+
+[node name="RedWood" parent="." instance=ExtResource("3_asnwa")]
+position = Vector2(288, 310)
+
+[node name="Sprite2DWin" type="Sprite2D" parent="."]
+visible = false
+z_index = 10
+position = Vector2(480, 360)
+texture = ExtResource("4_lxch0")
+
+[node name="LongWood" parent="." instance=ExtResource("5_1kpso")]
+position = Vector2(332, 499)
+
+[node name="LongWood2" parent="." instance=ExtResource("5_1kpso")]
+position = Vector2(525, 310)
+rotation = -1.5708
+
+[node name="LongWood3" parent="." instance=ExtResource("5_1kpso")]
+position = Vector2(620, 310)
+rotation = -1.5708
+
+[node name="ShortWood" parent="." instance=ExtResource("6_1p4pd")]
+position = Vector2(249, 169)
+rotation = -1.5708
+
+[node name="ShortWood2" parent="." instance=ExtResource("6_1p4pd")]
+position = Vector2(388, 126)
+
+[node name="ShortWood3" parent="." instance=ExtResource("6_1p4pd")]
+position = Vector2(428, 265)
+rotation = -1.5708
+
+[node name="ShortWood4" parent="." instance=ExtResource("6_1p4pd")]
+position = Vector2(568, 126)
+
+[connection signal="game_reset" from="Box" to="." method="_on_box_game_reset"]
+[connection signal="game_win" from="Box" to="." method="_on_box_game_win"]

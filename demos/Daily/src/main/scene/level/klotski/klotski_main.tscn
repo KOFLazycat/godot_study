@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://c06fbmgx1h5w5"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/klotski/klotski_main.gd" id="1_6vobl"]
+[ext_resource type="Texture2D" uid="uid://g17p2ivlagx8" path="res://src/main/assets/texture/klotski/背景.png" id="1_x0jbs"]
+[ext_resource type="FontFile" uid="uid://h27ogkakagmb" path="res://src/main/assets/texture/klotski/fonts/STLITI.TTF" id="2_y8d76"]
+
+[node name="KlotskiMain" type="Node2D"]
+script = ExtResource("1_6vobl")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(480, 360)
+texture = ExtResource("1_x0jbs")
+
+[node name="LabelName" type="Label" parent="."]
+offset_left = 345.0
+offset_top = 185.0
+offset_right = 601.0
+offset_bottom = 257.0
+theme_override_fonts/font = ExtResource("2_y8d76")
+theme_override_font_sizes/font_size = 64
+text = "逃出生天"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonStart" type="Button" parent="."]
+offset_left = 225.0
+offset_top = 380.0
+offset_right = 361.0
+offset_bottom = 457.0
+theme_override_fonts/font = ExtResource("2_y8d76")
+theme_override_font_sizes/font_size = 64
+text = "开始"
+
+[node name="ButtonEnd" type="Button" parent="."]
+offset_left = 587.0
+offset_top = 380.0
+offset_right = 723.0
+offset_bottom = 457.0
+theme_override_fonts/font = ExtResource("2_y8d76")
+theme_override_font_sizes/font_size = 64
+text = "退出"
+
+[connection signal="pressed" from="ButtonStart" to="." method="_on_button_start_pressed"]
+[connection signal="pressed" from="ButtonEnd" to="." method="_on_button_end_pressed"]

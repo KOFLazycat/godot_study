@@ -69,7 +69,6 @@ sprite_frames = SubResource("SpriteFrames_48gdj")
 animation = &"explosion"
 
 [node name="LabelTimer" type="Label" parent="AnimatedSprite2D"]
-z_index = 5
 offset_left = -5.0
 offset_top = -4.0
 offset_right = 5.0

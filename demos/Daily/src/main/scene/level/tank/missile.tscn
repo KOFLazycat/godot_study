@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://dqwqwcewx6ih8"]
+
+[ext_resource type="Texture2D" uid="uid://bbgqqiqlsbuha" path="res://src/main/assets/texture/tank/导弹爆炸/explosionSmoke1.png" id="1_k4p0y"]
+[ext_resource type="Script" path="res://src/main/scene/level/tank/missile.gd" id="1_vwsru"]
+[ext_resource type="Texture2D" uid="uid://bk6ny4y0bolvf" path="res://src/main/assets/texture/tank/导弹爆炸/explosionSmoke2.png" id="2_o36f1"]
+[ext_resource type="Texture2D" uid="uid://d20ca7by12yq0" path="res://src/main/assets/texture/tank/导弹爆炸/explosionSmoke3.png" id="3_tp67x"]
+[ext_resource type="Texture2D" uid="uid://cvlm2ekf3h821" path="res://src/main/assets/texture/tank/导弹爆炸/explosionSmoke4.png" id="4_avqj8"]
+[ext_resource type="Texture2D" uid="uid://c0j7nbao2edy7" path="res://src/main/assets/texture/tank/导弹爆炸/explosionSmoke5.png" id="5_55vcy"]
+[ext_resource type="Texture2D" uid="uid://bc8figwvb7bj7" path="res://src/main/assets/texture/tank/导弹.png" id="6_d4upe"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lbvoj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_k4p0y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_o36f1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tp67x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_avqj8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_55vcy")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 20.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f3rr1"]
+radius = 8.06226
+
+[node name="Missile" type="Node2D"]
+script = ExtResource("1_vwsru")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_lbvoj")
+animation = &"explosion"
+frame = 4
+frame_progress = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("6_d4upe")
+
+[node name="Area2D" type="Area2D" parent="." groups=["missile"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_f3rr1")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

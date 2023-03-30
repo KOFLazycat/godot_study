@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bogfk1urfj12"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/tank/tank.gd" id="1_q41ih"]
+[ext_resource type="Texture2D" uid="uid://dmmblqmv5kj2u" path="res://src/main/assets/texture/tank/坦克基座.png" id="1_ypakj"]
+[ext_resource type="Texture2D" uid="uid://vcs2847jcg2d" path="res://src/main/assets/texture/tank/坦克炮管.png" id="2_hur7w"]
+[ext_resource type="PackedScene" uid="uid://r41o2oo1de7" path="res://src/main/scene/level/tank/blood.tscn" id="4_872kt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l80td"]
+size = Vector2(90, 50)
+
+[node name="Tank" type="Node2D"]
+script = ExtResource("1_q41ih")
+
+[node name="Area2D" type="Area2D" parent="." groups=["tank"]]
+
+[node name="Sprite2DBase" type="Sprite2D" parent="Area2D"]
+texture = ExtResource("1_ypakj")
+
+[node name="Sprite2DBarrel" type="Sprite2D" parent="Area2D"]
+texture = ExtResource("2_hur7w")
+offset = Vector2(23, 0)
+
+[node name="Marker2D" type="Marker2D" parent="Area2D/Sprite2DBarrel"]
+position = Vector2(66, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_l80td")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Blood" parent="." instance=ExtResource("4_872kt")]
+position = Vector2(-78, -65)
+scale = Vector2(0.35, 0.35)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,9 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://c34vgr3ritsk2"]
+[gd_scene load_steps=14 format=3 uid="uid://c34vgr3ritsk2"]
 
 [ext_resource type="Texture2D" uid="uid://ciwrgfa2xdowe" path="res://src/main/assets/texture/bomb_hero/d1.png" id="1_hc02r"]
 [ext_resource type="Script" path="res://src/main/scene/level/bomb_hero/hero.gd" id="1_ohysn"]
 [ext_resource type="Texture2D" uid="uid://4f5i37ijv8uo" path="res://src/main/assets/texture/bomb_hero/d2.png" id="2_c0sqv"]
+[ext_resource type="Shader" path="res://src/main/scene/level/bomb_hero/outline.gdshader" id="2_qlnfv"]
 [ext_resource type="Texture2D" uid="uid://bru7asa23us4v" path="res://src/main/assets/texture/bomb_hero/d3.png" id="3_6l8tv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_svs7s"]
+shader = ExtResource("2_qlnfv")
+shader_parameter/line_color = Vector4(0.2, 0.4, 0.1, 1)
+shader_parameter/hint_color = Vector4(0.6, 0.8, 0.1, 1)
+shader_parameter/line_thickness = 1.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qi6mm"]
 animations = [{
@@ -54,6 +61,7 @@ script = ExtResource("1_ohysn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 10
+material = SubResource("ShaderMaterial_svs7s")
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_qi6mm")
 animation = &"walk"

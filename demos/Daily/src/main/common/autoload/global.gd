@@ -12,6 +12,11 @@ var SEVEN = 0
 var CHERRY = 0
 var LIMON = 0
 
+# klotski 标记选择是哪一个木头方块
+var glob_id = 0
+# klotski 标记当前游戏关卡
+var glob_level = 1
+
 
 func reset():
 	DIAMOND = 0

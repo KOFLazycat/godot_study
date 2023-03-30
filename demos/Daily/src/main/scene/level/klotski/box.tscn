@@ -1,0 +1,122 @@
+[gd_scene load_steps=15 format=3 uid="uid://meybornqs2v1"]
+
+[ext_resource type="Texture2D" uid="uid://dgxcvejr8sm2a" path="res://src/main/assets/texture/klotski/盒子.png" id="1_on6nn"]
+[ext_resource type="Script" path="res://src/main/scene/level/klotski/box.gd" id="1_qoyap"]
+[ext_resource type="Texture2D" uid="uid://cmrvjvqp3gpb" path="res://src/main/assets/texture/klotski/关卡.png" id="2_1bkft"]
+[ext_resource type="Texture2D" uid="uid://bag4cfdesfqyg" path="res://src/main/assets/texture/klotski/上一关.png" id="3_if1qv"]
+[ext_resource type="Texture2D" uid="uid://chbouh4wodjkc" path="res://src/main/assets/texture/klotski/下一关.png" id="4_rnvq0"]
+[ext_resource type="Texture2D" uid="uid://d0hydnkfp2wus" path="res://src/main/assets/texture/klotski/复位.png" id="5_8n1n1"]
+[ext_resource type="FontFile" uid="uid://bbdtif7m7pvww" path="res://src/main/assets/texture/klotski/fonts/Xolonium-Regular.ttf" id="6_voe54"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x28ua"]
+bg_color = Color(0.792157, 0.545098, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8rwgb"]
+size = Vector2(10, 584)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xjcl1"]
+size = Vector2(10, 192.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rjbvo"]
+size = Vector2(10, 280.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_alcym"]
+size = Vector2(577, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n4mu4"]
+size = Vector2(10, 196)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_00mac"]
+size = Vector2(10, 114)
+
+[node name="Box" type="Node2D"]
+script = ExtResource("1_qoyap")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(480, 360)
+texture = ExtResource("1_on6nn")
+
+[node name="Sprite2DInfo" type="Sprite2D" parent="."]
+position = Vector2(389, 35)
+texture = ExtResource("2_1bkft")
+
+[node name="BeforeStage" type="TextureButton" parent="."]
+offset_left = 138.0
+offset_top = 5.0
+offset_right = 268.0
+offset_bottom = 135.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("3_if1qv")
+
+[node name="NextStage" type="TextureButton" parent="."]
+offset_left = 756.0
+offset_top = 5.0
+offset_right = 886.0
+offset_bottom = 135.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("4_rnvq0")
+
+[node name="Reset" type="TextureButton" parent="."]
+offset_left = 480.0
+offset_top = 643.0
+offset_right = 606.0
+offset_bottom = 769.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("5_8n1n1")
+
+[node name="LabelStage" type="Label" parent="."]
+offset_left = 448.0
+offset_top = 11.0
+offset_right = 523.0
+offset_bottom = 59.0
+theme_override_fonts/font = ExtResource("6_voe54")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_x28ua")
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(192.5, 355)
+shape = SubResource("RectangleShape2D_8rwgb")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(757, 160.75)
+shape = SubResource("RectangleShape2D_xjcl1")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(757, 506)
+shape = SubResource("RectangleShape2D_rjbvo")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(478.5, 71.5)
+shape = SubResource("RectangleShape2D_alcym")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(474, 639)
+shape = SubResource("RectangleShape2D_alcym")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(841, 306)
+shape = SubResource("RectangleShape2D_n4mu4")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(830, 310)
+shape = SubResource("RectangleShape2D_00mac")
+
+[connection signal="pressed" from="BeforeStage" to="." method="_on_before_stage_pressed"]
+[connection signal="pressed" from="NextStage" to="." method="_on_next_stage_pressed"]
+[connection signal="pressed" from="Reset" to="." method="_on_reset_pressed"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

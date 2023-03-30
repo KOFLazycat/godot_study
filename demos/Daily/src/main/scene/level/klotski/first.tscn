@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://dccc5vssy6i12"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/klotski/first.gd" id="1_gsisf"]
+[ext_resource type="PackedScene" uid="uid://meybornqs2v1" path="res://src/main/scene/level/klotski/box.tscn" id="1_xcuxx"]
+[ext_resource type="PackedScene" uid="uid://cdjb7kpjhkxwd" path="res://src/main/scene/level/klotski/red_wood.tscn" id="2_4khme"]
+[ext_resource type="PackedScene" uid="uid://si6c5fp8iy1a" path="res://src/main/scene/level/klotski/long_wood.tscn" id="3_4qls8"]
+[ext_resource type="Texture2D" uid="uid://bsdsck8hkmika" path="res://src/main/assets/texture/klotski/赢提示.png" id="3_jul11"]
+[ext_resource type="PackedScene" uid="uid://c184rnkw0dkmx" path="res://src/main/scene/level/klotski/short_wood.tscn" id="4_basle"]
+
+[node name="First" type="Node2D"]
+script = ExtResource("1_gsisf")
+
+[node name="Box" parent="." instance=ExtResource("1_xcuxx")]
+
+[node name="RedWood" parent="." instance=ExtResource("2_4khme")]
+position = Vector2(288, 310)
+
+[node name="Sprite2DWin" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(480, 360)
+texture = ExtResource("3_jul11")
+
+[node name="LongWood" parent="." instance=ExtResource("3_4qls8")]
+position = Vector2(333, 125)
+
+[node name="LongWood2" parent="." instance=ExtResource("3_4qls8")]
+position = Vector2(422, 305)
+rotation = -1.5708
+
+[node name="LongWood3" parent="." instance=ExtResource("3_4qls8")]
+position = Vector2(701, 213)
+rotation = -1.5708
+
+[node name="LongWood4" parent="." instance=ExtResource("3_4qls8")]
+position = Vector2(333, 583)
+
+[node name="ShortWood" parent="." instance=ExtResource("4_basle")]
+position = Vector2(248, 450)
+rotation = -1.5708
+
+[node name="ShortWood2" parent="." instance=ExtResource("4_basle")]
+position = Vector2(656, 397)
+
+[node name="ShortWood3" parent="." instance=ExtResource("4_basle")]
+position = Vector2(611, 539)
+rotation = -1.5708
+
+[connection signal="game_reset" from="Box" to="." method="_on_box_game_reset"]
+[connection signal="game_win" from="Box" to="." method="_on_box_game_win"]

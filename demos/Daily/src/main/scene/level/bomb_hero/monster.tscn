@@ -1,8 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://c346ro45cdvlq"]
+[gd_scene load_steps=8 format=3 uid="uid://c346ro45cdvlq"]
 
 [ext_resource type="Texture2D" uid="uid://bqorobhgjsjev" path="res://src/main/assets/texture/bomb_hero/e1.png" id="1_rva66"]
 [ext_resource type="Script" path="res://src/main/scene/level/bomb_hero/monster.gd" id="1_swxqd"]
 [ext_resource type="Texture2D" uid="uid://bisp8lpbr75ix" path="res://src/main/assets/texture/bomb_hero/e2.png" id="2_nr6bk"]
+[ext_resource type="Shader" path="res://src/main/scene/level/bomb_hero/outline.gdshader" id="2_o1rt8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mtmjb"]
+shader = ExtResource("2_o1rt8")
+shader_parameter/line_color = Vector4(0.5, 0.2, 0.1, 1)
+shader_parameter/hint_color = Vector4(0, 0, 0, 1)
+shader_parameter/line_thickness = 1.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ppkwx"]
 animations = [{
@@ -25,6 +32,7 @@ radius = 21.0238
 script = ExtResource("1_swxqd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_mtmjb")
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ppkwx")
 animation = &"walk"

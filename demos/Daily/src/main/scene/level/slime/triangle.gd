@@ -17,4 +17,3 @@ func _process(delta):
 		position.x = 1800
 		speed = randi_range(100, 800)
 		score += 10
-		print(score)

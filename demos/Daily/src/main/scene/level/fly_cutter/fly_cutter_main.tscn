@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://deav15psyhcmh"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/fly_cutter/fly_cutter_main.gd" id="1_r7me0"]
+[ext_resource type="Texture2D" uid="uid://diojjgm0lp63o" path="res://src/main/assets/texture/fly_cutter/图片/背景.png" id="1_wqsc1"]
+[ext_resource type="AudioStream" uid="uid://blnniv08plxyn" path="res://src/main/assets/texture/fly_cutter/声音/背景音乐.mp3" id="2_a136k"]
+[ext_resource type="Texture2D" uid="uid://c2xdjbssa0x34" path="res://src/main/assets/texture/fly_cutter/图片/苹果.png" id="2_g3ejk"]
+[ext_resource type="FontFile" uid="uid://l6q88lwl61gd" path="res://src/main/assets/texture/fly_cutter/fonts/Xolonium-Regular.ttf" id="3_xde1n"]
+[ext_resource type="PackedScene" uid="uid://b4ec4bj8n74jp" path="res://src/main/scene/level/fly_cutter/lumber.tscn" id="6_dq7hw"]
+[ext_resource type="PackedScene" uid="uid://bxeqibojb1ilt" path="res://src/main/scene/level/fly_cutter/fly_cutter.tscn" id="7_klx6j"]
+
+[node name="FlyCutterMain" type="Node2D"]
+script = ExtResource("1_r7me0")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(480, 360)
+texture = ExtResource("1_wqsc1")
+
+[node name="BgMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_a136k")
+volume_db = -10.0
+autoplay = true
+
+[node name="Apple" type="Sprite2D" parent="."]
+position = Vector2(296, 35)
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_g3ejk")
+
+[node name="LabelScore" type="Label" parent="."]
+offset_left = 327.0
+offset_top = 20.0
+offset_right = 396.0
+offset_bottom = 62.0
+theme_override_fonts/font = ExtResource("3_xde1n")
+theme_override_font_sizes/font_size = 32
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Lumber" parent="." instance=ExtResource("6_dq7hw")]
+position = Vector2(480, 180)
+
+[node name="FlyCutter" parent="." instance=ExtResource("7_klx6j")]
+position = Vector2(480, 550)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="hited" from="Lumber" to="." method="_on_lumber_hited"]
+[connection signal="game_over" from="FlyCutter" to="." method="_on_fly_cutter_game_over"]

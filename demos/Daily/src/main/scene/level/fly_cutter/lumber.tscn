@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4ec4bj8n74jp"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/fly_cutter/lumber.gd" id="1_64ceg"]
+[ext_resource type="Texture2D" uid="uid://bjb3mjomveywf" path="res://src/main/assets/texture/fly_cutter/图片/圆木.png" id="1_p4mip"]
+[ext_resource type="AudioStream" uid="uid://c50vrf2vxpohw" path="res://src/main/assets/texture/fly_cutter/声音/中刀音效.wav" id="2_f2v6n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cxj7q"]
+radius = 102.044
+
+[node name="Lumber" type="Node2D"]
+script = ExtResource("1_64ceg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_p4mip")
+
+[node name="Area2D" type="Area2D" parent="." groups=["lumber"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_cxj7q")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_f2v6n")
+volume_db = -10.0
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

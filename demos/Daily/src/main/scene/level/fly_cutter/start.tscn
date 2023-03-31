@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyjm2bcviswqq"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/fly_cutter/start.gd" id="1_812gt"]
+[ext_resource type="Texture2D" uid="uid://diojjgm0lp63o" path="res://src/main/assets/texture/fly_cutter/图片/背景.png" id="1_tm78r"]
+[ext_resource type="FontFile" uid="uid://5qtdh5jm0y00" path="res://src/main/assets/texture/fly_cutter/fonts/STLITI.TTF" id="2_7ny5m"]
+[ext_resource type="FontFile" uid="uid://l6q88lwl61gd" path="res://src/main/assets/texture/fly_cutter/fonts/Xolonium-Regular.ttf" id="3_f5rrs"]
+
+[node name="Start" type="Node2D"]
+script = ExtResource("1_812gt")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(480, 360)
+texture = ExtResource("1_tm78r")
+
+[node name="LabelName" type="Label" parent="."]
+offset_left = 352.0
+offset_top = 200.0
+offset_right = 608.0
+offset_bottom = 272.0
+theme_override_fonts/font = ExtResource("2_7ny5m")
+theme_override_font_sizes/font_size = 64
+text = "飞刀刺客"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelDate" type="Label" parent="."]
+offset_left = 343.0
+offset_top = 600.0
+offset_right = 617.0
+offset_bottom = 638.0
+theme_override_fonts/font = ExtResource("2_7ny5m")
+theme_override_font_sizes/font_size = 32
+text = "大懒猫 · 2023-03-31"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartGame" type="Button" parent="."]
+offset_left = 360.0
+offset_top = 300.0
+offset_right = 600.0
+offset_bottom = 380.0
+theme_override_fonts/font = ExtResource("3_f5rrs")
+theme_override_font_sizes/font_size = 50
+text = "START"
+
+[connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]

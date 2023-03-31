@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsokjupf4h8n"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/fly_cutter/fragment_apple.gd" id="1_3xni1"]
+[ext_resource type="Texture2D" uid="uid://cx2df0r4qat42" path="res://src/main/assets/texture/fly_cutter/图片/苹果左.png" id="1_vrbh6"]
+[ext_resource type="Texture2D" uid="uid://kgydt6tiys80" path="res://src/main/assets/texture/fly_cutter/图片/苹果右.png" id="2_drb3w"]
+
+[node name="FragmentApple" type="Node2D"]
+script = ExtResource("1_3xni1")
+
+[node name="Sprite2DLeft" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_vrbh6")
+
+[node name="Sprite2DRight" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_drb3w")

@@ -17,8 +17,6 @@ func _process(delta):
 
 
 func _on_area_2d_area_entered(area):
-	print(222)
-	print(area)
 	if area.is_in_group("red_wood"):
 		emit_signal("game_win")
 
@@ -62,4 +60,4 @@ func _on_before_stage_pressed():
 
 
 func _on_area_2d_2_area_entered(area):
-	print(1112)
+	pass

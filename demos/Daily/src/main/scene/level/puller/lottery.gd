@@ -10,7 +10,7 @@ var speed_decline = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	randomize()
+	
 	sprite_2d_result.position = Vector2(0, kjjg_y[0])
 
 

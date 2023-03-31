@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyy8y5schkh2w"]
+
+[ext_resource type="Texture2D" uid="uid://cnwxlvrj0qldw" path="res://src/main/assets/texture/fly_cutter/图片/小白刀.png" id="1_6tbaf"]
+[ext_resource type="Script" path="res://src/main/scene/level/fly_cutter/white_fly_cutter.gd" id="1_l6j2n"]
+
+[node name="WhiteFlyCutter" type="Node2D"]
+script = ExtResource("1_l6j2n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -3.92699
+texture = ExtResource("1_6tbaf")

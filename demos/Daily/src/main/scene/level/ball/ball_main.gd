@@ -12,7 +12,7 @@ var score = 0
 func _ready():
 	timer.start(1)
 	label_score.text = str(score)
-	randomize()
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

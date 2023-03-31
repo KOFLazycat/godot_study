@@ -17,6 +17,19 @@ var glob_id = 0
 # klotski 标记当前游戏关卡
 var glob_level = 1
 
+# 圆木和插在圆木上的飞刀以及圆木上的苹果旋转的速度常量
+const GLOB_ROTATION_SPEED = 100
+# 飞刀在游戏窗体里的坐标
+const GLOB_FLY_CUTTER_POS = Vector2(480, 550)
+# 圆木在游戏窗体里的坐标
+const GLOB_WOOD_POS = Vector2(480, 200)
+# 开始下一局游戏的标志
+var glob_next_flag = false
+# 记录飞刀刺中苹果后得分变量
+var glob_score = 0
+# 每一局游戏可以使用的飞刀数量
+var glob_fly_cutter_num = 0
+
 
 func reset():
 	DIAMOND = 0

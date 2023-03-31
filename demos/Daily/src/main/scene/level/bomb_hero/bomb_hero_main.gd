@@ -12,7 +12,7 @@ extends Node2D
 func _ready():
 	timer.start(1)
 	game_over.hide()
-	randomize()
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

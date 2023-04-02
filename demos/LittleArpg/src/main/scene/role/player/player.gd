@@ -2,8 +2,17 @@ extends CharacterBody2D
 
 
 @onready var animation_player = $AnimationPlayer
+@onready var camera_2d = $Camera2D
+
 
 @export var speed: int = 35
+
+
+func _ready():
+	camera_2d.limit_left = 0
+	camera_2d.limit_right = 1920
+	camera_2d.limit_top = 0
+	camera_2d.limit_bottom = 1080
 
 func _physics_process(delta):
 	handleInput()

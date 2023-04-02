@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://boeok3cth8cwg"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/blood/blood_main.gd" id="1_0fage"]
+[ext_resource type="Texture2D" uid="uid://bopxa0fjb6ool" path="res://src/main/assets/texture/tank/血条/healthbar_yellow.png" id="2_y4n30"]
+[ext_resource type="Texture2D" uid="uid://col3bjb6dqjgh" path="res://src/main/assets/texture/tank/血条/healthbar_over.png" id="3_bk1p5"]
+[ext_resource type="Texture2D" uid="uid://3cr070pe1i4m" path="res://src/main/assets/texture/tank/血条/healthbar_green.png" id="4_bri24"]
+[ext_resource type="FontFile" uid="uid://bci5mtpbli88b" path="res://src/main/assets/texture/ball/fonts/Xolonium-Regular.ttf" id="5_27lx0"]
+
+[node name="BloodMain" type="Node2D"]
+script = ExtResource("1_0fage")
+
+[node name="TextureProgressBar_Bottom" type="TextureProgressBar" parent="."]
+offset_right = 446.0
+offset_bottom = 40.0
+value = 50.0
+texture_progress = ExtResource("2_y4n30")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+value = 50.0
+texture_over = ExtResource("3_bk1p5")
+texture_progress = ExtResource("4_bri24")
+
+[node name="LabelNum" type="Label" parent="."]
+offset_left = 180.0
+offset_top = -40.0
+offset_right = 261.0
+offset_bottom = -6.0
+theme_override_fonts/font = ExtResource("5_27lx0")
+theme_override_font_sizes/font_size = 25
+text = "100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

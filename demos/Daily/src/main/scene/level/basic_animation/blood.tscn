@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtiojy85kfi30"]
+[gd_scene load_steps=5 format=3 uid="uid://dtiojy85kfi30"]
 
 [ext_resource type="Texture2D" uid="uid://2rlyn4fwr6uv" path="res://src/main/assets/texture/health/healthbar.png" id="1_ane7h"]
 [ext_resource type="Script" path="res://src/main/scene/level/basic_animation/blood.gd" id="1_iy5ox"]
 [ext_resource type="Texture2D" uid="uid://ddu6yw6shj0gm" path="res://src/main/assets/texture/health/health.png" id="2_67rok"]
+[ext_resource type="Texture2D" uid="uid://c282guy88jw0j" path="res://src/main/assets/texture/health/health_black.png" id="2_i13j6"]
 
 [node name="Blood" type="Node2D"]
 script = ExtResource("1_iy5ox")
@@ -12,6 +13,7 @@ offset_right = 33.0
 offset_bottom = 9.0
 scale = Vector2(20, 20)
 value = 50.0
+texture_under = ExtResource("2_i13j6")
 texture_over = ExtResource("1_ane7h")
 texture_progress = ExtResource("2_67rok")
 

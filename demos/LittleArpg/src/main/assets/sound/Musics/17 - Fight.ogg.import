@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://coks7ndlajkm6"
+path="res://.godot/imported/17 - Fight.ogg-e4f6cd0bedb61f379c1a239e354bf86c.oggvorbisstr"
+
+[deps]
+
+source_file="res://src/main/assets/sound/Musics/17 - Fight.ogg"
+dest_files=["res://.godot/imported/17 - Fight.ogg-e4f6cd0bedb61f379c1a239e354bf86c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

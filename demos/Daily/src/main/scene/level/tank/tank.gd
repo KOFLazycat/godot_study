@@ -9,6 +9,7 @@ extends Node2D
 
 var dir = 1
 var speed = 200
+var hp_damge = 30
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,6 +31,6 @@ func _on_area_2d_area_entered(area):
 		sprite_2d_base.flip_h = !sprite_2d_base.flip_h
 #		sprite_2d_barrel.rotation_degrees += 180
 	if area.is_in_group("missile"):
-		blood.hp_value -= 10
+		blood.hp_value -= hp_damge
 		if blood.hp_value <= 0:
 			blood.hp_value = 100

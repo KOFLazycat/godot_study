@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci54r875d5sde"]
+
+[ext_resource type="PackedScene" uid="uid://cjomknymi6k7e" path="res://src/main/scene/level/map/map.tscn" id="1_mxmg4"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Map" parent="." instance=ExtResource("1_mxmg4")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(960, 540)
+zoom = Vector2(2, 2)

@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxk5oxb3swanp"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/main/main.gd" id="1_ovd2l"]
+[ext_resource type="PackedScene" uid="uid://idrs1i0587gt" path="res://src/main/scene/level/map/map.tscn" id="1_r6dvg"]
+[ext_resource type="PackedScene" uid="uid://b780gvvyrov0t" path="res://src/main/scene/ui/ui.tscn" id="4_8ekc2"]
+[ext_resource type="PackedScene" uid="uid://bh31qtd0mprn7" path="res://src/main/scene/level/path/spawn_path.tscn" id="4_18unc"]
+
+[node name="Main" type="Node2D" groups=["main"]]
+script = ExtResource("1_ovd2l")
+
+[node name="Map" parent="." instance=ExtResource("1_r6dvg")]
+
+[node name="SpawnPath" parent="." instance=ExtResource("4_18unc")]
+
+[node name="UI" parent="." instance=ExtResource("4_8ekc2")]

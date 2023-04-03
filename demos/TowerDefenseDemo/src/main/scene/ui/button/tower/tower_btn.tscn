@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bm36w4wrt76gv"]
+
+[ext_resource type="Script" path="res://src/main/scene/ui/button/tower/tower_btn.gd" id="1_vd1nw"]
+
+[node name="TowerBtn" type="Button"]
+custom_minimum_size = Vector2(60, 60)
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_vd1nw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

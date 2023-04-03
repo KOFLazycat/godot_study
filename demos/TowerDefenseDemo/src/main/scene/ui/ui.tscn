@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://b780gvvyrov0t"]
+
+[ext_resource type="Script" path="res://src/main/scene/ui/ui.gd" id="1_jf67i"]
+[ext_resource type="PackedScene" uid="uid://bm36w4wrt76gv" path="res://src/main/scene/ui/button/tower/tower_btn.tscn" id="2_uwnt0"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_jf67i")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 733.0
+offset_top = 925.0
+offset_right = 1213.0
+offset_bottom = 1065.0
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 210.0
+offset_bottom = 130.0
+
+[node name="TowerBtn" parent="Panel/HFlowContainer" instance=ExtResource("2_uwnt0")]
+layout_mode = 2
+
+[node name="TowerBtn2" parent="Panel/HFlowContainer" instance=ExtResource("2_uwnt0")]
+layout_mode = 2
+tower_id = 2

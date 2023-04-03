@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds6a5nmjw8r80"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/tower/tower.gd" id="1_2nsef"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nhldd"]
+bg_color = Color(0.203922, 0.203922, 0.203922, 0.431373)
+corner_radius_top_left = 300
+corner_radius_top_right = 300
+corner_radius_bottom_right = 300
+corner_radius_bottom_left = 300
+
+[node name="Tower" type="Node2D"]
+script = ExtResource("1_2nsef")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -300.0
+offset_top = -300.0
+offset_right = 300.0
+offset_bottom = 300.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_nhldd")
+
+[node name="Base" type="Sprite2D" parent="."]
+
+[node name="Tower" type="Sprite2D" parent="."]

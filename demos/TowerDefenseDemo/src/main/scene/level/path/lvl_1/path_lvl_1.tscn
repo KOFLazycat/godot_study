@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://couq7f4gq36iy"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/path/lvl_1/path_lvl_1.gd" id="1_skoxp"]
+[ext_resource type="PackedScene" uid="uid://depd31ha77bgm" path="res://src/main/scene/level/soldier/soldier.tscn" id="2_dd0m5"]
+
+[sub_resource type="Curve2D" id="Curve2D_mjl0w"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -47, 405, -43.7266, -75.6807, 43.7266, 75.6807, 348, 415, -67.2717, -36.9994, 67.2717, 36.9994, 360, 802, -62.2263, 67.2717, 62.2263, -67.2717, 731, 814, -94.1804, 21.8633, 94.1804, -21.8633, 748, 163, -77.3625, -30.2723, 77.3625, 30.2723, 1261, 150, -85.6013, -31.8506, 85.6013, 31.8506, 1258, 705, 0, 0, 0, 0, 2083, 703)
+}
+point_count = 8
+
+[node name="Path2D" type="Path2D"]
+curve = SubResource("Curve2D_mjl0w")
+script = ExtResource("1_skoxp")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(-47, 405)
+rotation = 0.025311
+loop = false
+
+[node name="Soldier" parent="PathFollow2D" instance=ExtResource("2_dd0m5")]

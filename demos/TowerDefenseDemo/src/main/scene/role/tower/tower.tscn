@@ -1,6 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://ds6a5nmjw8r80"]
+[gd_scene load_steps=7 format=3 uid="uid://ds6a5nmjw8r80"]
 
 [ext_resource type="Script" path="res://src/main/scene/role/tower/tower.gd" id="1_2nsef"]
+[ext_resource type="Texture2D" uid="uid://c6y4ed0nfie3" path="res://src/main/assets/texture/role/tower/towerDefense_tile180.png" id="2_xqje8"]
+[ext_resource type="Texture2D" uid="uid://dmgds3ojgosa1" path="res://src/main/assets/texture/role/tower/towerDefense_tile250.png" id="3_v6sby"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gelhx"]
+size = Vector2(75, 78)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nhldd"]
 bg_color = Color(0.203922, 0.203922, 0.203922, 0.431373)
@@ -9,17 +14,42 @@ corner_radius_top_right = 300
 corner_radius_bottom_right = 300
 corner_radius_bottom_left = 300
 
-[node name="Tower" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_yuax7"]
+radius = 300.123
+
+[node name="Tower" type="StaticBody2D"]
 script = ExtResource("1_2nsef")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.5, 1)
+shape = SubResource("RectangleShape2D_gelhx")
+
+[node name="Panel" type="Panel" parent="." groups=["attack_range_panel"]]
 offset_left = -300.0
 offset_top = -300.0
 offset_right = 300.0
 offset_bottom = 300.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_nhldd")
+metadata/_edit_use_anchors_ = true
 
 [node name="Base" type="Sprite2D" parent="."]
+texture = ExtResource("2_xqje8")
 
-[node name="Tower" type="Sprite2D" parent="."]
+[node name="Cannon" type="Sprite2D" parent="."]
+texture = ExtResource("3_v6sby")
+offset = Vector2(22, 0)
+
+[node name="Marker2D" type="Marker2D" parent="Cannon"]
+position = Vector2(100, 0)
+
+[node name="Area2D" type="Area2D" parent="." groups=["attack_range"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_yuax7")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -15,3 +15,7 @@ func _process(delta: float) -> void:
 	path_follow_2d.set_progress(path_follow_2d.get_progress() + speed * delta)
 	if path_follow_2d.get_progress_ratio() == 1:
 		queue_free()
+
+
+func _on_soldier_enemy_die() -> void:
+	queue_free()

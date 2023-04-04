@@ -11,6 +11,7 @@ offset_left = 733.0
 offset_top = 925.0
 offset_right = 1213.0
 offset_bottom = 1065.0
+mouse_filter = 1
 
 [node name="HFlowContainer" type="HFlowContainer" parent="Panel"]
 layout_mode = 0

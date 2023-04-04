@@ -1,0 +1,104 @@
+[gd_scene load_steps=16 format=3 uid="uid://5clhb4tecoas"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/missile/missile.gd" id="1_lwh6k"]
+[ext_resource type="Texture2D" uid="uid://c8h7s8sue5pc3" path="res://src/main/assets/texture/role/missile/towerDefense_tile251.png" id="2_rgh4t"]
+[ext_resource type="Texture2D" uid="uid://b0jyl30fbk7or" path="res://src/main/assets/texture/explosion/exp_1/explosion_1.png" id="2_v8dca"]
+[ext_resource type="Texture2D" uid="uid://bw5vrk1u58e" path="res://src/main/assets/texture/explosion/exp_1/explosion_2.png" id="3_2q6vj"]
+[ext_resource type="Texture2D" uid="uid://bub2x2ynciqvv" path="res://src/main/assets/texture/explosion/exp_1/explosion_3.png" id="4_0mf5y"]
+[ext_resource type="Texture2D" uid="uid://defln68ciymug" path="res://src/main/assets/texture/explosion/exp_1/explosion_4.png" id="5_cfwk6"]
+[ext_resource type="Texture2D" uid="uid://b82fabq6a0dy4" path="res://src/main/assets/texture/explosion/exp_1/explosion_5.png" id="6_3i82q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iwcsm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_v8dca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2q6vj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0mf5y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cfwk6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3i82q")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 12.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_rhbx5"]
+colors = PackedColorArray(0.945098, 0.733333, 0.0862745, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n7tk6"]
+gradient = SubResource("Gradient_rhbx5")
+
+[sub_resource type="Curve" id="Curve_nf1ld"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.992701, 0.0272727), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8pamb"]
+curve = SubResource("Curve_nf1ld")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2ipls"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 30.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 100.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 15.0
+scale_curve = SubResource("CurveTexture_8pamb")
+color = Color(0.866667, 0.647059, 0.0392157, 1)
+color_ramp = SubResource("GradientTexture1D_n7tk6")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ila2u"]
+radius = 14.0
+height = 46.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_npgeo"]
+radius = 15.0
+height = 70.0
+
+[node name="Missile" type="CharacterBody2D"]
+script = ExtResource("1_lwh6k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_iwcsm")
+animation = &"explosion"
+frame = 4
+frame_progress = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_rgh4t")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
+position = Vector2(-39, 1)
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_2ipls")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_ila2u")
+
+[node name="Area2D" type="Area2D" parent="." groups=["missile"]]
+scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_npgeo")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

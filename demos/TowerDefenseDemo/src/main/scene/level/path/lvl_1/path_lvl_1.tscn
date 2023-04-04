@@ -19,3 +19,5 @@ rotation = 0.025311
 loop = false
 
 [node name="Soldier" parent="PathFollow2D" instance=ExtResource("2_dd0m5")]
+
+[connection signal="enemy_die" from="PathFollow2D/Soldier" to="." method="_on_soldier_enemy_die"]

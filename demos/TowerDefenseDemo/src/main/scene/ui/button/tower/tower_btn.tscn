@@ -6,6 +6,8 @@
 custom_minimum_size = Vector2(60, 60)
 offset_right = 8.0
 offset_bottom = 8.0
+rotation = -1.5708
+mouse_filter = 1
 script = ExtResource("1_vd1nw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

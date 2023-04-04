@@ -9,6 +9,7 @@
 script = ExtResource("1_ovd2l")
 
 [node name="Map" parent="." instance=ExtResource("1_r6dvg")]
+metadata/_edit_lock_ = true
 
 [node name="SpawnPath" parent="." instance=ExtResource("4_18unc")]
 

@@ -1,14 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://depd31ha77bgm"]
+[gd_scene load_steps=6 format=3 uid="uid://depd31ha77bgm"]
 
 [ext_resource type="Texture2D" uid="uid://ebevl6crnfg4" path="res://src/main/assets/texture/role/soldier/towerDefense_tile245.png" id="1_vf1gr"]
+[ext_resource type="Script" path="res://src/main/scene/level/soldier/soldier.gd" id="1_w26as"]
+[ext_resource type="PackedScene" uid="uid://dn6pvo74xeuh5" path="res://src/main/scene/role/blood/blood.tscn" id="2_rip3o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ajd40"]
 radius = 20.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_mpe48"]
+radius = 24.0208
+
 [node name="Soldier" type="CharacterBody2D"]
+script = ExtResource("1_w26as")
+
+[node name="Blood" parent="." instance=ExtResource("2_rip3o")]
+position = Vector2(0, -35)
+scale = Vector2(0.15, 0.15)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_vf1gr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ajd40")
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_mpe48")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

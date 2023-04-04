@@ -10,7 +10,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if tower != null:
 		tower.position = get_global_mouse_position()
 
@@ -25,10 +25,14 @@ func handle_add_tower(tower_id) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and tower != null:
+		# 放置炮塔
 		if event.button_mask & MOUSE_BUTTON_MASK_LEFT:
 			tower.modulate.a8 = 255
-			var tmpArr = tower.get_children()
-			tmpArr[0].visible = false
+			tower.set_up_done()
+			for i in tower.get_children():
+				if i.is_in_group("attack_range_panel"):
+					i.visible = false
+					break
 			tower = null
 		if event.button_mask & MOUSE_BUTTON_MASK_RIGHT:
 			tower.queue_free()

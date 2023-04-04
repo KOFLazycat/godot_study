@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dn6pvo74xeuh5"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/blood/blood.gd" id="1_ntiyc"]
+[ext_resource type="Texture2D" uid="uid://bhr6q3t6lbd3w" path="res://src/main/assets/texture/blood/blood_darkred.png" id="2_d1ba8"]
+[ext_resource type="Texture2D" uid="uid://dpqrvmvgph6g3" path="res://src/main/assets/texture/blood/blood_over.png" id="2_exqbt"]
+[ext_resource type="Texture2D" uid="uid://bwuh2e7g3e12r" path="res://src/main/assets/texture/blood/blood_red.png" id="4_o2qvf"]
+
+[node name="Blood" type="Node2D"]
+script = ExtResource("1_ntiyc")
+
+[node name="BloodBottom" type="TextureProgressBar" parent="."]
+offset_left = -223.0
+offset_top = -20.0
+offset_right = 223.0
+offset_bottom = 20.0
+value = 100.0
+texture_progress = ExtResource("2_d1ba8")
+
+[node name="BloodTop" type="TextureProgressBar" parent="."]
+offset_left = -223.0
+offset_top = -20.0
+offset_right = 223.0
+offset_bottom = 20.0
+value = 50.0
+texture_over = ExtResource("2_exqbt")
+texture_progress = ExtResource("4_o2qvf")

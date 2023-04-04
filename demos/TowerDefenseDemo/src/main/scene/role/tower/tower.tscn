@@ -8,7 +8,6 @@
 size = Vector2(75, 78)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nhldd"]
-bg_color = Color(0.203922, 0.203922, 0.203922, 0.431373)
 corner_radius_top_left = 300
 corner_radius_top_right = 300
 corner_radius_bottom_right = 300
@@ -21,10 +20,12 @@ radius = 300.123
 script = ExtResource("1_2nsef")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(3.5, 1)
 shape = SubResource("RectangleShape2D_gelhx")
 
 [node name="Panel" type="Panel" parent="." groups=["attack_range_panel"]]
+modulate = Color(0.470588, 0.470588, 0.431373, 0.392157)
 offset_left = -300.0
 offset_top = -300.0
 offset_right = 300.0
@@ -44,6 +45,7 @@ offset = Vector2(22, 0)
 position = Vector2(100, 0)
 
 [node name="Area2D" type="Area2D" parent="." groups=["attack_range"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_yuax7")

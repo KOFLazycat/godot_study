@@ -6,9 +6,9 @@ extends CharacterBody2D
 
 
 @export var missile_live_time: int = 2
-@export var missile_damage: int = -5
+@export var missile_damage: int = -30
 
-var speed: int = 100
+var speed: int = 150
 var steer_force: int = 30
 var acc: Vector2 = Vector2.ZERO
 var target = null
@@ -29,9 +29,8 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.limit_length(speed)
 		rotation = velocity.angle()
 		position += velocity*delta
-		move_and_slide()
 	else:
-		queue_free()
+		dead()
 
 
 func _on_timer_timeout() -> void:

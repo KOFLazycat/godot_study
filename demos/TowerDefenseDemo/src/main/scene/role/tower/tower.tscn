@@ -20,7 +20,6 @@ radius = 300.123
 script = ExtResource("1_2nsef")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(3.5, 1)
 shape = SubResource("RectangleShape2D_gelhx")
 
@@ -45,7 +44,6 @@ offset = Vector2(22, 0)
 position = Vector2(100, 0)
 
 [node name="Area2D" type="Area2D" parent="." groups=["attack_range"]]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_yuax7")

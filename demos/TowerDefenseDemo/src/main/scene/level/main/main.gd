@@ -7,29 +7,57 @@ extends Node2D
 
 
 var tower
+# 炮塔可放置距离边界的范围
+var tower_margin_x = 50
+var tower_margin_y = 50
+# 已放置炮塔位置数组
+var tower_pos_arr: Array = []
+# 每个炮塔相距最低距离
+var tower_min_separation: int = 120
 var cur_tile_coord: Vector2i
 # 默认草地tile坐标
 var ground_tile_coord = Vector2i(4, 5)
 var is_able_ste_up: bool = false
+var viewport_rect_size: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	viewport_rect_size = get_viewport_rect().size
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if tower != null:
 		tower.position = get_global_mouse_position()
+		is_able_to_set_tower()
+
+
+# 判断是否可以放置炮塔
+func is_able_to_set_tower() -> void:
+	is_able_ste_up = true
+	# 判断坐标是否在地图范围内
+	if tower.position.x >= tower_margin_x and tower.position.x <= (viewport_rect_size.x - tower_margin_x) and tower.position.y >= tower_margin_y and tower.position.y <= (viewport_rect_size.y - tower_margin_y):
+		# 判断是否放置在草地上
 		var tile = tile_map.local_to_map(tower.position)
 		cur_tile_coord = tile_map.get_cell_atlas_coords(0, tile, false)
-		var pannel = tower.get_node("Panel")
 		if cur_tile_coord == ground_tile_coord:
-			pannel.modulate = Color8(120, 120, 110, 100)
-			is_able_ste_up = true
+			# 附近是不是已经放置了炮塔，如果已经放置了炮塔，也不可以继续放置
+			for i in tower_pos_arr:
+				var distance = (i - tower.global_position).length()
+				if distance < tower_min_separation:
+					is_able_ste_up = false
+					break
 		else:
-			pannel.modulate = Color8(255, 0, 0, 200)
 			is_able_ste_up = false
+	else:
+		is_able_ste_up = false
+
+	# 设置遮罩颜色
+	var pannel = tower.get_node("Panel")
+	if is_able_ste_up:
+		pannel.modulate = Color8(120, 120, 110, 100)
+	else:
+		pannel.modulate = Color8(255, 0, 0, 200)
 
 
 func handle_add_tower(tower_id) -> void:
@@ -46,6 +74,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.button_mask & MOUSE_BUTTON_MASK_LEFT and is_able_ste_up:
 			tower.modulate.a8 = 255
 			tower.set_up_done()
+			# 放置炮塔以后 记录炮塔位置
+			tower_pos_arr.append(tower.global_position)
 			var pannel = tower.get_node("Panel")
 			if pannel != null:
 				pannel.visible = false

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ds6a5nmjw8r80"]
+[gd_scene load_steps=8 format=3 uid="uid://ds6a5nmjw8r80"]
 
 [ext_resource type="Script" path="res://src/main/scene/role/tower/tower.gd" id="1_2nsef"]
 [ext_resource type="Texture2D" uid="uid://c6y4ed0nfie3" path="res://src/main/assets/texture/role/tower/towerDefense_tile180.png" id="2_xqje8"]
 [ext_resource type="Texture2D" uid="uid://dmgds3ojgosa1" path="res://src/main/assets/texture/role/tower/towerDefense_tile250.png" id="3_v6sby"]
+[ext_resource type="PackedScene" uid="uid://dp4rddujb8et3" path="res://src/main/scene/ui/operate/operate.tscn" id="4_jhei0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gelhx"]
 size = Vector2(75, 78)
@@ -14,6 +15,7 @@ radius = 300.0
 radius = 70.0
 
 [node name="Tower" type="StaticBody2D"]
+position = Vector2(297, 265)
 script = ExtResource("1_2nsef")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -42,10 +44,16 @@ shape = SubResource("CircleShape2D_x386h")
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="Operate" parent="." instance=ExtResource("4_jhei0")]
+visible = false
+position = Vector2(-90, 65)
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="area_entered" from="Area2DTower" to="." method="_on_area_2d_tower_area_entered"]
 [connection signal="area_exited" from="Area2DTower" to="." method="_on_area_2d_tower_area_exited"]
+[connection signal="input_event" from="Area2DTower" to="." method="_on_area_2d_tower_input_event"]
 [connection signal="mouse_entered" from="Area2DTower" to="." method="_on_area_2d_tower_mouse_entered"]
 [connection signal="mouse_exited" from="Area2DTower" to="." method="_on_area_2d_tower_mouse_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

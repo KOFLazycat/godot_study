@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbj6ylyd6oq4k"]
+
+[ext_resource type="Script" path="res://src/main/scene/ui/operate/operate_btn.gd" id="1_y6jex"]
+[ext_resource type="Texture2D" uid="uid://dktsun63xcnkk" path="res://src/main/assets/texture/icon/operate/towerDefense_tile018.png" id="2_jwg4k"]
+
+[node name="OperateBtn" type="Button"]
+custom_minimum_size = Vector2(50, 50)
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_y6jex")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(25, 25)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("2_jwg4k")

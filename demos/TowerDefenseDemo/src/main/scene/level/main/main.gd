@@ -10,8 +10,8 @@ var tower
 # 炮塔可放置距离边界的范围
 var tower_margin_x = 50
 var tower_margin_y = 50
-# 已放置炮塔位置数组
-var tower_pos_arr: Array = []
+# 已放置炮塔数组
+var tower_arr: Array
 var cur_tile_coord: Vector2i
 # 攻击范围圈，绿色
 var range_green: Color = Color(0.498039, 1, 0, 0.2)
@@ -67,14 +67,21 @@ func handle_add_tower(tower_id) -> void:
 	
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and is_instance_valid(tower):
-		# 放置炮塔
-		if event.button_mask & MOUSE_BUTTON_MASK_LEFT and is_able_ste_up:
-			tower.modulate.a8 = 255
-			tower.set_up_done()
-			# 放置炮塔以后 记录炮塔位置
-			tower_pos_arr.append(tower.global_position)
-			tower.set_range_color(false, range_green)
-			tower = null
-		if event.button_mask & MOUSE_BUTTON_MASK_RIGHT:
-			tower.queue_free()
+	if event is InputEventMouseButton:
+		if is_instance_valid(tower):
+			# 放置炮塔
+			if event.button_mask & MOUSE_BUTTON_MASK_LEFT and is_able_ste_up:
+				tower.modulate.a8 = 255
+				tower.set_up_done(true)
+				# 放置炮塔以后 记录炮塔位置
+				tower_arr.append(tower)
+				tower.set_range_color(false, range_green)
+				tower = null
+			if event.button_mask & MOUSE_BUTTON_MASK_RIGHT:
+				tower.queue_free()
+#		else:
+#			for i in tower_arr:
+#				if is_instance_valid(i):
+#					i.operate.hide()
+#				else:
+#					tower_arr.erase(i)

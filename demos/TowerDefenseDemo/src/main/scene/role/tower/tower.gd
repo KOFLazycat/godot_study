@@ -7,6 +7,7 @@ extends StaticBody2D
 @onready var marker_2d: Marker2D = $Cannon/Marker2D
 # 导弹攻击范围检测
 @onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
+@onready var operate: Node2D = $Operate
 
 
 @onready var base_texture_1 = preload("res://src/main/assets/texture/role/tower/towerDefense_tile183.png")
@@ -22,6 +23,8 @@ var tower_map: Dictionary = {}
 var tower_offset_x: int = 22
 var target_array: Array = []
 var is_set_up: bool = false
+# 是否示操作面板
+var is_show_upgrade: bool = false
 # 放置炮塔时如果有重叠的炮台会将其放置该数组
 var overlapping_obj_array: Array = []
 # 炮塔攻击范围
@@ -53,6 +56,10 @@ func _draw() -> void:
 		draw_circle(Vector2.ZERO, attack_range, range_color)
 
 
+func _unhandled_input(_event: InputEvent) -> void:
+	pass
+
+
 func set_tower_id() -> void:
 	if tower_map.has(tower_id):
 		base.texture = tower_map[tower_id][0]
@@ -61,8 +68,8 @@ func set_tower_id() -> void:
 
 
 # 设置攻击范围圈颜色
-func set_range_color(visible: bool, col: Color) -> void:
-	if visible:
+func set_range_color(is_show: bool, col: Color) -> void:
+	if is_show:
 		range_color = col
 		collision_shape_2d.show()
 	else:
@@ -70,8 +77,8 @@ func set_range_color(visible: bool, col: Color) -> void:
 	queue_redraw()
 
 
-func set_up_done() -> void:
-	is_set_up = true
+func set_up_done(is_done: bool) -> void:
+	is_set_up = is_done
 
 
 func _on_timer_timeout() -> void:
@@ -114,3 +121,14 @@ func _on_area_2d_tower_mouse_entered() -> void:
 func _on_area_2d_tower_mouse_exited() -> void:
 	collision_shape_2d.hide()
 	queue_redraw()
+
+
+func _on_area_2d_tower_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		# 左键点击
+		if event.button_mask & MOUSE_BUTTON_MASK_LEFT:
+			if is_show_upgrade:
+				operate.show()
+			else:
+				operate.hide()
+			is_show_upgrade = !is_show_upgrade

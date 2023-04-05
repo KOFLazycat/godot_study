@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://dp4rddujb8et3"]
+
+[ext_resource type="Script" path="res://src/main/scene/ui/operate/operate.gd" id="1_t0ag2"]
+[ext_resource type="PackedScene" uid="uid://bbj6ylyd6oq4k" path="res://src/main/scene/ui/operate/operate_btn.tscn" id="2_8aoaj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f0s7u"]
+bg_color = Color(0, 0, 0, 0.235294)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Operate" type="Node2D"]
+script = ExtResource("1_t0ag2")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 190.0
+offset_bottom = 60.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_f0s7u")
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 5.0
+offset_right = 180.0
+offset_bottom = 55.0
+theme_override_constants/h_separation = 10
+
+[node name="OperateBtnUpgrade" parent="Panel/HFlowContainer" instance=ExtResource("2_8aoaj")]
+layout_mode = 2
+
+[node name="OperateBtnRepair" parent="Panel/HFlowContainer" instance=ExtResource("2_8aoaj")]
+layout_mode = 2
+operate_id = 2
+
+[node name="OperateBtnDestory" parent="Panel/HFlowContainer" instance=ExtResource("2_8aoaj")]
+layout_mode = 2
+operate_id = 3
+
+[connection signal="pressed" from="Panel/HFlowContainer/OperateBtnUpgrade" to="." method="_on_operate_btn_upgrade_pressed"]
+[connection signal="pressed" from="Panel/HFlowContainer/OperateBtnRepair" to="." method="_on_operate_btn_repair_pressed"]
+[connection signal="pressed" from="Panel/HFlowContainer/OperateBtnDestory" to="." method="_on_operate_btn_destory_pressed"]

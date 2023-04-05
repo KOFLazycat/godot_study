@@ -21,7 +21,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if target != null:
+	if is_instance_valid(target):
 		var desired = (target.global_position - global_position).normalized()*speed
 		var steer = (desired - velocity).normalized()*steer_force
 		acc += steer

@@ -13,6 +13,10 @@ var tower_margin_y = 50
 # 已放置炮塔位置数组
 var tower_pos_arr: Array = []
 var cur_tile_coord: Vector2i
+# 攻击范围圈，绿色
+var range_green: Color = Color(0.498039, 1, 0, 0.2)
+# 攻击范围圈，红色
+var range_red: Color = Color(1, 0, 0, 0.5)
 # 默认草地tile坐标
 var ground_tile_coord = Vector2i(4, 5)
 var is_able_ste_up: bool = false
@@ -25,7 +29,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if tower != null:
+	if is_instance_valid(tower):
 		tower.position = get_global_mouse_position()
 		is_able_to_set_tower()
 
@@ -48,11 +52,10 @@ func is_able_to_set_tower() -> void:
 		is_able_ste_up = false
 
 	# 设置遮罩颜色
-	var pannel = tower.get_node("Panel")
 	if is_able_ste_up:
-		pannel.modulate = Color8(120, 120, 110, 100)
+		tower.set_range_color(true, range_green)
 	else:
-		pannel.modulate = Color8(255, 0, 0, 200)
+		tower.set_range_color(true, range_red)
 
 
 func handle_add_tower(tower_id) -> void:
@@ -64,16 +67,14 @@ func handle_add_tower(tower_id) -> void:
 	
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and tower != null:
+	if event is InputEventMouseButton and is_instance_valid(tower):
 		# 放置炮塔
 		if event.button_mask & MOUSE_BUTTON_MASK_LEFT and is_able_ste_up:
 			tower.modulate.a8 = 255
 			tower.set_up_done()
 			# 放置炮塔以后 记录炮塔位置
 			tower_pos_arr.append(tower.global_position)
-			var pannel = tower.get_node("Panel")
-			if pannel != null:
-				pannel.visible = false
+			tower.set_range_color(false, range_green)
 			tower = null
 		if event.button_mask & MOUSE_BUTTON_MASK_RIGHT:
 			tower.queue_free()

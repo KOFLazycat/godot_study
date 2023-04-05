@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ds6a5nmjw8r80"]
+[gd_scene load_steps=7 format=3 uid="uid://ds6a5nmjw8r80"]
 
 [ext_resource type="Script" path="res://src/main/scene/role/tower/tower.gd" id="1_2nsef"]
 [ext_resource type="Texture2D" uid="uid://c6y4ed0nfie3" path="res://src/main/assets/texture/role/tower/towerDefense_tile180.png" id="2_xqje8"]
@@ -7,14 +7,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gelhx"]
 size = Vector2(75, 78)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nhldd"]
-corner_radius_top_left = 300
-corner_radius_top_right = 300
-corner_radius_bottom_right = 300
-corner_radius_bottom_left = 300
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_yuax7"]
-radius = 300.123
+radius = 300.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x386h"]
 radius = 70.0
@@ -23,19 +17,8 @@ radius = 70.0
 script = ExtResource("1_2nsef")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(3.5, 1)
 shape = SubResource("RectangleShape2D_gelhx")
-
-[node name="Panel" type="Panel" parent="." groups=["attack_range_panel"]]
-modulate = Color(0.470588, 0.470588, 0.431373, 0.392157)
-offset_left = -300.0
-offset_top = -300.0
-offset_right = 300.0
-offset_bottom = 300.0
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_nhldd")
-metadata/_edit_use_anchors_ = true
 
 [node name="Base" type="Sprite2D" parent="."]
 texture = ExtResource("2_xqje8")
@@ -48,7 +31,6 @@ offset = Vector2(22, 0)
 position = Vector2(100, 0)
 
 [node name="Area2D" type="Area2D" parent="." groups=["attack_range"]]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_yuax7")
@@ -64,4 +46,6 @@ shape = SubResource("CircleShape2D_x386h")
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="area_entered" from="Area2DTower" to="." method="_on_area_2d_tower_area_entered"]
 [connection signal="area_exited" from="Area2DTower" to="." method="_on_area_2d_tower_area_exited"]
+[connection signal="mouse_entered" from="Area2DTower" to="." method="_on_area_2d_tower_mouse_entered"]
+[connection signal="mouse_exited" from="Area2DTower" to="." method="_on_area_2d_tower_mouse_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

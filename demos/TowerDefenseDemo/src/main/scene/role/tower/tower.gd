@@ -5,6 +5,8 @@ extends StaticBody2D
 @onready var cannon: Sprite2D = $Cannon
 @onready var timer: Timer = $Timer
 @onready var marker_2d: Marker2D = $Cannon/Marker2D
+# 导弹攻击范围检测
+@onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
 
 
 @onready var base_texture_1 = preload("res://src/main/assets/texture/role/tower/towerDefense_tile183.png")
@@ -22,12 +24,19 @@ var target_array: Array = []
 var is_set_up: bool = false
 # 放置炮塔时如果有重叠的炮台会将其放置该数组
 var overlapping_obj_array: Array = []
+# 炮塔攻击范围
+var attack_range: int = 300
+# 攻击范围圈，默认
+var range_color: Color = Color(0.498039, 1, 0, 0.3)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	tower_map[1] = [base_texture_1, tower_texture_1]
 	tower_map[2] = [base_texture_2, tower_texture_2]
 	# 每秒发射一次导弹
 	timer.start(fire_intval_time)
+	collision_shape_2d.shape.radius = attack_range
+	# 攻击范围圈隐藏
+	collision_shape_2d.hide()
 	set_tower_id()
 
 
@@ -35,9 +44,13 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if target_array.size() > 0:
 		cannon.look_at(target_array[0].global_position)
-		for i in target_array:
-			if i == null:
-				print("NULL")
+
+
+# 绘图 攻击范围圈
+func _draw() -> void:
+	# 攻击范围可见的话，需要绘制
+	if collision_shape_2d.visible:
+		draw_circle(Vector2.ZERO, attack_range, range_color)
 
 
 func set_tower_id() -> void:
@@ -45,6 +58,16 @@ func set_tower_id() -> void:
 		base.texture = tower_map[tower_id][0]
 		cannon.texture = tower_map[tower_id][1]
 		cannon.offset.x = tower_offset_x
+
+
+# 设置攻击范围圈颜色
+func set_range_color(visible: bool, col: Color) -> void:
+	if visible:
+		range_color = col
+		collision_shape_2d.show()
+	else:
+		collision_shape_2d.hide()
+	queue_redraw()
 
 
 func set_up_done() -> void:
@@ -56,7 +79,7 @@ func _on_timer_timeout() -> void:
 		var missile = missile_tscn.instantiate()
 		missile.fire(marker_2d.global_position, target_array[0])
 		var parent = get_parent()
-		if parent != null:
+		if is_instance_valid(parent):
 			parent.add_child(missile)
 		else:
 			add_child(missile)
@@ -81,3 +104,13 @@ func _on_area_2d_tower_area_entered(area: Area2D) -> void:
 func _on_area_2d_tower_area_exited(area: Area2D) -> void:
 	if area.is_in_group("area_tower"):
 		overlapping_obj_array.erase(area)
+
+
+func _on_area_2d_tower_mouse_entered() -> void:
+	collision_shape_2d.show()
+	queue_redraw()
+
+
+func _on_area_2d_tower_mouse_exited() -> void:
+	collision_shape_2d.hide()
+	queue_redraw()

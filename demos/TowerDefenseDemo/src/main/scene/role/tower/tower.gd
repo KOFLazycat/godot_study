@@ -20,6 +20,8 @@ var tower_map: Dictionary = {}
 var tower_offset_x: int = 22
 var target_array: Array = []
 var is_set_up: bool = false
+# 放置炮塔时如果有重叠的炮台会将其放置该数组
+var overlapping_obj_array: Array = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	tower_map[1] = [base_texture_1, tower_texture_1]
@@ -68,3 +70,14 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	if area.is_in_group("enemy"):
 		target_array.erase(area)
+
+
+# 用来判断是否与其他炮塔重合
+func _on_area_2d_tower_area_entered(area: Area2D) -> void:
+	if area.is_in_group("area_tower"):
+		overlapping_obj_array.append(area)
+
+
+func _on_area_2d_tower_area_exited(area: Area2D) -> void:
+	if area.is_in_group("area_tower"):
+		overlapping_obj_array.erase(area)

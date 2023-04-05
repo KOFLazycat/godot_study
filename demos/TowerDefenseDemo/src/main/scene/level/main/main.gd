@@ -12,8 +12,6 @@ var tower_margin_x = 50
 var tower_margin_y = 50
 # 已放置炮塔位置数组
 var tower_pos_arr: Array = []
-# 每个炮塔相距最低距离
-var tower_min_separation: int = 120
 var cur_tile_coord: Vector2i
 # 默认草地tile坐标
 var ground_tile_coord = Vector2i(4, 5)
@@ -41,12 +39,9 @@ func is_able_to_set_tower() -> void:
 		var tile = tile_map.local_to_map(tower.position)
 		cur_tile_coord = tile_map.get_cell_atlas_coords(0, tile, false)
 		if cur_tile_coord == ground_tile_coord:
-			# 附近是不是已经放置了炮塔，如果已经放置了炮塔，也不可以继续放置
-			for i in tower_pos_arr:
-				var distance = (i - tower.global_position).length()
-				if distance < tower_min_separation:
-					is_able_ste_up = false
-					break
+			# 判断炮塔附近是不是存在重叠的炮塔，如果已经存在，不可以继续放置
+			if tower.overlapping_obj_array.size() > 0:
+				is_able_ste_up = false
 		else:
 			is_able_ste_up = false
 	else:

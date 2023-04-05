@@ -6,7 +6,7 @@ extends CharacterBody2D
 
 
 @export var missile_live_time: int = 2
-@export var missile_damage: int = -30
+@export var missile_damage: int = -99
 
 var speed: int = 150
 var steer_force: int = 30

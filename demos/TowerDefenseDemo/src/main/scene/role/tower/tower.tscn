@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ds6a5nmjw8r80"]
+[gd_scene load_steps=8 format=3 uid="uid://ds6a5nmjw8r80"]
 
 [ext_resource type="Script" path="res://src/main/scene/role/tower/tower.gd" id="1_2nsef"]
 [ext_resource type="Texture2D" uid="uid://c6y4ed0nfie3" path="res://src/main/assets/texture/role/tower/towerDefense_tile180.png" id="2_xqje8"]
@@ -16,10 +16,14 @@ corner_radius_bottom_left = 300
 [sub_resource type="CircleShape2D" id="CircleShape2D_yuax7"]
 radius = 300.123
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_x386h"]
+radius = 70.0
+
 [node name="Tower" type="StaticBody2D"]
 script = ExtResource("1_2nsef")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(3.5, 1)
 shape = SubResource("RectangleShape2D_gelhx")
 
@@ -44,12 +48,20 @@ offset = Vector2(22, 0)
 position = Vector2(100, 0)
 
 [node name="Area2D" type="Area2D" parent="." groups=["attack_range"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_yuax7")
+
+[node name="Area2DTower" type="Area2D" parent="." groups=["area_tower"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DTower"]
+shape = SubResource("CircleShape2D_x386h")
 
 [node name="Timer" type="Timer" parent="."]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="area_entered" from="Area2DTower" to="." method="_on_area_2d_tower_area_entered"]
+[connection signal="area_exited" from="Area2DTower" to="." method="_on_area_2d_tower_area_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

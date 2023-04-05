@@ -10,8 +10,6 @@ var tower
 # 炮塔可放置距离边界的范围
 var tower_margin_x = 50
 var tower_margin_y = 50
-# 已放置炮塔数组
-var tower_arr: Array
 var cur_tile_coord: Vector2i
 # 攻击范围圈，绿色
 var range_green: Color = Color(0.498039, 1, 0, 0.2)
@@ -74,7 +72,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				tower.modulate.a8 = 255
 				tower.set_up_done(true)
 				# 放置炮塔以后 记录炮塔位置
-				tower_arr.append(tower)
+				Global.g_tower_arr.append(tower)
 				tower.set_range_color(false, range_green)
 				tower = null
 			if event.button_mask & MOUSE_BUTTON_MASK_RIGHT:

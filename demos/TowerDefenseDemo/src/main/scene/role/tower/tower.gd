@@ -128,6 +128,10 @@ func _on_area_2d_tower_input_event(_viewport: Node, event: InputEvent, _shape_id
 		# 左键点击
 		if event.button_mask & MOUSE_BUTTON_MASK_LEFT:
 			if is_show_upgrade:
+				for i in Global.g_tower_arr:
+					if is_instance_valid(i):
+						i.operate.hide()
+						i.is_show_upgrade = true
 				operate.show()
 			else:
 				operate.hide()

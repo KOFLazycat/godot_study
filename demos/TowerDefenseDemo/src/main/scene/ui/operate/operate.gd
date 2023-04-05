@@ -20,5 +20,7 @@ func _on_operate_btn_repair_pressed() -> void:
 
 
 func _on_operate_btn_destory_pressed() -> void:
-	print("_on_operate_btn_destory_pressed")
-	get_parent().queue_free()
+	var parent = get_parent()
+	Global.g_tower_arr.erase(parent)
+	parent.queue_free()
+	

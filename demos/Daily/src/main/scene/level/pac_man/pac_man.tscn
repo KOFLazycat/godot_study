@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://ceog3aos4fxys"]
+
+[ext_resource type="Texture2D" uid="uid://btacmoue2hqrd" path="res://src/main/assets/texture/pac_man/吃豆人1.png" id="1_86a3s"]
+[ext_resource type="Script" path="res://src/main/scene/level/pac_man/pac_man.gd" id="1_bxwqf"]
+[ext_resource type="Texture2D" uid="uid://cl80peks775di" path="res://src/main/assets/texture/pac_man/吃豆人2.png" id="2_giwd2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l7yjh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_86a3s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_giwd2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oku0n"]
+radius = 20.025
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fhrff"]
+radius = 13.0384
+
+[node name="PacMan" type="CharacterBody2D"]
+script = ExtResource("1_bxwqf")
+
+[node name="Player" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_l7yjh")
+frame_progress = 0.446616
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oku0n")
+
+[node name="Area2D" type="Area2D" parent="." groups=["player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_fhrff")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

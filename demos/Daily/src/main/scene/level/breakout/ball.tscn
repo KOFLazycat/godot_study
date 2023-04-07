@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://ckv764dwijwl4"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/breakout/ball.gd" id="1_ppv33"]
+[ext_resource type="Texture2D" uid="uid://btiiej4scq4mp" path="res://src/main/assets/texture/breakout/小球.svg" id="2_0gd6w"]
+
+[sub_resource type="Gradient" id="Gradient_4bwll"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_evvlf"]
+gradient = SubResource("Gradient_4bwll")
+
+[sub_resource type="Curve" id="Curve_8ww4p"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.989011, 0.0272727), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8abp6"]
+curve = SubResource("Curve_8ww4p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jf0t1"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.1
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_8abp6")
+color_ramp = SubResource("GradientTexture1D_evvlf")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_72ipu"]
+radius = 23.3452
+
+[node name="Ball" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_ppv33")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_jf0t1")
+texture = ExtResource("2_0gd6w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0gd6w")
+
+[node name="Area2D" type="Area2D" parent="." groups=["ball"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_72ipu")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

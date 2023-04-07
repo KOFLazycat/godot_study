@@ -16,6 +16,8 @@ var LIMON = 0
 var glob_id = 0
 # klotski 标记当前游戏关卡
 var glob_level = 1
+# 游戏开启
+var glob_start_game: bool = false
 
 # 圆木和插在圆木上的飞刀以及圆木上的苹果旋转的速度常量
 const GLOB_ROTATION_SPEED = 100

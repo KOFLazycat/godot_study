@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://cu3i5hp46k3yr"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/breakout/brick.gd" id="1_gbld4"]
+[ext_resource type="Texture2D" uid="uid://cqnabqil0peaw" path="res://src/main/assets/texture/breakout/短木块.png" id="1_mpe68"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fr6k"]
+size = Vector2(86, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1w8bh"]
+size = Vector2(86, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_caf30"]
+size = Vector2(4, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_il06y"]
+size = Vector2(4, 30)
+
+[node name="Brick" type="Node2D"]
+script = ExtResource("1_gbld4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_mpe68")
+
+[node name="Area2DUp" type="Area2D" parent="." groups=["brick_up"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DUp"]
+position = Vector2(0, -18)
+shape = SubResource("RectangleShape2D_5fr6k")
+
+[node name="Area2DDown" type="Area2D" parent="." groups=["brick_down"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DDown"]
+position = Vector2(0, 17)
+shape = SubResource("RectangleShape2D_1w8bh")
+
+[node name="Area2DLeft" type="Area2D" parent="." groups=["brick_left"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DLeft"]
+position = Vector2(-41, 0)
+shape = SubResource("RectangleShape2D_caf30")
+
+[node name="Area2DRight" type="Area2D" parent="." groups=["brick_right"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DRight"]
+position = Vector2(41, 0)
+shape = SubResource("RectangleShape2D_il06y")
+
+[connection signal="area_entered" from="Area2DUp" to="." method="_on_area_2d_up_area_entered"]
+[connection signal="area_entered" from="Area2DDown" to="." method="_on_area_2d_up_area_entered"]
+[connection signal="area_entered" from="Area2DLeft" to="." method="_on_area_2d_up_area_entered"]
+[connection signal="area_entered" from="Area2DRight" to="." method="_on_area_2d_up_area_entered"]

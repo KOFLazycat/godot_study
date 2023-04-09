@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8vqwx4xiljh2"]
+
+[ext_resource type="Texture2D" uid="uid://4yphwghhc7mc" path="res://src/main/assets/texture/role/cannon/towers_01.png" id="1_0v2lc"]
+[ext_resource type="Script" path="res://src/main/scene/role/building/cannon/cannon.gd" id="1_8i1dm"]
+[ext_resource type="PackedScene" uid="uid://beg5cgj20i3xl" path="res://src/main/scene/ui/blood/blood.tscn" id="1_nmv7o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a08cp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l6um5"]
+
+[node name="Cannon" type="Node2D"]
+position = Vector2(571, 294)
+scale = Vector2(0.4, 0.4)
+script = ExtResource("1_8i1dm")
+
+[node name="Tower" type="Sprite2D" parent="."]
+texture = ExtResource("1_0v2lc")
+
+[node name="Marker2D" type="Marker2D" parent="Tower"]
+
+[node name="Area2DAttackRange" type="Area2D" parent="." groups=["cannon_attack_range"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DAttackRange"]
+shape = SubResource("CircleShape2D_a08cp")
+
+[node name="Area2DTakeDamageRange" type="Area2D" parent="." groups=["cannon_take_damage_range"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DTakeDamageRange"]
+shape = SubResource("CircleShape2D_l6um5")
+
+[node name="AttackIntervalTimer" type="Timer" parent="."]
+
+[node name="Blood" parent="." instance=ExtResource("1_nmv7o")]
+position = Vector2(0, -70)
+scale = Vector2(0.3, 0.5)
+
+[connection signal="area_entered" from="Area2DAttackRange" to="." method="_on_area_2d_attack_range_area_entered"]
+[connection signal="area_exited" from="Area2DAttackRange" to="." method="_on_area_2d_attack_range_area_exited"]
+[connection signal="area_entered" from="Area2DTakeDamageRange" to="." method="_on_area_2d_take_damage_range_area_entered"]
+[connection signal="timeout" from="AttackIntervalTimer" to="." method="_on_attack_interval_timer_timeout"]

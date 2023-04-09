@@ -15,7 +15,6 @@ radius = 300.0
 radius = 70.0
 
 [node name="Tower" type="StaticBody2D" groups=["towers"]]
-position = Vector2(297, 265)
 script = ExtResource("1_2nsef")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

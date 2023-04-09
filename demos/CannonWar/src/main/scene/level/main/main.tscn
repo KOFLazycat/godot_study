@@ -1,11 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://ci54r875d5sde"]
+[gd_scene load_steps=5 format=3 uid="uid://ci54r875d5sde"]
 
+[ext_resource type="Script" path="res://src/main/scene/level/main/main.gd" id="1_eir3c"]
 [ext_resource type="PackedScene" uid="uid://cjomknymi6k7e" path="res://src/main/scene/level/map/map.tscn" id="1_mxmg4"]
+[ext_resource type="PackedScene" uid="uid://d1trm4x87sn3o" path="res://src/main/scene/role/base_camp/base_camp.tscn" id="2_8q5gu"]
+[ext_resource type="PackedScene" uid="uid://b8vqwx4xiljh2" path="res://src/main/scene/role/building/cannon/cannon.tscn" id="4_bbq3m"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_eir3c")
 
 [node name="Map" parent="." instance=ExtResource("1_mxmg4")]
+
+[node name="BaseCamp" parent="." instance=ExtResource("2_8q5gu")]
+position = Vector2(960, 525)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(960, 540)
 zoom = Vector2(2, 2)
+
+[node name="Cannon" parent="." instance=ExtResource("4_bbq3m")]
+position = Vector2(859, 478)

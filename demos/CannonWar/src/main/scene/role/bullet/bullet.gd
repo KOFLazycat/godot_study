@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Area2D
 
 @onready var sprite_bullet: Sprite2D = $SpriteBullet
 @onready var ani_explosion: AnimatedSprite2D = $AniExplosion
@@ -8,6 +8,8 @@ extends CharacterBody2D
 @onready var audio_explosion: AudioStreamPlayer = $AudioExplosion
 
 
+signal remove_from_array(obj)
+
 # 子弹存活最长时间
 @export var life_time: float = 10
 # 子弹血量，用于确定子弹可以穿透敌人的数量
@@ -15,12 +17,15 @@ extends CharacterBody2D
 
 # 子弹速度
 var speed: int = 10
+# 子弹伤害，威力
+var damage: int = 10
 # 子弹转向力
 var steer_force: int = 30
 # 子弹加速度
 var acc: Vector2 = Vector2.ZERO
 var target_arr: Array = []
 var temp = null
+var velocity: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
@@ -32,9 +37,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if target_arr.size() or true:
-#		var desired = (target_arr[0].global_position - global_position).normalized()*speed
-		var desired = (Vector2(960, 540) - global_position).normalized()*speed
+	if target_arr.size():
+		var desired = (target_arr.front().global_position - global_position).normalized()*speed
 		var steer = (desired - velocity).normalized()*steer_force
 		acc += steer
 		velocity += acc * delta
@@ -50,10 +54,12 @@ func dead() -> void:
 	velocity = Vector2.ZERO
 	life_timer.stop()
 	sprite_bullet.hide()
+	ani_bullet.stop()
 	ani_explosion.show()
 	ani_explosion.play("explosion")
 	audio_explosion.play()
-	await ani_explosion.animation_finished and audio_explosion.finished
+	emit_signal("remove_from_array", self)
+	await ani_explosion.animation_finished
 	queue_free()
 
 
@@ -62,13 +68,14 @@ func fire(tar: Array) -> void:
 		target_arr = tar
 
 
+func hit(blood_reduce: int = 1) -> void:
+	blood -= blood_reduce
+	if blood <= 0:
+		dead()
+
+
 func _on_life_timer_timeout() -> void:
 	dead()
-
-
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("monster"):
-		dead()
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:

@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1trm4x87sn3o"]
+[gd_scene load_steps=8 format=3 uid="uid://d1trm4x87sn3o"]
 
 [ext_resource type="Script" path="res://src/main/scene/role/base_camp/base_camp.gd" id="1_2mx4j"]
 [ext_resource type="Texture2D" uid="uid://bde0amklyaqpi" path="res://src/main/assets/texture/Backgrounds/Animated/MillPropeller/SpriteSheet64x64.png" id="1_8b2ip"]
 [ext_resource type="Texture2D" uid="uid://cfie6x5n7ljeq" path="res://src/main/assets/texture/Backgrounds/Animated/MillPropeller/MillPropeller.png" id="2_xkps8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dj18h"]
+radius = 22.0
 
 [sub_resource type="Animation" id="Animation_0odxc"]
 length = 0.001
@@ -42,8 +45,12 @@ _data = {
 "windmill_rotation": SubResource("Animation_5kaym")
 }
 
-[node name="BaseCamp" type="Node2D"]
+[node name="BaseCamp" type="CharacterBody2D"]
 script = ExtResource("1_2mx4j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+shape = SubResource("CircleShape2D_dj18h")
 
 [node name="Sprite2DBase" type="Sprite2D" parent="."]
 texture = ExtResource("2_xkps8")

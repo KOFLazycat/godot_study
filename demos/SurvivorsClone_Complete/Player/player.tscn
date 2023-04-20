@@ -41,7 +41,6 @@ texture = ExtResource("2_04t8k")
 hframes = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
-current = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

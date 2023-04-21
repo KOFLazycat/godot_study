@@ -20,7 +20,6 @@ var change_time = 0.1 # 血量变化tween变化时间
 var change_buffer = 0.5 # 血量变化底部缓冲tween变化时间
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	blood_value = blood_max
 	blood_bottom.min_value = 0
 	blood_bottom.max_value = blood_max
 	blood_bottom.value = blood_value
@@ -28,6 +27,7 @@ func _ready():
 	blood_top.min_value = 0
 	blood_top.max_value = blood_max
 	blood_top.value = blood_value
+	value_change(blood_max)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

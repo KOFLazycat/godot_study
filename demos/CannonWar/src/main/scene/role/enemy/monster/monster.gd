@@ -5,12 +5,15 @@ extends CharacterBody2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var marker_2d: Marker2D = $Sprite2D/Marker2D
 @onready var blood: Node2D = $Blood
+@onready var hurtbox: Area2D = $Hurtbox
 @onready var hurtbox_collision_shape_2d: CollisionShape2D = $Hurtbox/CollisionShape2D
 
 # 攻击范围
 @export var monster_attack_range: int = 50
 # 怪物移动速度
 @export var monster_speed: float = 10.0
+# 怪物碰撞伤害
+@export var monster_collide_damage: float = 10.0
 # 怪物移动加速度
 @export var monster_speed_acc: float = 0.0
 # 怪物最大血量
@@ -34,6 +37,7 @@ var current_target = null
 func _ready() -> void:
 	monster_blood = monster_blood_max
 	blood.blood_max = monster_blood
+	hurtbox.set_damage(monster_collide_damage)
 	hurtbox_collision_shape_2d.shape.radius = monster_attack_range
 
 

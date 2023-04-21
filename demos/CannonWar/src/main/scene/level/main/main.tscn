@@ -23,18 +23,6 @@ position = Vector2(960, 525)
 offset = Vector2(960, 540)
 zoom = Vector2(2, 2)
 
-[node name="Cannon" parent="." instance=ExtResource("4_bbq3m")]
-position = Vector2(865, 469)
-
-[node name="Cannon2" parent="." instance=ExtResource("4_bbq3m")]
-position = Vector2(1039, 618)
-
-[node name="Cannon3" parent="." instance=ExtResource("4_bbq3m")]
-position = Vector2(1049, 451)
-
-[node name="Cannon4" parent="." instance=ExtResource("4_bbq3m")]
-position = Vector2(878, 615)
-
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_xfpha")
 
@@ -43,5 +31,11 @@ position = Vector2(373, 214)
 rotation = 1.56779
 
 [node name="MonsterSpawnTimer" type="Timer" parent="."]
+
+[node name="Cannon" parent="." instance=ExtResource("4_bbq3m")]
+position = Vector2(863, 487)
+
+[node name="Cannon2" parent="." instance=ExtResource("4_bbq3m")]
+position = Vector2(1034, 610)
 
 [connection signal="timeout" from="MonsterSpawnTimer" to="." method="_on_monster_spawn_timer_timeout"]

@@ -17,9 +17,12 @@ var blood_yellow = preload("res://src/main/assets/texture/blood/blood_yellow.png
 #@export var red_factor: float = 0.1
 var blood_value: int = 0
 var change_time = 0.1 # 血量变化tween变化时间
-var change_buffer = 0.5 # 血量变化底部缓冲tween变化时间
+var change_buffer = 0.8 # 血量变化底部缓冲tween变化时间
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pass
+
+func init() -> void:
 	blood_bottom.min_value = 0
 	blood_bottom.max_value = blood_max
 	blood_bottom.value = blood_value

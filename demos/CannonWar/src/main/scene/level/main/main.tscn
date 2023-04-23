@@ -38,4 +38,10 @@ position = Vector2(863, 487)
 [node name="Cannon2" parent="." instance=ExtResource("4_bbq3m")]
 position = Vector2(1034, 610)
 
+[node name="Cannon3" parent="." instance=ExtResource("4_bbq3m")]
+position = Vector2(1034, 498)
+
+[node name="Cannon4" parent="." instance=ExtResource("4_bbq3m")]
+position = Vector2(877, 591)
+
 [connection signal="timeout" from="MonsterSpawnTimer" to="." method="_on_monster_spawn_timer_timeout"]

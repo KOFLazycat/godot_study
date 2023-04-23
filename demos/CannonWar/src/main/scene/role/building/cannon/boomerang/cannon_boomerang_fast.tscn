@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bk5pid8lhiwlj"]
+
+[ext_resource type="PackedScene" uid="uid://b8vqwx4xiljh2" path="res://src/main/scene/role/building/cannon/cannon.tscn" id="1_kkyn8"]
+
+[node name="CannonBoomerangFast" instance=ExtResource("1_kkyn8")]

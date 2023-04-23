@@ -17,7 +17,7 @@ extends CharacterBody2D
 # 怪物移动加速度
 @export var monster_speed_acc: float = 0.0
 # 怪物最大血量
-@export var monster_blood_max: int = 100
+@export var monster_blood_max: int = 50
 # 怪物死亡掉落金币
 @export var monster_value: int = 5
 # 怪物介绍
@@ -37,6 +37,7 @@ var current_target = null
 func _ready() -> void:
 	monster_blood = monster_blood_max
 	blood.blood_max = monster_blood
+	blood.init()
 	hurtbox.set_damage(monster_collide_damage)
 	hurtbox_collision_shape_2d.shape.radius = monster_attack_range
 

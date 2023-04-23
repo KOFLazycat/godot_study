@@ -13,11 +13,13 @@ extends CharacterBody2D
 # 攻击范围
 @export var attack_range: int = 300
 # 子弹速度
-@export var bullet_speed: int = 100
+@export var bullet_speed: int = 1000
 # 子弹最多穿透敌人数量
 @export var bullet_blood: int = 1
 # 子弹伤害
 @export var bullet_damage: int = 10
+# 子弹模型大小缩放
+@export var bullet_scale: float = 1.0
 # 炮塔最大血量
 @export var cannon_blood_max: int = 100
 # 攻击间隔时间
@@ -40,6 +42,7 @@ var current_target = null
 func _ready() -> void:
 	cannon_blood = cannon_blood_max
 	blood.blood_max = cannon_blood
+	blood.init()
 	attack_interval_timer.start(attack_interval)
 	attack_range_collision_shape_2d.shape.radius = attack_range
 

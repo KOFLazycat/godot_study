@@ -46,7 +46,7 @@ func _physics_process(delta: float) -> void:
 		rotation = velocity.angle()
 		position += velocity*delta
 	else:
-		dead()
+		queue_free()
 
 
 func dead() -> void:

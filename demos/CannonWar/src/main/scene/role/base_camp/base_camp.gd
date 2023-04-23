@@ -13,6 +13,8 @@ signal game_over
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	blood.blood_max = camp_blood
+	blood.init()
 	animation_player.play("windmill_rotation")
 
 

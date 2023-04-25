@@ -1,0 +1,207 @@
+[gd_scene load_steps=13 format=3 uid="uid://c81ehh8v00f6r"]
+
+[ext_resource type="Texture2D" uid="uid://cpa7a08xuyign" path="res://src/main/assets/texture/billiard/台球桌.png" id="1_62ug6"]
+[ext_resource type="Script" path="res://src/main/scene/level/billiard/billiard_main.gd" id="1_wse8p"]
+[ext_resource type="PackedScene" uid="uid://kpjolhcpfp7j" path="res://src/main/scene/level/billiard/color_ball.tscn" id="3_r5d6a"]
+[ext_resource type="Texture2D" uid="uid://bpad58iu2auq7" path="res://src/main/assets/texture/billiard/rot.svg" id="4_eoijw"]
+[ext_resource type="Texture2D" uid="uid://cubguuijqnmrj" path="res://src/main/assets/texture/billiard/gruen.svg" id="5_mybdk"]
+[ext_resource type="Texture2D" uid="uid://bvgjjscliwtks" path="res://src/main/assets/texture/billiard/blau.svg" id="6_08nii"]
+[ext_resource type="Texture2D" uid="uid://dppslqsgea0dw" path="res://src/main/assets/texture/billiard/gelb.svg" id="7_ygmn5"]
+[ext_resource type="Texture2D" uid="uid://cunn30x5rpxnh" path="res://src/main/assets/texture/billiard/orange.svg" id="8_0ek42"]
+[ext_resource type="Texture2D" uid="uid://b5eu63qqguqjk" path="res://src/main/assets/texture/billiard/braun.svg" id="9_nme62"]
+[ext_resource type="Texture2D" uid="uid://bo3860humxdh2" path="res://src/main/assets/texture/billiard/pink.svg" id="10_4agpi"]
+[ext_resource type="Texture2D" uid="uid://dcuroyqjoei4c" path="res://src/main/assets/texture/billiard/schwarz.svg" id="11_wepkg"]
+[ext_resource type="Texture2D" uid="uid://ciu2m8sdmb7mh" path="res://src/main/assets/texture/billiard/wei+.svg" id="12_h4k5b"]
+
+[node name="BilliardMain" type="Node2D"]
+script = ExtResource("1_wse8p")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(480, 360)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_62ug6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(98, 138, 450, 138, 451, 119, 510, 121, 510, 139, 864, 140, 864, 118, 925, 120, 926, 183, 906, 183, 908, 536, 925, 538, 926, 597, 864, 597, 863, 582, 511, 580, 510, 597, 451, 598, 452, 579, 100, 581, 99, 598, 37, 600, 35, 535, 53, 536, 54, 180, 35, 180, 35, 117, 99, 119, 98, 104, 30, 106, 21, 116, 23, 603, 34, 615, 925, 613, 939, 601, 940, 114, 923, 107, 95, 102)
+
+[node name="Area2DHole" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2DHole"]
+polygon = PackedVector2Array(96, 138, 95, 119, 38, 121, 38, 179, 55, 179, 55, 139)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2DHole"]
+polygon = PackedVector2Array(452, 138, 452, 118, 509, 121, 510, 138)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Area2DHole"]
+polygon = PackedVector2Array(864, 139, 865, 120, 923, 120, 925, 182, 907, 182, 907, 139)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Area2DHole"]
+polygon = PackedVector2Array(906, 538, 925, 538, 925, 597, 863, 598, 864, 580, 908, 579)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Area2DHole"]
+polygon = PackedVector2Array(452, 580, 450, 598, 511, 597, 511, 579)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="Area2DHole"]
+polygon = PackedVector2Array(37, 536, 38, 598, 99, 598, 99, 579, 55, 579, 55, 536)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(800, 0)
+collision_mask = 4
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 3.0
+default_color = Color(0.929412, 0, 0.192157, 1)
+
+[node name="Ball" type="Node2D" parent="."]
+
+[node name="ColorBall" parent="Ball" instance=ExtResource("3_r5d6a")]
+position = Vector2(622, 357)
+texture = ExtResource("4_eoijw")
+
+[node name="ColorBall2" parent="Ball" instance=ExtResource("3_r5d6a")]
+position = Vector2(652, 335)
+texture = ExtResource("4_eoijw")
+
+[node name="ColorBall3" parent="Ball" instance=ExtResource("3_r5d6a")]
+position = Vector2(652, 374)
+texture = ExtResource("5_mybdk")
+
+[node name="ColorBall4" parent="Ball" instance=ExtResource("3_r5d6a")]
+position = Vector2(682, 316)
+texture = ExtResource("5_mybdk")
+
+[node name="ColorBall5" parent="Ball" instance=ExtResource("3_r5d6a")]
+position = Vector2(682, 354)
+texture = ExtResource("6_08nii")
+
+[node name="ColorBall6" parent="Ball" instance=ExtResource("3_r5d6a")]
+position = Vector2(682, 394)
+texture = ExtResource("6_08nii")
+
+[node name="ColorBall7" parent="Ball" instance=ExtResource("3_r5d6a")]
+position = Vector2(713, 296)
+texture = ExtResource("7_ygmn5")
+
+[node name="ColorBall8" parent="Ball" instance=ExtResource("3_r5d6a")]
+position = Vector2(713, 335)
+texture = ExtResource("7_ygmn5")
+
+[node name="ColorBall9" parent="Ball" instance=ExtResource("3_r5d6a")]
+position = Vector2(713, 373)
+texture = ExtResource("8_0ek42")
+
+[node name="ColorBall10" parent="Ball" instance=ExtResource("3_r5d6a")]
+position = Vector2(713, 412)
+texture = ExtResource("8_0ek42")
+
+[node name="ColorBall11" parent="Ball" instance=ExtResource("3_r5d6a")]
+position = Vector2(744, 277)
+texture = ExtResource("9_nme62")
+
+[node name="ColorBall12" parent="Ball" instance=ExtResource("3_r5d6a")]
+position = Vector2(744, 315)
+texture = ExtResource("9_nme62")
+
+[node name="ColorBall13" parent="Ball" instance=ExtResource("3_r5d6a")]
+position = Vector2(744, 352)
+texture = ExtResource("10_4agpi")
+
+[node name="ColorBall14" parent="Ball" instance=ExtResource("3_r5d6a")]
+position = Vector2(744, 393)
+texture = ExtResource("10_4agpi")
+
+[node name="ColorBall15" parent="Ball" instance=ExtResource("3_r5d6a")]
+position = Vector2(744, 430)
+texture = ExtResource("11_wepkg")
+
+[node name="Record" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Record"]
+position = Vector2(185, 665)
+scale = Vector2(2, 2)
+texture = ExtResource("12_h4k5b")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Record"]
+position = Vector2(225, 665)
+scale = Vector2(2, 2)
+texture = ExtResource("12_h4k5b")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Record"]
+position = Vector2(265, 665)
+scale = Vector2(2, 2)
+texture = ExtResource("12_h4k5b")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Record"]
+position = Vector2(305, 665)
+scale = Vector2(2, 2)
+texture = ExtResource("12_h4k5b")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Record"]
+position = Vector2(345, 665)
+scale = Vector2(2, 2)
+texture = ExtResource("12_h4k5b")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Record"]
+position = Vector2(385, 665)
+scale = Vector2(2, 2)
+texture = ExtResource("12_h4k5b")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Record"]
+position = Vector2(425, 665)
+scale = Vector2(2, 2)
+texture = ExtResource("12_h4k5b")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Record"]
+position = Vector2(465, 665)
+scale = Vector2(2, 2)
+texture = ExtResource("12_h4k5b")
+
+[node name="Sprite2D9" type="Sprite2D" parent="Record"]
+position = Vector2(505, 665)
+scale = Vector2(2, 2)
+texture = ExtResource("12_h4k5b")
+
+[node name="Sprite2D10" type="Sprite2D" parent="Record"]
+position = Vector2(545, 665)
+scale = Vector2(2, 2)
+texture = ExtResource("12_h4k5b")
+
+[node name="Sprite2D11" type="Sprite2D" parent="Record"]
+position = Vector2(585, 665)
+scale = Vector2(2, 2)
+texture = ExtResource("12_h4k5b")
+
+[node name="Sprite2D12" type="Sprite2D" parent="Record"]
+position = Vector2(625, 665)
+scale = Vector2(2, 2)
+texture = ExtResource("12_h4k5b")
+
+[node name="Sprite2D13" type="Sprite2D" parent="Record"]
+position = Vector2(665, 665)
+scale = Vector2(2, 2)
+texture = ExtResource("12_h4k5b")
+
+[node name="Sprite2D14" type="Sprite2D" parent="Record"]
+position = Vector2(705, 665)
+scale = Vector2(2, 2)
+texture = ExtResource("12_h4k5b")
+
+[node name="Sprite2D15" type="Sprite2D" parent="Record"]
+position = Vector2(745, 665)
+scale = Vector2(2, 2)
+texture = ExtResource("12_h4k5b")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 444.0
+offset_top = 27.0
+offset_right = 510.0
+offset_bottom = 58.0
+text = "ReStart"
+
+[connection signal="body_entered" from="Area2DHole" to="." method="_on_area_2d_hole_body_entered"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

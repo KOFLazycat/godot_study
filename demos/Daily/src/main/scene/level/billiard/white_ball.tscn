@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://c221mn1n0a2ry"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/billiard/white_ball.gd" id="1_wp0q8"]
+[ext_resource type="Texture2D" uid="uid://byuiwqnvv3407" path="res://src/main/assets/texture/billiard/weiss.svg" id="2_ypql2"]
+[ext_resource type="AudioStream" uid="uid://dgv30yxati1xg" path="res://src/main/assets/texture/billiard/klick1.wav" id="3_tm2m0"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8nyb4"]
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xwuuf"]
+radius = 17.0
+
+[node name="WhiteBall" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 13
+physics_material_override = SubResource("PhysicsMaterial_8nyb4")
+gravity_scale = 0.0
+max_contacts_reported = 10
+contact_monitor = true
+lock_rotation = true
+linear_damp = 1.0
+script = ExtResource("1_wp0q8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_ypql2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xwuuf")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_tm2m0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

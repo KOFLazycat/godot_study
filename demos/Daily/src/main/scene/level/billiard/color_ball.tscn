@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://kpjolhcpfp7j"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/billiard/color_ball.gd" id="1_gcvdt"]
+[ext_resource type="Texture2D" uid="uid://bvgjjscliwtks" path="res://src/main/assets/texture/billiard/blau.svg" id="2_1mcgs"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ofp16"]
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e8sw1"]
+radius = 17.0
+
+[node name="ColorBall" type="RigidBody2D" groups=["color_ball"]]
+collision_layer = 4
+collision_mask = 15
+physics_material_override = SubResource("PhysicsMaterial_ofp16")
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 1.0
+script = ExtResource("1_gcvdt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_1mcgs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_e8sw1")

@@ -1,5 +1,6 @@
 extends Area2D
 
+# 回旋镖子弹
 @onready var sprite_bullet: Sprite2D = $SpriteBullet
 @onready var ani_explosion: AnimatedSprite2D = $AniExplosion
 @onready var ani_bullet: AnimationPlayer = $AniBullet
@@ -59,7 +60,7 @@ func dead() -> void:
 	ani_explosion.play("explosion")
 	audio_explosion.play()
 	emit_signal("remove_from_array", self)
-	await ani_explosion.animation_finished
+	await ani_explosion.animation_finished and audio_explosion.finished
 	queue_free()
 
 

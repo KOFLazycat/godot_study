@@ -1,5 +1,7 @@
 extends CharacterBody2D
-## 基础炮塔
+
+
+## 回旋镖炮塔
 @onready var cannon: CharacterBody2D = $"."
 @onready var tower: Sprite2D = $Tower
 @onready var marker_2d: Marker2D = $Tower/Marker2D
@@ -7,27 +9,27 @@ extends CharacterBody2D
 @onready var blood: Node2D = $Blood
 @onready var attack_range_collision_shape_2d: CollisionShape2D = $Area2DAttackRange/CollisionShape2D
 
-@onready var bullet_tscn = preload("res://src/main/scene/role/bullet/bullet.tscn")
+@onready var bullet_tscn = preload("res://src/main/scene/role/bullet/bullet_stick.tscn")
 
 
 # 攻击范围
-@export var attack_range: int = 300
+@export var attack_range: int = 200
 # 子弹速度
-@export var bullet_speed: int = 1000
+@export var bullet_speed: int = 100
 # 子弹最多穿透敌人数量
-@export var bullet_blood: int = 1
+@export var bullet_blood: int = 10
 # 子弹伤害
 @export var bullet_damage: int = 10
 # 子弹模型大小缩放
-@export var bullet_scale: float = 1.0
+@export var bullet_scale: float = 0.5
 # 炮塔最大血量
-@export var cannon_blood_max: int = 100
+@export var cannon_blood_max: int = 120
 # 攻击间隔时间
-@export var attack_interval: float = 1.0
+@export var attack_interval: float = 5
 # 炮塔价格
-@export var price: int = 50
+@export var price: int = 190
 # 炮塔介绍
-@export var info: String = "最基础的炮塔，想获得厉害的炮塔就要从它开始进化，但是基础炮塔不太能无限获取，获取基础炮塔越多，需要的费用就越贵。"
+@export var info: String = "一种威力不小的攻击东西，回旋镖能够穿过敌人，对所有穿过的敌人造成伤害"
 
 # 炮塔当前血量
 var cannon_blood: int = 0

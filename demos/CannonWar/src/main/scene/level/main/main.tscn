@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://ci54r875d5sde"]
+[gd_scene load_steps=7 format=3 uid="uid://ci54r875d5sde"]
 
 [ext_resource type="Script" path="res://src/main/scene/level/main/main.gd" id="1_eir3c"]
 [ext_resource type="PackedScene" uid="uid://cjomknymi6k7e" path="res://src/main/scene/level/map/map.tscn" id="1_mxmg4"]
 [ext_resource type="PackedScene" uid="uid://d1trm4x87sn3o" path="res://src/main/scene/role/base_camp/base_camp.tscn" id="2_8q5gu"]
 [ext_resource type="PackedScene" uid="uid://b8vqwx4xiljh2" path="res://src/main/scene/role/building/cannon/cannon.tscn" id="4_bbq3m"]
+[ext_resource type="PackedScene" uid="uid://qmd72ljxw48u" path="res://src/main/scene/role/building/cannon/boomerang/cannon_boomerang_fast.tscn" id="5_p1v0n"]
 
 [sub_resource type="Curve2D" id="Curve2D_xfpha"]
 _data = {
@@ -35,13 +36,16 @@ rotation = 1.56779
 [node name="Cannon" parent="." instance=ExtResource("4_bbq3m")]
 position = Vector2(863, 487)
 
-[node name="Cannon2" parent="." instance=ExtResource("4_bbq3m")]
-position = Vector2(1034, 610)
-
 [node name="Cannon3" parent="." instance=ExtResource("4_bbq3m")]
 position = Vector2(1034, 498)
 
 [node name="Cannon4" parent="." instance=ExtResource("4_bbq3m")]
 position = Vector2(877, 591)
+
+[node name="CannonBoomerangFast" parent="." instance=ExtResource("5_p1v0n")]
+position = Vector2(1034, 611)
+
+[node name="CannonBoomerangFast2" parent="." instance=ExtResource("5_p1v0n")]
+position = Vector2(891, 673)
 
 [connection signal="timeout" from="MonsterSpawnTimer" to="." method="_on_monster_spawn_timer_timeout"]

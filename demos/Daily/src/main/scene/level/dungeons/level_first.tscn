@@ -1,0 +1,309 @@
+[gd_scene load_steps=18 format=3 uid="uid://cq1td3ieotmmb"]
+
+[ext_resource type="Texture2D" uid="uid://yl8u6isp52kc" path="res://src/main/assets/texture/地下城资源/ui/backdrop1.png" id="1_jdvk5"]
+[ext_resource type="Texture2D" uid="uid://c3eamfbofdo82" path="res://src/main/assets/texture/地下城资源/地面/1rd1.png" id="2_41isx"]
+[ext_resource type="Texture2D" uid="uid://c56r4mnkpx4fx" path="res://src/main/assets/texture/地下城资源/地板/1r.png" id="3_kqisp"]
+[ext_resource type="Texture2D" uid="uid://s0spbwor7mn6" path="res://src/main/assets/texture/地下城资源/地板/1h.png" id="4_s1ny1"]
+[ext_resource type="Texture2D" uid="uid://dvnr40nekxc6b" path="res://src/main/assets/texture/地下城资源/地面/1h1.png" id="5_jo7hy"]
+[ext_resource type="Texture2D" uid="uid://chylouyquf0gi" path="res://src/main/assets/texture/地下城资源/地面/1h.png" id="6_g1r48"]
+[ext_resource type="Texture2D" uid="uid://6hwtfhhrv8uh" path="res://src/main/assets/texture/地下城资源/地面/2r11.png" id="7_gp015"]
+[ext_resource type="Texture2D" uid="uid://bgy0gmscu1tm3" path="res://src/main/assets/texture/地下城资源/地板/2r.png" id="8_pjf5e"]
+[ext_resource type="Texture2D" uid="uid://dmlq0j1bts4e3" path="res://src/main/assets/texture/地下城资源/地面/1r1d.png" id="9_2wxb5"]
+[ext_resource type="PackedScene" uid="uid://bng1q4bokdmlx" path="res://src/main/scene/level/dungeons/player.tscn" id="10_nt3pw"]
+[ext_resource type="PackedScene" uid="uid://de8lb8ye3n3yq" path="res://src/main/scene/level/dungeons/enemy.tscn" id="11_2ywx4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oli4s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_jo7hy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_g1r48")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mogni"]
+size = Vector2(28, 236)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ts41"]
+size = Vector2(255, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_equj3"]
+size = Vector2(315, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4n2gu"]
+size = Vector2(117, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e28jb"]
+size = Vector2(32, 100)
+
+[node name="LevelFirst" type="Node2D"]
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(960, 360)
+scale = Vector2(2, 1)
+texture = ExtResource("1_jdvk5")
+metadata/_edit_lock_ = true
+
+[node name="WallFloor" type="Node2D" parent="."]
+
+[node name="Wall1" type="Sprite2D" parent="WallFloor"]
+z_index = 3
+position = Vector2(308, 360)
+scale = Vector2(4, 4)
+texture = ExtResource("2_41isx")
+
+[node name="Floor1" type="Sprite2D" parent="WallFloor"]
+z_index = 1
+position = Vector2(292, 363)
+scale = Vector2(4, 4)
+texture = ExtResource("3_kqisp")
+
+[node name="CorridorFloor1" type="Sprite2D" parent="WallFloor"]
+z_index = 2
+position = Vector2(468, 360)
+scale = Vector2(4, 4)
+texture = ExtResource("4_s1ny1")
+
+[node name="CorridorWall1" type="AnimatedSprite2D" parent="WallFloor"]
+z_index = 3
+position = Vector2(468, 359)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_oli4s")
+autoplay = "default"
+frame_progress = 0.0998705
+
+[node name="Wall2" type="Sprite2D" parent="WallFloor"]
+z_index = 3
+position = Vector2(660, 359)
+scale = Vector2(4, 4)
+texture = ExtResource("7_gp015")
+
+[node name="Floor2" type="Sprite2D" parent="WallFloor"]
+z_index = 1
+position = Vector2(643, 357)
+scale = Vector2(4, 4)
+texture = ExtResource("8_pjf5e")
+
+[node name="CorridorFloor2" type="Sprite2D" parent="WallFloor"]
+z_index = 2
+position = Vector2(848, 360)
+scale = Vector2(4, 4)
+texture = ExtResource("4_s1ny1")
+
+[node name="CorridorWall2" type="AnimatedSprite2D" parent="WallFloor"]
+z_index = 3
+position = Vector2(848, 359)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_oli4s")
+autoplay = "default"
+frame_progress = 0.977663
+
+[node name="Wall3" type="Sprite2D" parent="WallFloor"]
+z_index = 3
+position = Vector2(1040, 359)
+scale = Vector2(4, 4)
+texture = ExtResource("7_gp015")
+
+[node name="Floor3" type="Sprite2D" parent="WallFloor"]
+z_index = 1
+position = Vector2(1023, 357)
+scale = Vector2(4, 4)
+texture = ExtResource("8_pjf5e")
+
+[node name="Wall4" type="Sprite2D" parent="WallFloor"]
+z_index = 3
+position = Vector2(1385, 359)
+scale = Vector2(4, 4)
+texture = ExtResource("9_2wxb5")
+
+[node name="Floor4" type="Sprite2D" parent="WallFloor"]
+z_index = 1
+position = Vector2(1369, 362)
+scale = Vector2(4, 4)
+texture = ExtResource("3_kqisp")
+
+[node name="CorridorFloor3" type="Sprite2D" parent="WallFloor"]
+z_index = 2
+position = Vector2(1231, 360)
+scale = Vector2(4, 4)
+texture = ExtResource("4_s1ny1")
+
+[node name="CorridorWall3" type="AnimatedSprite2D" parent="WallFloor"]
+z_index = 3
+position = Vector2(1231, 359)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_oli4s")
+autoplay = "default"
+frame_progress = 0.649341
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(195, 356)
+shape = SubResource("RectangleShape2D_mogni")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(1497, 353)
+shape = SubResource("RectangleShape2D_mogni")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(306.5, 244)
+shape = SubResource("RectangleShape2D_6ts41")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(307, 472)
+shape = SubResource("RectangleShape2D_6ts41")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(1390, 245)
+shape = SubResource("RectangleShape2D_6ts41")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(1384, 470)
+shape = SubResource("RectangleShape2D_6ts41")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(658.5, 212.5)
+shape = SubResource("RectangleShape2D_equj3")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(1041, 213)
+shape = SubResource("RectangleShape2D_equj3")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(1043, 503)
+shape = SubResource("RectangleShape2D_equj3")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(661, 503)
+shape = SubResource("RectangleShape2D_equj3")
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(466.5, 310)
+shape = SubResource("RectangleShape2D_4n2gu")
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(467, 409)
+shape = SubResource("RectangleShape2D_4n2gu")
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(851, 310)
+shape = SubResource("RectangleShape2D_4n2gu")
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(848, 409)
+shape = SubResource("RectangleShape2D_4n2gu")
+
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(1230, 309)
+shape = SubResource("RectangleShape2D_4n2gu")
+
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(1229, 408)
+shape = SubResource("RectangleShape2D_4n2gu")
+
+[node name="CollisionShape2D17" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(421, 275)
+shape = SubResource("RectangleShape2D_e28jb")
+
+[node name="CollisionShape2D18" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(421, 444)
+shape = SubResource("RectangleShape2D_e28jb")
+
+[node name="CollisionShape2D19" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(515, 444)
+shape = SubResource("RectangleShape2D_e28jb")
+
+[node name="CollisionShape2D20" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(513, 275)
+shape = SubResource("RectangleShape2D_e28jb")
+
+[node name="CollisionShape2D21" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(805, 275)
+shape = SubResource("RectangleShape2D_e28jb")
+
+[node name="CollisionShape2D22" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(894, 273)
+shape = SubResource("RectangleShape2D_e28jb")
+
+[node name="CollisionShape2D23" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(804, 444)
+shape = SubResource("RectangleShape2D_e28jb")
+
+[node name="CollisionShape2D24" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(893, 443)
+shape = SubResource("RectangleShape2D_e28jb")
+
+[node name="CollisionShape2D25" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(1186, 274)
+shape = SubResource("RectangleShape2D_e28jb")
+
+[node name="CollisionShape2D26" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(1273, 275)
+shape = SubResource("RectangleShape2D_e28jb")
+
+[node name="CollisionShape2D27" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(1186, 444)
+shape = SubResource("RectangleShape2D_e28jb")
+
+[node name="CollisionShape2D28" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 5
+position = Vector2(1272, 443)
+shape = SubResource("RectangleShape2D_e28jb")
+
+[node name="Player" parent="." instance=ExtResource("10_nt3pw")]
+z_index = 10
+position = Vector2(305, 360)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 720
+limit_smoothed = true
+position_smoothing_speed = 10.0
+
+[node name="Enemy" parent="." instance=ExtResource("11_2ywx4")]
+z_index = 10
+position = Vector2(660, 363)
+
+[node name="Enemy2" parent="." instance=ExtResource("11_2ywx4")]
+z_index = 10
+position = Vector2(1041, 359)
+
+[node name="Enemy3" parent="." instance=ExtResource("11_2ywx4")]
+z_index = 10
+position = Vector2(1381, 353)

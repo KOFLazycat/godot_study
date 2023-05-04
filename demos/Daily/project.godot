@@ -66,13 +66,22 @@ fire={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"echo":false,"script":null)
 ]
 }
+change_weapon={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"echo":false,"script":null)
+]
+}
 
 [layer_names]
 
-2d_physics/layer_1="球桌"
-2d_physics/layer_2="白球"
-2d_physics/layer_3="彩球"
-2d_physics/layer_4="球洞"
+2d_physics/layer_1="球桌,空气墙"
+2d_physics/layer_2="白球,主角"
+2d_physics/layer_3="彩球,主角受伤害区"
+2d_physics/layer_4="球洞,箭"
+2d_physics/layer_5="大刀"
+2d_physics/layer_6="敌人"
+2d_physics/layer_7="敌人侦查区"
+2d_physics/layer_8="敌人受伤害区"
 
 [rendering]
 

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtwynmcq7vhq4"]
+
+[ext_resource type="Texture2D" uid="uid://bp8n4h6kbuer0" path="res://src/main/assets/texture/地下城资源/武器/2.png" id="1_xam71"]
+[ext_resource type="Script" path="res://src/main/scene/level/dungeons/bow.gd" id="2_vdr7p"]
+
+[node name="Bow" type="Sprite2D"]
+scale = Vector2(4, 4)
+texture = ExtResource("1_xam71")
+offset = Vector2(10, 0)
+script = ExtResource("2_vdr7p")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(20, 0)

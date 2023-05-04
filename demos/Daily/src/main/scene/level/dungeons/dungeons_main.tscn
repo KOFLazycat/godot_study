@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0brcshefdbed"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/dungeons/dungeons_main.gd" id="1_7wte2"]
+[ext_resource type="Texture2D" uid="uid://yl8u6isp52kc" path="res://src/main/assets/texture/地下城资源/ui/backdrop1.png" id="2_4e151"]
+[ext_resource type="Texture2D" uid="uid://y0o53i5cxdn5" path="res://src/main/assets/texture/地下城资源/ui/costume2.png" id="3_euwwn"]
+
+[node name="DungeonsMain" type="Node2D"]
+script = ExtResource("1_7wte2")
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(480, 360)
+texture = ExtResource("2_4e151")
+
+[node name="Start" type="Sprite2D" parent="."]
+position = Vector2(480, 360)
+scale = Vector2(8, 8)
+texture = ExtResource("3_euwwn")
+
+[node name="ButtonStart" type="Button" parent="."]
+offset_left = 333.0
+offset_top = 510.0
+offset_right = 618.0
+offset_bottom = 590.0
+theme_override_font_sizes/font_size = 50
+text = "Start Game"
+
+[node name="ButtonEnd" type="Button" parent="."]
+offset_left = 333.0
+offset_top = 604.0
+offset_right = 618.0
+offset_bottom = 684.0
+theme_override_font_sizes/font_size = 50
+text = "End Game"
+
+[connection signal="pressed" from="ButtonStart" to="." method="_on_button_start_pressed"]
+[connection signal="pressed" from="ButtonEnd" to="." method="_on_button_end_pressed"]

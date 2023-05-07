@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://de8lb8ye3n3yq"]
+[gd_scene load_steps=15 format=3 uid="uid://de8lb8ye3n3yq"]
 
 [ext_resource type="Texture2D" uid="uid://dtd0g1dlbmv41" path="res://src/main/assets/texture/地下城资源/敌人/1-1.png" id="1_7biv4"]
 [ext_resource type="Script" path="res://src/main/scene/level/dungeons/enemy.gd" id="1_un124"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bn24rp3pmbtyw" path="res://src/main/assets/texture/地下城资源/敌人/3-.png" id="6_afl7n"]
 [ext_resource type="Texture2D" uid="uid://bvjm5yar16j6i" path="res://src/main/assets/texture/地下城资源/敌人/4-1.png" id="7_vk2jd"]
 [ext_resource type="Texture2D" uid="uid://cgrqe7dr56r31" path="res://src/main/assets/texture/地下城资源/敌人/4-.png" id="8_3ca8n"]
+[ext_resource type="PackedScene" uid="uid://bii7m1o6tj4u7" path="res://src/main/scene/level/dungeons/blood.tscn" id="10_xyqc5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8dg31"]
 animations = [{
@@ -58,8 +59,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_01i1o"]
-radius = 13.0
-height = 38.0
+radius = 20.0
+height = 48.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_klqph"]
 radius = 150.0
@@ -96,5 +97,9 @@ collision_mask = 24
 position = Vector2(-3, 10)
 shape = SubResource("CircleShape2D_jusro")
 
+[node name="Blood" parent="." instance=ExtResource("10_xyqc5")]
+position = Vector2(-28, -50)
+
 [connection signal="body_entered" from="Area2DDetection" to="." method="_on_area_2d_detection_body_entered"]
 [connection signal="body_exited" from="Area2DDetection" to="." method="_on_area_2d_detection_body_exited"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

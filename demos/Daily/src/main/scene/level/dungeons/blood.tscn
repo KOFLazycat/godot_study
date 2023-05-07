@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bii7m1o6tj4u7"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/dungeons/blood.gd" id="1_he54m"]
+[ext_resource type="Texture2D" uid="uid://brm3thd4wnkka" path="res://src/main/assets/texture/地下城资源/血条/10.png" id="2_i87fn"]
+[ext_resource type="Texture2D" uid="uid://c8af3mw76pvv1" path="res://src/main/assets/texture/地下城资源/血条/0.png" id="3_tiwyb"]
+
+[node name="Blood" type="Node2D"]
+script = ExtResource("1_he54m")
+
+[node name="Bottom" type="TextureProgressBar" parent="."]
+self_modulate = Color(0.0823529, 0.0823529, 0.0823529, 1)
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+value = 100.0
+texture_progress = ExtResource("2_i87fn")
+
+[node name="Top" type="TextureProgressBar" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(4, 4)
+value = 50.0
+texture_under = ExtResource("3_tiwyb")
+texture_progress = ExtResource("2_i87fn")

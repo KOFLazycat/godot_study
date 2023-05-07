@@ -15,9 +15,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	dir = (get_global_mouse_position() - self.global_position).normalized()
-	print(collision_shape_2d.disabled)
 	if collision_shape_2d.disabled != false:
+		dir = (get_global_mouse_position() - self.global_position).normalized()
 		self.rotation = dir.angle()
 
 

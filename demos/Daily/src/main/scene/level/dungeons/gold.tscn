@@ -1,0 +1,106 @@
+[gd_scene load_steps=17 format=3 uid="uid://cl34wbrr82dt0"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/dungeons/gold.gd" id="1_1eteo"]
+[ext_resource type="Texture2D" uid="uid://yk8prkqkputt" path="res://src/main/assets/texture/地下城资源/金币/2-1.png" id="1_a8vx7"]
+[ext_resource type="Texture2D" uid="uid://cs2bwhx3iemeh" path="res://src/main/assets/texture/地下城资源/金币/2-2.png" id="2_je1r4"]
+[ext_resource type="Texture2D" uid="uid://dtnggshk24bh5" path="res://src/main/assets/texture/地下城资源/金币/2-.png" id="3_18t8s"]
+[ext_resource type="Texture2D" uid="uid://bmwyauwmnasad" path="res://src/main/assets/texture/地下城资源/金币/3-1.png" id="4_6gqk3"]
+[ext_resource type="Texture2D" uid="uid://c8p3srmantcfx" path="res://src/main/assets/texture/地下城资源/金币/3-2.png" id="5_hif07"]
+[ext_resource type="Texture2D" uid="uid://djawg6tt8she2" path="res://src/main/assets/texture/地下城资源/金币/3-.png" id="6_4clce"]
+[ext_resource type="Texture2D" uid="uid://d1xtu7vidisk6" path="res://src/main/assets/texture/地下城资源/金币/4-1.png" id="7_x7rch"]
+[ext_resource type="Texture2D" uid="uid://bcwdyvmsfxtwp" path="res://src/main/assets/texture/地下城资源/金币/4-2.png" id="8_76isr"]
+[ext_resource type="Texture2D" uid="uid://devsmsby1scxb" path="res://src/main/assets/texture/地下城资源/金币/4-.png" id="9_75n35"]
+[ext_resource type="Texture2D" uid="uid://djl311ikrh0ky" path="res://src/main/assets/texture/地下城资源/金币/1-1.png" id="10_f74hj"]
+[ext_resource type="Texture2D" uid="uid://bk2wqmccm5hmg" path="res://src/main/assets/texture/地下城资源/金币/1-2.png" id="11_j1e07"]
+[ext_resource type="Texture2D" uid="uid://q27w4yaov6ii" path="res://src/main/assets/texture/地下城资源/金币/1-.png" id="12_1j7ep"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6xu8l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_a8vx7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_je1r4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_18t8s")
+}],
+"loop": true,
+"name": &"blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_6gqk3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hif07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4clce")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_x7rch")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_76isr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_75n35")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_f74hj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_j1e07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_1j7ep")
+}],
+"loop": true,
+"name": &"yellow",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gaiag"]
+radius = 61.0082
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_babfv"]
+radius = 8.0
+
+[node name="Gold" type="Node2D"]
+z_index = 10
+script = ExtResource("1_1eteo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6xu8l")
+animation = &"red"
+frame_progress = 0.626897
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_gaiag")
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource("CircleShape2D_babfv")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]

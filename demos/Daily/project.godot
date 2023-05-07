@@ -82,6 +82,9 @@ change_weapon={
 2d_physics/layer_6="敌人"
 2d_physics/layer_7="敌人侦查区"
 2d_physics/layer_8="敌人受伤害区"
+2d_physics/layer_9="金币检测区"
+2d_physics/layer_10="金币伤害区"
+2d_physics/layer_11="传送区"
 
 [rendering]
 

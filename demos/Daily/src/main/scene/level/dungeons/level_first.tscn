@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cq1td3ieotmmb"]
+[gd_scene load_steps=19 format=3 uid="uid://cq1td3ieotmmb"]
 
 [ext_resource type="Texture2D" uid="uid://yl8u6isp52kc" path="res://src/main/assets/texture/地下城资源/ui/backdrop1.png" id="1_jdvk5"]
 [ext_resource type="Texture2D" uid="uid://c3eamfbofdo82" path="res://src/main/assets/texture/地下城资源/地面/1rd1.png" id="2_41isx"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dmlq0j1bts4e3" path="res://src/main/assets/texture/地下城资源/地面/1r1d.png" id="9_2wxb5"]
 [ext_resource type="PackedScene" uid="uid://bng1q4bokdmlx" path="res://src/main/scene/level/dungeons/player.tscn" id="10_nt3pw"]
 [ext_resource type="PackedScene" uid="uid://de8lb8ye3n3yq" path="res://src/main/scene/level/dungeons/enemy.tscn" id="11_2ywx4"]
+[ext_resource type="PackedScene" uid="uid://cugvcive5t4x4" path="res://src/main/scene/level/dungeons/transmit.tscn" id="12_36wls"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_oli4s"]
 animations = [{
@@ -304,6 +305,5 @@ position = Vector2(660, 363)
 z_index = 10
 position = Vector2(1041, 359)
 
-[node name="Enemy3" parent="." instance=ExtResource("11_2ywx4")]
-z_index = 10
-position = Vector2(1381, 353)
+[node name="Transmit" parent="." instance=ExtResource("12_36wls")]
+position = Vector2(1384, 357)

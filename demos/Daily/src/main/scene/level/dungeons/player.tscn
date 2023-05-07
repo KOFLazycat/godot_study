@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bng1q4bokdmlx"]
+[gd_scene load_steps=12 format=3 uid="uid://bng1q4bokdmlx"]
 
 [ext_resource type="Texture2D" uid="uid://bflkby53exvt6" path="res://src/main/assets/texture/地下城资源/主角/idle1.png" id="1_noaba"]
 [ext_resource type="Script" path="res://src/main/scene/level/dungeons/player.gd" id="1_pbkje"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://x4e00emou1og" path="res://src/main/assets/texture/地下城资源/主角/run.png" id="4_n2dpx"]
 [ext_resource type="PackedScene" uid="uid://dtwynmcq7vhq4" path="res://src/main/scene/level/dungeons/bow.tscn" id="6_shn3u"]
 [ext_resource type="PackedScene" uid="uid://cwrd6ydvrhaw4" path="res://src/main/scene/level/dungeons/broadsword.tscn" id="7_n50gf"]
+[ext_resource type="PackedScene" uid="uid://bii7m1o6tj4u7" path="res://src/main/scene/level/dungeons/blood.tscn" id="8_r77fs"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0gjru"]
 animations = [{
@@ -37,7 +38,7 @@ animations = [{
 size = Vector2(31, 19.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bn2g3"]
-radius = 17.0294
+radius = 21.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
@@ -65,3 +66,8 @@ shape = SubResource("CircleShape2D_bn2g3")
 visible = false
 
 [node name="Broadsword" parent="." instance=ExtResource("7_n50gf")]
+
+[node name="Blood" parent="." instance=ExtResource("8_r77fs")]
+position = Vector2(-28, -51)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

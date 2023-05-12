@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ct38bxpljjjjb"]
+[gd_scene load_steps=25 format=3 uid="uid://ct38bxpljjjjb"]
 
 [ext_resource type="Texture2D" uid="uid://cqp85q66bp1yd" path="res://src/main/assets/texture/map/TX Plant.png" id="1_t80gq"]
 [ext_resource type="Texture2D" uid="uid://d2urjp3cltl16" path="res://src/main/assets/texture/map/TX Player.png" id="2_wra3t"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://cyh080ido4jbi" path="res://src/main/assets/texture/map/TX Tileset Wall.png" id="9_k14m1"]
 [ext_resource type="PackedScene" uid="uid://dc4s2546exwym" path="res://src/main/scene/role/player/cat/cat.tscn" id="10_60boa"]
 [ext_resource type="PackedScene" uid="uid://cbvwmsu3146eu" path="res://src/main/scene/role/enemy/kolbold_weak/enemy_kolbold_weak.tscn" id="11_arg28"]
+[ext_resource type="PackedScene" uid="uid://kq85dshoi03g" path="res://src/main/common/util/spawn/enemy_spawner.tscn" id="12_a2gem"]
+[ext_resource type="Script" path="res://src/main/common/util/spawn/spawn_info.gd" id="13_3xgr6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1nmf5"]
 texture = ExtResource("1_t80gq")
@@ -1455,6 +1457,14 @@ sources/16 = SubResource("TileSetAtlasSource_j6jjs")
 sources/17 = SubResource("TileSetAtlasSource_7o3ku")
 sources/18 = SubResource("TileSetAtlasSource_rvlq1")
 
+[sub_resource type="Resource" id="Resource_x2yrg"]
+script = ExtResource("13_3xgr6")
+time_start = 0.0
+time_end = 60.0
+enemy = ExtResource("11_arg28")
+enemy_num = 1.0
+enemy_spawn_delay = 1.0
+
 [node name="World" type="Node2D"]
 
 [node name="BackGround" type="TileMap" parent="."]
@@ -1479,7 +1489,9 @@ layer_2/tile_data = PackedInt32Array(1310754, 65546, 1, 1376290, 65546, 2, 14418
 metadata/_edit_lock_ = true
 
 [node name="Cat" parent="." instance=ExtResource("10_60boa")]
-position = Vector2(493, 413)
+position = Vector2(960, 540)
 
-[node name="EnemyKolboldWeak" parent="." instance=ExtResource("11_arg28")]
-position = Vector2(269, 330)
+[node name="Camera2D" type="Camera2D" parent="Cat"]
+
+[node name="EnemySpawner" parent="." instance=ExtResource("12_a2gem")]
+spawns = Array[ExtResource("13_3xgr6")]([SubResource("Resource_x2yrg")])

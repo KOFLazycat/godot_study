@@ -5,7 +5,6 @@
 [node name="Enemy_spawner" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_0hs40")
-spawns = []
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

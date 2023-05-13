@@ -247,6 +247,14 @@ wait_time = 1.5
 [node name="IceSpearAttackTimer" type="Timer" parent="Attack/IceSpearTimer"]
 wait_time = 0.075
 
+[node name="TornadoTimer" type="Timer" parent="Attack"]
+wait_time = 3.0
+
+[node name="TornadoAttackTimer" type="Timer" parent="Attack/TornadoTimer"]
+wait_time = 0.2
+
+[node name="JavelinBase" type="Node2D" parent="Attack"]
+
 [node name="DetectionBox" parent="." instance=ExtResource("4_ogkah")]
 collision_layer = 2
 collision_mask = 4
@@ -258,6 +266,8 @@ shape = SubResource("CircleShape2D_dr2xy")
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="timeout" from="Attack/IceSpearTimer" to="." method="_on_ice_spear_timer_timeout"]
 [connection signal="timeout" from="Attack/IceSpearTimer/IceSpearAttackTimer" to="." method="_on_ice_spear_attack_timer_timeout"]
+[connection signal="timeout" from="Attack/TornadoTimer" to="." method="_on_tornado_timer_timeout"]
+[connection signal="timeout" from="Attack/TornadoTimer/TornadoAttackTimer" to="." method="_on_tornado_attack_timer_timeout"]
 [connection signal="body_entered" from="DetectionBox" to="." method="_on_detection_box_body_entered"]
 [connection signal="body_exited" from="DetectionBox" to="." method="_on_detection_box_body_exited"]
 

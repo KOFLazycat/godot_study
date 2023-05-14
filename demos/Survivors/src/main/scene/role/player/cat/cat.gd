@@ -8,9 +8,15 @@ extends CharacterBody2D
 @onready var tornado_timer: Timer = $Attack/TornadoTimer
 @onready var tornado_attack_timer: Timer = $Attack/TornadoTimer/TornadoAttackTimer
 @onready var javelin_base: Node2D = $Attack/JavelinBase
+@onready var experience_bar: TextureProgressBar = $GUILayer/GUI/ExperienceBar
+@onready var label_level: Label = $GUILayer/GUI/ExperienceBar/LabelLevel
+
 
 @export var movement_speed: float = 400.0
 @export var hp: float = 80.0
+var experience: int = 0
+var experience_level: int = 1
+var collected_experience: int = 0
 
 #Attacks
 var ice_spear_tscn = preload("res://src/main/scene/role/bullet/ice_spear/ice_spear.tscn")
@@ -51,6 +57,7 @@ var last_movement: Vector2 = Vector2.UP
 
 func _ready() -> void:
 	attack()
+	set_expbar(experience, calculate_experiencecap())
 
 
 func _physics_process(delta):
@@ -164,3 +171,46 @@ func _on_tornado_attack_timer_timeout() -> void:
 			tornado_attack_timer.start()
 		else:
 			tornado_attack_timer.stop()
+
+
+func _on_grab_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("loot"):
+		area.target = self
+
+
+func _on_collect_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("loot"):
+		var gem_exp = area.grab()
+		calculate_experience(gem_exp)
+
+
+func calculate_experience(gem_exp: int) -> void:
+	var exp_required = calculate_experiencecap()
+	collected_experience += gem_exp
+	if experience + collected_experience >= exp_required: #level up
+		collected_experience -= exp_required-experience
+		experience_level += 1
+		label_level.text = str("Level: ", experience_level)
+		experience = 0
+		exp_required = calculate_experiencecap()
+#		levelup()
+	else:
+		experience += collected_experience
+		collected_experience = 0
+	
+	set_expbar(experience, exp_required)
+
+
+func calculate_experiencecap() -> int:
+	var exp_cap = 0
+	if experience_level < 20:
+		exp_cap = experience_level*5
+	elif experience_level < 40:
+		exp_cap = 95 + (experience_level-19)*8
+	else:
+		exp_cap = 255 + (experience_level-39)*12
+	return exp_cap
+
+func set_expbar(set_value: int = 1, set_max_value: int = 100):
+	experience_bar.value = set_value
+	experience_bar.max_value = set_max_value

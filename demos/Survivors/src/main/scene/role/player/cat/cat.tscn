@@ -1,9 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://dc4s2546exwym"]
+[gd_scene load_steps=25 format=3 uid="uid://dc4s2546exwym"]
 
 [ext_resource type="Script" path="res://src/main/scene/role/player/cat/cat.gd" id="1_6wem7"]
 [ext_resource type="Texture2D" uid="uid://rflr7p5ft7jh" path="res://src/main/assets/texture/role/player/cat/Cat Sprite Sheet.png" id="2_vg7rj"]
 [ext_resource type="PackedScene" uid="uid://cgn4aqfmy6o7x" path="res://src/main/common/util/hurtbox/hurt_box.tscn" id="3_sxdas"]
 [ext_resource type="PackedScene" uid="uid://biujvetdqdbsl" path="res://src/main/common/util/detection/detection_box.tscn" id="4_ogkah"]
+[ext_resource type="Texture2D" uid="uid://dexlh22o67s3s" path="res://src/main/assets/texture/GUI/exp_background.png" id="5_mmof0"]
+[ext_resource type="Texture2D" uid="uid://c1fc2btpwbq33" path="res://src/main/assets/texture/GUI/exp_progress.png" id="6_r44oc"]
+[ext_resource type="FontFile" uid="uid://cah4xl5efry1d" path="res://src/main/assets/font/tenderness.otf" id="7_rt7go"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_laalu"]
 size = Vector2(7, 4.5)
@@ -207,6 +210,11 @@ size = Vector2(10, 7)
 [sub_resource type="CircleShape2D" id="CircleShape2D_dr2xy"]
 radius = 180.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_feakw"]
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eij1f"]
+
 [node name="Cat" type="CharacterBody2D" groups=["player"]]
 y_sort_enabled = true
 scale = Vector2(2, 2)
@@ -263,6 +271,47 @@ monitorable = false
 [node name="CollisionShape2D" parent="DetectionBox" index="0"]
 shape = SubResource("CircleShape2D_dr2xy")
 
+[node name="GrabArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabArea"]
+shape = SubResource("CircleShape2D_feakw")
+
+[node name="CollectArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea"]
+shape = SubResource("CircleShape2D_eij1f")
+
+[node name="GUILayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" type="Control" parent="GUILayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ExperienceBar" type="TextureProgressBar" parent="GUILayer/GUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+value = 50.0
+texture_under = ExtResource("5_mmof0")
+texture_progress = ExtResource("6_r44oc")
+
+[node name="LabelLevel" type="Label" parent="GUILayer/GUI/ExperienceBar"]
+layout_mode = 0
+offset_left = 540.0
+offset_right = 640.0
+offset_bottom = 20.0
+theme_override_fonts/font = ExtResource("7_rt7go")
+theme_override_font_sizes/font_size = 16
+text = "Level: 1"
+horizontal_alignment = 1
+vertical_alignment = 2
+
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="timeout" from="Attack/IceSpearTimer" to="." method="_on_ice_spear_timer_timeout"]
 [connection signal="timeout" from="Attack/IceSpearTimer/IceSpearAttackTimer" to="." method="_on_ice_spear_attack_timer_timeout"]
@@ -270,6 +319,8 @@ shape = SubResource("CircleShape2D_dr2xy")
 [connection signal="timeout" from="Attack/TornadoTimer/TornadoAttackTimer" to="." method="_on_tornado_attack_timer_timeout"]
 [connection signal="body_entered" from="DetectionBox" to="." method="_on_detection_box_body_entered"]
 [connection signal="body_exited" from="DetectionBox" to="." method="_on_detection_box_body_exited"]
+[connection signal="area_entered" from="GrabArea" to="." method="_on_grab_area_area_entered"]
+[connection signal="area_entered" from="CollectArea" to="." method="_on_collect_area_area_entered"]
 
 [editable path="HurtBox"]
 [editable path="DetectionBox"]

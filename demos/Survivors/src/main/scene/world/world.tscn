@@ -1492,6 +1492,9 @@ metadata/_edit_lock_ = true
 position = Vector2(960, 540)
 
 [node name="Camera2D" type="Camera2D" parent="Cat"]
+zoom = Vector2(3, 3)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("12_a2gem")]
 spawns = Array[ExtResource("13_3xgr6")]([SubResource("Resource_x2yrg")])
+
+[node name="Loot" type="Node2D" parent="." groups=["loot"]]

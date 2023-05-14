@@ -35,6 +35,7 @@ autostart = true
 
 [node name="SndAttack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_vmvek")
+volume_db = -10.0
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="ChangeDirectionTimer" to="." method="_on_change_direction_timer_timeout"]

@@ -188,11 +188,12 @@ func calculate_experience(gem_exp: int) -> void:
 	var exp_required = calculate_experiencecap()
 	collected_experience += gem_exp
 	if experience + collected_experience >= exp_required: #level up
-		collected_experience -= exp_required-experience
 		experience_level += 1
+		collected_experience -= exp_required-experience
 		label_level.text = str("Level: ", experience_level)
 		experience = 0
 		exp_required = calculate_experiencecap()
+		calculate_experience(0)
 #		levelup()
 	else:
 		experience += collected_experience

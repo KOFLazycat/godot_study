@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ct38bxpljjjjb"]
+[gd_scene load_steps=26 format=3 uid="uid://ct38bxpljjjjb"]
 
 [ext_resource type="Texture2D" uid="uid://cqp85q66bp1yd" path="res://src/main/assets/texture/map/TX Plant.png" id="1_t80gq"]
 [ext_resource type="Texture2D" uid="uid://d2urjp3cltl16" path="res://src/main/assets/texture/map/TX Player.png" id="2_wra3t"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cbvwmsu3146eu" path="res://src/main/scene/role/enemy/kolbold_weak/enemy_kolbold_weak.tscn" id="11_arg28"]
 [ext_resource type="PackedScene" uid="uid://kq85dshoi03g" path="res://src/main/common/util/spawn/enemy_spawner.tscn" id="12_a2gem"]
 [ext_resource type="Script" path="res://src/main/common/util/spawn/spawn_info.gd" id="13_3xgr6"]
+[ext_resource type="PackedScene" uid="uid://cnxl0r2x5h2n5" path="res://src/main/scene/role/gem/experience_gem.tscn" id="14_ky6or"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1nmf5"]
 texture = ExtResource("1_t80gq")
@@ -1492,8 +1493,13 @@ metadata/_edit_lock_ = true
 position = Vector2(960, 540)
 
 [node name="Camera2D" type="Camera2D" parent="Cat"]
+zoom = Vector2(3, 3)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("12_a2gem")]
 spawns = Array[ExtResource("13_3xgr6")]([SubResource("Resource_x2yrg")])
 
 [node name="Loot" type="Node2D" parent="." groups=["loot"]]
+
+[node name="ExperienceGem" parent="Loot" instance=ExtResource("14_ky6or")]
+position = Vector2(789, 440)
+experience = 10

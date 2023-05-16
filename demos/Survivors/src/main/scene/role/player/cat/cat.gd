@@ -10,6 +10,11 @@ extends CharacterBody2D
 @onready var javelin_base: Node2D = $Attack/JavelinBase
 @onready var experience_bar: TextureProgressBar = $GUILayer/GUI/ExperienceBar
 @onready var label_level: Label = $GUILayer/GUI/ExperienceBar/LabelLevel
+@onready var level_up: Panel = $GUILayer/GUI/LevelUp
+@onready var label_level_up: Label = $GUILayer/GUI/LevelUp/LabelLevelUp
+@onready var upgrade_options_vbox: VBoxContainer = $GUILayer/GUI/LevelUp/UpgradeOptions
+@onready var snd_level_up: AudioStreamPlayer = $GUILayer/GUI/LevelUp/SndLevelUp
+@onready var item_option_tscn = preload("res://src/main/scene/role/item/item_option.tscn")
 
 
 @export var movement_speed: float = 400.0
@@ -194,7 +199,7 @@ func calculate_experience(gem_exp: int) -> void:
 		experience = 0
 		exp_required = calculate_experiencecap()
 		calculate_experience(0)
-#		levelup()
+		levelup()
 	else:
 		experience += collected_experience
 		collected_experience = 0
@@ -215,3 +220,110 @@ func calculate_experiencecap() -> int:
 func set_expbar(set_value: int = 1, set_max_value: int = 100):
 	experience_bar.value = set_value
 	experience_bar.max_value = set_max_value
+
+#@onready var level_up: Panel = $GUILayer/GUI/LevelUp
+#@onready var label_level_up: Label = $GUILayer/GUI/LevelUp/LabelLevelUp
+#@onready var upgrade_options_vbox: VBoxContainer = $GUILayer/GUI/LevelUp/UpgradeOptions
+#@onready var snd_level_up: AudioStreamPlayer = $GUILayer/GUI/LevelUp/SndLevelUp
+func levelup() -> void:
+	snd_level_up.play()
+	label_level_up.text = str("Level: ", experience_level)
+	var tween = level_up.create_tween()
+	tween.tween_property(level_up, "position", Vector2(220, 50), 0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
+	tween.play()
+	level_up.visible = true
+	
+	var options = 0
+	var optionsmax = 3
+	while options < optionsmax:
+		var item_option = item_option_tscn.instantiate()
+#		item_option.item = get_random_item()
+		upgrade_options_vbox.add_child(item_option)
+		options += 1
+	
+	get_tree().paused = true
+
+
+func upgrade_character(upgrade):
+	match upgrade:
+		"icespear1":
+			ice_spear_level = 1
+			ice_spear_baseammo += 1
+		"icespear2":
+			ice_spear_level = 2
+			ice_spear_baseammo += 1
+		"icespear3":
+			ice_spear_level = 3
+		"icespear4":
+			ice_spear_level = 4
+			ice_spear_baseammo += 2
+		"tornado1":
+			tornado_level = 1
+			tornado_baseammo += 1
+		"tornado2":
+			tornado_level = 2
+			tornado_baseammo += 1
+		"tornado3":
+			tornado_level = 3
+			tornado_attackspeed -= 0.5
+		"tornado4":
+			tornado_level = 4
+			tornado_baseammo += 1
+		"javelin1":
+			javelin_level = 1
+			javelin_ammo = 1
+		"javelin2":
+			javelin_level = 2
+		"javelin3":
+			javelin_level = 3
+		"javelin4":
+			javelin_level = 4
+		"armor1","armor2","armor3","armor4":
+			armor += 1
+		"speed1","speed2","speed3","speed4":
+			movement_speed += 20.0
+		"tome1","tome2","tome3","tome4":
+			spell_size += 0.10
+		"scroll1","scroll2","scroll3","scroll4":
+			spell_cooldown += 0.05
+		"ring1","ring2":
+			additional_attacks += 1
+		"food":
+			hp += 20
+#			hp = clamp(hp,0,maxhp)
+#	adjust_gui_collection(upgrade)
+	attack()
+	var option_children = upgrade_options_vbox.get_children()
+	for i in option_children:
+		i.queue_free()
+	upgrade_options.clear()
+	collected_upgrades.append(upgrade)
+	level_up.visible = false
+	level_up.position = Vector2(800,50)
+	get_tree().paused = false
+	calculate_experience(0)
+
+
+#func get_random_item():
+#	var dblist = []
+#	for i in UpgradeDb.UPGRADES:
+#		if i in collected_upgrades: #Find already collected upgrades
+#			pass
+#		elif i in upgrade_options: #If the upgrade is already an option
+#			pass
+#		elif UpgradeDb.UPGRADES[i]["type"] == "item": #Don't pick food
+#			pass
+#		elif UpgradeDb.UPGRADES[i]["prerequisite"].size() > 0: #Check for PreRequisites
+#			for n in UpgradeDb.UPGRADES[i]["prerequisite"]:
+#				if not n in collected_upgrades:
+#					pass
+#				else:
+#					dblist.append(i)
+#		else: #If there are no prequisites
+#			dblist.append(i)
+#	if dblist.size() > 0:
+#		var randomitem = dblist[randi_range(0,dblist.size()-1)]
+#		upgrade_options.append(randomitem)
+#		return randomitem
+#	else:
+#		return null

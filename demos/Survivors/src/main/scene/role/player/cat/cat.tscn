@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dc4s2546exwym"]
+[gd_scene load_steps=26 format=3 uid="uid://dc4s2546exwym"]
 
 [ext_resource type="Script" path="res://src/main/scene/role/player/cat/cat.gd" id="1_6wem7"]
 [ext_resource type="Texture2D" uid="uid://rflr7p5ft7jh" path="res://src/main/assets/texture/role/player/cat/Cat Sprite Sheet.png" id="2_vg7rj"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dexlh22o67s3s" path="res://src/main/assets/texture/GUI/exp_background.png" id="5_mmof0"]
 [ext_resource type="Texture2D" uid="uid://c1fc2btpwbq33" path="res://src/main/assets/texture/GUI/exp_progress.png" id="6_r44oc"]
 [ext_resource type="FontFile" uid="uid://cah4xl5efry1d" path="res://src/main/assets/font/tenderness.otf" id="7_rt7go"]
+[ext_resource type="AudioStream" uid="uid://cghwx0grkgbw6" path="res://src/main/assets/sound/SoundEffect/levelup.ogg" id="8_p5jnp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_laalu"]
 size = Vector2(7, 4.5)
@@ -311,6 +312,37 @@ theme_override_font_sizes/font_size = 16
 text = "Level: 1"
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="LevelUp" type="Panel" parent="GUILayer/GUI"]
+process_mode = 2
+visible = false
+layout_mode = 0
+offset_left = 220.0
+offset_top = 50.0
+offset_right = 420.0
+offset_bottom = 300.0
+
+[node name="LabelLevelUp" type="Label" parent="GUILayer/GUI/LevelUp"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 50.0
+theme_override_fonts/font = ExtResource("7_rt7go")
+text = "Level Up!
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradeOptions" type="VBoxContainer" parent="GUILayer/GUI/LevelUp"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = 190.0
+offset_bottom = 100.0
+
+[node name="SndLevelUp" type="AudioStreamPlayer" parent="GUILayer/GUI/LevelUp"]
+stream = ExtResource("8_p5jnp")
+volume_db = -10.0
+pitch_scale = 2.0
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="timeout" from="Attack/IceSpearTimer" to="." method="_on_ice_spear_timer_timeout"]

@@ -1491,9 +1491,8 @@ metadata/_edit_lock_ = true
 
 [node name="Cat" parent="." instance=ExtResource("10_60boa")]
 position = Vector2(960, 540)
-
-[node name="Camera2D" type="Camera2D" parent="Cat"]
-zoom = Vector2(3, 3)
+movement_speed = 400.0
+hp = 50.0
 
 [node name="EnemySpawner" parent="." instance=ExtResource("12_a2gem")]
 spawns = Array[ExtResource("13_3xgr6")]([SubResource("Resource_x2yrg")])
@@ -1502,4 +1501,12 @@ spawns = Array[ExtResource("13_3xgr6")]([SubResource("Resource_x2yrg")])
 
 [node name="ExperienceGem" parent="Loot" instance=ExtResource("14_ky6or")]
 position = Vector2(789, 440)
+experience = 10
+
+[node name="ExperienceGem2" parent="Loot" instance=ExtResource("14_ky6or")]
+position = Vector2(1043, 409)
+experience = 10
+
+[node name="ExperienceGem3" parent="Loot" instance=ExtResource("14_ky6or")]
+position = Vector2(773, 585)
 experience = 10

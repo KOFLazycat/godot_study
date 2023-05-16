@@ -224,6 +224,9 @@ collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_6wem7")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1.25)
 shape = SubResource("RectangleShape2D_laalu")
@@ -296,8 +299,9 @@ offset_bottom = 40.0
 
 [node name="ExperienceBar" type="TextureProgressBar" parent="GUILayer/GUI"]
 layout_mode = 0
-offset_right = 40.0
+offset_right = 640.0
 offset_bottom = 40.0
+scale = Vector2(3, 3)
 value = 50.0
 texture_under = ExtResource("5_mmof0")
 texture_progress = ExtResource("6_r44oc")
@@ -317,10 +321,11 @@ vertical_alignment = 2
 process_mode = 2
 visible = false
 layout_mode = 0
-offset_left = 220.0
-offset_top = 50.0
-offset_right = 420.0
-offset_bottom = 300.0
+offset_left = 850.0
+offset_top = -470.0
+offset_right = 1050.0
+offset_bottom = -220.0
+scale = Vector2(2, 2)
 
 [node name="LabelLevelUp" type="Label" parent="GUILayer/GUI/LevelUp"]
 layout_mode = 0

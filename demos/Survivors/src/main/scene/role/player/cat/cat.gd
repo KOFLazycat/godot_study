@@ -18,7 +18,8 @@ extends CharacterBody2D
 
 
 @export var movement_speed: float = 400.0
-@export var hp: float = 80.0
+@export var hp: float = 50.0
+var maxhp: float = 50.0
 var experience: int = 0
 var experience_level: int = 1
 var collected_experience: int = 0
@@ -39,19 +40,19 @@ var additional_attacks = 0
 
 #IceSpear
 var ice_spear_ammo: int = 0
-var ice_spear_baseammo: int = 1
+var ice_spear_baseammo: int = 0
 var ice_spear_attackspeed: float = 1.5
 var ice_spear_level: int = 0
 
 #Tornado
 var tornado_ammo: int = 0
-var tornado_baseammo: int = 1
+var tornado_baseammo: int = 0
 var tornado_attackspeed: float = 3.0
 var tornado_level: int = 0
 
 #Javelins
-var javelin_ammo = 1
-var javelin_level = 1
+var javelin_ammo = 0
+var javelin_level = 0
 
 
 #Enemy Related
@@ -63,6 +64,7 @@ var last_movement: Vector2 = Vector2.UP
 func _ready() -> void:
 	attack()
 	set_expbar(experience, calculate_experiencecap())
+	upgrade_character("icespear1")
 
 
 func _physics_process(delta):
@@ -91,11 +93,11 @@ func movement():
 
 func attack() -> void:
 	if ice_spear_level > 0:
-		ice_spear_timer.wait_time = ice_spear_attackspeed
+		ice_spear_timer.wait_time = ice_spear_attackspeed * (1 - spell_cooldown)
 		if ice_spear_timer.is_stopped():
 			ice_spear_timer.start()
 	if tornado_level > 0:
-		tornado_timer.wait_time = tornado_attackspeed
+		tornado_timer.wait_time = tornado_attackspeed * (1 - spell_cooldown)
 		if tornado_timer.is_stopped():
 			tornado_timer.start()
 	if javelin_level > 0:
@@ -103,12 +105,11 @@ func attack() -> void:
 
 
 func _on_hurt_box_hurt(damage, _knockback_amount: float, _angle: Vector2) -> void:
-	hp -= damage
-	print(hp)
+	hp -= clamp(damage - armor, 1.0, 999.0)
 
 
 func _on_ice_spear_timer_timeout() -> void:
-	ice_spear_ammo += ice_spear_baseammo
+	ice_spear_ammo += ice_spear_baseammo + additional_attacks
 	ice_spear_attack_timer.start()
 
 
@@ -136,7 +137,7 @@ func get_random_target() -> Vector2:
 
 func spawn_javelin():
 	var javelins = javelin_base.get_children()
-	var calc_spawns = (javelin_ammo+additional_attacks) - javelins.size()
+	var calc_spawns = (javelin_ammo + additional_attacks) - javelins.size()
 	while calc_spawns > 0:
 		var javelin = javelin_tscn.instantiate()
 		javelin.global_position = global_position
@@ -160,7 +161,7 @@ func _on_detection_box_body_exited(body: Node2D) -> void:
 
 
 func _on_tornado_timer_timeout() -> void:
-	tornado_ammo += tornado_baseammo
+	tornado_ammo += tornado_baseammo  + additional_attacks
 	tornado_attack_timer.start()
 
 
@@ -195,7 +196,6 @@ func calculate_experience(gem_exp: int) -> void:
 	if experience + collected_experience >= exp_required: #level up
 		experience_level += 1
 		collected_experience -= exp_required-experience
-		label_level.text = str("Level: ", experience_level)
 		experience = 0
 		exp_required = calculate_experiencecap()
 		calculate_experience(0)
@@ -221,26 +221,22 @@ func set_expbar(set_value: int = 1, set_max_value: int = 100):
 	experience_bar.value = set_value
 	experience_bar.max_value = set_max_value
 
-#@onready var level_up: Panel = $GUILayer/GUI/LevelUp
-#@onready var label_level_up: Label = $GUILayer/GUI/LevelUp/LabelLevelUp
-#@onready var upgrade_options_vbox: VBoxContainer = $GUILayer/GUI/LevelUp/UpgradeOptions
-#@onready var snd_level_up: AudioStreamPlayer = $GUILayer/GUI/LevelUp/SndLevelUp
+
 func levelup() -> void:
 	snd_level_up.play()
-	label_level_up.text = str("Level: ", experience_level)
-	var tween = level_up.create_tween()
-	tween.tween_property(level_up, "position", Vector2(220, 50), 0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
-	tween.play()
-	level_up.visible = true
-	
+	label_level.text = str("Level: ", experience_level)
 	var options = 0
 	var optionsmax = 3
 	while options < optionsmax:
 		var item_option = item_option_tscn.instantiate()
-#		item_option.item = get_random_item()
+		item_option.item = get_random_item()
 		upgrade_options_vbox.add_child(item_option)
 		options += 1
-	
+		
+	var tween = level_up.create_tween()
+	tween.tween_property(level_up, "position", Vector2(850, 270), 0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
+	tween.play()
+	level_up.visible = true
 	get_tree().paused = true
 
 
@@ -290,7 +286,7 @@ func upgrade_character(upgrade):
 			additional_attacks += 1
 		"food":
 			hp += 20
-#			hp = clamp(hp,0,maxhp)
+			hp = clamp(hp, 0, maxhp)
 #	adjust_gui_collection(upgrade)
 	attack()
 	var option_children = upgrade_options_vbox.get_children()
@@ -299,31 +295,50 @@ func upgrade_character(upgrade):
 	upgrade_options.clear()
 	collected_upgrades.append(upgrade)
 	level_up.visible = false
-	level_up.position = Vector2(800,50)
+	level_up.position = Vector2(850, -470)
 	get_tree().paused = false
 	calculate_experience(0)
 
 
-#func get_random_item():
-#	var dblist = []
-#	for i in UpgradeDb.UPGRADES:
-#		if i in collected_upgrades: #Find already collected upgrades
-#			pass
-#		elif i in upgrade_options: #If the upgrade is already an option
-#			pass
-#		elif UpgradeDb.UPGRADES[i]["type"] == "item": #Don't pick food
-#			pass
-#		elif UpgradeDb.UPGRADES[i]["prerequisite"].size() > 0: #Check for PreRequisites
-#			for n in UpgradeDb.UPGRADES[i]["prerequisite"]:
-#				if not n in collected_upgrades:
-#					pass
-#				else:
-#					dblist.append(i)
-#		else: #If there are no prequisites
-#			dblist.append(i)
-#	if dblist.size() > 0:
-#		var randomitem = dblist[randi_range(0,dblist.size()-1)]
-#		upgrade_options.append(randomitem)
-#		return randomitem
-#	else:
-#		return null
+func get_random_item():
+	var dblist = []
+	for i in UpgradeDb.UPGRADES:
+		if i in collected_upgrades: #Find already collected upgrades
+			pass
+		elif i in upgrade_options: #If the upgrade is already an option
+			pass
+		elif UpgradeDb.UPGRADES[i]["type"] == "item": #Don't pick food
+			pass
+		elif UpgradeDb.UPGRADES[i]["prerequisite"].size() > 0: #Check for PreRequisites
+			var is_able_add: bool = true
+			for n in UpgradeDb.UPGRADES[i]["prerequisite"]:
+				if not n in collected_upgrades:
+					is_able_add = false
+					break
+			if is_able_add == true:
+				dblist.append(i)
+		else: #If there are no prequisites
+			dblist.append(i)
+	if dblist.size() > 0:
+		var randomitem = dblist[randi_range(0,dblist.size()-1)]
+		upgrade_options.append(randomitem)
+		return randomitem
+	else:
+		return null
+
+
+#func adjust_gui_collection(upgrade):
+#	var get_upgraded_displaynames = UpgradeDb.UPGRADES[upgrade]["displayname"]
+#	var get_type = UpgradeDb.UPGRADES[upgrade]["type"]
+#	if get_type != "item":
+#		var get_collected_displaynames = []
+#		for i in collected_upgrades:
+#			get_collected_displaynames.append(UpgradeDb.UPGRADES[i]["displayname"])
+#		if not get_upgraded_displaynames in get_collected_displaynames:
+#			var new_item = collectedItems.instantiate()
+#			new_item.upgrade = upgrade
+#			match get_type:
+#				"weapon":
+#					collectedWeapons.add_child(new_item)
+#				"upgrade":
+#					collectedUpgrades.add_child(new_item)

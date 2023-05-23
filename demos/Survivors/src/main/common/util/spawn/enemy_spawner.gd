@@ -7,11 +7,11 @@ extends Node2D
 
 var time: float = 0
 
-signal changetime(time)
+signal change_time(time)
 
 func _ready() -> void:
 	timer.start(interval)
-#	connect("changetime", Callable(player, "change_time"))
+	connect("change_time", Callable(player, "change_time"))
 
 
 func _on_timer_timeout() -> void:
@@ -30,7 +30,7 @@ func _on_timer_timeout() -> void:
 					enemy_spawn.global_position = get_random_position()
 					add_child(enemy_spawn)
 					counter += 1
-#	emit_signal("changetime", time)
+	emit_signal("change_time", time)
 
 
 func get_random_position(up: bool = true, down: bool = true, left: bool = true, right: bool = true):

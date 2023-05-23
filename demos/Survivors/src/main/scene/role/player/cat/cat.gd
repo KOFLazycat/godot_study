@@ -14,7 +14,12 @@ extends CharacterBody2D
 @onready var label_level_up: Label = $GUILayer/GUI/LevelUp/LabelLevelUp
 @onready var upgrade_options_vbox: VBoxContainer = $GUILayer/GUI/LevelUp/UpgradeOptions
 @onready var snd_level_up: AudioStreamPlayer = $GUILayer/GUI/LevelUp/SndLevelUp
+@onready var health_bar: TextureProgressBar = $GUILayer/GUI/HealthBar
+@onready var label_time: Label = $GUILayer/GUI/LabelTime
+@onready var collected_weapon: GridContainer = $GUILayer/GUI/CollectedWeapon
+@onready var collected_upgrade: GridContainer = $GUILayer/GUI/CollectedUpgrade
 @onready var item_option_tscn = preload("res://src/main/scene/role/item/item_option.tscn")
+@onready var item_container_tscn = preload("res://src/main/scene/ui/Item/item_container.tscn")
 
 
 @export var movement_speed: float = 400.0
@@ -23,6 +28,7 @@ var maxhp: float = 50.0
 var experience: int = 0
 var experience_level: int = 1
 var collected_experience: int = 0
+var time: int = 0
 
 #Attacks
 var ice_spear_tscn = preload("res://src/main/scene/role/bullet/ice_spear/ice_spear.tscn")
@@ -65,6 +71,8 @@ func _ready() -> void:
 	attack()
 	set_expbar(experience, calculate_experiencecap())
 	upgrade_character("icespear1")
+	health_bar.max_value = maxhp
+	health_bar.value = hp
 
 
 func _physics_process(delta):
@@ -106,6 +114,7 @@ func attack() -> void:
 
 func _on_hurt_box_hurt(damage, _knockback_amount: float, _angle: Vector2) -> void:
 	hp -= clamp(damage - armor, 1.0, 999.0)
+	health_bar.value = hp
 
 
 func _on_ice_spear_timer_timeout() -> void:
@@ -287,7 +296,7 @@ func upgrade_character(upgrade):
 		"food":
 			hp += 20
 			hp = clamp(hp, 0, maxhp)
-#	adjust_gui_collection(upgrade)
+	adjust_gui_collection(upgrade)
 	attack()
 	var option_children = upgrade_options_vbox.get_children()
 	for i in option_children:
@@ -327,18 +336,31 @@ func get_random_item():
 		return null
 
 
-#func adjust_gui_collection(upgrade):
-#	var get_upgraded_displaynames = UpgradeDb.UPGRADES[upgrade]["displayname"]
-#	var get_type = UpgradeDb.UPGRADES[upgrade]["type"]
-#	if get_type != "item":
-#		var get_collected_displaynames = []
-#		for i in collected_upgrades:
-#			get_collected_displaynames.append(UpgradeDb.UPGRADES[i]["displayname"])
-#		if not get_upgraded_displaynames in get_collected_displaynames:
-#			var new_item = collectedItems.instantiate()
-#			new_item.upgrade = upgrade
-#			match get_type:
-#				"weapon":
-#					collectedWeapons.add_child(new_item)
-#				"upgrade":
-#					collectedUpgrades.add_child(new_item)
+func change_time(arg_time: int) -> void:
+	time = arg_time
+	var time_m: int = int(time/60)
+	var time_s: int = int(time%60)
+	var time_m_str: String = "00"
+	var time_s_str: String = "00"
+	if time_m < 10:
+		time_m_str = str("0", time_m)
+	if time_s < 10:
+		time_s_str = str("0", time_s)
+	label_time.text = str(time_m_str, ":", time_s_str)
+
+
+func adjust_gui_collection(upgrade):
+	var get_upgraded_displayname = UpgradeDb.UPGRADES[upgrade]["displayname"]
+	var get_type = UpgradeDb.UPGRADES[upgrade]["type"]
+	if get_type != "item":
+		var get_collected_displaynames = []
+		for i in collected_upgrades:
+			get_collected_displaynames.append(UpgradeDb.UPGRADES[i]["displayname"])
+		if not get_upgraded_displayname in get_collected_displaynames:
+			var item_container = item_container_tscn.instantiate()
+			item_container.upgrade = upgrade
+			match get_type:
+				"weapon":
+					collected_weapon.add_child(item_container)
+				"upgrade":
+					collected_upgrade.add_child(item_container)

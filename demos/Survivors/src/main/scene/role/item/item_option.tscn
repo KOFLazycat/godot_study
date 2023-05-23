@@ -47,8 +47,9 @@ offset_top = 27.0
 offset_right = 166.0
 offset_bottom = 48.0
 theme_override_fonts/font = ExtResource("2_to20f")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 9
 text = "Description of Item"
+autowrap_mode = 3
 
 [node name="LabelLevel" type="Label" parent="."]
 layout_mode = 0

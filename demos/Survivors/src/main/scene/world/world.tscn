@@ -1491,8 +1491,6 @@ metadata/_edit_lock_ = true
 
 [node name="Cat" parent="." instance=ExtResource("10_60boa")]
 position = Vector2(960, 540)
-movement_speed = 400.0
-hp = 50.0
 
 [node name="EnemySpawner" parent="." instance=ExtResource("12_a2gem")]
 spawns = Array[ExtResource("13_3xgr6")]([SubResource("Resource_x2yrg")])

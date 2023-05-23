@@ -1,25 +1,27 @@
 extends CharacterBody2D
 
+@export var movement_speed: float = 20.0
+@export var hp: float = 10.0
+@export var knockback_recovery: float = 3.5
+@export var experience: int = 1
+@export var enemy_damage: float = 1.0
 
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var loot_base = get_tree().get_first_node_in_group("loot")
 @onready var sprite_2d = $Sprite2D
 @onready var animation_player = $AnimationPlayer
 @onready var sng_hit: AudioStreamPlayer = $SngHit
-@onready var explosion_tscn = preload("res://src/main/scene/role/enemy/kolbold_weak/explosion.tscn")
+@onready var hit_box: Area2D = $HitBox
+@onready var explosion_tscn = preload("res://src/main/scene/role/enemy/explosion.tscn")
 @onready var experience_gem_tscn = preload("res://src/main/scene/role/gem/experience_gem.tscn")
 
-
-@export var movement_speed: float = 20.0
-@export var hp: float = 10.0
-@export var knockback_recovery: float = 3.5
-@export var experience = 1
 var knockback: Vector2 = Vector2.ZERO
 
 #signal remove_from_array(obj)
 
 func _ready():
 	animation_player.play("walk")
+	hit_box.damage = enemy_damage
 
 
 func _physics_process(_delta):

@@ -18,11 +18,16 @@ extends CharacterBody2D
 @onready var label_time: Label = $GUILayer/GUI/LabelTime
 @onready var collected_weapon: GridContainer = $GUILayer/GUI/CollectedWeapon
 @onready var collected_upgrade: GridContainer = $GUILayer/GUI/CollectedUpgrade
+@onready var death_panel: Panel = $GUILayer/GUI/DeathPanel
+@onready var btn_menu: Button = $GUILayer/GUI/DeathPanel/BtnMenu
+@onready var label_result: Label = %LabelResult
+@onready var snd_victory: AudioStreamPlayer = %SndVictory
+@onready var snd_lose: AudioStreamPlayer = %SndLose
 @onready var item_option_tscn = preload("res://src/main/scene/role/item/item_option.tscn")
-@onready var item_container_tscn = preload("res://src/main/scene/ui/Item/item_container.tscn")
+@onready var item_container_tscn = preload("res://src/main/scene/ui/item/item_container.tscn")
 
 
-@export var movement_speed: float = 400.0
+@export var movement_speed: float = 100.0
 @export var hp: float = 50.0
 var maxhp: float = 50.0
 var experience: int = 0
@@ -66,6 +71,7 @@ var enemy_close = []
 
 var last_movement: Vector2 = Vector2.UP
 
+signal player_death()
 
 func _ready() -> void:
 	attack()
@@ -115,6 +121,8 @@ func attack() -> void:
 func _on_hurt_box_hurt(damage, _knockback_amount: float, _angle: Vector2) -> void:
 	hp -= clamp(damage - armor, 1.0, 999.0)
 	health_bar.value = hp
+	if hp <= 0:
+		death()
 
 
 func _on_ice_spear_timer_timeout() -> void:
@@ -340,8 +348,8 @@ func change_time(arg_time: int) -> void:
 	time = arg_time
 	var time_m: int = int(time/60)
 	var time_s: int = int(time%60)
-	var time_m_str: String = "00"
-	var time_s_str: String = "00"
+	var time_m_str: String = str(time_m)
+	var time_s_str: String = str(time_s)
 	if time_m < 10:
 		time_m_str = str("0", time_m)
 	if time_s < 10:
@@ -364,3 +372,25 @@ func adjust_gui_collection(upgrade):
 					collected_weapon.add_child(item_container)
 				"upgrade":
 					collected_upgrade.add_child(item_container)
+
+#@onready var death_panel: Panel = $GUILayer/GUI/Deathpanel
+#@onready var label_result: Label = $GUILayer/GUI/Deathpanel/LabelResult
+#@onready var snd_victory: AudioStreamPlayer = $GUILayer/GUI/Deathpanel/SndVictory
+#@onready var snd_lose: AudioStreamPlayer = $GUILayer/GUI/Deathpanel/SndLose
+#@onready var btn_menu: Button = $GUILayer/GUI/Deathpanel/BtnMenu
+func death() -> void:
+	death_panel.visible = true
+	get_tree().paused = true
+	emit_signal("player_death")
+	var tween = death_panel.create_tween()
+	tween.tween_property(death_panel, "position", Vector2(850, 270), 1).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
+	tween.play()
+	if time >= 300:
+		snd_victory.play()
+	else:
+		snd_lose.play()
+
+
+func _on_btn_menu_click_end() -> void:
+	get_tree().paused = true
+	get_tree().change_scene_to_file("res://src/main/scene/ui/menu/menu.tscn")

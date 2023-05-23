@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://27p36wncv7u7"]
 
 [ext_resource type="Texture2D" uid="uid://t3jsq75r7wju" path="res://src/main/assets/texture/role/enemy/explosion_pixelfied.png" id="1_6agbb"]
-[ext_resource type="Script" path="res://src/main/scene/role/enemy/kolbold_weak/explosion.gd" id="2_dkgdr"]
+[ext_resource type="Script" path="res://src/main/scene/role/enemy/explosion.gd" id="2_dkgdr"]
 [ext_resource type="AudioStream" uid="uid://bu7l5xdc1bwbx" path="res://src/main/assets/sound/SoundEffect/enemy_death.ogg" id="3_kc072"]
 
 [sub_resource type="Animation" id="Animation_tv6uo"]

@@ -5,13 +5,13 @@ extends Node2D
 @export var spawns: Array[SpawnInfo] = []
 @export var interval: float = 1.0
 
-var time: float = 0
+@export var time: float = 0
 
 signal change_time(time)
 
 func _ready() -> void:
-	timer.start(interval)
 	connect("change_time", Callable(player, "change_time"))
+	timer.start(interval)
 
 
 func _on_timer_timeout() -> void:

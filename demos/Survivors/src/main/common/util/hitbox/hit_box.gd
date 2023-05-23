@@ -8,7 +8,7 @@ extends Area2D
 # 冷却时间
 @export var disable_interval: float = 1.0
 # 碰撞伤害值
-@export var damage: float = 1
+@export var damage: float = 1.0
 
 
 func temp_disable() -> void:

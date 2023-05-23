@@ -66,7 +66,6 @@ func _physics_process(delta: float) -> void:
 
 func enemy_hit(charge: float = 1.0) -> void:
 	hp -= charge
-	print(hp)
 	if hp <= 0:
 		emit_signal("remove_from_array", self)
 		queue_free()

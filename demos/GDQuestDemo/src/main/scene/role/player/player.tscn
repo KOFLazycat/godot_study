@@ -1,10 +1,10 @@
 [gd_scene load_steps=21 format=3 uid="uid://mnwo8333sgqh"]
 
-[ext_resource type="Texture2D" uid="uid://dfckkkyuoaopa" path="res://src/main/assets/texture/role/player/shadow_circle.png" id="1_myv66"]
-[ext_resource type="Script" path="res://src/main/scene/role/player/player.gd" id="1_yd11w"]
-[ext_resource type="Texture2D" uid="uid://celjnhaxd6nua" path="res://src/main/assets/texture/role/player/godot.png" id="2_7tfkl"]
-[ext_resource type="Script" path="res://src/main/common/util/hurt_box.gd" id="4_dppod"]
-[ext_resource type="Texture2D" uid="uid://b1q7t47q1dii2" path="res://src/main/assets/texture/role/player/smoke.png" id="5_35pwf"]
+[ext_resource type="Script" path="res://src/main/scene/role/player/player.gd" id="1_n836q"]
+[ext_resource type="Texture2D" uid="uid://dfckkkyuoaopa" path="res://src/main/assets/texture/role/player/shadow_circle.png" id="2_uxww1"]
+[ext_resource type="Texture2D" uid="uid://celjnhaxd6nua" path="res://src/main/assets/texture/role/player/godot.png" id="3_eego6"]
+[ext_resource type="Script" path="res://src/main/common/util/hurt_box.gd" id="4_tmqbe"]
+[ext_resource type="Texture2D" uid="uid://b1q7t47q1dii2" path="res://src/main/assets/texture/role/player/smoke.png" id="5_jhket"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_du6sc"]
 radius = 15.0
@@ -215,17 +215,17 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_yd11w")
+script = ExtResource("1_n836q")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.352941)
 position = Vector2(0, 31)
-texture = ExtResource("1_myv66")
+texture = ExtResource("2_uxww1")
 
 [node name="Godot" type="Sprite2D" parent="."]
 modulate = Color(0.976471, 0.305882, 0.305882, 1)
 position = Vector2(0, -30)
-texture = ExtResource("2_7tfkl")
+texture = ExtResource("3_eego6")
 hframes = 3
 vframes = 2
 
@@ -236,7 +236,7 @@ shape = SubResource("CapsuleShape2D_du6sc")
 collision_layer = 0
 collision_mask = 2
 monitorable = false
-script = ExtResource("4_dppod")
+script = ExtResource("4_tmqbe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("RectangleShape2D_f2pty")
@@ -246,7 +246,7 @@ position = Vector2(0, 25)
 emitting = false
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_r08lh")
-texture = ExtResource("5_35pwf")
+texture = ExtResource("5_jhket")
 lifetime = 0.8
 
 [node name="DodgeTimer" type="Timer" parent="."]

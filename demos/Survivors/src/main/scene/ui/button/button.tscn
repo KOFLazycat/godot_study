@@ -1,25 +1,25 @@
 [gd_scene load_steps=5 format=3 uid="uid://fsir03lntsbu"]
 
-[ext_resource type="FontFile" uid="uid://cah4xl5efry1d" path="res://src/main/assets/font/tenderness.otf" id="1_3uvad"]
-[ext_resource type="AudioStream" uid="uid://y3ws6vlpxfcf" path="res://src/main/assets/sound/GUI/hover.wav" id="1_5jdum"]
-[ext_resource type="Script" path="res://src/main/scene/ui/button/button.gd" id="1_eowl6"]
-[ext_resource type="AudioStream" uid="uid://bbyv8brthfhol" path="res://src/main/assets/sound/GUI/click.wav" id="2_1v0e4"]
+[ext_resource type="FontFile" uid="uid://cah4xl5efry1d" path="res://src/main/assets/font/tenderness.otf" id="1_am2gi"]
+[ext_resource type="Script" path="res://src/main/scene/ui/button/button.gd" id="2_2poxc"]
+[ext_resource type="AudioStream" uid="uid://y3ws6vlpxfcf" path="res://src/main/assets/sound/GUI/hover.wav" id="3_8h2pq"]
+[ext_resource type="AudioStream" uid="uid://bbyv8brthfhol" path="res://src/main/assets/sound/GUI/click.wav" id="4_n4qpp"]
 
 [node name="Button" type="Button"]
 custom_minimum_size = Vector2(80, 30)
 offset_right = 8.0
 offset_bottom = 8.0
-theme_override_fonts/font = ExtResource("1_3uvad")
+theme_override_fonts/font = ExtResource("1_am2gi")
 theme_override_font_sizes/font_size = 27
 text = "Example"
-script = ExtResource("1_eowl6")
+script = ExtResource("2_2poxc")
 
 [node name="SndHover" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_5jdum")
+stream = ExtResource("3_8h2pq")
 volume_db = -10.0
 
 [node name="SndClick" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_1v0e4")
+stream = ExtResource("4_n4qpp")
 volume_db = -10.0
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

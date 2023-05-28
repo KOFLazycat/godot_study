@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgc07g6i60lnn"
-path="res://.godot/imported/ice_2.png-2993ee8ab2eee2ee8c251151dd942d4d.ctex"
+uid="uid://cc4uk5oijrbt2"
+path="res://.godot/imported/light_128_128.png-2ca1d423c066423a9f90b86e1052bd10.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sword/ice_2.png"
-dest_files=["res://.godot/imported/ice_2.png-2993ee8ab2eee2ee8c251151dd942d4d.ctex"]
+source_file="res://src/main/assets/texture/role/light/light_128_128.png"
+dest_files=["res://.godot/imported/light_128_128.png-2ca1d423c066423a9f90b86e1052bd10.ctex"]
 
 [params]
 

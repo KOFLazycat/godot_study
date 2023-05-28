@@ -1,28 +1,28 @@
 [gd_scene load_steps=41 format=3 uid="uid://ct38bxpljjjjb"]
 
-[ext_resource type="Script" path="res://src/main/scene/world/world.gd" id="1_oxwcv"]
-[ext_resource type="Texture2D" uid="uid://cqp85q66bp1yd" path="res://src/main/assets/texture/map/TX Plant.png" id="1_t80gq"]
-[ext_resource type="Texture2D" uid="uid://d2urjp3cltl16" path="res://src/main/assets/texture/map/TX Player.png" id="2_wra3t"]
-[ext_resource type="Texture2D" uid="uid://cqnrp1jty01fr" path="res://src/main/assets/texture/map/TX Props.png" id="3_3ofbc"]
-[ext_resource type="Texture2D" uid="uid://dfkxfb3khx07" path="res://src/main/assets/texture/map/TX Shadow Plant.png" id="4_4lwh1"]
-[ext_resource type="Texture2D" uid="uid://cucxsmlxv0ant" path="res://src/main/assets/texture/map/TX Shadow.png" id="5_0jae3"]
-[ext_resource type="Texture2D" uid="uid://dw0ogvxr4dclr" path="res://src/main/assets/texture/map/TX Struct.png" id="6_bakhy"]
-[ext_resource type="Texture2D" uid="uid://2wwt34e5ue25" path="res://src/main/assets/texture/map/TX Tileset Grass.png" id="7_e76cf"]
-[ext_resource type="Texture2D" uid="uid://dnj62ppmfxo4b" path="res://src/main/assets/texture/map/TX Tileset Stone Ground.png" id="8_nwge2"]
-[ext_resource type="Texture2D" uid="uid://cyh080ido4jbi" path="res://src/main/assets/texture/map/TX Tileset Wall.png" id="9_k14m1"]
-[ext_resource type="PackedScene" uid="uid://dc4s2546exwym" path="res://src/main/scene/role/player/cat/cat.tscn" id="10_60boa"]
-[ext_resource type="PackedScene" uid="uid://cbvwmsu3146eu" path="res://src/main/scene/role/enemy/kolbold_weak/enemy_kolbold_weak.tscn" id="11_arg28"]
-[ext_resource type="PackedScene" uid="uid://kq85dshoi03g" path="res://src/main/common/util/spawn/enemy_spawner.tscn" id="12_a2gem"]
-[ext_resource type="Script" path="res://src/main/common/util/spawn/spawn_info.gd" id="13_3xgr6"]
-[ext_resource type="PackedScene" uid="uid://cbbtg7vilemv6" path="res://src/main/scene/role/enemy/kolbold_strong/enemy_kolbold_strong.tscn" id="14_1tkgy"]
-[ext_resource type="PackedScene" uid="uid://cnxl0r2x5h2n5" path="res://src/main/scene/role/gem/experience_gem.tscn" id="14_ky6or"]
-[ext_resource type="PackedScene" uid="uid://buxgpwavbvtua" path="res://src/main/scene/role/enemy/cyclops_weak/enemy_cyclops_weak.tscn" id="15_hrm3j"]
-[ext_resource type="PackedScene" uid="uid://c50hnr3w2dvxn" path="res://src/main/scene/role/enemy/juggernaut/enemy_juggernaut.tscn" id="16_kxmh4"]
-[ext_resource type="PackedScene" uid="uid://c0aiabuhppuy0" path="res://src/main/scene/role/enemy/super/enemy_super.tscn" id="17_w5olt"]
-[ext_resource type="AudioStream" uid="uid://db85pvvhkvt3r" path="res://src/main/assets/sound/Music/battleThemeA.mp3" id="19_yrmfp"]
+[ext_resource type="Script" path="res://src/main/scene/world/world.gd" id="1_g8cqw"]
+[ext_resource type="Texture2D" uid="uid://cqp85q66bp1yd" path="res://src/main/assets/texture/map/TX Plant.png" id="2_jroqg"]
+[ext_resource type="Texture2D" uid="uid://d2urjp3cltl16" path="res://src/main/assets/texture/map/TX Player.png" id="3_746im"]
+[ext_resource type="Texture2D" uid="uid://cqnrp1jty01fr" path="res://src/main/assets/texture/map/TX Props.png" id="4_mp78n"]
+[ext_resource type="Texture2D" uid="uid://dfkxfb3khx07" path="res://src/main/assets/texture/map/TX Shadow Plant.png" id="5_wwjfj"]
+[ext_resource type="Texture2D" uid="uid://cucxsmlxv0ant" path="res://src/main/assets/texture/map/TX Shadow.png" id="6_807a7"]
+[ext_resource type="Texture2D" uid="uid://dw0ogvxr4dclr" path="res://src/main/assets/texture/map/TX Struct.png" id="7_k1x5u"]
+[ext_resource type="Texture2D" uid="uid://2wwt34e5ue25" path="res://src/main/assets/texture/map/TX Tileset Grass.png" id="8_aqvto"]
+[ext_resource type="Texture2D" uid="uid://dnj62ppmfxo4b" path="res://src/main/assets/texture/map/TX Tileset Stone Ground.png" id="9_eupea"]
+[ext_resource type="Texture2D" uid="uid://cyh080ido4jbi" path="res://src/main/assets/texture/map/TX Tileset Wall.png" id="10_6bpxo"]
+[ext_resource type="PackedScene" uid="uid://dc4s2546exwym" path="res://src/main/scene/role/player/cat/cat.tscn" id="11_pp6sv"]
+[ext_resource type="PackedScene" uid="uid://kq85dshoi03g" path="res://src/main/common/util/spawn/enemy_spawner.tscn" id="12_dmjbe"]
+[ext_resource type="PackedScene" uid="uid://cbvwmsu3146eu" path="res://src/main/scene/role/enemy/kolbold_weak/enemy_kolbold_weak.tscn" id="13_qi8md"]
+[ext_resource type="Script" path="res://src/main/common/util/spawn/spawn_info.gd" id="14_egapu"]
+[ext_resource type="PackedScene" uid="uid://cbbtg7vilemv6" path="res://src/main/scene/role/enemy/kolbold_strong/enemy_kolbold_strong.tscn" id="15_pktk0"]
+[ext_resource type="PackedScene" uid="uid://buxgpwavbvtua" path="res://src/main/scene/role/enemy/cyclops_weak/enemy_cyclops_weak.tscn" id="16_wi7q2"]
+[ext_resource type="PackedScene" uid="uid://c50hnr3w2dvxn" path="res://src/main/scene/role/enemy/juggernaut/enemy_juggernaut.tscn" id="17_73l1w"]
+[ext_resource type="PackedScene" uid="uid://c0aiabuhppuy0" path="res://src/main/scene/role/enemy/super/enemy_super.tscn" id="18_mef83"]
+[ext_resource type="PackedScene" uid="uid://cnxl0r2x5h2n5" path="res://src/main/scene/role/gem/experience_gem.tscn" id="19_ic4mg"]
+[ext_resource type="AudioStream" uid="uid://db85pvvhkvt3r" path="res://src/main/assets/sound/Music/battleThemeA.mp3" id="20_85uy4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1nmf5"]
-texture = ExtResource("1_t80gq")
+texture = ExtResource("2_jroqg")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -1049,13 +1049,13 @@ texture = ExtResource("1_t80gq")
 28:17/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r317v"]
-texture = ExtResource("2_wra3t")
+texture = ExtResource("3_746im")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kro65"]
-texture = ExtResource("3_3ofbc")
+texture = ExtResource("4_mp78n")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hwunf"]
-texture = ExtResource("4_4lwh1")
+texture = ExtResource("5_wwjfj")
 2:6/0 = 0
 3:6/0 = 0
 4:6/0 = 0
@@ -1183,13 +1183,13 @@ texture = ExtResource("4_4lwh1")
 23:8/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hlfhn"]
-texture = ExtResource("5_0jae3")
+texture = ExtResource("6_807a7")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fg34l"]
-texture = ExtResource("6_bakhy")
+texture = ExtResource("7_k1x5u")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j6jjs"]
-texture = ExtResource("7_e76cf")
+texture = ExtResource("8_aqvto")
 1:1/0 = 0
 0:0/0 = 0
 1:2/0 = 0
@@ -1448,10 +1448,10 @@ texture = ExtResource("7_e76cf")
 15:15/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7o3ku"]
-texture = ExtResource("8_nwge2")
+texture = ExtResource("9_eupea")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rvlq1"]
-texture = ExtResource("9_k14m1")
+texture = ExtResource("10_6bpxo")
 
 [sub_resource type="TileSet" id="TileSet_m40i5"]
 sources/10 = SubResource("TileSetAtlasSource_1nmf5")
@@ -1465,87 +1465,90 @@ sources/17 = SubResource("TileSetAtlasSource_7o3ku")
 sources/18 = SubResource("TileSetAtlasSource_rvlq1")
 
 [sub_resource type="Resource" id="Resource_x2yrg"]
-script = ExtResource("13_3xgr6")
+script = ExtResource("14_egapu")
 time_start = 0.0
 time_end = 30.0
-enemy = ExtResource("11_arg28")
+enemy = ExtResource("13_qi8md")
 enemy_num = 5.0
 enemy_spawn_delay = 1.0
 
 [sub_resource type="Resource" id="Resource_1h6s3"]
-script = ExtResource("13_3xgr6")
+script = ExtResource("14_egapu")
 time_start = 20.0
 time_end = 40.0
-enemy = ExtResource("14_1tkgy")
+enemy = ExtResource("15_pktk0")
 enemy_num = 1.0
 enemy_spawn_delay = 1.0
 
 [sub_resource type="Resource" id="Resource_kk65m"]
-script = ExtResource("13_3xgr6")
+script = ExtResource("14_egapu")
 time_start = 30.0
 time_end = 60.0
-enemy = ExtResource("11_arg28")
+enemy = ExtResource("13_qi8md")
 enemy_num = 3.0
 enemy_spawn_delay = 1.0
 
 [sub_resource type="Resource" id="Resource_t4fyx"]
-script = ExtResource("13_3xgr6")
+script = ExtResource("14_egapu")
 time_start = 40.0
 time_end = 60.0
-enemy = ExtResource("14_1tkgy")
+enemy = ExtResource("15_pktk0")
 enemy_num = 2.0
 enemy_spawn_delay = 1.0
 
 [sub_resource type="Resource" id="Resource_drr02"]
-script = ExtResource("13_3xgr6")
+script = ExtResource("14_egapu")
 time_start = 60.0
 time_end = 120.0
-enemy = ExtResource("15_hrm3j")
+enemy = ExtResource("16_wi7q2")
 enemy_num = 3.0
 enemy_spawn_delay = 1.0
 
 [sub_resource type="Resource" id="Resource_vewur"]
-script = ExtResource("13_3xgr6")
+script = ExtResource("14_egapu")
 time_start = 60.0
 time_end = 120.0
-enemy = ExtResource("14_1tkgy")
+enemy = ExtResource("15_pktk0")
 enemy_num = 5.0
 enemy_spawn_delay = 1.0
 
 [sub_resource type="Resource" id="Resource_qj5h0"]
-script = ExtResource("13_3xgr6")
+script = ExtResource("14_egapu")
 time_start = 120.0
 time_end = 180.0
-enemy = ExtResource("16_kxmh4")
+enemy = ExtResource("17_73l1w")
 enemy_num = 1.0
 enemy_spawn_delay = 1.0
 
 [sub_resource type="Resource" id="Resource_n5kpv"]
-script = ExtResource("13_3xgr6")
+script = ExtResource("14_egapu")
 time_start = 160.0
 time_end = 180.0
-enemy = ExtResource("16_kxmh4")
+enemy = ExtResource("17_73l1w")
 enemy_num = 2.0
 enemy_spawn_delay = 1.0
 
 [sub_resource type="Resource" id="Resource_wg48b"]
-script = ExtResource("13_3xgr6")
+script = ExtResource("14_egapu")
 time_start = 120.0
 time_end = 180.0
-enemy = ExtResource("15_hrm3j")
+enemy = ExtResource("16_wi7q2")
 enemy_num = 3.0
 enemy_spawn_delay = 1.0
 
 [sub_resource type="Resource" id="Resource_0e4kn"]
-script = ExtResource("13_3xgr6")
+script = ExtResource("14_egapu")
 time_start = 240.0
 time_end = 240.0
-enemy = ExtResource("17_w5olt")
+enemy = ExtResource("18_mef83")
 enemy_num = 1.0
 enemy_spawn_delay = 0.0
 
 [node name="World" type="Node2D"]
-script = ExtResource("1_oxwcv")
+script = ExtResource("1_g8cqw")
+
+[node name="Ambient" type="CanvasModulate" parent="."]
+color = Color(0.101961, 0.101961, 0.101961, 1)
 
 [node name="BackGround" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_m40i5")
@@ -1568,29 +1571,29 @@ layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array(1310754, 65546, 1, 1376290, 65546, 2, 1441826, 65546, 3, 1507362, 65546, 4, 1572898, 65546, 5, 1638434, 65546, 6, 1703970, 65546, 7, 1769506, 65546, 8, 1835042, 65546, 9, 1310755, 131082, 1, 1376291, 131082, 2, 1441827, 131082, 3, 1507363, 131082, 4, 1572899, 131082, 5, 1638435, 131082, 6, 1703971, 131082, 7, 1769507, 131082, 8, 1835043, 131082, 9, 1310756, 196618, 1, 1376292, 196618, 2, 1441828, 196618, 3, 1507364, 196618, 4, 1572900, 196618, 5, 1638436, 196618, 6, 1703972, 196618, 7, 1769508, 196618, 8, 1835044, 196618, 9, 1310757, 262154, 1, 1376293, 262154, 2, 1441829, 262154, 3, 1507365, 262154, 4, 1572901, 262154, 5, 1638437, 262154, 6, 1703973, 262154, 7, 1769509, 262154, 8, 1835045, 262154, 9, 1310758, 327690, 1, 1376294, 327690, 2, 1441830, 327690, 3, 1507366, 327690, 4, 1572902, 327690, 5, 1638438, 327690, 6, 1703974, 327690, 7, 1769510, 327690, 8, 1835046, 327690, 9, 1310759, 393226, 1, 1376295, 393226, 2, 1441831, 393226, 3, 1507367, 393226, 4, 1572903, 393226, 5, 1638439, 393226, 6, 1703975, 393226, 7, 1769511, 393226, 8, 1835047, 393226, 9, 1310760, 458762, 1, 1376296, 458762, 2, 1441832, 458762, 3, 1507368, 458762, 4, 1572904, 458762, 5, 1638440, 458762, 6, 1703976, 458762, 7, 1769512, 458762, 8, 1835048, 458762, 9, 2883618, 65546, 1, 2949154, 65546, 2, 3014690, 65546, 3, 3080226, 65546, 4, 3145762, 65546, 5, 3211298, 65546, 6, 3276834, 65546, 7, 3342370, 65546, 8, 3407906, 65546, 9, 2883619, 131082, 1, 2949155, 131082, 2, 3014691, 131082, 3, 3080227, 131082, 4, 3145763, 131082, 5, 3211299, 131082, 6, 3276835, 131082, 7, 3342371, 131082, 8, 3407907, 131082, 9, 2883620, 196618, 1, 2949156, 196618, 2, 3014692, 196618, 3, 3080228, 196618, 4, 3145764, 196618, 5, 3211300, 196618, 6, 3276836, 196618, 7, 3342372, 196618, 8, 3407908, 196618, 9, 2883621, 262154, 1, 2949157, 262154, 2, 3014693, 262154, 3, 3080229, 262154, 4, 3145765, 262154, 5, 3211301, 262154, 6, 3276837, 262154, 7, 3342373, 262154, 8, 3407909, 262154, 9, 2883622, 327690, 1, 2949158, 327690, 2, 3014694, 327690, 3, 3080230, 327690, 4, 3145766, 327690, 5, 3211302, 327690, 6, 3276838, 327690, 7, 3342374, 327690, 8, 3407910, 327690, 9, 2883623, 393226, 1, 2949159, 393226, 2, 3014695, 393226, 3, 3080231, 393226, 4, 3145767, 393226, 5, 3211303, 393226, 6, 3276839, 393226, 7, 3342375, 393226, 8, 3407911, 393226, 9, 2883624, 458762, 1, 2949160, 458762, 2, 3014696, 458762, 3, 3080232, 458762, 4, 3145768, 458762, 5, 3211304, 458762, 6, 3276840, 458762, 7, 3342376, 458762, 8, 3407912, 458762, 9, 655423, 655370, 1, 720959, 655370, 2, 786495, 655370, 3, 852031, 655370, 4, 917567, 655370, 5, 983103, 655370, 6, 1048639, 655370, 7, 1114175, 655370, 8, 1179711, 655370, 9, 655424, 720906, 1, 720960, 720906, 2, 786496, 720906, 3, 852032, 720906, 4, 917568, 720906, 5, 983104, 720906, 6, 1048640, 720906, 7, 1114176, 720906, 8, 1179712, 720906, 9, 655425, 786442, 1, 720961, 786442, 2, 786497, 786442, 3, 852033, 786442, 4, 917569, 786442, 5, 983105, 786442, 6, 1048641, 786442, 7, 1114177, 786442, 8, 1179713, 786442, 9, 655426, 851978, 1, 720962, 851978, 2, 786498, 851978, 3, 852034, 851978, 4, 917570, 851978, 5, 983106, 851978, 6, 1048642, 851978, 7, 1114178, 851978, 8, 1179714, 851978, 9, 655427, 917514, 1, 720963, 917514, 2, 786499, 917514, 3, 852035, 917514, 4, 917571, 917514, 5, 983107, 917514, 6, 1048643, 917514, 7, 1114179, 917514, 8, 1179715, 917514, 9, 655428, 983050, 1, 720964, 983050, 2, 786500, 983050, 3, 852036, 983050, 4, 917572, 983050, 5, 983108, 983050, 6, 1048644, 983050, 7, 1114180, 983050, 8, 1179716, 983050, 9, 2490430, 655370, 1, 2555966, 655370, 2, 2621502, 655370, 3, 2687038, 655370, 4, 2752574, 655370, 5, 2818110, 655370, 6, 2883646, 655370, 7, 2949182, 655370, 8, 3014718, 655370, 9, 2490431, 720906, 1, 2555967, 720906, 2, 2621503, 720906, 3, 2687039, 720906, 4, 2752575, 720906, 5, 2818111, 720906, 6, 2883647, 720906, 7, 2949183, 720906, 8, 3014719, 720906, 9, 2490432, 786442, 1, 2555968, 786442, 2, 2621504, 786442, 3, 2687040, 786442, 4, 2752576, 786442, 5, 2818112, 786442, 6, 2883648, 786442, 7, 2949184, 786442, 8, 3014720, 786442, 9, 2490433, 851978, 1, 2555969, 851978, 2, 2621505, 851978, 3, 2687041, 851978, 4, 2752577, 851978, 5, 2818113, 851978, 6, 2883649, 851978, 7, 2949185, 851978, 8, 3014721, 851978, 9, 2490434, 917514, 1, 2555970, 917514, 2, 2621506, 917514, 3, 2687042, 917514, 4, 2752578, 917514, 5, 2818114, 917514, 6, 2883650, 917514, 7, 2949186, 917514, 8, 3014722, 917514, 9, 2490435, 983050, 1, 2555971, 983050, 2, 2621507, 983050, 3, 2687043, 983050, 4, 2752579, 983050, 5, 2818115, 983050, 6, 2883651, 983050, 7, 2949187, 983050, 8, 3014723, 983050, 9, 524382, 1179658, 2, 589918, 1179658, 3, 655454, 1179658, 4, 720990, 1179658, 5, 786526, 1179658, 6, 852062, 1179658, 7, 917598, 1179658, 8, 983134, 1179658, 9, 524383, 1245194, 2, 589919, 1245194, 3, 655455, 1245194, 4, 720991, 1245194, 5, 786527, 1245194, 6, 852063, 1245194, 7, 917599, 1245194, 8, 983135, 1245194, 9, 524384, 1310730, 2, 589920, 1310730, 3, 655456, 1310730, 4, 720992, 1310730, 5, 786528, 1310730, 6, 852064, 1310730, 7, 917600, 1310730, 8, 983136, 1310730, 9, 524385, 1376266, 2, 589921, 1376266, 3, 655457, 1376266, 4, 720993, 1376266, 5, 786529, 1376266, 6, 852065, 1376266, 7, 917601, 1376266, 8, 983137, 1376266, 9, 524386, 1441802, 2, 589922, 1441802, 3, 655458, 1441802, 4, 720994, 1441802, 5, 786530, 1441802, 6, 852066, 1441802, 7, 917602, 1441802, 8, 983138, 1441802, 9, 524387, 1507338, 2, 589923, 1507338, 3, 655459, 1507338, 4, 720995, 1507338, 5, 786531, 1507338, 6, 852067, 1507338, 7, 917603, 1507338, 8, 983139, 1507338, 9, 3407965, 1179658, 2, 3473501, 1179658, 3, 3539037, 1179658, 4, 3604573, 1179658, 5, 3670109, 1179658, 6, 3735645, 1179658, 7, 3801181, 1179658, 8, 3866717, 1179658, 9, 3407966, 1245194, 2, 3473502, 1245194, 3, 3539038, 1245194, 4, 3604574, 1245194, 5, 3670110, 1245194, 6, 3735646, 1245194, 7, 3801182, 1245194, 8, 3866718, 1245194, 9, 3407967, 1310730, 2, 3473503, 1310730, 3, 3539039, 1310730, 4, 3604575, 1310730, 5, 3670111, 1310730, 6, 3735647, 1310730, 7, 3801183, 1310730, 8, 3866719, 1310730, 9, 3407968, 1376266, 2, 3473504, 1376266, 3, 3539040, 1376266, 4, 3604576, 1376266, 5, 3670112, 1376266, 6, 3735648, 1376266, 7, 3801184, 1376266, 8, 3866720, 1376266, 9, 3407969, 1441802, 2, 3473505, 1441802, 3, 3539041, 1441802, 4, 3604577, 1441802, 5, 3670113, 1441802, 6, 3735649, 1441802, 7, 3801185, 1441802, 8, 3866721, 1441802, 9, 3407970, 1507338, 2, 3473506, 1507338, 3, 3539042, 1507338, 4, 3604578, 1507338, 5, 3670114, 1507338, 6, 3735650, 1507338, 7, 3801186, 1507338, 8, 3866722, 1507338, 9)
 metadata/_edit_lock_ = true
 
-[node name="Cat" parent="." instance=ExtResource("10_60boa")]
+[node name="Cat" parent="." instance=ExtResource("11_pp6sv")]
 position = Vector2(960, 540)
 
-[node name="EnemySpawner" parent="." instance=ExtResource("12_a2gem")]
-spawns = Array[ExtResource("13_3xgr6")]([SubResource("Resource_x2yrg"), SubResource("Resource_1h6s3"), SubResource("Resource_kk65m"), SubResource("Resource_t4fyx"), SubResource("Resource_drr02"), SubResource("Resource_vewur"), SubResource("Resource_qj5h0"), SubResource("Resource_n5kpv"), SubResource("Resource_wg48b"), SubResource("Resource_0e4kn")])
+[node name="EnemySpawner" parent="." instance=ExtResource("12_dmjbe")]
+spawns = Array[ExtResource("14_egapu")]([SubResource("Resource_x2yrg"), SubResource("Resource_1h6s3"), SubResource("Resource_kk65m"), SubResource("Resource_t4fyx"), SubResource("Resource_drr02"), SubResource("Resource_vewur"), SubResource("Resource_qj5h0"), SubResource("Resource_n5kpv"), SubResource("Resource_wg48b"), SubResource("Resource_0e4kn")])
 
 [node name="Loot" type="Node2D" parent="." groups=["loot"]]
 
-[node name="ExperienceGem" parent="Loot" instance=ExtResource("14_ky6or")]
+[node name="ExperienceGem" parent="Loot" instance=ExtResource("19_ic4mg")]
 position = Vector2(789, 440)
 experience = 10
 
-[node name="ExperienceGem2" parent="Loot" instance=ExtResource("14_ky6or")]
+[node name="ExperienceGem2" parent="Loot" instance=ExtResource("19_ic4mg")]
 position = Vector2(1043, 409)
 experience = 10
 
-[node name="ExperienceGem3" parent="Loot" instance=ExtResource("14_ky6or")]
+[node name="ExperienceGem3" parent="Loot" instance=ExtResource("19_ic4mg")]
 position = Vector2(773, 585)
 experience = 10
 
 [node name="SndMusic" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("19_yrmfp")
+stream = ExtResource("20_85uy4")
 volume_db = -20.0
 autoplay = true
 

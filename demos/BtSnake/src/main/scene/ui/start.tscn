@@ -1,0 +1,81 @@
+[gd_scene load_steps=2 format=3 uid="uid://csuleof7mxnmv"]
+
+[ext_resource type="Script" path="res://src/main/scene/ui/start.gd" id="1_6amxr"]
+
+[node name="Start" type="ColorRect"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.239216, 0.239216, 0.239216, 1)
+script = ExtResource("1_6amxr")
+
+[node name="LabelChoose" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 160.0
+offset_bottom = 186.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.701961, 0.701961, 0.701961, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "CHOOSE DIFFICULTY:"
+horizontal_alignment = 1
+
+[node name="ButtonNormal" type="Button" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.0
+offset_top = -200.0
+offset_right = 134.0
+offset_bottom = -109.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_pressed_color = Color(0.592157, 0.592157, 0.592157, 1)
+theme_override_font_sizes/font_size = 60
+text = "NORMAL"
+
+[node name="ButtonHard" type="Button" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 10.0
+offset_right = 150.0
+offset_bottom = 101.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_pressed_color = Color(0.592157, 0.592157, 0.592157, 1)
+theme_override_font_sizes/font_size = 60
+text = "HARD"
+
+[node name="LabelControls" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 760.0
+offset_bottom = 1048.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.431373, 0.431373, 0.431373, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "GAMEPLAY: 
+Move the snake by pressing ← → ↑ ↓ keys
+and eat the green food to get score. 
+Avoid the evil 💀 stones."
+horizontal_alignment = 1
+
+[connection signal="pressed" from="ButtonNormal" to="." method="_on_button_normal_pressed"]
+[connection signal="pressed" from="ButtonHard" to="." method="_on_button_hard_pressed"]

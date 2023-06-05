@@ -1,15 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://brwyf1fwnijrp"]
 
-[ext_resource type="Script" path="res://src/main/scene/ui/menu/menu.gd" id="1_cig1x"]
-[ext_resource type="FontFile" uid="uid://cah4xl5efry1d" path="res://src/main/assets/font/tenderness.otf" id="2_3rdfg"]
-[ext_resource type="PackedScene" uid="uid://fsir03lntsbu" path="res://src/main/scene/ui/button/button.tscn" id="3_a875m"]
+[ext_resource type="Script" path="res://src/main/scene/ui/menu/menu.gd" id="1_stu20"]
+[ext_resource type="FontFile" uid="uid://cah4xl5efry1d" path="res://src/main/assets/font/tenderness.otf" id="2_bimpe"]
+[ext_resource type="PackedScene" uid="uid://fsir03lntsbu" path="res://src/main/scene/ui/button/button.tscn" id="3_de3jf"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_cig1x")
+script = ExtResource("1_stu20")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -24,13 +24,13 @@ offset_left = 680.0
 offset_top = 173.0
 offset_right = 1320.0
 offset_bottom = 273.0
-theme_override_fonts/font = ExtResource("2_3rdfg")
+theme_override_fonts/font = ExtResource("2_bimpe")
 theme_override_font_sizes/font_size = 90
 text = "Survivors Clone"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BtnPlay" parent="." instance=ExtResource("3_a875m")]
+[node name="BtnPlay" parent="." instance=ExtResource("3_de3jf")]
 layout_mode = 0
 offset_left = 930.0
 offset_top = 430.0
@@ -39,7 +39,7 @@ offset_bottom = 502.0
 theme_override_font_sizes/font_size = 54
 text = "Play"
 
-[node name="BtnExit" parent="." instance=ExtResource("3_a875m")]
+[node name="BtnExit" parent="." instance=ExtResource("3_de3jf")]
 layout_mode = 0
 offset_left = 930.0
 offset_top = 690.0

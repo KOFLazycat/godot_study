@@ -1,20 +1,20 @@
 [gd_scene load_steps=33 format=3 uid="uid://dc4s2546exwym"]
 
-[ext_resource type="Script" path="res://src/main/scene/role/player/cat/cat.gd" id="1_h553u"]
-[ext_resource type="Texture2D" uid="uid://cc4uk5oijrbt2" path="res://src/main/assets/texture/role/light/light_128_128.png" id="2_4axlu"]
-[ext_resource type="Texture2D" uid="uid://js1rss2q238q" path="res://src/main/assets/texture/role/shadow/shadow_circle.png" id="2_a4cwf"]
-[ext_resource type="Texture2D" uid="uid://rflr7p5ft7jh" path="res://src/main/assets/texture/role/player/cat/Cat Sprite Sheet.png" id="2_r72aq"]
-[ext_resource type="PackedScene" uid="uid://cgn4aqfmy6o7x" path="res://src/main/common/util/hurtbox/hurt_box.tscn" id="3_tgrco"]
-[ext_resource type="PackedScene" uid="uid://biujvetdqdbsl" path="res://src/main/common/util/detection/detection_box.tscn" id="4_cgg76"]
-[ext_resource type="Texture2D" uid="uid://dexlh22o67s3s" path="res://src/main/assets/texture/GUI/exp_background.png" id="5_mjr2c"]
-[ext_resource type="Texture2D" uid="uid://c1fc2btpwbq33" path="res://src/main/assets/texture/GUI/exp_progress.png" id="6_42p7c"]
-[ext_resource type="FontFile" uid="uid://cah4xl5efry1d" path="res://src/main/assets/font/tenderness.otf" id="7_b3mug"]
-[ext_resource type="AudioStream" uid="uid://cghwx0grkgbw6" path="res://src/main/assets/sound/SoundEffect/levelup.ogg" id="8_yx7iy"]
-[ext_resource type="PackedScene" uid="uid://fsir03lntsbu" path="res://src/main/scene/ui/button/button.tscn" id="9_v38ih"]
-[ext_resource type="AudioStream" uid="uid://cdjj0epnnvlwd" path="res://src/main/assets/sound/SoundEffect/Victory.wav" id="10_ftjb1"]
-[ext_resource type="AudioStream" uid="uid://b2u1gnq1nwdq0" path="res://src/main/assets/sound/SoundEffect/Lose.ogg" id="11_rw4wo"]
-[ext_resource type="Texture2D" uid="uid://dauugkrayup7i" path="res://src/main/assets/texture/GUI/healthbar.png" id="12_upu7m"]
-[ext_resource type="Texture2D" uid="uid://wvmjt2chj6k6" path="res://src/main/assets/texture/GUI/health.png" id="13_lyufm"]
+[ext_resource type="Script" path="res://src/main/scene/role/player/cat/cat.gd" id="1_5q50g"]
+[ext_resource type="Texture2D" uid="uid://cc4uk5oijrbt2" path="res://src/main/assets/texture/role/light/light_128_128.png" id="2_f7lxw"]
+[ext_resource type="Texture2D" uid="uid://js1rss2q238q" path="res://src/main/assets/texture/role/shadow/shadow_circle.png" id="3_0u20y"]
+[ext_resource type="Texture2D" uid="uid://rflr7p5ft7jh" path="res://src/main/assets/texture/role/player/cat/Cat Sprite Sheet.png" id="4_mvjks"]
+[ext_resource type="PackedScene" uid="uid://cgn4aqfmy6o7x" path="res://src/main/common/util/hurtbox/hurt_box.tscn" id="5_0rm4j"]
+[ext_resource type="PackedScene" uid="uid://biujvetdqdbsl" path="res://src/main/common/util/detection/detection_box.tscn" id="6_7xov5"]
+[ext_resource type="Texture2D" uid="uid://dexlh22o67s3s" path="res://src/main/assets/texture/GUI/exp_background.png" id="7_8yhxi"]
+[ext_resource type="Texture2D" uid="uid://c1fc2btpwbq33" path="res://src/main/assets/texture/GUI/exp_progress.png" id="8_q4vyb"]
+[ext_resource type="FontFile" uid="uid://cah4xl5efry1d" path="res://src/main/assets/font/tenderness.otf" id="9_fur3k"]
+[ext_resource type="AudioStream" uid="uid://cghwx0grkgbw6" path="res://src/main/assets/sound/SoundEffect/levelup.ogg" id="10_x5shj"]
+[ext_resource type="PackedScene" uid="uid://fsir03lntsbu" path="res://src/main/scene/ui/button/button.tscn" id="11_wpp0n"]
+[ext_resource type="AudioStream" uid="uid://cdjj0epnnvlwd" path="res://src/main/assets/sound/SoundEffect/Victory.wav" id="12_m2s7q"]
+[ext_resource type="AudioStream" uid="uid://b2u1gnq1nwdq0" path="res://src/main/assets/sound/SoundEffect/Lose.ogg" id="13_cchfx"]
+[ext_resource type="Texture2D" uid="uid://dauugkrayup7i" path="res://src/main/assets/texture/GUI/healthbar.png" id="14_5iufg"]
+[ext_resource type="Texture2D" uid="uid://wvmjt2chj6k6" path="res://src/main/assets/texture/GUI/health.png" id="15_e7a5w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_laalu"]
 size = Vector2(7, 4.5)
@@ -241,7 +241,7 @@ scale = Vector2(2, 2)
 collision_layer = 2
 collision_mask = 0
 motion_mode = 1
-script = ExtResource("1_h553u")
+script = ExtResource("1_5q50g")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
@@ -256,17 +256,17 @@ position = Vector2(0, -1.25)
 shape = SubResource("RectangleShape2D_laalu")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-texture = ExtResource("2_4axlu")
+texture = ExtResource("2_f7lxw")
 
 [node name="Sprite2DShadow" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.313726)
 position = Vector2(0, 3)
 scale = Vector2(0.12, 0.05)
-texture = ExtResource("2_a4cwf")
+texture = ExtResource("3_0u20y")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -17)
-texture = ExtResource("2_r72aq")
+texture = ExtResource("4_mvjks")
 offset = Vector2(0, 4)
 hframes = 8
 vframes = 10
@@ -276,7 +276,7 @@ libraries = {
 "": SubResource("AnimationLibrary_xq4c5")
 }
 
-[node name="HurtBox" parent="." instance=ExtResource("3_tgrco")]
+[node name="HurtBox" parent="." instance=ExtResource("5_0rm4j")]
 collision_layer = 2
 collision_mask = 4
 
@@ -300,7 +300,7 @@ wait_time = 0.2
 
 [node name="JavelinBase" type="Node2D" parent="Attack"]
 
-[node name="DetectionBox" parent="." instance=ExtResource("4_cgg76")]
+[node name="DetectionBox" parent="." instance=ExtResource("6_7xov5")]
 collision_layer = 2
 collision_mask = 4
 monitorable = false
@@ -336,15 +336,15 @@ offset_right = 640.0
 offset_bottom = 40.0
 scale = Vector2(3, 3)
 value = 50.0
-texture_under = ExtResource("5_mjr2c")
-texture_progress = ExtResource("6_42p7c")
+texture_under = ExtResource("7_8yhxi")
+texture_progress = ExtResource("8_q4vyb")
 
 [node name="LabelLevel" type="Label" parent="GUILayer/GUI/ExperienceBar"]
 layout_mode = 0
 offset_left = 540.0
 offset_right = 640.0
 offset_bottom = 20.0
-theme_override_fonts/font = ExtResource("7_b3mug")
+theme_override_fonts/font = ExtResource("9_fur3k")
 theme_override_font_sizes/font_size = 16
 text = "Level: 1"
 horizontal_alignment = 1
@@ -365,7 +365,7 @@ scale = Vector2(2, 2)
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 50.0
-theme_override_fonts/font = ExtResource("7_b3mug")
+theme_override_fonts/font = ExtResource("9_fur3k")
 text = "Level Up!
 "
 horizontal_alignment = 1
@@ -379,7 +379,7 @@ offset_right = 190.0
 offset_bottom = 100.0
 
 [node name="SndLevelUp" type="AudioStreamPlayer" parent="GUILayer/GUI/LevelUp"]
-stream = ExtResource("8_yx7iy")
+stream = ExtResource("10_x5shj")
 volume_db = -10.0
 pitch_scale = 2.0
 
@@ -394,7 +394,7 @@ offset_right = 1050.0
 offset_bottom = -300.0
 scale = Vector2(2, 2)
 
-[node name="BtnMenu" parent="GUILayer/GUI/DeathPanel" instance=ExtResource("9_v38ih")]
+[node name="BtnMenu" parent="GUILayer/GUI/DeathPanel" instance=ExtResource("11_wpp0n")]
 layout_mode = 0
 offset_left = 55.0
 offset_top = 195.0
@@ -407,19 +407,19 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 50.0
-theme_override_fonts/font = ExtResource("7_b3mug")
+theme_override_fonts/font = ExtResource("9_fur3k")
 text = "Result"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SndVictory" type="AudioStreamPlayer" parent="GUILayer/GUI/DeathPanel"]
 unique_name_in_owner = true
-stream = ExtResource("10_ftjb1")
+stream = ExtResource("12_m2s7q")
 volume_db = -20.0
 
 [node name="SndLose" type="AudioStreamPlayer" parent="GUILayer/GUI/DeathPanel"]
 unique_name_in_owner = true
-stream = ExtResource("11_rw4wo")
+stream = ExtResource("13_cchfx")
 volume_db = -20.0
 
 [node name="HealthBar" type="TextureProgressBar" parent="GUILayer/GUI"]
@@ -431,8 +431,8 @@ offset_right = 967.0
 offset_bottom = 458.0
 scale = Vector2(2, 2)
 value = 50.0
-texture_over = ExtResource("12_upu7m")
-texture_progress = ExtResource("13_lyufm")
+texture_over = ExtResource("14_5iufg")
+texture_progress = ExtResource("15_e7a5w")
 
 [node name="LabelTime" type="Label" parent="GUILayer/GUI"]
 layout_mode = 0
@@ -440,7 +440,7 @@ offset_left = 903.0
 offset_top = 3.0
 offset_right = 1017.0
 offset_bottom = 57.0
-theme_override_fonts/font = ExtResource("7_b3mug")
+theme_override_fonts/font = ExtResource("9_fur3k")
 theme_override_font_sizes/font_size = 50
 text = "00:00"
 horizontal_alignment = 1

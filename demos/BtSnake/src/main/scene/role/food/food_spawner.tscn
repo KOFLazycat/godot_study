@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlooppr4athyq"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/food/food_spawner.gd" id="1_smx5h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1c4r0"]
+radius = 5.0
+
+[node name="FoodSpawner" type="Node"]
+script = ExtResource("1_smx5h")
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+shape = SubResource("CircleShape2D_1c4r0")
+target_position = Vector2(0, 0)
+max_results = 1

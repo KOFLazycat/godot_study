@@ -1,0 +1,148 @@
+[gd_scene load_steps=19 format=3 uid="uid://cgb2nhm1vd6ip"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/enemy/obstacle/obstacle.gd" id="1_yuxjy"]
+[ext_resource type="Texture2D" uid="uid://cwiue5ssooqte" path="res://src/main/assets/texture/role/enemy/obstacle/GiantFlam/Idle.png" id="2_5x46h"]
+[ext_resource type="Texture2D" uid="uid://c0wvm3mxavg1d" path="res://src/main/assets/texture/particle/explosion_particle.png" id="3_4klmg"]
+[ext_resource type="AudioStream" uid="uid://c4k0yckopph1w" path="res://src/main/assets/sound/explosion.wav" id="4_af3y0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eum13"]
+atlas = ExtResource("2_5x46h")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvuha"]
+atlas = ExtResource("2_5x46h")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywsq7"]
+atlas = ExtResource("2_5x46h")
+region = Rect2(100, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1m75"]
+atlas = ExtResource("2_5x46h")
+region = Rect2(150, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml8xc"]
+atlas = ExtResource("2_5x46h")
+region = Rect2(200, 0, 50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2kmmb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eum13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvuha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywsq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1m75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ml8xc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6fdqq"]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ei1eq"]
+radius = 28.0
+
+[sub_resource type="Gradient" id="Gradient_oxlft"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_llono"]
+gradient = SubResource("Gradient_oxlft")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_usj4h"]
+lifetime_randomness = 0.15
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 700.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 40.0
+damping_max = 80.0
+scale_min = 0.5
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_llono")
+
+[sub_resource type="Gradient" id="Gradient_iatvs"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6wvbr"]
+gradient = SubResource("Gradient_iatvs")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3bjdk"]
+lifetime_randomness = 0.15
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 700.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 40.0
+damping_max = 80.0
+scale_min = 0.5
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_6wvbr")
+
+[node name="Obstacle" type="RigidBody2D"]
+max_contacts_reported = 1
+contact_monitor = true
+freeze = true
+freeze_mode = 1
+script = ExtResource("1_yuxjy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_2kmmb")
+animation = &"idle"
+frame_progress = 0.0630117
+offset = Vector2(0, -3)
+
+[node name="CollisionShape2DSmall" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6fdqq")
+disabled = true
+
+[node name="CollisionShape2DNormal" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ei1eq")
+disabled = true
+
+[node name="GPUParticles2DSmall" type="GPUParticles2D" parent="."]
+scale = Vector2(0.5, 0.5)
+emitting = false
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_usj4h")
+texture = ExtResource("3_4klmg")
+lifetime = 1.25
+one_shot = true
+preprocess = 0.35
+explosiveness = 0.71
+
+[node name="GPUParticles2DNormal" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 3000
+process_material = SubResource("ParticleProcessMaterial_3bjdk")
+texture = ExtResource("3_4klmg")
+lifetime = 1.25
+one_shot = true
+preprocess = 0.35
+explosiveness = 0.71
+
+[node name="SndExplosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_af3y0")
+volume_db = -10.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

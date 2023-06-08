@@ -10,7 +10,7 @@ func _ready() -> void:
 #		child_scene = load("res://interior/hard_mode.tscn")
 		pass
 	else:
-#		child_scene = load("res://interior/normal_mode.tscn")
+		child_scene = load("res://src/main/scene/level/normal/normal_model.tscn")
 		pass
-#	add_child( child_scene.instantiate() )
+	add_child( child_scene.instantiate() )
 

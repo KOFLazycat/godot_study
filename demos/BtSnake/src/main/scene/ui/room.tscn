@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://beqqcc7d2mkxl"]
+[gd_scene load_steps=11 format=3 uid="uid://beqqcc7d2mkxl"]
 
-[ext_resource type="Script" path="res://src/main/scene/ui/room.gd" id="1_7gxnu"]
-[ext_resource type="PackedScene" uid="uid://cgb2nhm1vd6ip" path="res://src/main/scene/role/enemy/obstacle/obstacle.tscn" id="3_gnneh"]
-[ext_resource type="PackedScene" uid="uid://dlooppr4athyq" path="res://src/main/scene/role/food/food_spawner.tscn" id="3_ilg0q"]
+[ext_resource type="Script" path="res://src/main/scene/ui/room.gd" id="1_sifa1"]
+[ext_resource type="PackedScene" uid="uid://dlooppr4athyq" path="res://src/main/scene/role/food/food_spawner.tscn" id="2_b0td5"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h6lc4"]
 bounce = 0.9
@@ -28,7 +27,7 @@ normal = Vector2(-1, 0)
 size = Vector2(400, 50)
 
 [node name="Room" type="Node2D"]
-script = ExtResource("1_7gxnu")
+script = ExtResource("1_sifa1")
 
 [node name="WallTop" type="StaticBody2D" parent="."]
 position = Vector2(960, 0)
@@ -90,7 +89,4 @@ theme_override_font_sizes/font_size = 25
 text = "Time Bonus: 0"
 vertical_alignment = 1
 
-[node name="FoodSpawner" parent="." instance=ExtResource("3_ilg0q")]
-
-[node name="Obstacle" parent="." instance=ExtResource("3_gnneh")]
-position = Vector2(595, 302)
+[node name="FoodSpawner" parent="." instance=ExtResource("2_b0td5")]

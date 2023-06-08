@@ -40,5 +40,4 @@ func _spawn_food() -> void:
 			food.position = shape_cast_2d.position
 			food.food_size = food_size
 			get_parent().add_child( food )
-			shape_cast_2d.call_deferred("queue_free")
 			break

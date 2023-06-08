@@ -1,22 +1,22 @@
 [gd_scene load_steps=10 format=3 uid="uid://cwhpobj862omw"]
 
-[ext_resource type="Script" path="res://src/main/scene/role/food/food.gd" id="1_ewled"]
-[ext_resource type="Texture2D" uid="uid://bhhknleday05w" path="res://src/main/assets/texture/role/food/coin2.png" id="2_5jrjo"]
+[ext_resource type="Script" path="res://src/main/scene/role/food/food.gd" id="1_sc0pg"]
+[ext_resource type="Texture2D" uid="uid://bhhknleday05w" path="res://src/main/assets/texture/role/food/coin2.png" id="2_hsace"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jipf4"]
-atlas = ExtResource("2_5jrjo")
+atlas = ExtResource("2_hsace")
 region = Rect2(0, 0, 10, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mpp2v"]
-atlas = ExtResource("2_5jrjo")
+atlas = ExtResource("2_hsace")
 region = Rect2(10, 0, 10, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vxkoc"]
-atlas = ExtResource("2_5jrjo")
+atlas = ExtResource("2_hsace")
 region = Rect2(20, 0, 10, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4l4oa"]
-atlas = ExtResource("2_5jrjo")
+atlas = ExtResource("2_hsace")
 region = Rect2(30, 0, 10, 10)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_oftih"]
@@ -47,7 +47,7 @@ radius = 20.0
 [node name="Food" type="RigidBody2D" groups=["apply_explosion", "food"]]
 mass = 0.05
 gravity_scale = 0.0
-script = ExtResource("1_ewled")
+script = ExtResource("1_sc0pg")
 
 [node name="Coin" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_oftih")

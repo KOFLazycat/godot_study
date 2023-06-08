@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://mvsspk1wok6n"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/player/snake/snake_body.gd" id="1_4dho7"]
+[ext_resource type="Texture2D" uid="uid://dw6p3mi2l2rf6" path="res://src/main/assets/texture/role/player/red_ninja/Nut2.png" id="1_rcrbb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_os4dw"]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mxxbc"]
+radius = 12.0
+
+[node name="SnakeBody" type="RigidBody2D" groups=["apply_explosion", "snake", "snake_body"]]
+mass = 0.01
+gravity_scale = 0.0
+linear_damp = 2.0
+script = ExtResource("1_4dho7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rcrbb")
+
+[node name="CollisionShape2DNormal" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_os4dw")
+disabled = true
+
+[node name="CollisionShape2DBig" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_mxxbc")
+disabled = true

@@ -1,0 +1,165 @@
+[gd_scene load_steps=21 format=3 uid="uid://3rbyf0hyhgo8"]
+
+[ext_resource type="Texture2D" uid="uid://cjggjyrdfh2bh" path="res://src/main/assets/texture/role/player/red_ninja/Walk.png" id="1_6nfyr"]
+[ext_resource type="Script" path="res://src/main/scene/role/player/snake/snake_head.gd" id="1_a00ho"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mq2wi"]
+atlas = ExtResource("1_6nfyr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g20b2"]
+atlas = ExtResource("1_6nfyr")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cuaa5"]
+atlas = ExtResource("1_6nfyr")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohnjf"]
+atlas = ExtResource("1_6nfyr")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgn88"]
+atlas = ExtResource("1_6nfyr")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4a0w4"]
+atlas = ExtResource("1_6nfyr")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfm14"]
+atlas = ExtResource("1_6nfyr")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cs043"]
+atlas = ExtResource("1_6nfyr")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6oyj"]
+atlas = ExtResource("1_6nfyr")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8k4n0"]
+atlas = ExtResource("1_6nfyr")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgoc1"]
+atlas = ExtResource("1_6nfyr")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhqj6"]
+atlas = ExtResource("1_6nfyr")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxlgx"]
+atlas = ExtResource("1_6nfyr")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klki5"]
+atlas = ExtResource("1_6nfyr")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjid5"]
+atlas = ExtResource("1_6nfyr")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mt3ib"]
+atlas = ExtResource("1_6nfyr")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cspof"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mq2wi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g20b2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cuaa5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohnjf")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgn88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4a0w4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfm14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cs043")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6oyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8k4n0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgoc1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhqj6")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxlgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klki5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjid5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mt3ib")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s4aly"]
+size = Vector2(26, 26)
+
+[node name="SnakeHead" type="RigidBody2D" groups=["apply_explosion", "snake", "snake_head"]]
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+lock_rotation = true
+linear_damp = 4.0
+script = ExtResource("1_a00ho")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_cspof")
+animation = &"walk_down"
+frame_progress = 0.189106
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_s4aly")
+
+[node name="SndEat" type="AudioStreamPlayer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

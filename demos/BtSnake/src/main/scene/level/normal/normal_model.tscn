@@ -1,20 +1,20 @@
 [gd_scene load_steps=3 format=3 uid="uid://ciabdmd3s1rfs"]
 
-[ext_resource type="PackedScene" uid="uid://cgb2nhm1vd6ip" path="res://src/main/scene/role/enemy/obstacle/obstacle.tscn" id="1_dlb3h"]
-[ext_resource type="PackedScene" uid="uid://3rbyf0hyhgo8" path="res://src/main/scene/role/player/snake/snake_head.tscn" id="2_fka6x"]
+[ext_resource type="PackedScene" uid="uid://cgb2nhm1vd6ip" path="res://src/main/scene/role/enemy/obstacle/obstacle.tscn" id="1_6v0bw"]
+[ext_resource type="PackedScene" uid="uid://3rbyf0hyhgo8" path="res://src/main/scene/role/player/snake/snake_head.tscn" id="2_617ic"]
 
 [node name="NormalModel" type="Node2D"]
 
-[node name="Obstacle1" parent="." instance=ExtResource("1_dlb3h")]
+[node name="Obstacle1" parent="." instance=ExtResource("1_6v0bw")]
 modulate = Color(1, 0.619608, 0.596078, 0.827451)
 position = Vector2(460, 750)
 
-[node name="Obstacle2" parent="." instance=ExtResource("1_dlb3h")]
+[node name="Obstacle2" parent="." instance=ExtResource("1_6v0bw")]
 modulate = Color(0, 0.792157, 0.666667, 0.894118)
 position = Vector2(960, 260)
 
-[node name="Obstacle3" parent="." instance=ExtResource("1_dlb3h")]
+[node name="Obstacle3" parent="." instance=ExtResource("1_6v0bw")]
 position = Vector2(1460, 750)
 
-[node name="SnakeHead" parent="." instance=ExtResource("2_fka6x")]
+[node name="SnakeHead" parent="." instance=ExtResource("2_617ic")]
 position = Vector2(960, 540)

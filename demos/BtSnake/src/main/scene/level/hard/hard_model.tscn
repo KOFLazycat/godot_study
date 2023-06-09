@@ -1,0 +1,110 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuhks5xqvbp0u"]
+
+[ext_resource type="PackedScene" uid="uid://cgb2nhm1vd6ip" path="res://src/main/scene/role/enemy/obstacle/obstacle.tscn" id="1_ywnux"]
+[ext_resource type="PackedScene" uid="uid://3rbyf0hyhgo8" path="res://src/main/scene/role/player/snake/snake_head.tscn" id="2_lbxwy"]
+[ext_resource type="PackedScene" uid="uid://owmakpohuwdm" path="res://src/main/scene/role/enemy/obstacle/friendly_obstacle.tscn" id="3_alaug"]
+
+[node name="HardModel" type="Node2D"]
+
+[node name="Obstacle" parent="." instance=ExtResource("1_ywnux")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(960, 540)
+
+[node name="Obstacle2" parent="." instance=ExtResource("1_ywnux")]
+modulate = Color(1, 0.137255, 1, 1)
+position = Vector2(400, 240)
+
+[node name="Obstacle3" parent="." instance=ExtResource("1_ywnux")]
+modulate = Color(0.52549, 0.462745, 0.439216, 1)
+position = Vector2(1520, 240)
+
+[node name="Obstacle4" parent="." instance=ExtResource("1_ywnux")]
+modulate = Color(1, 1, 0.270588, 1)
+position = Vector2(400, 800)
+
+[node name="Obstacle5" parent="." instance=ExtResource("1_ywnux")]
+modulate = Color(0.137255, 1, 1, 1)
+position = Vector2(1520, 800)
+
+[node name="TopObstacles" type="Node2D" parent="."]
+
+[node name="Obstacle" parent="TopObstacles" instance=ExtResource("1_ywnux")]
+modulate = Color(0, 0.862745, 0.32549, 1)
+position = Vector2(480, 20)
+obstacle_size = 0
+
+[node name="Obstacle2" parent="TopObstacles" instance=ExtResource("1_ywnux")]
+modulate = Color(0, 0.862745, 0.32549, 1)
+position = Vector2(960, 20)
+obstacle_size = 0
+
+[node name="Obstacle3" parent="TopObstacles" instance=ExtResource("1_ywnux")]
+modulate = Color(0, 0.862745, 0.32549, 1)
+position = Vector2(1440, 20)
+obstacle_size = 0
+
+[node name="BottomObstacles" type="Node2D" parent="."]
+
+[node name="Obstacle" parent="BottomObstacles" instance=ExtResource("1_ywnux")]
+modulate = Color(0, 0.862745, 0.32549, 1)
+position = Vector2(480, 1060)
+obstacle_size = 0
+
+[node name="Obstacle2" parent="BottomObstacles" instance=ExtResource("1_ywnux")]
+modulate = Color(0, 0.862745, 0.32549, 1)
+position = Vector2(960, 1060)
+obstacle_size = 0
+
+[node name="Obstacle3" parent="BottomObstacles" instance=ExtResource("1_ywnux")]
+modulate = Color(0, 0.862745, 0.32549, 1)
+position = Vector2(1440, 1060)
+obstacle_size = 0
+
+[node name="LeftObstacles" type="Node2D" parent="."]
+
+[node name="Obstacle" parent="LeftObstacles" instance=ExtResource("1_ywnux")]
+modulate = Color(0, 0.862745, 0.32549, 1)
+position = Vector2(20, 270)
+obstacle_size = 0
+
+[node name="Obstacle2" parent="LeftObstacles" instance=ExtResource("1_ywnux")]
+modulate = Color(0, 0.862745, 0.32549, 1)
+position = Vector2(20, 540)
+obstacle_size = 0
+
+[node name="Obstacle3" parent="LeftObstacles" instance=ExtResource("1_ywnux")]
+modulate = Color(0, 0.862745, 0.32549, 1)
+position = Vector2(20, 810)
+obstacle_size = 0
+
+[node name="RightObstacles" type="Node2D" parent="."]
+
+[node name="Obstacle" parent="RightObstacles" instance=ExtResource("1_ywnux")]
+modulate = Color(0, 0.862745, 0.32549, 1)
+position = Vector2(1900, 270)
+obstacle_size = 0
+
+[node name="Obstacle2" parent="RightObstacles" instance=ExtResource("1_ywnux")]
+modulate = Color(0, 0.862745, 0.32549, 1)
+position = Vector2(1900, 540)
+obstacle_size = 0
+
+[node name="Obstacle3" parent="RightObstacles" instance=ExtResource("1_ywnux")]
+modulate = Color(0, 0.862745, 0.32549, 1)
+position = Vector2(1900, 810)
+obstacle_size = 0
+
+[node name="SnakeHead" parent="." instance=ExtResource("2_lbxwy")]
+position = Vector2(671, 383)
+
+[node name="FriendlyObstacle" parent="." instance=ExtResource("3_alaug")]
+position = Vector2(960, 240)
+
+[node name="FriendlyObstacle2" parent="." instance=ExtResource("3_alaug")]
+position = Vector2(960, 800)
+
+[node name="FriendlyObstacle3" parent="." instance=ExtResource("3_alaug")]
+position = Vector2(400, 540)
+
+[node name="FriendlyObstacle4" parent="." instance=ExtResource("3_alaug")]
+position = Vector2(1520, 540)

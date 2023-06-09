@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://csuleof7mxnmv"]
 
-[ext_resource type="Script" path="res://src/main/scene/ui/start.gd" id="1_ce12j"]
+[ext_resource type="Script" path="res://src/main/scene/ui/start.gd" id="1_uieyn"]
 
 [node name="Start" type="ColorRect"]
 process_mode = 3
@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.239216, 0.239216, 0.239216, 1)
-script = ExtResource("1_ce12j")
+script = ExtResource("1_uieyn")
 
 [node name="LabelChoose" type="Label" parent="."]
 layout_mode = 1

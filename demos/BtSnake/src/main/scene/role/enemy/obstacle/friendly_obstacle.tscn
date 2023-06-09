@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://owmakpohuwdm"]
+
+[ext_resource type="Texture2D" uid="uid://bxl4i8g53h2ut" path="res://src/main/assets/texture/role/enemy/obstacle/BigTreasureChest.png" id="1_fqc2s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4p27b"]
+size = Vector2(39, 30)
+
+[node name="FriendlyObstacle" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 15
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_fqc2s")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 3)
+shape = SubResource("RectangleShape2D_4p27b")

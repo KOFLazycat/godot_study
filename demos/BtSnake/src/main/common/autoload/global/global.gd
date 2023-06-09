@@ -68,4 +68,4 @@ func set_game_over():
 
 func _on_timer_game_over_timeout() -> void:
 	get_tree().paused = true
-#	get_tree().root.add_child( preload("res://ui/game_over.tscn").instantiate() )
+	get_tree().root.add_child( preload("res://src/main/scene/ui/game_over.tscn").instantiate() )

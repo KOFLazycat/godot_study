@@ -1,70 +1,71 @@
-[gd_scene load_steps=21 format=3 uid="uid://3rbyf0hyhgo8"]
+[gd_scene load_steps=22 format=3 uid="uid://3rbyf0hyhgo8"]
 
-[ext_resource type="Texture2D" uid="uid://cjggjyrdfh2bh" path="res://src/main/assets/texture/role/player/red_ninja/Walk.png" id="1_6nfyr"]
-[ext_resource type="Script" path="res://src/main/scene/role/player/snake/snake_head.gd" id="1_a00ho"]
+[ext_resource type="Script" path="res://src/main/scene/role/player/snake/snake_head.gd" id="1_4au34"]
+[ext_resource type="Texture2D" uid="uid://cjggjyrdfh2bh" path="res://src/main/assets/texture/role/player/red_ninja/Walk.png" id="2_jtvfx"]
+[ext_resource type="AudioStream" uid="uid://ce3o3hcshpuev" path="res://src/main/assets/sound/Coin.wav" id="3_hmecc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mq2wi"]
-atlas = ExtResource("1_6nfyr")
+atlas = ExtResource("2_jtvfx")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g20b2"]
-atlas = ExtResource("1_6nfyr")
+atlas = ExtResource("2_jtvfx")
 region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cuaa5"]
-atlas = ExtResource("1_6nfyr")
+atlas = ExtResource("2_jtvfx")
 region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ohnjf"]
-atlas = ExtResource("1_6nfyr")
+atlas = ExtResource("2_jtvfx")
 region = Rect2(0, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fgn88"]
-atlas = ExtResource("1_6nfyr")
+atlas = ExtResource("2_jtvfx")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4a0w4"]
-atlas = ExtResource("1_6nfyr")
+atlas = ExtResource("2_jtvfx")
 region = Rect2(32, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yfm14"]
-atlas = ExtResource("1_6nfyr")
+atlas = ExtResource("2_jtvfx")
 region = Rect2(32, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cs043"]
-atlas = ExtResource("1_6nfyr")
+atlas = ExtResource("2_jtvfx")
 region = Rect2(32, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y6oyj"]
-atlas = ExtResource("1_6nfyr")
+atlas = ExtResource("2_jtvfx")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8k4n0"]
-atlas = ExtResource("1_6nfyr")
+atlas = ExtResource("2_jtvfx")
 region = Rect2(48, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sgoc1"]
-atlas = ExtResource("1_6nfyr")
+atlas = ExtResource("2_jtvfx")
 region = Rect2(48, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xhqj6"]
-atlas = ExtResource("1_6nfyr")
+atlas = ExtResource("2_jtvfx")
 region = Rect2(48, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lxlgx"]
-atlas = ExtResource("1_6nfyr")
+atlas = ExtResource("2_jtvfx")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_klki5"]
-atlas = ExtResource("1_6nfyr")
+atlas = ExtResource("2_jtvfx")
 region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qjid5"]
-atlas = ExtResource("1_6nfyr")
+atlas = ExtResource("2_jtvfx")
 region = Rect2(16, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mt3ib"]
-atlas = ExtResource("1_6nfyr")
+atlas = ExtResource("2_jtvfx")
 region = Rect2(16, 48, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cspof"]
@@ -142,13 +143,14 @@ animations = [{
 size = Vector2(26, 26)
 
 [node name="SnakeHead" type="RigidBody2D" groups=["apply_explosion", "snake", "snake_head"]]
+collision_mask = 56
 gravity_scale = 0.0
 max_contacts_reported = 1
 contact_monitor = true
 can_sleep = false
 lock_rotation = true
 linear_damp = 4.0
-script = ExtResource("1_a00ho")
+script = ExtResource("1_4au34")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -161,5 +163,7 @@ position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_s4aly")
 
 [node name="SndEat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_hmecc")
+volume_db = -20.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

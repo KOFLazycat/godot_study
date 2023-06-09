@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://qk5o0n1ret8g"]
 
-[ext_resource type="Script" path="res://src/main/common/autoload/global/global.gd" id="1_fje1n"]
+[ext_resource type="Script" path="res://src/main/common/autoload/global/global.gd" id="1_b8kkm"]
 
 [node name="Global" type="Node"]
-script = ExtResource("1_fje1n")
+script = ExtResource("1_b8kkm")
 
 [node name="TimerGameOver" type="Timer" parent="."]
 wait_time = 3.0

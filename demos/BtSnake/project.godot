@@ -52,6 +52,15 @@ move_right={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="snake_head"
+2d_physics/layer_2="snake_joint"
+2d_physics/layer_3="snake_body"
+2d_physics/layer_4="food"
+2d_physics/layer_5="obstacle"
+2d_physics/layer_6="wall"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://beqqcc7d2mkxl"]
 
-[ext_resource type="Script" path="res://src/main/scene/ui/room.gd" id="1_sifa1"]
-[ext_resource type="PackedScene" uid="uid://dlooppr4athyq" path="res://src/main/scene/role/food/food_spawner.tscn" id="2_b0td5"]
+[ext_resource type="Script" path="res://src/main/scene/ui/room.gd" id="1_c2lef"]
+[ext_resource type="PackedScene" uid="uid://dlooppr4athyq" path="res://src/main/scene/role/food/food_spawner.tscn" id="2_yuv57"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h6lc4"]
 bounce = 0.9
@@ -27,10 +27,12 @@ normal = Vector2(-1, 0)
 size = Vector2(400, 50)
 
 [node name="Room" type="Node2D"]
-script = ExtResource("1_sifa1")
+script = ExtResource("1_c2lef")
 
 [node name="WallTop" type="StaticBody2D" parent="."]
 position = Vector2(960, 0)
+collision_layer = 32
+collision_mask = 31
 physics_material_override = SubResource("PhysicsMaterial_h6lc4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallTop"]
@@ -38,6 +40,8 @@ shape = SubResource("WorldBoundaryShape2D_ksodu")
 
 [node name="WallBottom" type="StaticBody2D" parent="."]
 position = Vector2(960, 1080)
+collision_layer = 32
+collision_mask = 31
 physics_material_override = SubResource("PhysicsMaterial_qnyro")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallBottom"]
@@ -45,6 +49,8 @@ shape = SubResource("WorldBoundaryShape2D_fdy17")
 
 [node name="WallLeft" type="StaticBody2D" parent="."]
 position = Vector2(0, 540)
+collision_layer = 32
+collision_mask = 31
 physics_material_override = SubResource("PhysicsMaterial_54whx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft"]
@@ -52,12 +58,16 @@ shape = SubResource("WorldBoundaryShape2D_iriif")
 
 [node name="WallRight" type="StaticBody2D" parent="."]
 position = Vector2(1920, 540)
+collision_layer = 32
+collision_mask = 31
 physics_material_override = SubResource("PhysicsMaterial_54whx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight"]
 shape = SubResource("WorldBoundaryShape2D_jivj1")
 
 [node name="ScorePanel" type="StaticBody2D" parent="."]
+collision_layer = 32
+collision_mask = 63
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScorePanel"]
 position = Vector2(200, 25)
@@ -89,4 +99,4 @@ theme_override_font_sizes/font_size = 25
 text = "Time Bonus: 0"
 vertical_alignment = 1
 
-[node name="FoodSpawner" parent="." instance=ExtResource("2_b0td5")]
+[node name="FoodSpawner" parent="." instance=ExtResource("2_yuv57")]

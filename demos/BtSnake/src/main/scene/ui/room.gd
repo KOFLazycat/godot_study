@@ -7,10 +7,8 @@ func _ready() -> void:
 	get_tree().paused = false
 	var child_scene: PackedScene = null
 	if Global.difficulty == Global.Difficulty.HARD:
-#		child_scene = load("res://interior/hard_mode.tscn")
-		pass
+		child_scene = load("res://src/main/scene/level/hard/hard_model.tscn")
 	else:
 		child_scene = load("res://src/main/scene/level/normal/normal_model.tscn")
-		pass
 	add_child( child_scene.instantiate() )
 

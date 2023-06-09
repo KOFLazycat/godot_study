@@ -1,28 +1,28 @@
 [gd_scene load_steps=19 format=3 uid="uid://cgb2nhm1vd6ip"]
 
-[ext_resource type="Script" path="res://src/main/scene/role/enemy/obstacle/obstacle.gd" id="1_xclgm"]
-[ext_resource type="Texture2D" uid="uid://cwiue5ssooqte" path="res://src/main/assets/texture/role/enemy/obstacle/GiantFlam/Idle.png" id="2_jjlib"]
-[ext_resource type="Texture2D" uid="uid://c0wvm3mxavg1d" path="res://src/main/assets/texture/particle/explosion_particle.png" id="3_sl7c7"]
-[ext_resource type="AudioStream" uid="uid://c4k0yckopph1w" path="res://src/main/assets/sound/explosion.wav" id="4_def20"]
+[ext_resource type="Script" path="res://src/main/scene/role/enemy/obstacle/obstacle.gd" id="1_n4dn7"]
+[ext_resource type="Texture2D" uid="uid://cwiue5ssooqte" path="res://src/main/assets/texture/role/enemy/obstacle/GiantFlam/Idle.png" id="2_gccrs"]
+[ext_resource type="Texture2D" uid="uid://c0wvm3mxavg1d" path="res://src/main/assets/texture/particle/explosion_particle.png" id="3_vemm4"]
+[ext_resource type="AudioStream" uid="uid://c4k0yckopph1w" path="res://src/main/assets/sound/explosion.wav" id="4_n486y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eum13"]
-atlas = ExtResource("2_jjlib")
+atlas = ExtResource("2_gccrs")
 region = Rect2(0, 0, 50, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvuha"]
-atlas = ExtResource("2_jjlib")
+atlas = ExtResource("2_gccrs")
 region = Rect2(50, 0, 50, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ywsq7"]
-atlas = ExtResource("2_jjlib")
+atlas = ExtResource("2_gccrs")
 region = Rect2(100, 0, 50, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u1m75"]
-atlas = ExtResource("2_jjlib")
+atlas = ExtResource("2_gccrs")
 region = Rect2(150, 0, 50, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ml8xc"]
-atlas = ExtResource("2_jjlib")
+atlas = ExtResource("2_gccrs")
 region = Rect2(200, 0, 50, 50)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2kmmb"]
@@ -99,11 +99,13 @@ scale_max = 3.0
 color_ramp = SubResource("GradientTexture1D_6wvbr")
 
 [node name="Obstacle" type="RigidBody2D"]
+collision_layer = 16
+collision_mask = 31
 max_contacts_reported = 1
 contact_monitor = true
 freeze = true
 freeze_mode = 1
-script = ExtResource("1_xclgm")
+script = ExtResource("1_n4dn7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.5, 1.5)
@@ -125,7 +127,7 @@ scale = Vector2(0.5, 0.5)
 emitting = false
 amount = 1000
 process_material = SubResource("ParticleProcessMaterial_usj4h")
-texture = ExtResource("3_sl7c7")
+texture = ExtResource("3_vemm4")
 lifetime = 1.25
 one_shot = true
 preprocess = 0.35
@@ -135,14 +137,14 @@ explosiveness = 0.71
 emitting = false
 amount = 3000
 process_material = SubResource("ParticleProcessMaterial_3bjdk")
-texture = ExtResource("3_sl7c7")
+texture = ExtResource("3_vemm4")
 lifetime = 1.25
 one_shot = true
 preprocess = 0.35
 explosiveness = 0.71
 
 [node name="SndExplosion" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_def20")
+stream = ExtResource("4_n486y")
 volume_db = -10.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

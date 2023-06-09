@@ -54,15 +54,21 @@ func _integrate_forces( _state ):
 
 	if direction.length() > 0:
 		# 播放动画
-		if $AnimatedSprite2D.is_playing() == false:
-			if direction.x < 0:
-				$AnimatedSprite2D.play("walk_left")
-			if direction.x > 0:
-				$AnimatedSprite2D.play("walk_right")
+		if direction.x < 0:
 			if direction.y < 0:
 				$AnimatedSprite2D.play("walk_up")
-			if direction.y > 0:
+			elif direction.y > 0:
 				$AnimatedSprite2D.play("walk_down")
+			else:
+				$AnimatedSprite2D.play("walk_left")
+		else:
+			if direction.y < 0:
+				$AnimatedSprite2D.play("walk_up")
+			elif direction.y > 0:
+				$AnimatedSprite2D.play("walk_down")
+			else:
+				$AnimatedSprite2D.play("walk_right")
+					
 		apply_central_force( direction.normalized() * current_speed )
 		current_speed = minf( current_speed + SNAKE_ACCELERATION, SNAKE_MAX_SPEED )
 	else:
@@ -72,7 +78,7 @@ func _integrate_forces( _state ):
 
 func _spawn_tail( food_size: Food.FoodSize ) -> void:
 	var new_tail := body_scene.instantiate() as SnakeBody
-	var joint_len := 24
+	var joint_len := 18
 	const joint_len_head_add := 4
 	const joint_len_big_add := 6
 

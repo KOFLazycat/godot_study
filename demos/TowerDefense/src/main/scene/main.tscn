@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://1yhfgmdp2i13"]
+
+[ext_resource type="PackedScene" uid="uid://yboub7utaok8" path="res://src/main/scene/level/level_test/level_test.tscn" id="1_fxwvk"]
+[ext_resource type="PackedScene" uid="uid://cc1mbi754w6ry" path="res://src/main/scene/role/enemy/spawn_path.tscn" id="2_5uf2j"]
+
+[node name="Main" type="Node2D"]
+
+[node name="LevelTest" parent="." instance=ExtResource("1_fxwvk")]
+
+[node name="SpawnPath" parent="." instance=ExtResource("2_5uf2j")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(477, 480)
+zoom = Vector2(2, 2)

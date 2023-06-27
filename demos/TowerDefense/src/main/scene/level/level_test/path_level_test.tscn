@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2edfqe3kkfcm"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/level_test/path_level_test.gd" id="1_jh0en"]
+[ext_resource type="PackedScene" uid="uid://ccgonhqy2230d" path="res://src/main/scene/role/enemy/mouse/enemy_mouse.tscn" id="2_r60qf"]
+
+[sub_resource type="Curve2D" id="Curve2D_so6sw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -63, 503, -20.7652, 26.4285, 20.7652, -26.4285, 518, 501, -24.5407, 12.2704, 24.5407, -12.2704, 521, 265, -17.9336, -17.9336, 17.9336, 17.9336, 808, 263, -22.653, -18.8775, 22.653, 18.8775, 810, 681, -22.653, -22.653, 22.653, 22.653, 1156, 681, -18.8775, -10.3826, 18.8775, 10.3826, 1161, 795, -21.7091, -24.5407, 21.7091, 24.5407, 1321, 795, -29.2601, -3.7755, 29.2601, 3.7755, 1323, 919, -20.7652, 21.7091, 20.7652, -21.7091, 1477, 919, -26.4285, 22.653, 26.4285, -22.653, 1482, 348, 0, 0, 0, 0, 2133, 342)
+}
+point_count = 12
+
+[node name="PathLevelTest" type="Path2D"]
+curve = SubResource("Curve2D_so6sw")
+script = ExtResource("1_jh0en")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(-63, 503)
+rotation = -0.00344233
+
+[node name="EnemyMouse" parent="PathFollow2D" instance=ExtResource("2_r60qf")]
+
+[connection signal="enemy_die" from="PathFollow2D/EnemyMouse" to="." method="_on_enemy_mouse_enemy_die"]

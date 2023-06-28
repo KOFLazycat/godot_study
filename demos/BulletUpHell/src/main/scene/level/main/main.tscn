@@ -573,72 +573,22 @@ props = SubResource("PackedDataContainer_ohwjb")
 [node name="SpawnPoint" type="Node2D" parent="SpawnPoints"]
 position = Vector2(86, 135)
 script = ExtResource("1_wj5k2")
-active = true
-auto_pattern_id = "one"
-shared_area_name = "0"
-rotating_speed = 1.0
-pool_amount = 50
-auto_start_on_cam = true
-auto_start_after_time = 0.0
-auto_start_at_distance = 5.0
-auto_distance_from = NodePath("")
-trigger_container = NodePath("")
 
 [node name="SpawnPoint2" type="Node2D" parent="SpawnPoints"]
 position = Vector2(86, 307)
 script = ExtResource("1_wj5k2")
-active = true
-auto_pattern_id = "circle"
-shared_area_name = "0"
-rotating_speed = 0.0
-pool_amount = 50
-auto_start_on_cam = true
-auto_start_after_time = 0.0
-auto_start_at_distance = 5.0
-auto_distance_from = NodePath("")
-trigger_container = NodePath("")
 
 [node name="SpawnPoint3" type="Node2D" parent="SpawnPoints"]
 position = Vector2(83, 510)
 script = ExtResource("1_wj5k2")
-active = true
-auto_pattern_id = "line"
-shared_area_name = "0"
-rotating_speed = 0.0
-pool_amount = 50
-auto_start_on_cam = true
-auto_start_after_time = 0.0
-auto_start_at_distance = 5.0
-auto_distance_from = NodePath("")
-trigger_container = NodePath("")
 
 [node name="SpawnPoint4" type="Node2D" parent="SpawnPoints"]
 position = Vector2(746, 119)
 script = ExtResource("1_wj5k2")
-active = true
-auto_pattern_id = "points"
-shared_area_name = "0"
-rotating_speed = 0.0
-pool_amount = 50
-auto_start_on_cam = true
-auto_start_after_time = 0.0
-auto_start_at_distance = 5.0
-auto_distance_from = NodePath("")
-trigger_container = NodePath("")
 
 [node name="SpawnPoint5" type="Node2D" parent="SpawnPoints"]
 position = Vector2(748, 271)
 script = ExtResource("1_wj5k2")
-active = true
-auto_pattern_id = "shape"
-shared_area_name = "0"
-rotating_speed = 0.0
-pool_amount = 50
-auto_start_on_cam = true
-auto_start_after_time = 0.0
-auto_start_at_distance = 5.0
-auto_distance_from = NodePath("")
-trigger_container = NodePath("")
 
 [node name="SpawnPattern6" type="Path2D" parent="SpawnPoints"]
 curve = SubResource("Curve2D_hotam")

@@ -57,11 +57,3 @@ func _physics_process(_delta: float) -> void:
 	blood.global_position.x = global_position.x + blood_offset_x
 	blood.global_position.y = global_position.y + blood_offset_y
 	blood.global_rotation_degrees = 0
-
-
-
-func _on_timer_timeout() -> void:
-	var damage: int = -30
-	if blood.blood_value <= 0:
-		damage = 100 - blood.blood_value
-	blood.value_change(damage)

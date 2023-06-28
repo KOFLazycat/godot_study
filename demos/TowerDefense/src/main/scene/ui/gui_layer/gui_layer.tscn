@@ -1,0 +1,115 @@
+[gd_scene load_steps=7 format=3 uid="uid://crni42im3heiq"]
+
+[ext_resource type="Script" path="res://src/main/scene/ui/gui_layer/gui_layer.gd" id="1_04qck"]
+[ext_resource type="FontFile" uid="uid://dl1723ksa0mlp" path="res://src/main/assets/texture/HUD/Font/NormalFont.ttf" id="1_7bu8y"]
+[ext_resource type="Texture2D" uid="uid://cdwwh48jfdsc8" path="res://src/main/assets/texture/Actor/Characters/Boy/Faceset.png" id="2_qp6h4"]
+[ext_resource type="Texture2D" uid="uid://box2j23t8qlyg" path="res://src/main/assets/texture/Actor/Characters/Lion/Faceset.png" id="3_od4hh"]
+[ext_resource type="Texture2D" uid="uid://c3wsy7jx4wre8" path="res://src/main/assets/texture/Actor/Characters/Eskimo/Faceset.png" id="4_7t0yk"]
+[ext_resource type="Texture2D" uid="uid://cmq2aj44xq8wh" path="res://src/main/assets/texture/Actor/Characters/OldMan/Faceset.png" id="5_y6vv5"]
+
+[node name="GUILayer" type="CanvasLayer"]
+script = ExtResource("1_04qck")
+items_magic = Array[Texture]([ExtResource("2_qp6h4"), ExtResource("3_od4hh")])
+items_tower = Array[Texture]([ExtResource("4_7t0yk"), ExtResource("5_y6vv5")])
+
+[node name="GameInfo" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LabelFps" type="Label" parent="GameInfo"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1730.0
+offset_right = 1880.0
+offset_bottom = 50.0
+grow_horizontal = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_7bu8y")
+theme_override_font_sizes/font_size = 30
+text = "FPS: 0"
+vertical_alignment = 1
+
+[node name="FlowContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -140.0
+offset_right = 500.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(500, 70)
+
+[node name="HFlowContainerMagic" type="HFlowContainer" parent="FlowContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 1
+offset_right = 1000.0
+offset_bottom = 70.0
+
+[node name="HFlowContainerTower" type="HFlowContainer" parent="FlowContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -70.0
+offset_right = 1000.0
+grow_vertical = 0
+
+[node name="TestBtn" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BtnAddMagic" type="Button" parent="TestBtn"]
+layout_mode = 0
+offset_left = 660.0
+offset_top = 300.0
+offset_right = 940.0
+offset_bottom = 360.0
+theme_override_fonts/font = ExtResource("1_7bu8y")
+theme_override_font_sizes/font_size = 30
+text = "AddMagic"
+
+[node name="BtnAddTower" type="Button" parent="TestBtn"]
+layout_mode = 0
+offset_left = 660.0
+offset_top = 400.0
+offset_right = 940.0
+offset_bottom = 460.0
+theme_override_fonts/font = ExtResource("1_7bu8y")
+theme_override_font_sizes/font_size = 30
+text = "AddTower"
+
+[node name="BtnRemoveMagic" type="Button" parent="TestBtn"]
+layout_mode = 0
+offset_left = 1060.0
+offset_top = 300.0
+offset_right = 1340.0
+offset_bottom = 360.0
+theme_override_fonts/font = ExtResource("1_7bu8y")
+theme_override_font_sizes/font_size = 30
+text = "RemoveMagic"
+
+[node name="BtnRemoveTower" type="Button" parent="TestBtn"]
+layout_mode = 0
+offset_left = 1060.0
+offset_top = 400.0
+offset_right = 1340.0
+offset_bottom = 460.0
+theme_override_fonts/font = ExtResource("1_7bu8y")
+theme_override_font_sizes/font_size = 30
+text = "RemoveTower"
+
+[connection signal="pressed" from="TestBtn/BtnAddMagic" to="." method="_on_btn_add_magic_pressed"]
+[connection signal="pressed" from="TestBtn/BtnAddTower" to="." method="_on_btn_add_tower_pressed"]
+[connection signal="pressed" from="TestBtn/BtnRemoveMagic" to="." method="_on_btn_remove_magic_pressed"]
+[connection signal="pressed" from="TestBtn/BtnRemoveTower" to="." method="_on_btn_remove_tower_pressed"]

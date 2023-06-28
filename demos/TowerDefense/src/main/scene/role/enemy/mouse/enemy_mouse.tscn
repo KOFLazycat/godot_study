@@ -147,7 +147,6 @@ animations = [{
 radius = 5.0
 
 [node name="EnemyMouse" type="CharacterBody2D" groups=["enemy", "mouse"]]
-position = Vector2(973, 399)
 script = ExtResource("1_8fajl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -171,13 +170,5 @@ shape = SubResource("CircleShape2D_2tuge")
 
 [node name="DisableTimer" type="Timer" parent="Hitbox"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(8, 8)
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
-autostart = true
-
 [connection signal="area_entered" from="Hitbox" to="Hitbox" method="_on_area_entered" flags=18]
 [connection signal="timeout" from="Hitbox/DisableTimer" to="Hitbox" method="_on_disable_timer_timeout" flags=18]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

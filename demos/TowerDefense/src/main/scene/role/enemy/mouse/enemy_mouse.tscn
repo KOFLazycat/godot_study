@@ -146,7 +146,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_2tuge"]
 radius = 5.0
 
-[node name="EnemyMouse" type="CharacterBody2D" groups=["enemy", "mouse"]]
+[node name="EnemyMouse" type="CharacterBody2D"]
 script = ExtResource("1_8fajl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -161,7 +161,7 @@ autoplay = "walk_right"
 [node name="Blood" parent="." instance=ExtResource("1_q7tky")]
 position = Vector2(-9, -12)
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." groups=["enemy", "mouse"]]
 script = ExtResource("2_x2bi1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]

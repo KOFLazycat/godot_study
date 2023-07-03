@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://bb8h0ahmk7ek7"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/bullet/shuriken/bullet_shuriken.gd" id="1_xm436"]
+[ext_resource type="Texture2D" uid="uid://bv68bpdexmxqu" path="res://src/main/assets/texture/HUD/Shuriken.png" id="2_ddhjs"]
+[ext_resource type="PackedScene" uid="uid://bt7i3lb8okskh" path="res://src/main/common/util/hurtbox.tscn" id="3_maea2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_43hds"]
+radius = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asw0r"]
+atlas = ExtResource("2_ddhjs")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o3n20"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asw0r")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4hpts"]
+radius = 8.0
+
+[node name="BulletShuriken" type="CharacterBody2D"]
+script = ExtResource("1_xm436")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_43hds")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_o3n20")
+animation = &"idle"
+
+[node name="Hurtbox" parent="." instance=ExtResource("3_maea2")]
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource("CircleShape2D_4hpts")
+
+[node name="TimerLife" type="Timer" parent="."]
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="TimerLife" to="." method="_on_timer_life_timeout"]
+
+[editable path="Hurtbox"]

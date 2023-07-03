@@ -1,6 +1,5 @@
-[gd_scene load_steps=12 format=3 uid="uid://kxb5ba3rlqta"]
+[gd_scene load_steps=11 format=3 uid="uid://kxb5ba3rlqta"]
 
-[ext_resource type="Texture2D" uid="uid://bvr0nn2ihltxt" path="res://src/main/assets/texture/Actor/Characters/Boy/SeparateAnim/Idle.png" id="1_27hhs"]
 [ext_resource type="Texture2D" uid="uid://ik06pducnaan" path="res://src/main/assets/texture/Actor/Characters/Boy/SpriteSheet.png" id="1_aelj2"]
 [ext_resource type="Script" path="res://src/main/scene/role/tower/tower.gd" id="1_ov7a3"]
 
@@ -15,8 +14,8 @@ region = Rect2(0, 0, 16, 16)
 atlas = ExtResource("1_aelj2")
 region = Rect2(0, 64, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6o6rs"]
-atlas = ExtResource("1_27hhs")
+[sub_resource type="AtlasTexture" id="AtlasTexture_81mjq"]
+atlas = ExtResource("1_aelj2")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_067cg"]
@@ -42,7 +41,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6o6rs")
+"texture": SubResource("AtlasTexture_81mjq")
 }],
 "loop": true,
 "name": &"idle",
@@ -73,13 +72,18 @@ shape = SubResource("RectangleShape2D_j6uat")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hopn7")
-animation = &"attack"
-frame_progress = 0.237017
+animation = &"idle"
+frame_progress = 0.922484
 
 [node name="Area2DAttackRange" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DAttackRange"]
 shape = SubResource("CircleShape2D_kcw82")
 
+[node name="TimerFireInterval" type="Timer" parent="."]
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="area_entered" from="Area2DAttackRange" to="." method="_on_area_2d_attack_range_area_entered"]
+[connection signal="area_exited" from="Area2DAttackRange" to="." method="_on_area_2d_attack_range_area_exited"]
+[connection signal="timeout" from="TimerFireInterval" to="." method="_on_timer_fire_interval_timeout"]

@@ -33,7 +33,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			# 放置炮塔
 			if event.button_mask & MOUSE_BUTTON_MASK_LEFT:
 				tower.modulate.a8 = 255
-				tower.animated_sprite_2d.play("attack")
+				tower.animated_sprite_2d.play("idle")
 				tower.show_attack_range_with_color(false, Tower.AttackRangeColor.GREEN)
 				# 放置炮塔以后 记录炮塔位置
 				tower = null

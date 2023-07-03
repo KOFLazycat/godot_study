@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://kxb5ba3rlqta"]
+
+[ext_resource type="Texture2D" uid="uid://bvr0nn2ihltxt" path="res://src/main/assets/texture/Actor/Characters/Boy/SeparateAnim/Idle.png" id="1_27hhs"]
+[ext_resource type="Texture2D" uid="uid://ik06pducnaan" path="res://src/main/assets/texture/Actor/Characters/Boy/SpriteSheet.png" id="1_aelj2"]
+[ext_resource type="Script" path="res://src/main/scene/role/tower/tower.gd" id="1_ov7a3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6uat"]
+size = Vector2(12, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugwps"]
+atlas = ExtResource("1_aelj2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4loi"]
+atlas = ExtResource("1_aelj2")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6o6rs"]
+atlas = ExtResource("1_27hhs")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_067cg"]
+atlas = ExtResource("1_aelj2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rfcb"]
+atlas = ExtResource("1_aelj2")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hopn7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugwps")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4loi")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6o6rs")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_067cg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rfcb")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kcw82"]
+radius = 80.0
+
+[node name="Tower" type="StaticBody2D"]
+input_pickable = true
+script = ExtResource("1_ov7a3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["tower"]]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_j6uat")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hopn7")
+animation = &"attack"
+frame_progress = 0.237017
+
+[node name="Area2DAttackRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DAttackRange"]
+shape = SubResource("CircleShape2D_kcw82")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -9,7 +9,7 @@ extends Area2D
 # 冷却时间
 @export var disable_interval: float = 1.0
 # 每次消耗子弹次数
-@export var blood_reduce: int = 1
+@export var bullet_damage_reduce: int = 1
 
 signal hurt(damage, angle, knockback)
 var hit_once_array: Array = []
@@ -44,9 +44,9 @@ func _on_area_entered(area: Area2D) -> void:
 				angle = area.angle
 			if not area.get("knockback_amount") == null:
 				knockback = area.knockback_amount
-			
+				
 			if area.has_method("hit"):
-				area.hit(blood_reduce)
+				area.hit(bullet_damage_reduce)
 			emit_signal("hurt", damage, angle, knockback)
 
 

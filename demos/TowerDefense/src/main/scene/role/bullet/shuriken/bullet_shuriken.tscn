@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/main/scene/role/bullet/shuriken/bullet_shuriken.gd" id="1_xm436"]
 [ext_resource type="Texture2D" uid="uid://bv68bpdexmxqu" path="res://src/main/assets/texture/HUD/Shuriken.png" id="2_ddhjs"]
-[ext_resource type="PackedScene" uid="uid://bt7i3lb8okskh" path="res://src/main/common/util/hurtbox.tscn" id="3_maea2"]
+[ext_resource type="Script" path="res://src/main/common/util/hurtbox.gd" id="3_svrke"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_43hds"]
 radius = 5.0
@@ -35,14 +35,16 @@ shape = SubResource("CircleShape2D_43hds")
 sprite_frames = SubResource("SpriteFrames_o3n20")
 animation = &"idle"
 
-[node name="Hurtbox" parent="." instance=ExtResource("3_maea2")]
+[node name="Hurtbox" type="Area2D" parent="." groups=["attack", "bullet"]]
+script = ExtResource("3_svrke")
 
-[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_4hpts")
+
+[node name="DisableTimer" type="Timer" parent="Hurtbox"]
 
 [node name="TimerLife" type="Timer" parent="."]
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="Hurtbox/DisableTimer" to="Hurtbox" method="_on_disable_timer_timeout" flags=18]
 [connection signal="timeout" from="TimerLife" to="." method="_on_timer_life_timeout"]
-
-[editable path="Hurtbox"]

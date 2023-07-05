@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 @onready var mouse: AnimatedSprite2D = $Mouse
 @onready var blood: Node2D = $Blood
+@onready var animation_player = $AnimationPlayer
+
 
 # 怪物移动加速度
 @export var enemy_speed_acc: float = 0.0
@@ -57,3 +59,12 @@ func _physics_process(_delta: float) -> void:
 	blood.global_position.x = global_position.x + blood_offset_x
 	blood.global_position.y = global_position.y + blood_offset_y
 	blood.global_rotation_degrees = 0
+
+
+func _on_hitbox_hurt(damage, angle, knockback):
+	blood.value_change(damage*(-1))
+	animation_player.play("take_damage")
+	if blood.blood_value <= 0:
+		await animation_player.animation_finished
+		queue_free()
+

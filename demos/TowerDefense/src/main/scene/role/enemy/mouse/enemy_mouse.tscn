@@ -1,12 +1,19 @@
-[gd_scene load_steps=24 format=3 uid="uid://ccgonhqy2230d"]
+[gd_scene load_steps=29 format=3 uid="uid://ccgonhqy2230d"]
 
 [ext_resource type="Script" path="res://src/main/scene/role/enemy/mouse/enemy_mouse.gd" id="1_8fajl"]
 [ext_resource type="PackedScene" uid="uid://bbmp2atcen3oc" path="res://src/main/scene/role/blood/blood.tscn" id="1_q7tky"]
 [ext_resource type="Texture2D" uid="uid://cncthclhfhr4q" path="res://src/main/assets/texture/Actor/Monsters/Mouse/SpriteSheet.png" id="2_i7vi7"]
+[ext_resource type="Shader" path="res://src/main/scene/role/enemy/mouse/enemy_mouse.gdshader" id="2_wcslc"]
 [ext_resource type="Script" path="res://src/main/common/util/hitbox.gd" id="2_x2bi1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_an0os"]
 radius = 3.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pgdpt"]
+resource_local_to_scene = true
+shader = ExtResource("2_wcslc")
+shader_parameter/open = false
+shader_parameter/color = Color(1, 1, 1, 0.780392)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_87gom"]
 atlas = ExtResource("2_i7vi7")
@@ -143,7 +150,44 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2tuge"]
+[sub_resource type="Animation" id="Animation_iv1g5"]
+resource_name = "take_damage"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/open")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_xbnyx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/open")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qjraq"]
+_data = {
+"RESET": SubResource("Animation_xbnyx"),
+"take_damage": SubResource("Animation_iv1g5")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vgb28"]
 radius = 5.0
 
 [node name="EnemyMouse" type="CharacterBody2D"]
@@ -154,6 +198,7 @@ position = Vector2(-1, 2.5)
 shape = SubResource("CircleShape2D_an0os")
 
 [node name="Mouse" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_pgdpt")
 sprite_frames = SubResource("SpriteFrames_wxyrx")
 animation = &"walk_right"
 autoplay = "walk_right"
@@ -161,14 +206,22 @@ autoplay = "walk_right"
 [node name="Blood" parent="." instance=ExtResource("1_q7tky")]
 position = Vector2(-9, -12)
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Mouse")
+libraries = {
+"": SubResource("AnimationLibrary_qjraq")
+}
+
 [node name="Hitbox" type="Area2D" parent="." groups=["enemy", "mouse"]]
 script = ExtResource("2_x2bi1")
+hit_box_type = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-0.8, 2)
-shape = SubResource("CircleShape2D_2tuge")
+shape = SubResource("CircleShape2D_vgb28")
 
 [node name="DisableTimer" type="Timer" parent="Hitbox"]
 
 [connection signal="area_entered" from="Hitbox" to="Hitbox" method="_on_area_entered" flags=18]
+[connection signal="hurt" from="Hitbox" to="." method="_on_hitbox_hurt"]
 [connection signal="timeout" from="Hitbox/DisableTimer" to="Hitbox" method="_on_disable_timer_timeout" flags=18]

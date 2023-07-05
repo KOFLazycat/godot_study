@@ -6,6 +6,8 @@ extends Area2D
 
 # 碰撞伤害
 @export var damage: float = 1.0
+# 可以穿越敌人的次数
+@export var damage_num: int = 1
 # 伤害触发冷却时间
 @export var disable_interval: float = 0.4
 
@@ -18,6 +20,11 @@ func temp_disable():
 
 func set_damage(dam: float) -> void:
 	damage = dam
+	
+	
+func hit(dr: int) -> void:
+	if damage_num > 0:
+		damage_num -= dr
 
 
 func _on_disable_timer_timeout() -> void:

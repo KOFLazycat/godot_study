@@ -71,8 +71,10 @@ func dead() -> void:
 
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	if area.is_in_group("enemy") and hurtbox.damage_num == 0:
-		dead()
+	if area.is_in_group("enemy"):
+		bullet_damage_num -= 1
+		if bullet_damage_num == 0:
+			dead()
 
 
 func move_default(delta: float) -> void:

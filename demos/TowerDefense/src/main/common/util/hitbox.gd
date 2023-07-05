@@ -45,8 +45,8 @@ func _on_area_entered(area: Area2D) -> void:
 			if not area.get("knockback_amount") == null:
 				knockback = area.knockback_amount
 				
-			if area.has_method("hit"):
-				area.hit(bullet_damage_reduce)
+#			if area.has_method("hit"):
+#				area.hit(bullet_damage_reduce)
 			emit_signal("hurt", damage, angle, knockback)
 
 

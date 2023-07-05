@@ -21,7 +21,8 @@ func temp_disable():
 func set_damage(dam: float) -> void:
 	damage = dam
 	
-	
+
+# 减少碰撞次数
 func hit(dr: int) -> void:
 	if damage_num > 0:
 		damage_num -= dr

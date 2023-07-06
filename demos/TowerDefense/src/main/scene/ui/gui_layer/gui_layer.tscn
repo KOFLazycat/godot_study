@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://crni42im3heiq"]
+[gd_scene load_steps=9 format=3 uid="uid://crni42im3heiq"]
 
 [ext_resource type="Script" path="res://src/main/scene/ui/gui_layer/gui_layer.gd" id="1_04qck"]
 [ext_resource type="FontFile" uid="uid://dl1723ksa0mlp" path="res://src/main/assets/texture/HUD/Font/NormalFont.ttf" id="1_7bu8y"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://box2j23t8qlyg" path="res://src/main/assets/texture/Actor/Characters/Lion/Faceset.png" id="3_od4hh"]
 [ext_resource type="Texture2D" uid="uid://c3wsy7jx4wre8" path="res://src/main/assets/texture/Actor/Characters/Eskimo/Faceset.png" id="4_7t0yk"]
 [ext_resource type="Texture2D" uid="uid://cmq2aj44xq8wh" path="res://src/main/assets/texture/Actor/Characters/OldMan/Faceset.png" id="5_y6vv5"]
+[ext_resource type="Texture2D" uid="uid://c2xi1c3mnu5t6" path="res://src/main/assets/texture/Items/Treasure/GoldCoin.png" id="7_sd577"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qkfe4"]
+size = Vector2(7, 7)
 
 [node name="GUILayer" type="CanvasLayer"]
 script = ExtResource("1_04qck")
@@ -32,6 +36,29 @@ theme_override_fonts/font = ExtResource("1_7bu8y")
 theme_override_font_sizes/font_size = 30
 text = "FPS: 0"
 vertical_alignment = 1
+
+[node name="LabelCoin" type="Label" parent="GameInfo"]
+custom_minimum_size = Vector2(80, 26)
+layout_mode = 0
+offset_left = 133.0
+offset_top = 1023.0
+offset_right = 213.0
+offset_bottom = 1067.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_7bu8y")
+theme_override_font_sizes/font_size = 30
+text = "0"
+vertical_alignment = 2
+
+[node name="Sprite2DCoin" type="Sprite2D" parent="GameInfo"]
+position = Vector2(107, 1050)
+scale = Vector2(3, 3)
+texture = ExtResource("7_sd577")
+
+[node name="Area2D" type="Area2D" parent="GameInfo/Sprite2DCoin" groups=["ui_coin"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameInfo/Sprite2DCoin/Area2D"]
+shape = SubResource("RectangleShape2D_qkfe4")
 
 [node name="FlowContainer" type="Control" parent="."]
 layout_mode = 3

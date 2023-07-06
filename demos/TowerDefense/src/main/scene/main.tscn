@@ -10,4 +10,8 @@
 
 [node name="SpawnPath" parent="." instance=ExtResource("2_5uf2j")]
 
-[node name="GUILayer" parent="." instance=ExtResource("3_c7xmo")]
+[node name="UI" type="Node2D" parent="."]
+
+[node name="GUILayer" parent="UI" instance=ExtResource("3_c7xmo")]
+
+[node name="CoinNode" type="Node2D" parent="." groups=["coin_node"]]

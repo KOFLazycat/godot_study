@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://ckk0ou1lhj501"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/coin/coin.gd" id="1_q6coe"]
+[ext_resource type="Texture2D" uid="uid://ciivwbbuotyv1" path="res://src/main/assets/texture/Items/Treasure/Coin2.png" id="1_uk5id"]
+[ext_resource type="AudioStream" uid="uid://dtgky6m1nsmb5" path="res://src/main/assets/sounds/Game/Coin.wav" id="3_hk5cn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s33vm"]
+radius = 6.08276
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxec3"]
+atlas = ExtResource("1_uk5id")
+region = Rect2(0, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ss40i"]
+atlas = ExtResource("1_uk5id")
+region = Rect2(10, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vc741"]
+atlas = ExtResource("1_uk5id")
+region = Rect2(20, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnp8k"]
+atlas = ExtResource("1_uk5id")
+region = Rect2(30, 0, 10, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rmbhs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxec3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ss40i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vc741")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnp8k")
+}],
+"loop": true,
+"name": &"rotate",
+"speed": 5.0
+}]
+
+[node name="Coin" type="Area2D" groups=["coin"]]
+script = ExtResource("1_q6coe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_s33vm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rmbhs")
+animation = &"rotate"
+autoplay = "rotate"
+frame_progress = 0.958485
+
+[node name="SndCoin" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_hk5cn")
+volume_db = -15.0
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="finished" from="SndCoin" to="." method="_on_snd_coin_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

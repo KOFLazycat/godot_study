@@ -4,8 +4,10 @@ extends CharacterBody2D
 @onready var mouse: AnimatedSprite2D = $Mouse
 @onready var blood: Node2D = $Blood
 @onready var animation_player = $AnimationPlayer
+@onready var coin_node = get_tree().get_first_node_in_group("coin_node")
 
-
+# 掉落金币
+var coin_tscn = preload("res://src/main/scene/role/coin/coin.tscn") as PackedScene
 # 怪物移动加速度
 @export var enemy_speed_acc: float = 0.0
 # 怪物最大血量
@@ -66,5 +68,8 @@ func _on_hitbox_hurt(damage, angle, knockback):
 	animation_player.play("take_damage")
 	if blood.blood_value <= 0:
 		await animation_player.animation_finished
+		var coin = coin_tscn.instantiate()
+		coin.global_position = global_position
+		coin_node.call_deferred("add_child", coin)
 		queue_free()
 

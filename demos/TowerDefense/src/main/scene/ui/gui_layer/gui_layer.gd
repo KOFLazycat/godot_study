@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var h_flow_container_magic: HFlowContainer = $FlowContainer/HFlowContainerMagic
 @onready var h_flow_container_tower: HFlowContainer = $FlowContainer/HFlowContainerTower
 @onready var btn_add_magic: Button = $TestBtn/BtnAddMagic
+@onready var label_coin: Label = $GameInfo/LabelCoin
 
 
 const item_tscn := preload("res://src/main/scene/ui/gui_layer/item.tscn") as PackedScene
@@ -27,6 +28,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	label_fps.text = "FPS:" + str(Engine.get_frames_per_second())
+	label_coin.text = str(Global.get_total_coin())
 
 
 func _on_btn_add_magic_pressed() -> void:

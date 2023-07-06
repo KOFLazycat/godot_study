@@ -66,10 +66,15 @@ func _physics_process(_delta: float) -> void:
 func _on_hitbox_hurt(damage, angle, knockback):
 	blood.value_change(damage*(-1))
 	animation_player.play("take_damage")
-	if blood.blood_value <= 0:
-		await animation_player.animation_finished
-		var coin = coin_tscn.instantiate()
-		coin.global_position = global_position
-		coin_node.call_deferred("add_child", coin)
-		queue_free()
 
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if blood.blood_value <= 0:
+		dead()
+
+
+func dead() -> void:
+	var coin = coin_tscn.instantiate()
+	coin.global_position = global_position
+	coin_node.call_deferred("add_child", coin)
+	queue_free()

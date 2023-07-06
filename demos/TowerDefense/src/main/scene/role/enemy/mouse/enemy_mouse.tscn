@@ -222,6 +222,7 @@ shape = SubResource("CircleShape2D_vgb28")
 
 [node name="DisableTimer" type="Timer" parent="Hitbox"]
 
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="Hitbox" to="Hitbox" method="_on_area_entered" flags=18]
 [connection signal="hurt" from="Hitbox" to="." method="_on_hitbox_hurt"]
 [connection signal="timeout" from="Hitbox/DisableTimer" to="Hitbox" method="_on_disable_timer_timeout" flags=18]

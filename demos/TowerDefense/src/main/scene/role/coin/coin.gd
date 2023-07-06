@@ -36,6 +36,7 @@ func _process(delta: float) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("ui_coin"):
+		print(self)
 		Global.add_coin(coin_value)
 #		print(Global.get_total_coin())
 		set_deferred("visible", false)

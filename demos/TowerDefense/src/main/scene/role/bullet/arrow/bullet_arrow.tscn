@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cog7todu5fyur"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/bullet/arrow/bullet_arrow.gd" id="1_5j7id"]
+[ext_resource type="Texture2D" uid="uid://b7pl1ls61ots8" path="res://src/main/assets/texture/Items/Weapons/Bow/Arrow.png" id="2_kutdx"]
+[ext_resource type="Script" path="res://src/main/common/util/hurtbox.gd" id="3_wjtqw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4b4kj"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f80ak"]
+radius = 2.5
+
+[node name="bullet_arrow" type="CharacterBody2D"]
+script = ExtResource("1_5j7id")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 0)
+shape = SubResource("CircleShape2D_4b4kj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_kutdx")
+
+[node name="Hurtbox" type="Area2D" parent="." groups=["attack", "bullet"]]
+script = ExtResource("3_wjtqw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(4, 0)
+shape = SubResource("CircleShape2D_f80ak")
+
+[node name="DisableTimer" type="Timer" parent="Hurtbox"]
+
+[node name="TimerLife" type="Timer" parent="."]
+
+[connection signal="timeout" from="Hurtbox/DisableTimer" to="Hurtbox" method="_on_disable_timer_timeout" flags=18]
+[connection signal="timeout" from="TimerLife" to="." method="_on_timer_life_timeout"]

@@ -5,7 +5,8 @@ extends StaticBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $Area2DAttackRange/CollisionShape2D
 @onready var timer_fire_interval: Timer = $TimerFireInterval
-@onready var bullet_tscn = preload("res://src/main/scene/role/bullet/shuriken/bullet_shuriken.tscn") as PackedScene
+#@onready var bullet_tscn = preload("res://src/main/scene/role/bullet/shuriken/bullet_shuriken.tscn") as PackedScene
+@onready var bullet_tscn = preload("res://src/main/scene/role/bullet/arrow/bullet_arrow.tscn") as PackedScene
 
 
 # 攻击范围是否可见
@@ -25,7 +26,7 @@ var attack_range: int = 300
 # 攻击对象
 var target_array: Array = []
 # 攻击间隔，单位秒
-var fire_interval: float = 0.5
+var fire_interval: float = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -79,9 +80,10 @@ func _on_area_2d_attack_range_area_exited(area: Area2D) -> void:
 
 func _on_timer_fire_interval_timeout() -> void:
 	if target_array.size() > 0:
-		var bullet = bullet_tscn.instantiate()
-		bullet.fire(animated_sprite_2d.global_position, target_array[0])
-		get_tree().root.add_child(bullet)
+		for i in range(randi_range(3,6)):
+			var bullet = bullet_tscn.instantiate()
+			bullet.fire(animated_sprite_2d.global_position, target_array[0])
+			get_tree().root.add_child(bullet)
 #		var parent = get_parent()
 #		if is_instance_valid(parent):
 #			parent.add_child(bullet)

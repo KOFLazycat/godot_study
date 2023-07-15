@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgm1yplr6qym5"]
+
+[ext_resource type="Texture2D" uid="uid://16omumtrwcg8" path="res://src/main/assets/textures/blood/LifeBarMiniWhite.png" id="1_8p1sj"]
+[ext_resource type="Script" path="res://src/main/scene/level/btn_progress/btn_progress.gd" id="1_jgs1w"]
+[ext_resource type="Texture2D" uid="uid://dtelb66l277nl" path="res://src/main/assets/textures/blood/LifeBarMiniEmpty.png" id="2_rw64x"]
+[ext_resource type="Texture2D" uid="uid://cry4ybn6mch3s" path="res://src/main/assets/textures/blood/LifeBarMiniProgress.png" id="3_r84aa"]
+[ext_resource type="FontFile" uid="uid://btaejbusgr8ii" path="res://src/main/assets/fonts/NormalFont.ttf" id="4_4b1qm"]
+
+[node name="BtnProgress" type="Node2D"]
+script = ExtResource("1_jgs1w")
+
+[node name="Bar" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 610.0
+offset_top = 250.0
+offset_right = 610.0
+offset_bottom = 250.0
+scale = Vector2(40, 20)
+
+[node name="BottomBar" type="TextureProgressBar" parent="Bar"]
+offset_right = 18.0
+offset_bottom = 4.0
+texture_progress = ExtResource("1_8p1sj")
+
+[node name="TopBar" type="TextureProgressBar" parent="Bar"]
+offset_right = 18.0
+offset_bottom = 4.0
+texture_under = ExtResource("2_rw64x")
+texture_progress = ExtResource("3_r84aa")
+
+[node name="BtnPress" type="Button" parent="."]
+offset_left = 800.0
+offset_top = 400.0
+offset_right = 1160.0
+offset_bottom = 520.0
+theme_override_fonts/font = ExtResource("4_4b1qm")
+theme_override_font_sizes/font_size = 50
+text = "PRESS"
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="pressed" from="BtnPress" to="." method="_on_btn_press_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

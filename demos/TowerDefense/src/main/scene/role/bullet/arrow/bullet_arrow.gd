@@ -11,10 +11,10 @@ enum MoveTrackType {
 	BEZIER_PARABOLA,# 贝塞尔抛物线轨迹
 }
 
-var move_type: int = MoveTrackType.BEZIER_PARABOLA
+var move_type: int = MoveTrackType.BEZIER
 # 子弹可以穿越敌人的次数
 var bullet_damage_num: int = 1
-var speed: int = 1000
+var speed: int = 300
 var steer_force: int = 10
 var acc: Vector2 = Vector2.ZERO
 var target: Area2D = null

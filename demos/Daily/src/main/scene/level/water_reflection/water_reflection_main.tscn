@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://0nclpklqsb1d"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/water_reflection/water_reflection_main.gd" id="1_gel8b"]
+[ext_resource type="PackedScene" uid="uid://fudvtunx50ig" path="res://src/main/scene/level/arrow/arrow_main.tscn" id="1_ryaqp"]
+[ext_resource type="Shader" path="res://src/main/scene/level/water_reflection/water_reflection_main.gdshader" id="3_2xnj5"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_weqgr"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2jv3c"]
+noise = SubResource("FastNoiseLite_weqgr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_67rsf"]
+shader = ExtResource("3_2xnj5")
+shader_parameter/y_scale = 0.4
+shader_parameter/speed = 0.125
+shader_parameter/strength = 0.0125
+shader_parameter/tint_color = Color(0.419608, 0.419608, 0.537255, 1)
+shader_parameter/blur_radius = 0.2
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_2jv3c")
+
+[node name="WaterReflectionMain" type="Node2D"]
+script = ExtResource("1_gel8b")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(960, 720)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+stretch = true
+
+[node name="GameVP" type="SubViewport" parent="CanvasLayer/Control/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(960, 720)
+render_target_update_mode = 4
+
+[node name="ArrowMain" parent="CanvasLayer/Control/SubViewportContainer/GameVP" instance=ExtResource("1_ryaqp")]
+texture_filter = 1
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer/Control/SubViewportContainer/GameVP"]
+anchor_mode = 0
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(960, 720)
+layout_mode = 0
+offset_top = 570.0
+offset_right = 960.0
+offset_bottom = 1290.0
+stretch = true
+
+[node name="WaterVP" type="SubViewport" parent="CanvasLayer/Control/SubViewportContainer2"]
+handle_input_locally = false
+size = Vector2i(960, 720)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer/Control/SubViewportContainer2/WaterVP"]
+position = Vector2(0, -150)
+anchor_mode = 0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CanvasLayer/Control/SubViewportContainer2/WaterVP"]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/SubViewportContainer2/WaterVP/CanvasLayer"]
+material = SubResource("ShaderMaterial_67rsf")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -19,11 +19,13 @@ offset_bottom = 250.0
 scale = Vector2(40, 20)
 
 [node name="BottomBar" type="TextureProgressBar" parent="Bar"]
+layout_mode = 0
 offset_right = 18.0
 offset_bottom = 4.0
 texture_progress = ExtResource("1_8p1sj")
 
 [node name="TopBar" type="TextureProgressBar" parent="Bar"]
+layout_mode = 0
 offset_right = 18.0
 offset_bottom = 4.0
 texture_under = ExtResource("2_rw64x")
@@ -40,5 +42,8 @@ text = "PRESS"
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="TimerReduce" type="Timer" parent="."]
+
 [connection signal="pressed" from="BtnPress" to="." method="_on_btn_press_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TimerReduce" to="." method="_on_timer_reduce_timeout"]

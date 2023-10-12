@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var jump_request_timer: Timer = $JumpRequestTimer
 @onready var hand_checker: RayCast2D = $Graphics/HandChecker
 @onready var foot_checker: RayCast2D = $Graphics/FootChecker
+@onready var state_machine: StateMachine = $StateMachine
 
 
 enum State {
@@ -14,14 +15,16 @@ enum State {
 	JUMP,
 	FALL,
 	LANDING,
-	WALL_SLIDING
+	WALL_SLIDING,
+	WALL_JUMP
 }
 
 const GROUND_SATATES := [State.IDLE, State.RUNNING, State.LANDING]
 const RUN_SPEED: float = 200.0
 const FLOOR_ACCELERATION: float = RUN_SPEED/0.2
-const AIR_ACCELERATION: float = RUN_SPEED/0.02
+const AIR_ACCELERATION: float = RUN_SPEED/0.1
 const JUMP_VELOCITY: float = -320.0
+const WALL_JUMP_VELOCITY: Vector2 = Vector2(400, -280)
 var default_gravity := ProjectSettings.get("physics/2d/default_gravity") as float
 ## 是否是第一帧
 var is_first_tick: bool = false
@@ -46,10 +49,16 @@ func tick_physics(delta: float, state: State) -> void:
 		State.FALL:
 			move(delta, default_gravity)
 		State.LANDING:
-			stand(delta)
+			stand(default_gravity, delta)
 		State.WALL_SLIDING:
 			move(delta, default_gravity / 20)
 			graphics.scale.x = get_wall_normal().x
+		State.WALL_JUMP:
+			if state_machine.state_time < 0.1:
+				stand(0.0 if is_first_tick else default_gravity, delta)
+				graphics.scale.x = get_wall_normal().x
+			else:
+				move(delta, 0.0 if is_first_tick else default_gravity)
 	is_first_tick = false
 
 func move(delta: float, gravity: float) -> void:
@@ -64,16 +73,20 @@ func move(delta: float, gravity: float) -> void:
 	move_and_slide()
 
 
-func stand(delta: float) -> void:
+func stand(gravity: float, delta: float) -> void:
 	var acceleration := FLOOR_ACCELERATION if is_on_floor() else AIR_ACCELERATION
 	velocity.x = move_toward(velocity.x, 0.0, acceleration * delta)
-	velocity.y += default_gravity * delta
+	velocity.y += gravity * delta
 	move_and_slide()
+
+
+func can_wall_slide() -> bool:
+	return is_on_wall() and hand_checker.is_colliding() and foot_checker.is_colliding()
 
 
 func get_next_state(state: State) -> State:
 	var next_state := state
-	var can_jump: bool = is_on_floor() or is_on_wall() or coyote_timer.time_left > 0
+	var can_jump: bool = is_on_floor() or coyote_timer.time_left > 0
 	var should_jump: bool = can_jump and jump_request_timer.time_left > 0
 	if should_jump:
 		next_state = State.JUMP
@@ -96,7 +109,7 @@ func get_next_state(state: State) -> State:
 			State.FALL:
 				if is_on_floor():
 					next_state = State.LANDING if is_still else State.RUNNING
-				elif is_on_wall() and hand_checker.is_colliding() and foot_checker.is_colliding():
+				elif can_wall_slide():
 					next_state = State.WALL_SLIDING
 			State.LANDING:
 				if not is_still:
@@ -104,14 +117,27 @@ func get_next_state(state: State) -> State:
 				elif not animation_player.is_playing():
 					next_state = State.IDLE
 			State.WALL_SLIDING:
-				if is_on_floor():
-					next_state = State.IDLE
-				elif not is_on_wall():
+				if jump_request_timer.time_left > 0:
+					next_state = State.WALL_JUMP
+				else:
+					if is_on_floor():
+						next_state = State.IDLE
+					elif not is_on_wall():
+						next_state = State.FALL
+			State.WALL_JUMP:
+				if can_wall_slide() and not is_first_tick:
+					next_state = State.WALL_SLIDING
+				elif velocity.y >= 0:
 					next_state = State.FALL
 	return next_state
 
 
 func transition_state(from: State, to: State) -> void:
+	print("[%s] %s => %s" % [
+		Engine.get_physics_frames(),
+		State.keys()[from] if from != 1 else "<START>",
+		State.keys()[to],
+		])
 	if from not in GROUND_SATATES and to in GROUND_SATATES:
 		coyote_timer.stop()
 	match to:
@@ -133,4 +159,10 @@ func transition_state(from: State, to: State) -> void:
 		State.WALL_SLIDING:
 			velocity.y = 0
 			animation_player.play("wall_sliding")
+		State.WALL_JUMP:
+			animation_player.play("jump")
+			velocity = WALL_JUMP_VELOCITY
+			velocity.x *= get_wall_normal().x
+			jump_request_timer.stop()
+	
 	is_first_tick = true

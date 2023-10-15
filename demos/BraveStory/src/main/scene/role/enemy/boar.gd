@@ -12,9 +12,16 @@ enum State {
 	RUN,
 }
 
+
+func can_see_player() -> bool:
+	if not player_checker.is_colliding():
+		return false
+	return player_checker.get_collider() is Player
+
+
 func get_next_state(state: State) -> State:
 	var next_state := state
-	if player_checker.is_colliding():
+	if can_see_player():
 		next_state = State.RUN
 	else:
 		match state:
@@ -61,6 +68,10 @@ func tick_physics(delta: float, state: State) -> void:
 			if wall_checker.is_colliding() or not floor_checker.is_colliding():
 				direction *= -1
 			move(delta, max_speed)
-			if player_checker.is_colliding():
+			if can_see_player():
 				calm_down_timer.start()
 		
+
+
+func _on_hurtbox_hurt(hitbox: Hitbox) -> void:
+	print("Ouch!")

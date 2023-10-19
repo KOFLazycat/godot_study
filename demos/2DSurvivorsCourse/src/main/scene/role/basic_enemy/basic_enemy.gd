@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
 
-const MAX_SPEED: float = 75
+const MAX_SPEED: float = 50
+
+@onready var health_component: Node = $HealthComponent
 
 
 # Called when the node enters the scene tree for the first time.
@@ -23,5 +25,6 @@ func get_direction_to_player() -> Vector2:
 	return Vector2.ZERO
 
 
-func on_area_entered(area: Area2D) -> void:
+func on_area_entered(_area: Area2D) -> void:
+	health_component.damage(1)
 	queue_free()

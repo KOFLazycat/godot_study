@@ -17,5 +17,8 @@ func on_timer_timeout() -> void:
 	var random_direction: Vector2 = Vector2.RIGHT.rotated(randf_range(0, TAU))
 	var spwan_position: Vector2 = player.global_position + (random_direction * SPAWN_RADIUS)
 	var enemy = basic_enemy_scene.instantiate()
-	get_parent().add_child(enemy)
+	
+	var entities_layer = get_tree().get_first_node_in_group("entities_layer")
+	
+	entities_layer.add_child(enemy)
 	enemy.global_position = spwan_position

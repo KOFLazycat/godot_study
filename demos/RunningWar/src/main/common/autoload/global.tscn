@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://b38fcei1klpil"]
+
+[ext_resource type="Script" path="res://src/main/common/autoload/global.gd" id="1_ec1tf"]
+
+[node name="Global" type="Node"]
+script = ExtResource("1_ec1tf")
+
+[node name="TimerGameOver" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="TimerGameOver" to="." method="_on_timer_game_over_timeout"]

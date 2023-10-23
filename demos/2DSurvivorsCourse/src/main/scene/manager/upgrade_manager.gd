@@ -11,7 +11,7 @@ func _ready() -> void:
 	experience_manager.level_up.connect(on_level_up)
 
 
-func on_level_up(current_level: int) -> void:
+func on_level_up(_current_level: int) -> void:
 	var chosen_upgrade: AbilityUpgrade = upgrade_pool.pick_random() as AbilityUpgrade
 	if chosen_upgrade == null:
 		return

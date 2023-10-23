@@ -38,19 +38,18 @@ func check_deal_damage() -> void:
 		return
 	health_component.damage(1)
 	damage_interval_timer.start()
-	print(health_component.current_health)
 
 
 func update_health_display() -> void:
 	health_bar.value = health_component.get_health_percent()
 
 
-func on_body_entered(body: Node2D) -> void:
+func on_body_entered(_body: Node2D) -> void:
 	number_colliding_bodies += 1
 	check_deal_damage()
 
 
-func on_body_exited(body: Node2D) -> void:
+func on_body_exited(_body: Node2D) -> void:
 	number_colliding_bodies = max(number_colliding_bodies - 1, 0)
 
 

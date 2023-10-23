@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://c2bwga3bvxotk"]
+
+[ext_resource type="Script" path="res://src/main/scene/ability/axe_ability/axe_ability.gd" id="1_rjtk3"]
+[ext_resource type="Texture2D" uid="uid://qbgya3poq61k" path="res://src/main/assets/textures/ability/tile_0118.png" id="2_7v6t7"]
+[ext_resource type="PackedScene" uid="uid://5m7vwbwtyq85" path="res://src/main/scene/component/hitbox_component.tscn" id="3_l2dex"]
+
+[sub_resource type="Animation" id="Animation_24ned"]
+resource_name = "default"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 2.82843),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_qytk3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3jegk"]
+_data = {
+"RESET": SubResource("Animation_qytk3"),
+"default": SubResource("Animation_24ned")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g8hvs"]
+radius = 5.0
+height = 16.0
+
+[node name="AxeAbility" type="Node2D"]
+script = ExtResource("1_rjtk3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3jegk")
+}
+autoplay = "default"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 6.28319
+texture = ExtResource("2_7v6t7")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("3_l2dex")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, -2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_g8hvs")

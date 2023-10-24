@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmigr5a2ifnb"]
+
+[ext_resource type="Texture2D" uid="uid://di44xsonanlrd" path="res://src/main/assets/textures/role/basic_enemy/tile_0124.png" id="1_pys2e"]
+
+[sub_resource type="Animation" id="Animation_vof1j"]
+resource_name = "default"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ey4w8"]
+_data = {
+"default": SubResource("Animation_vof1j")
+}
+
+[sub_resource type="Curve" id="Curve_j7awm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.6, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_cd7uu"]
+curve = SubResource("Curve_j7awm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3bm6l"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 30.0
+initial_velocity_min = 125.0
+initial_velocity_max = 200.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+gravity = Vector3(0, 400, 0)
+scale_curve = SubResource("CurveTexture_cd7uu")
+
+[node name="DeathComponent" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ey4w8")
+}
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_3bm6l")
+texture = ExtResource("1_pys2e")
+lifetime = 0.65
+one_shot = true

@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
-
 const MAX_SPEED: float = 50
 
 @onready var health_component: Node = $HealthComponent
-
+@onready var visuals: Node2D = $Visuals
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _process(_delta: float) -> void:
 	var direction: Vector2 = get_direction_to_player()

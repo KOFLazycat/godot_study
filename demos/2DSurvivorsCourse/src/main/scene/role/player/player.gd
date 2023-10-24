@@ -5,6 +5,9 @@ extends CharacterBody2D
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var abilities: Node = $Abilities
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var visuals: Node2D = $Visuals
+@onready var sprite_2d: Sprite2D = $Visuals/Sprite2D
 
 const MAX_SPEED: float = 150.0
 const ACCELERATION_SMOOTHING = 25.0
@@ -19,6 +22,7 @@ func _ready() -> void:
 	health_component.health_changed.connect(on_health_changed)
 	GameEvents.ability_upgrade_added.connect(on_ability_upgrade_added)
 	update_health_display()
+	animation_player.play("idle")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,6 +31,14 @@ func _process(delta: float) -> void:
 	var target_velocity = direction * MAX_SPEED
 	velocity = velocity.lerp(target_velocity, 1.0 - exp(-delta * ACCELERATION_SMOOTHING))
 	move_and_slide()
+	if direction != Vector2.ZERO:
+		animation_player.play("walk")
+	else:
+		animation_player.play("idle")
+	
+	var move_sign: int = sign(direction.x)
+	if move_sign != 0:
+		visuals.scale.x = move_sign
 
 
 func get_movement_vector() -> Vector2:

@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var damage_interval_timer: Timer = $DamageIntervalTimer
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var health_bar: ProgressBar = $HealthBar
+@onready var abilities: Node = $Abilities
 
 const MAX_SPEED: float = 150.0
 const ACCELERATION_SMOOTHING = 25.0
@@ -16,6 +17,7 @@ func _ready() -> void:
 	collision_area_2d.body_exited.connect(on_body_exited)
 	damage_interval_timer.timeout.connect(on_damage_interval_timer_timeout)
 	health_component.health_changed.connect(on_health_changed)
+	GameEvents.ability_upgrade_added.connect(on_ability_upgrade_added)
 	update_health_display()
 
 
@@ -59,3 +61,10 @@ func on_damage_interval_timer_timeout() -> void:
 
 func on_health_changed() -> void:
 	update_health_display()
+
+
+func on_ability_upgrade_added(ability_upgrade: AbilityUpgrade, current_upgrade: Dictionary) -> void:
+	if not ability_upgrade is Ability:
+		return
+	var ability = ability_upgrade as Ability
+	abilities.add_child(ability.ability_controller_scene.instantiate())

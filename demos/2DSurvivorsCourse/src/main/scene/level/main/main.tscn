@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://mauo8o3bhitn"]
+[gd_scene load_steps=13 format=3 uid="uid://mauo8o3bhitn"]
 
 [ext_resource type="TileSet" uid="uid://b1eupmflnqpx" path="res://src/main/assets/resources/tile_set.tres" id="1_5q4l3"]
 [ext_resource type="Script" path="res://src/main/scene/level/main/main.gd" id="1_foxh6"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bk88lyeky7nd0" path="res://src/main/scene/ui/end_screen.tscn" id="2_wd1il"]
 [ext_resource type="PackedScene" uid="uid://2this21aq7mf" path="res://src/main/scene/manager/experience_manager.tscn" id="4_1ynqs"]
 [ext_resource type="PackedScene" uid="uid://cle8xcajqyx2w" path="res://src/main/scene/manager/upgrade_manager.tscn" id="6_huil1"]
+[ext_resource type="PackedScene" uid="uid://b3wfff1m70c56" path="res://src/main/scene/game_object/experience_vial.tscn" id="12_2halm"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_foxh6")
@@ -46,3 +47,24 @@ y_sort_enabled = true
 position = Vector2(289, 175)
 
 [node name="Foreground" type="Node2D" parent="." groups=["foreground_layer"]]
+
+[node name="ExperienceVial" parent="." instance=ExtResource("12_2halm")]
+position = Vector2(333, 226)
+
+[node name="ExperienceVial2" parent="." instance=ExtResource("12_2halm")]
+position = Vector2(260, 232)
+
+[node name="ExperienceVial3" parent="." instance=ExtResource("12_2halm")]
+position = Vector2(345, 106)
+
+[node name="ExperienceVial4" parent="." instance=ExtResource("12_2halm")]
+position = Vector2(201, 184)
+
+[node name="ExperienceVial5" parent="." instance=ExtResource("12_2halm")]
+position = Vector2(204, 135)
+
+[node name="ExperienceVial6" parent="." instance=ExtResource("12_2halm")]
+position = Vector2(282, 97)
+
+[node name="ExperienceVial7" parent="." instance=ExtResource("12_2halm")]
+position = Vector2(362, 172)

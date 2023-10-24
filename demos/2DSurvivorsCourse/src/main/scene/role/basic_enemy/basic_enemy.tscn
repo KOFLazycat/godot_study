@@ -102,6 +102,8 @@ shape = SubResource("CircleShape2D_bqar7")
 [node name="Visuals" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+position = Vector2(-1.00068, 0)
+rotation = -0.174508
 texture = ExtResource("1_hw20y")
 offset = Vector2(0, -4)
 

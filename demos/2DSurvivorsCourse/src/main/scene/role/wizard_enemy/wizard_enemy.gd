@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var velocity_component: Node = $VelocityComponent
 @onready var visuals: Node2D = $Visuals
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _process(_delta: float) -> void:
 	velocity_component.accelerate_to_player()

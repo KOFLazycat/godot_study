@@ -9,4 +9,3 @@ axe_ability_scene = ExtResource("2_jvjt8")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.5
-autostart = true

@@ -46,6 +46,7 @@ func on_timer_timeout() -> void:
 	if !is_instance_valid(player):
 		return
 	
+	enemy_table.refresh_pick_items()
 	var enemy_scene = enemy_table.pick_item()
 	var enemy = enemy_scene.instantiate()
 	var entities_layer = get_tree().get_first_node_in_group("entities_layer")

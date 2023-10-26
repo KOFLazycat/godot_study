@@ -1,14 +1,26 @@
 extends Node
 
-@export var upgrade_pool: Array[AbilityUpgrade]
 @export var experience_manager: Node
 @export var upgrade_screen_scene: PackedScene
 
 var current_upgrades = {}
+var upgrade_pool: WeightedTable = WeightedTable.new()
+var upgrade_axe = preload("res://src/main/assets/resources/upgrades/axe.tres")
+var upgrade_axe_damage = preload("res://src/main/assets/resources/upgrades/axe_damage.tres")
+var upgrade_sword_rate = preload("res://src/main/assets/resources/upgrades/sword_rate.tres")
+var upgrade_sword_damage = preload("res://src/main/assets/resources/upgrades/sword_damage.tres")
 
 
 func _ready() -> void:
+	upgrade_pool.add_itme(upgrade_axe, 8)
+	upgrade_pool.add_itme(upgrade_sword_rate, 8)
+	upgrade_pool.add_itme(upgrade_sword_damage, 8)
 	experience_manager.level_up.connect(on_level_up)
+
+
+func update_upgrade_pool(chosen_upgrade: AbilityUpgrade) -> void:
+	if chosen_upgrade.id == upgrade_axe.id:
+		upgrade_pool.add_itme(upgrade_axe_damage, 10)
 
 
 func apply_upgrade(upgrade: AbilityUpgrade) -> void:
@@ -24,18 +36,18 @@ func apply_upgrade(upgrade: AbilityUpgrade) -> void:
 	if upgrade.max_quantity > 0:
 		var current_quantity = current_upgrades[upgrade.id]["quantity"]
 		if current_quantity == upgrade.max_quantity:
-			upgrade_pool = upgrade_pool.filter(func(upgrade_pool_element: AbilityUpgrade): return upgrade_pool_element.id != upgrade.id)
+			upgrade_pool.remove_item(upgrade)
 	
+	update_upgrade_pool(upgrade)
 	GameEvents.emit_ability_upgrade_added(upgrade, current_upgrades)
 
 
 func pick_upgrades() -> Array[AbilityUpgrade]:
 	var chosen_upgrades: Array[AbilityUpgrade] = []
-	var filtered_upgrades = upgrade_pool.duplicate()
-	for i in filtered_upgrades.size():
-		var chosen_upgrade: AbilityUpgrade = filtered_upgrades.pick_random() as AbilityUpgrade
+	upgrade_pool.refresh_pick_items()
+	for i in upgrade_pool.pick_items.size():
+		var chosen_upgrade: AbilityUpgrade = upgrade_pool.pick_item(true)
 		chosen_upgrades.append(chosen_upgrade)
-		filtered_upgrades = filtered_upgrades.filter(func (upgrade): return upgrade.id != chosen_upgrade.id)
 	return chosen_upgrades
 
 

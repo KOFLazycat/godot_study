@@ -25,5 +25,5 @@ func increment_experience(number: float):
 
 
 func on_experience_vial_collected(number: float) -> void:
-	#number = 100
+	number = 100
 	increment_experience(number)

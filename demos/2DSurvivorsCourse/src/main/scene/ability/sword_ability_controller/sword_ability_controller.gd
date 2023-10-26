@@ -3,7 +3,8 @@ extends Node
 
 @export var sword_ability: PackedScene
 @export var max_range: float = 150
-var damage: float = 5
+var base_damage: float = 5
+var additional_damage_percent: float = 1
 var base_wait_time: float
 
 # Called when the node enters the scene tree for the first time.
@@ -36,7 +37,7 @@ func on_timer_timeout() -> void:
 	
 	foreground_layer.add_child(sword_insance)
 	
-	sword_insance.hitbox_component.damage = damage
+	sword_insance.hitbox_component.damage = base_damage * additional_damage_percent
 	sword_insance.global_position = enemies[0].global_position
 	sword_insance.global_position += Vector2.RIGHT.rotated(randf_range(0, TAU)) * 4
 	
@@ -45,9 +46,10 @@ func on_timer_timeout() -> void:
 
 
 func on_ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary) -> void:
-	if upgrade.id != "sword_rate":
-		return
-	
-	var percent_reduction = current_upgrades["sword_rate"]["quantity"] * 0.1
-	$Timer.wait_time = base_wait_time * (1 - percent_reduction)
-	$Timer.start()
+	match upgrade.id:
+		"sword_rate":
+			var percent_reduction = current_upgrades["sword_rate"]["quantity"] * 0.1
+			$Timer.wait_time = base_wait_time * (1 - percent_reduction)
+			$Timer.start()
+		"sword_damage":
+			additional_damage_percent = 1 + (current_upgrades["sword_damage"]["quantity"] * 0.15)

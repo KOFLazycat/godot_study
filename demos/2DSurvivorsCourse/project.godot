@@ -31,6 +31,10 @@ window/stretch/mode="canvas_items"
 
 enabled=PackedStringArray()
 
+[gui]
+
+theme/custom="res://src/main/assets/resources/theme/theme.tres"
+
 [input]
 
 move_left={

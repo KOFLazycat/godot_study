@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://kj2ilml2wgi7"]
+[gd_scene load_steps=14 format=3 uid="uid://kj2ilml2wgi7"]
 
 [ext_resource type="Texture2D" uid="uid://cw73r441i3cyj" path="res://src/main/assets/textures/role/player/tile_0096.png" id="1_n4dj4"]
 [ext_resource type="Script" path="res://src/main/scene/role/player/player.gd" id="1_thkbq"]
@@ -134,9 +134,6 @@ _data = {
 "walk": SubResource("Animation_3ovua")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iy3nr"]
-bg_color = Color(0.247059, 0.14902, 0.192157, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fbk0k"]
 bg_color = Color(0.262745, 0.882353, 0.701961, 1)
 border_width_left = 1
@@ -184,7 +181,6 @@ offset_top = -23.0
 offset_right = 16.0
 offset_bottom = -17.0
 pivot_offset = Vector2(16, 3)
-theme_override_styles/background = SubResource("StyleBoxFlat_iy3nr")
 theme_override_styles/fill = SubResource("StyleBoxFlat_fbk0k")
 max_value = 1.0
 value = 0.5

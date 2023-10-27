@@ -67,4 +67,25 @@ position = Vector2(204, 135)
 position = Vector2(282, 97)
 
 [node name="ExperienceVial7" parent="." instance=ExtResource("12_2halm")]
-position = Vector2(362, 172)
+position = Vector2(222, 89)
+
+[node name="ExperienceVial8" parent="." instance=ExtResource("12_2halm")]
+position = Vector2(482, 120)
+
+[node name="ExperienceVial9" parent="." instance=ExtResource("12_2halm")]
+position = Vector2(403, 111)
+
+[node name="ExperienceVial10" parent="." instance=ExtResource("12_2halm")]
+position = Vector2(536, 124)
+
+[node name="ExperienceVial11" parent="." instance=ExtResource("12_2halm")]
+position = Vector2(602, 133)
+
+[node name="ExperienceVial12" parent="." instance=ExtResource("12_2halm")]
+position = Vector2(167, 74)
+
+[node name="ExperienceVial13" parent="." instance=ExtResource("12_2halm")]
+position = Vector2(111, 125)
+
+[node name="ExperienceVial14" parent="." instance=ExtResource("12_2halm")]
+position = Vector2(80, 175)

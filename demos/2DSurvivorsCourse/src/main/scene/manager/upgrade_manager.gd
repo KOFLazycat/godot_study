@@ -9,12 +9,16 @@ var upgrade_axe = preload("res://src/main/assets/resources/upgrades/axe.tres")
 var upgrade_axe_damage = preload("res://src/main/assets/resources/upgrades/axe_damage.tres")
 var upgrade_sword_rate = preload("res://src/main/assets/resources/upgrades/sword_rate.tres")
 var upgrade_sword_damage = preload("res://src/main/assets/resources/upgrades/sword_damage.tres")
+var upgrade_player_speed = preload("res://src/main/assets/resources/upgrades/player_speed.tres")
+# 升级卡片数量
+var max_pick_card_num: int = 3
 
 
 func _ready() -> void:
-	upgrade_pool.add_itme(upgrade_axe, 8)
-	upgrade_pool.add_itme(upgrade_sword_rate, 8)
-	upgrade_pool.add_itme(upgrade_sword_damage, 8)
+	upgrade_pool.add_itme(upgrade_axe, 10)
+	upgrade_pool.add_itme(upgrade_sword_rate, 10)
+	upgrade_pool.add_itme(upgrade_sword_damage, 10)
+	upgrade_pool.add_itme(upgrade_player_speed, 5)
 	experience_manager.level_up.connect(on_level_up)
 
 
@@ -45,7 +49,7 @@ func apply_upgrade(upgrade: AbilityUpgrade) -> void:
 func pick_upgrades() -> Array[AbilityUpgrade]:
 	var chosen_upgrades: Array[AbilityUpgrade] = []
 	upgrade_pool.refresh_pick_items()
-	for i in upgrade_pool.pick_items.size():
+	for i in max_pick_card_num:
 		var chosen_upgrade: AbilityUpgrade = upgrade_pool.pick_item(true)
 		chosen_upgrades.append(chosen_upgrade)
 	return chosen_upgrades

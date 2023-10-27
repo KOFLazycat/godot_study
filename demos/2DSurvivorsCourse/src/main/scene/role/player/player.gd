@@ -8,18 +8,20 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var visuals: Node2D = $Visuals
 @onready var sprite_2d: Sprite2D = $Visuals/Sprite2D
+@onready var velocity_component: Node = $VelocityComponent
 
-const MAX_SPEED: float = 150.0
-const ACCELERATION_SMOOTHING = 25.0
 var number_colliding_bodies: int = 0
+var base_speed: int = 0
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	base_speed = velocity_component.max_speed
 	collision_area_2d.body_entered.connect(on_body_entered)
 	collision_area_2d.body_exited.connect(on_body_exited)
 	damage_interval_timer.timeout.connect(on_damage_interval_timer_timeout)
 	health_component.health_changed.connect(on_health_changed)
+	GameEvents.ability_upgrade_added.connect(on_ability_upgrade_added)
 	update_health_display()
 	animation_player.play("idle")
 
@@ -27,9 +29,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var direction: Vector2 = get_movement_vector()
-	var target_velocity = direction * MAX_SPEED
-	velocity = velocity.lerp(target_velocity, 1.0 - exp(-delta * ACCELERATION_SMOOTHING))
-	move_and_slide()
+	velocity_component.accelerate_in_direction(direction)
+	velocity_component.move(self)
+	
 	if direction != Vector2.ZERO:
 		animation_player.play("walk")
 	else:
@@ -72,3 +74,9 @@ func on_damage_interval_timer_timeout() -> void:
 
 func on_health_changed() -> void:
 	update_health_display()
+
+
+func on_ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary) -> void:
+	match upgrade.id:
+		"player_speed":
+			velocity_component.max_speed = base_speed + (base_speed * current_upgrades["player_speed"]["quantity"] * 0.1)

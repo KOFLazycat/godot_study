@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var hit_random_audio_player_component: AudioStreamPlayer2D = $HitRandomAudioPlayerComponent
 
 
 # Called when the node enters the scene tree for the first time.
@@ -37,3 +38,4 @@ func on_area_entered(_area: Area2D) -> void:
 	tween.chain()
 	tween.tween_callback(collect)
 	collision_shape_2d.set_deferred("disabled", true)
+	hit_random_audio_player_component.play_random()

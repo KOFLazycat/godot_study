@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyfw48bhvp52n"]
+
+[ext_resource type="Script" path="res://src/main/scene/component/hit_random_audio_player_component.gd" id="1_ldmdq"]
+
+[node name="HitRandomAudioPlayerComponent" type="AudioStreamPlayer2D"]
+max_distance = 300.0
+attenuation = 0.5
+bus = &"SFX"
+script = ExtResource("1_ldmdq")

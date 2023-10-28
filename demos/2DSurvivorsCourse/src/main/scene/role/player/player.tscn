@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://kj2ilml2wgi7"]
+[gd_scene load_steps=21 format=3 uid="uid://kj2ilml2wgi7"]
 
 [ext_resource type="Texture2D" uid="uid://cw73r441i3cyj" path="res://src/main/assets/textures/role/player/tile_0096.png" id="1_n4dj4"]
 [ext_resource type="Script" path="res://src/main/scene/role/player/player.gd" id="1_thkbq"]
@@ -6,6 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://ck13l8tcficat" path="res://src/main/scene/ability/sword_ability_controller/sword_ability_controller.tscn" id="2_xhuk4"]
 [ext_resource type="PackedScene" uid="uid://cqgtmuohjm070" path="res://src/main/scene/ability/axe_ability_controller/axe_ability_controller.tscn" id="4_0l81n"]
 [ext_resource type="PackedScene" uid="uid://dyg2aqop75hxl" path="res://src/main/scene/component/health_component.tscn" id="4_clqsk"]
+[ext_resource type="AudioStream" uid="uid://dwy4sknimgj3y" path="res://src/main/assets/sounds/impactMining_000.ogg" id="7_v3rq3"]
+[ext_resource type="PackedScene" uid="uid://cyfw48bhvp52n" path="res://src/main/scene/component/hit_random_audio_player_component.tscn" id="7_vrhxr"]
+[ext_resource type="AudioStream" uid="uid://c0tuu4olcnq4y" path="res://src/main/assets/sounds/impactMining_001.ogg" id="8_yo4km"]
+[ext_resource type="AudioStream" uid="uid://bo2w4jb7qq310" path="res://src/main/assets/sounds/impactMining_002.ogg" id="9_085p2"]
+[ext_resource type="AudioStream" uid="uid://bqvohxya4f812" path="res://src/main/assets/sounds/impactMining_003.ogg" id="10_hpxyh"]
+[ext_resource type="AudioStream" uid="uid://dq3fgs7tyfsc7" path="res://src/main/assets/sounds/impactMining_004.ogg" id="11_w51qc"]
 
 [sub_resource type="Animation" id="Animation_c2wxd"]
 length = 0.001
@@ -178,6 +184,9 @@ acceleration = 25.0
 wait_time = 0.5
 one_shot = true
 autostart = true
+
+[node name="HitRandomAudioPlayerComponent" parent="." instance=ExtResource("7_vrhxr")]
+streams = Array[AudioStream]([ExtResource("7_v3rq3"), ExtResource("8_yo4km"), ExtResource("9_085p2"), ExtResource("10_hpxyh"), ExtResource("11_w51qc")])
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 custom_minimum_size = Vector2(32, 6)

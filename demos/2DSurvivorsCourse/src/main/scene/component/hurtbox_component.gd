@@ -1,6 +1,8 @@
 class_name HurtboxComponent
 extends Area2D
 
+signal hit
+
 @export var health_component: Node
 
 var floating_text_scene: PackedScene = preload("res://src/main/scene/ui/floating_text.tscn")
@@ -22,3 +24,4 @@ func on_area_entered(area: Area2D) -> void:
 	get_tree().get_first_node_in_group("foreground_layer").add_child(floating_text_instance)
 	floating_text_instance.global_position = global_position + Vector2.UP * 8
 	floating_text_instance.start(str(damage))
+	hit.emit()

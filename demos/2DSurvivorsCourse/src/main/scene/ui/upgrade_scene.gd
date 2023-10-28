@@ -14,6 +14,8 @@ func _ready() -> void:
 func set_ability_upgrades(upgrades: Array[AbilityUpgrade]) -> void:
 	var delay: float = 0
 	for upgrade in upgrades:
+		if upgrade == null:
+			break
 		var card_instance = upgrade_card_scene.instantiate()
 		card_container.add_child(card_instance)
 		card_instance.set_ability_upgrade(upgrade)

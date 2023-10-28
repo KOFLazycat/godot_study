@@ -5,6 +5,8 @@ extends CanvasLayer
 @onready var title_label: Label = %TitleLabel
 @onready var description_label: Label = %DescriptionLabel
 @onready var panel_container: PanelContainer = %PanelContainer
+@onready var victory_random_stream_player_component: AudioStreamPlayer = $VictoryRandomStreamPlayerComponent
+@onready var defeat_random_stream_player_component: AudioStreamPlayer = $DefeatRandomStreamPlayerComponent
 
 
 func _ready() -> void:
@@ -18,8 +20,16 @@ func _ready() -> void:
 
 
 func set_defeat() -> void:
+	play_jingle(true)
 	title_label.text = "Defeat"
 	description_label.text = "You Lost!"
+
+
+func play_jingle(defeat: bool = false) -> void:
+	if defeat:
+		defeat_random_stream_player_component.play_random()
+	else:
+		victory_random_stream_player_component.play_random()
 
 
 func on_restart_button_pressed() -> void:

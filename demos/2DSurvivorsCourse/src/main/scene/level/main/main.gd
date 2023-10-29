@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var player: CharacterBody2D = $Entities/Player
-
 @export var end_screen_scene: PackedScene
 
 func _ready() -> void:

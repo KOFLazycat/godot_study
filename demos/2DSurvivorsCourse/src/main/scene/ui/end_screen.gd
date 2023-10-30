@@ -41,4 +41,5 @@ func on_restart_button_pressed() -> void:
 
 
 func on_quit_button_pressed() -> void:
+	MetaProgression.save_file()
 	get_tree().quit()

@@ -47,6 +47,9 @@ func on_window_pressed() -> void:
 
 
 func on_back_pressed() -> void:
+	ScreenTransition.transition()
+	#await ScreenTransition.transition_halfway
+	await ScreenTransition.animation_player.animation_finished
 	queue_free()
 
 

@@ -14,10 +14,16 @@ func _ready() -> void:
 
 
 func on_play_pressed() -> void:
+	ScreenTransition.transition()
+	#await ScreenTransition.transition_halfway
+	await ScreenTransition.animation_player.animation_finished
 	get_tree().change_scene_to_file("res://src/main/scene/level/main/main.tscn")
 
 
 func on_options_pressed() -> void:
+	ScreenTransition.transition()
+	#await ScreenTransition.transition_halfway
+	await ScreenTransition.animation_player.animation_finished
 	var options_instance = options_scene.instantiate()
 	add_child(options_instance)
 

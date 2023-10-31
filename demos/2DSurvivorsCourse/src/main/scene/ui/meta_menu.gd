@@ -9,11 +9,10 @@ var meta_upgrade_card_scene = preload("res://src/main/scene/ui/meta_upgrade_card
 
 
 func _ready() -> void:
+	back_button.pressed.connect(on_back_pressed)
 	# 方便删除测试节点
 	for child in grid_container.get_children():
 		child.queue_free()
-	
-	back_button.pressed.connect(on_back_pressed)
 	
 	for upgrade in upgrades:
 		var meta_upgrade_card_instance = meta_upgrade_card_scene.instantiate()

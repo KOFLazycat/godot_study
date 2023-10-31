@@ -19,3 +19,9 @@ func emit_transition_halfway():
 		skip_emit = false
 		return
 	transition_halfway.emit()
+
+
+func transition_to_scene(scene_path: String) -> void:
+	transition()
+	await animation_player.animation_finished
+	get_tree().change_scene_to_file(scene_path)

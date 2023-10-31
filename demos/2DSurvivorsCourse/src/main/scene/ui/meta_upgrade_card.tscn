@@ -113,7 +113,7 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.8, 0.8, 0.8, 0)
 
-[node name="MetaUpgradeCard" type="PanelContainer" groups=["upgrade_card"]]
+[node name="MetaUpgradeCard" type="PanelContainer" groups=["meta_upgrade_card"]]
 custom_minimum_size = Vector2(180, 120)
 pivot_offset = Vector2(90, 60)
 script = ExtResource("1_g2u3d")
@@ -170,12 +170,20 @@ layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("13_pd3x6")
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ProgressLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"BlueOutlineLabel"
 text = "50/200"
 
+[node name="CountLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"BlueOutlineLabel"
+text = "x0"
+
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_0utb6")

@@ -73,6 +73,7 @@ func remove_all_bricks() -> void:
 func reset_and_attach_ball() -> void:
 	ball.velocity = Vector2.ZERO
 	ball.attached_to = paddle.launch_point
+	ball.appear()
 	paddle.ball_attached = ball
 	paddle.game_over = false
 	paddle.stage_clear = false

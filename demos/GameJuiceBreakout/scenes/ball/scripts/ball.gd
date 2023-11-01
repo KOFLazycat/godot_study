@@ -39,6 +39,8 @@ var hitstop_bomb: int = 10
 
 @onready var animation_player = $AnimationPlayer
 @onready var sprite = $Sprite2D
+@onready var appear_particles: GPUParticles2D = $AppearParticles
+
 
 func _ready() -> void:
 	sprite_base_scale = sprite.scale
@@ -61,6 +63,7 @@ func _physics_process(delta: float) -> void:
 	
 	if attached_to:
 		global_position = attached_to.global_position
+		appear_particles.global_position = attached_to.global_position
 		return
 		
 	if attracted:
@@ -153,6 +156,11 @@ func _physics_process(delta: float) -> void:
 
 
 ##### VISUALS #####
+func appear() -> void:
+	animation_player.play("RESET")
+	animation_player.play("appear")
+
+
 func scale_based_on_velocity() -> void:
 	if animation_player.is_playing(): return
 	sprite.scale = lerp(sprite_base_scale, sprite_base_scale * Vector2(1.4, 0.5), velocity.length()/max_speed)

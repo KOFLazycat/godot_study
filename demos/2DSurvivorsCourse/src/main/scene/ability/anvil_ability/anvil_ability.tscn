@@ -1,8 +1,28 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7qbqmuphwnic"]
+[gd_scene load_steps=12 format=3 uid="uid://b7qbqmuphwnic"]
 
 [ext_resource type="Script" path="res://src/main/scene/ability/anvil_ability/anvil_ability.gd" id="1_qgaiy"]
+[ext_resource type="Texture2D" uid="uid://xvu1cbxa03gx" path="res://src/main/assets/textures/particle/particle.png" id="2_14r2s"]
 [ext_resource type="Texture2D" uid="uid://rkumeny2w5po" path="res://src/main/assets/textures/ability/tile_0074.png" id="2_jta7h"]
 [ext_resource type="PackedScene" uid="uid://5m7vwbwtyq85" path="res://src/main/scene/component/hitbox_component.tscn" id="3_xo3ys"]
+
+[sub_resource type="Curve" id="Curve_bvrrv"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.187713, 0.856552), 0.902996, 0.902996, 0, 0, Vector2(0.614334, 0.892414), -0.799489, -0.799489, 0, 0, Vector2(0.986348, 0.0317242), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_85ndx"]
+curve = SubResource("Curve_bvrrv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vtepx"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 6.0
+angle_max = 360.0
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_85ndx")
 
 [sub_resource type="Animation" id="Animation_qytk3"]
 length = 0.001
@@ -42,10 +62,22 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GPUParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_f2peu"]
 resource_name = "default"
-length = 0.6
+length = 0.7
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -90,12 +122,24 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.6),
+"times": PackedFloat32Array(0.7),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"queue_free"
 }]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GPUParticles2D:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3jegk"]
@@ -110,6 +154,17 @@ radius = 32.0
 [node name="AnvilAbility" type="Node2D"]
 script = ExtResource("1_qgaiy")
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_vtepx")
+texture = ExtResource("2_14r2s")
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.9
+fixed_fps = 0
+interpolate = false
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_3jegk")
@@ -120,7 +175,6 @@ autoplay = "default"
 
 [node name="Sprite2D" type="Sprite2D" parent="Visuals"]
 position = Vector2(0, -7)
-scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("2_jta7h")
 
 [node name="HitboxComponent" parent="." instance=ExtResource("3_xo3ys")]

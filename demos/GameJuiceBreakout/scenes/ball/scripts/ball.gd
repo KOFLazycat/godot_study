@@ -28,9 +28,16 @@ var boost_factor_late_early: float = 1.15
 
 @onready var animation_player = $AnimationPlayer
 @onready var sprite = $Sprite2D
+var sprite_base_scale: Vector2
 
 func _ready() -> void:
+	sprite_base_scale = sprite.scale
 	randomize()
+
+
+func _process(delta: float) -> void:
+	scale_based_on_velocity()
+
 
 func _physics_process(delta: float) -> void:
 	$VelocityLine.rotation = velocity.angle()
@@ -121,7 +128,15 @@ func _physics_process(delta: float) -> void:
 	if collision.get_collider().is_in_group("Bricks"):
 		collision.get_collider().damage(1)
 		emit_signal("hit_block", collision.get_collider())
-		
+
+
+##### VISUALS #####
+func scale_based_on_velocity() -> void:
+	if animation_player.is_playing(): return
+	sprite.scale = lerp(sprite_base_scale, sprite_base_scale * Vector2(1.4, 0.5), velocity.length()/max_speed)
+	sprite.rotation = velocity.angle()
+
+
 func attract(global_position) -> void:
 	attracted = true
 	attracted_to = global_position

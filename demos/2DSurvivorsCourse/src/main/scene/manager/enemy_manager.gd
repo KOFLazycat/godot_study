@@ -10,6 +10,7 @@ const SPAWN_RADIUS: float = 350.0
 @export var arena_time_manager: Node
 var base_spawn_time: float = 0
 var enemy_table: WeightedTable = WeightedTable.new()
+var number_to_spawn: int = 1
 
 
 # Called when the node enters the scene tree for the first time.
@@ -47,13 +48,14 @@ func on_timer_timeout() -> void:
 	if !is_instance_valid(player):
 		return
 	
-	enemy_table.refresh_pick_items()
-	var enemy_scene = enemy_table.pick_item()
-	var enemy = enemy_scene.instantiate()
-	var entities_layer = get_tree().get_first_node_in_group("entities_layer")
-	
-	entities_layer.add_child(enemy)
-	enemy.global_position = get_spawn_position()
+	for i in number_to_spawn:
+		enemy_table.refresh_pick_items()
+		var enemy_scene = enemy_table.pick_item()
+		var enemy = enemy_scene.instantiate()
+		var entities_layer = get_tree().get_first_node_in_group("entities_layer")
+		
+		entities_layer.add_child(enemy)
+		enemy.global_position = get_spawn_position()
 
 
 func on_arena_difficulty_increased(arena_difficulty: int) -> void:
@@ -65,3 +67,6 @@ func on_arena_difficulty_increased(arena_difficulty: int) -> void:
 		enemy_table.add_itme(wizard_enemy_scene, 15)
 	elif arena_difficulty == 18:
 		enemy_table.add_itme(bat_enemy_scene, 8)
+	
+	if (arena_difficulty % 6) == 0:
+		number_to_spawn += 1

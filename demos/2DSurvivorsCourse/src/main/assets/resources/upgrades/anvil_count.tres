@@ -7,4 +7,4 @@ script = ExtResource("1_vx6x0")
 id = "anvil_count"
 max_quantity = 2
 name = "Anvil Count"
-description = "Adds 1 additional anvil."
+description = "Adds 1 additional anvil"

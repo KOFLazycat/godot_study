@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cvg0cmgxvdkk0"]
+[gd_scene load_steps=12 format=3 uid="uid://cvg0cmgxvdkk0"]
 
 [ext_resource type="Texture2D" uid="uid://doqriorw2lonx" path="res://scenes/ball/visuals/ball.png" id="1"]
 [ext_resource type="Script" path="res://scenes/ball/scripts/ball.gd" id="2"]
 [ext_resource type="Script" path="res://addons/trail_2d/trail_2d.gd" id="3_af6wq"]
+[ext_resource type="PackedScene" uid="uid://dmngl3qqxlu23" path="res://scenes/ball/bounce_particles.tscn" id="4_xbfxr"]
 
 [sub_resource type="Curve" id="Curve_ed05l"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -85,3 +86,5 @@ default_color = Color(0.996078, 0.0705882, 0.0705882, 1)
 libraries = {
 "": SubResource("AnimationLibrary_rhgg1")
 }
+
+[node name="BounceParticles" parent="." instance=ExtResource("4_xbfxr")]

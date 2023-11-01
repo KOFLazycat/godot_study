@@ -3,6 +3,8 @@ extends CharacterBody2D
 signal hit_block(block)
 
 @export var bump_timing_scene: PackedScene = preload("res://scenes/effects/bump/bump_timing.tscn")
+@export var bounce_particles_scene: PackedScene = preload("res://scenes/ball/bounce_particles.tscn") as PackedScene
+@export var bump_particles_scene: PackedScene = preload("res://scenes/ball/bump_particles.tscn") as PackedScene
 
 @export var speed: float = 400.0
 @export var accel: float = 20.0
@@ -25,10 +27,10 @@ var max_bump_distance: float = 40.0
 var boost_factor: float = 1.0
 var boost_factor_perfect: float = 1.3
 var boost_factor_late_early: float = 1.15
+var sprite_base_scale: Vector2
 
 @onready var animation_player = $AnimationPlayer
 @onready var sprite = $Sprite2D
-var sprite_base_scale: Vector2
 
 func _ready() -> void:
 	sprite_base_scale = sprite.scale
@@ -75,7 +77,7 @@ func _physics_process(delta: float) -> void:
 		frames_since_paddle_collison = 0
 #		print("Normal:", normal)
 #		print("Dot:", normal.dot(Vector2.UP))
-		
+		spawn_bump_particles(collision.get_position(), normal)
 		# Collision from the top, most of the cases
 		if normal.dot(Vector2.UP) > 0.0:
 #			print("HIT TOP: ", Globals.stats["ball_bounces"])
@@ -121,6 +123,7 @@ func _physics_process(delta: float) -> void:
 			velocity = velocity.bounce(normal)
 	else:
 #		print("HIT OTHER: ", Globals.stats["ball_bounces"])
+		spawn_bounce_particles(collision.get_position(), normal)
 		velocity = velocity.bounce(normal)
 	
 	velocity = velocity.limit_length(max_speed)
@@ -135,6 +138,20 @@ func scale_based_on_velocity() -> void:
 	if animation_player.is_playing(): return
 	sprite.scale = lerp(sprite_base_scale, sprite_base_scale * Vector2(1.4, 0.5), velocity.length()/max_speed)
 	sprite.rotation = velocity.angle()
+
+
+func spawn_bounce_particles(pos: Vector2, normal: Vector2) -> void:
+	var instance = bounce_particles_scene.instantiate() as Node2D
+	get_tree().get_current_scene().add_child(instance)
+	instance.global_position = pos
+	instance.rotation = normal.angle()
+
+
+func spawn_bump_particles(pos: Vector2, normal: Vector2) -> void:
+	var instance = bump_particles_scene.instantiate() as GPUParticles2D
+	get_tree().get_current_scene().add_child(instance)
+	instance.global_position = pos
+	instance.rotation = normal.angle()
 
 
 func attract(global_position) -> void:

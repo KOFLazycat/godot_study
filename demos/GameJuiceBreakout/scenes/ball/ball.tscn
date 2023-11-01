@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvg0cmgxvdkk0"]
+
+[ext_resource type="Texture2D" uid="uid://doqriorw2lonx" path="res://scenes/ball/visuals/ball.png" id="1"]
+[ext_resource type="Script" path="res://scenes/ball/scripts/ball.gd" id="2"]
+
+[sub_resource type="CircleShape2D" id="1"]
+radius = 20.0
+
+[sub_resource type="Curve" id="2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.992605, 0.358483), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_jwv30"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.375, 0.375)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rhgg1"]
+_data = {
+"RESET": SubResource("Animation_jwv30")
+}
+
+[node name="Ball" type="CharacterBody2D" groups=["Ball"]]
+script = ExtResource("2")
+speed = 700.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
+
+[node name="VelocityLine" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(0, 0, 88, 0)
+width = 25.0
+width_curve = SubResource("2")
+default_color = Color(0.996078, 0.0705882, 0.0705882, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rhgg1")
+}

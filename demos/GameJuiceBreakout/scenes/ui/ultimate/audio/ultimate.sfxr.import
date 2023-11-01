@@ -1,0 +1,17 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamWAV"
+uid="uid://cvqshg48q2nq"
+path="res://.godot/imported/ultimate.sfxr-6e5b6b320e7089eba877b1ad6aee1318.sample"
+
+[deps]
+
+source_file="res://scenes/ui/ultimate/audio/ultimate.sfxr"
+dest_files=["res://.godot/imported/ultimate.sfxr-6e5b6b320e7089eba877b1ad6aee1318.sample"]
+
+[params]
+
+loop=false
+bit_depth=0
+sample_rate=0

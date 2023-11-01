@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://c48m66isx4utm"]
+
+[ext_resource type="Script" path="res://scenes/ui/energy_bar/scripts/energy_bar.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://clkxun12gq2gv" path="res://scenes/ui/shared/visuals/Container.png" id="2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_531ku"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opnc5"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="EnergyBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 111.0
+offset_bottom = 256.0
+script = ExtResource("1")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.0980392, 0.0980392, 0.0980392, 1)
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -8.0
+offset_right = 40.0
+offset_bottom = 8.0
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+
+[node name="EnergyBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 37.0
+offset_right = -40.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_531ku")
+theme_override_styles/fill = SubResource("StyleBoxFlat_opnc5")
+value = 48.67
+fill_mode = 3
+show_percentage = false

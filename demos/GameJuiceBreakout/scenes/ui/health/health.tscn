@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://lc5lho6dqctj"]
+
+[ext_resource type="Texture2D" uid="uid://cj51dnttt3at2" path="res://scenes/ui/health/visuals/HeartFull.png" id="1"]
+[ext_resource type="Script" path="res://scenes/ui/health/scripts/health.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://clkxun12gq2gv" path="res://scenes/ui/shared/visuals/Container.png" id="3"]
+
+[node name="HealthBar" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 111.0
+offset_bottom = 256.0
+script = ExtResource("2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.0980392, 0.0980392, 0.0980392, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -8.0
+offset_right = 40.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBox"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="VBox"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="VBox"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("1")
+expand_mode = 1
+stretch_mode = 5

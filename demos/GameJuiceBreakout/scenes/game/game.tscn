@@ -1,0 +1,269 @@
+[gd_scene load_steps=17 format=3 uid="uid://c1cvnrsabg3s1"]
+
+[ext_resource type="PackedScene" uid="uid://dyy7lp07carkr" path="res://scenes/paddle/paddle.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://cvg0cmgxvdkk0" path="res://scenes/ball/ball.tscn" id="2"]
+[ext_resource type="Script" path="res://scenes/game/scripts/game.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://stcivysk52ie" path="res://scenes/brick/brick.tscn" id="4"]
+[ext_resource type="FontFile" uid="uid://br01odh1twpni" path="res://shared/fonts/aldo_the_apache/AldotheApache.ttf" id="4_lbq23"]
+[ext_resource type="PackedScene" uid="uid://c48m66isx4utm" path="res://scenes/ui/energy_bar/energy_bar.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://lc5lho6dqctj" path="res://scenes/ui/health/health.tscn" id="6"]
+[ext_resource type="Texture2D" uid="uid://cca2cimj26xys" path="res://scenes/game/visuals/walls.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://dds87jvstluyg" path="res://scenes/game/visuals/background.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://sh7g4gfmqe73" path="res://scenes/game/visuals/pattern.png" id="9"]
+[ext_resource type="PackedScene" uid="uid://cn3a4bs7x53tq" path="res://scenes/ui/score/score.tscn" id="10_lkj00"]
+
+[sub_resource type="Shader" id="6"]
+code = "shader_type canvas_item;
+
+uniform sampler2D pattern: repeat_enable;
+uniform float speed = 1.0;
+uniform float size_scale = 1.0;
+uniform vec4 color: source_color;
+
+void fragment() {
+	vec2 centered_uv = UV * 2.0 - 1.0;
+	vec2 scaled_uv = centered_uv * size_scale;
+	scaled_uv = scaled_uv * 0.5 + 0.5;
+	vec2 moving_uv = vec2(scaled_uv.x - (TIME*speed), scaled_uv.y);
+	vec4 in_tex = texture(pattern, moving_uv);
+	COLOR = in_tex * color;
+}"
+
+[sub_resource type="ShaderMaterial" id="7"]
+shader = SubResource("6")
+shader_parameter/speed = 0.3
+shader_parameter/size_scale = 30.0
+shader_parameter/color = Color(0.74902, 0.74902, 0.74902, 0.254902)
+shader_parameter/pattern = ExtResource("9")
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(1920, 80)
+
+[sub_resource type="Gradient" id="4"]
+colors = PackedColorArray(1, 0.752941, 0.0117647, 1, 1, 0.517647, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="5"]
+gradient = SubResource("4")
+
+[node name="Game" type="Node2D"]
+script = ExtResource("3")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("8")
+
+[node name="Pattern" type="ColorRect" parent="."]
+material = SubResource("7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -846.0
+offset_top = -1139.0
+offset_right = 2756.0
+offset_bottom = 2463.0
+rotation = -0.785398
+pivot_offset = Vector2(1801, 1801)
+
+[node name="Combo" type="Label" parent="."]
+modulate = Color(0.462745, 0.462745, 0.462745, 0.180392)
+offset_left = 310.0
+offset_top = 402.0
+offset_right = 1629.0
+offset_bottom = 737.0
+theme_override_fonts/font = ExtResource("4_lbq23")
+theme_override_font_sizes/font_size = 400
+text = "COMBO 4"
+
+[node name="DeathArea" type="Area2D" parent="."]
+position = Vector2(960, 1101)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea"]
+shape = SubResource("1")
+
+[node name="Polygon2D" type="Polygon2D" parent="DeathArea"]
+position = Vector2(-960, -1104)
+color = Color(1, 0.752941, 0.0117647, 1)
+antialiased = true
+texture = SubResource("5")
+polygon = PackedVector2Array(0, 1064, 0, 1132.27, 0, 1312, 1919, 1317, 1920, 1064, 1854.6, 1064, 1791.82, 1064, 1729.03, 1064, 1663.39, 1064, 1599.89, 1064, 1537.1, 1064, 1471.46, 1064, 1407.25, 1064, 1345.89, 1064, 1280.25, 1064, 1214.61, 1064, 1151.11, 1064, 1086.9, 1064, 1023.4, 1064, 959.898, 1064, 894.971, 1064, 831.472, 1064, 767.259, 1064, 705.186, 1064, 640.259, 1064, 575.333, 1064, 511.833, 1064, 448.333, 1064, 385.547, 1064, 321.334, 1064, 257.834, 1064, 192.194, 1064, 128.694, 1064, 63.0542, 1064)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(106, 1189, -151, 1189, -153, -152, 2073, -150, 2070, 1189, 1814, 1189, 1814, 778, 1766, 705, 1766, 414, 1814, 342, 1814, 107, 106, 108, 106, 342, 154, 415, 154, 705, 106, 777)
+
+[node name="Walls" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(960, 498)
+texture = ExtResource("7")
+
+[node name="Ball" parent="." instance=ExtResource("2")]
+position = Vector2(960, 912)
+
+[node name="SpawnPos" type="Node" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="SpawnPos"]
+position = Vector2(259, 237)
+
+[node name="Position2D2" type="Marker2D" parent="SpawnPos"]
+position = Vector2(459, 237)
+
+[node name="Position2D3" type="Marker2D" parent="SpawnPos"]
+position = Vector2(659, 237)
+
+[node name="Position2D4" type="Marker2D" parent="SpawnPos"]
+position = Vector2(859, 237)
+
+[node name="Position2D5" type="Marker2D" parent="SpawnPos"]
+position = Vector2(1059, 237)
+
+[node name="Position2D6" type="Marker2D" parent="SpawnPos"]
+position = Vector2(1259, 237)
+
+[node name="Position2D7" type="Marker2D" parent="SpawnPos"]
+position = Vector2(1459, 237)
+
+[node name="Position2D8" type="Marker2D" parent="SpawnPos"]
+position = Vector2(1659, 237)
+
+[node name="Position2D10" type="Marker2D" parent="SpawnPos"]
+position = Vector2(259, 365)
+
+[node name="Position2D11" type="Marker2D" parent="SpawnPos"]
+position = Vector2(459, 365)
+
+[node name="Position2D12" type="Marker2D" parent="SpawnPos"]
+position = Vector2(659, 365)
+
+[node name="Position2D13" type="Marker2D" parent="SpawnPos"]
+position = Vector2(859, 365)
+
+[node name="Position2D14" type="Marker2D" parent="SpawnPos"]
+position = Vector2(1059, 365)
+
+[node name="Position2D15" type="Marker2D" parent="SpawnPos"]
+position = Vector2(1259, 365)
+
+[node name="Position2D16" type="Marker2D" parent="SpawnPos"]
+position = Vector2(1459, 365)
+
+[node name="Position2D17" type="Marker2D" parent="SpawnPos"]
+position = Vector2(1659, 365)
+
+[node name="Position2D20" type="Marker2D" parent="SpawnPos"]
+position = Vector2(459, 493)
+
+[node name="Position2D21" type="Marker2D" parent="SpawnPos"]
+position = Vector2(659, 493)
+
+[node name="Position2D22" type="Marker2D" parent="SpawnPos"]
+position = Vector2(859, 493)
+
+[node name="Position2D23" type="Marker2D" parent="SpawnPos"]
+position = Vector2(1059, 493)
+
+[node name="Position2D24" type="Marker2D" parent="SpawnPos"]
+position = Vector2(1259, 493)
+
+[node name="Position2D25" type="Marker2D" parent="SpawnPos"]
+position = Vector2(1459, 493)
+
+[node name="Bricks" type="Node" parent="."]
+
+[node name="Brick" parent="Bricks" instance=ExtResource("4")]
+visible = false
+position = Vector2(161, 128)
+
+[node name="Brick2" parent="Bricks" instance=ExtResource("4")]
+visible = false
+position = Vector2(361, 128)
+type = 1
+
+[node name="Brick3" parent="Bricks" instance=ExtResource("4")]
+visible = false
+position = Vector2(561, 128)
+type = 2
+
+[node name="Brick4" parent="Bricks" instance=ExtResource("4")]
+visible = false
+position = Vector2(761, 128)
+type = 3
+size = 1
+
+[node name="Brick5" parent="Bricks" instance=ExtResource("4")]
+visible = false
+position = Vector2(961, 128)
+type = 4
+size = 1
+
+[node name="Brick6" parent="Bricks" instance=ExtResource("4")]
+visible = false
+position = Vector2(1161, 128)
+type = 4
+size = 1
+
+[node name="Brick7" parent="Bricks" instance=ExtResource("4")]
+visible = false
+position = Vector2(1361, 128)
+type = 4
+size = 1
+
+[node name="Brick8" parent="Bricks" instance=ExtResource("4")]
+visible = false
+position = Vector2(1561, 128)
+type = 4
+size = 1
+
+[node name="Brick9" parent="Bricks" instance=ExtResource("4")]
+visible = false
+position = Vector2(1761, 128)
+type = 4
+size = 1
+
+[node name="Paddle" parent="." instance=ExtResource("1")]
+position = Vector2(960, 990)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="EnergyBar" parent="CanvasLayer" instance=ExtResource("5")]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = -128.0
+offset_right = 24.0
+offset_bottom = 128.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="HealthBar" parent="CanvasLayer" instance=ExtResource("6")]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -128.0
+offset_right = 87.0
+offset_bottom = 128.0
+grow_vertical = 2
+
+[node name="Score" parent="CanvasLayer" instance=ExtResource("10_lkj00")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -178.5
+offset_top = -14.0
+offset_right = 178.5
+offset_bottom = 98.0
+grow_horizontal = 2
+
+[node name="ComboTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="DeathArea" to="." method="_on_DeathArea_body_entered"]
+[connection signal="hit_block" from="Ball" to="." method="_on_ball_hit_block"]
+[connection signal="start" from="Paddle" to="." method="_on_paddle_start"]
+[connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]

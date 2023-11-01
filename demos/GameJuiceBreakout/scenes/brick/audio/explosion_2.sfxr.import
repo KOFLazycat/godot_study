@@ -1,0 +1,17 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamWAV"
+uid="uid://djxnqbpa1cnpo"
+path="res://.godot/imported/explosion_2.sfxr-dc9695a2b4ae994dbff25bde9772dbb4.sample"
+
+[deps]
+
+source_file="res://scenes/brick/audio/explosion_2.sfxr"
+dest_files=["res://.godot/imported/explosion_2.sfxr-dc9695a2b4ae994dbff25bde9772dbb4.sample"]
+
+[params]
+
+loop=false
+bit_depth=0
+sample_rate=0

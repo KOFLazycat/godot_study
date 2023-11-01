@@ -1,0 +1,17 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamWAV"
+uid="uid://bphlyt8go1ltk"
+path="res://.godot/imported/bump_strong.sfxr-2aced732f776c6f51d80b6ecca97cf2a.sample"
+
+[deps]
+
+source_file="res://scenes/ball/audio/bump_strong.sfxr"
+dest_files=["res://.godot/imported/bump_strong.sfxr-2aced732f776c6f51d80b6ecca97cf2a.sample"]
+
+[params]
+
+loop=false
+bit_depth=0
+sample_rate=0

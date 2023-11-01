@@ -4,7 +4,6 @@ extends CharacterBody2D
 @onready var damage_interval_timer: Timer = $DamageIntervalTimer
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var health_bar: ProgressBar = $HealthBar
-@onready var abilities: Node = $Abilities
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var visuals: Node2D = $Visuals
 @onready var sprite_2d: Sprite2D = $Visuals/Sprite2D

@@ -6,6 +6,7 @@ const SPAWN_RADIUS: float = 350.0
 
 @export var basic_enemy_scene: PackedScene
 @export var wizard_enemy_scene: PackedScene
+@export var bat_enemy_scene: PackedScene
 @export var arena_time_manager: Node
 var base_spawn_time: float = 0
 var enemy_table: WeightedTable = WeightedTable.new()
@@ -24,21 +25,21 @@ func get_spawn_position() -> Vector2:
 	if !is_instance_valid(player):
 		return Vector2.ZERO
 	
-	var spwan_position: Vector2 = Vector2.ZERO
+	var spawn_position: Vector2 = Vector2.ZERO
 	var random_direction: Vector2 = Vector2.RIGHT.rotated(randf_range(0, TAU))
 	for i in 4:#[0, 1, 2, 3]
 		random_direction = random_direction.rotated(i * PI/2)
-		spwan_position = player.global_position + (random_direction * SPAWN_RADIUS)
+		spawn_position = player.global_position + (random_direction * SPAWN_RADIUS)
 		
 		# player collision mask, 使用位运算来检查某个位是否为1，更简单直观
-		var query_paramaters: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(player.global_position, spwan_position, 1 << 0)
+		var query_paramaters: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(player.global_position, spawn_position, 1 << 0)
 		var result: Dictionary = get_tree().root.world_2d.direct_space_state.intersect_ray(query_paramaters)
 		
 		if result.is_empty():
 			# we are clear
 			break
 	
-	return spwan_position
+	return spawn_position
 
 func on_timer_timeout() -> void:
 	timer.start()
@@ -61,4 +62,6 @@ func on_arena_difficulty_increased(arena_difficulty: int) -> void:
 	timer.wait_time = base_spawn_time - time_off
 	
 	if arena_difficulty == 6:
-		enemy_table.add_itme(wizard_enemy_scene, 20)
+		enemy_table.add_itme(wizard_enemy_scene, 15)
+	elif arena_difficulty == 18:
+		enemy_table.add_itme(bat_enemy_scene, 8)

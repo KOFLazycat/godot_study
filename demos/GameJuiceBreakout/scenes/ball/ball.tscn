@@ -1,7 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvg0cmgxvdkk0"]
+[gd_scene load_steps=11 format=3 uid="uid://cvg0cmgxvdkk0"]
 
 [ext_resource type="Texture2D" uid="uid://doqriorw2lonx" path="res://scenes/ball/visuals/ball.png" id="1"]
 [ext_resource type="Script" path="res://scenes/ball/scripts/ball.gd" id="2"]
+[ext_resource type="Script" path="res://addons/trail_2d/trail_2d.gd" id="3_af6wq"]
+
+[sub_resource type="Curve" id="Curve_ed05l"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_vv12o"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 20.0
@@ -51,6 +59,13 @@ _data = {
 [node name="Ball" type="CharacterBody2D" groups=["Ball"]]
 script = ExtResource("2")
 speed = 700.0
+
+[node name="Trail2D" type="Line2D" parent="."]
+width = 25.0
+width_curve = SubResource("Curve_ed05l")
+gradient = SubResource("Gradient_vv12o")
+script = ExtResource("3_af6wq")
+length = 25
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.375, 0.375)

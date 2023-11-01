@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvg0cmgxvdkk0"]
+[gd_scene load_steps=8 format=3 uid="uid://cvg0cmgxvdkk0"]
 
 [ext_resource type="Texture2D" uid="uid://doqriorw2lonx" path="res://scenes/ball/visuals/ball.png" id="1"]
 [ext_resource type="Script" path="res://scenes/ball/scripts/ball.gd" id="2"]
@@ -25,9 +25,27 @@ tracks/0/keys = {
 "values": [Vector2(0.375, 0.375)]
 }
 
+[sub_resource type="Animation" id="Animation_b807f"]
+resource_name = "bounce"
+length = 0.3
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.18, 0.3),
+"transitions": PackedFloat32Array(-2, -2, -2, -2),
+"update": 0,
+"values": [Vector2(0.375, 0.375), Vector2(0.22, 0.67), Vector2(0.5, 0.181), Vector2(0.375, 0.375)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rhgg1"]
 _data = {
-"RESET": SubResource("Animation_jwv30")
+"RESET": SubResource("Animation_jwv30"),
+"bounce": SubResource("Animation_b807f")
 }
 
 [node name="Ball" type="CharacterBody2D" groups=["Ball"]]

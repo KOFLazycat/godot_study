@@ -57,8 +57,10 @@ func _physics_process(delta: float) -> void:
 	if not collision: return
 	Globals.stats["ball_bounces"] += 1
 	
+	## 根据碰撞法线旋转sprite，让动画弹跳显得更加自然
 	var normal = collision.get_normal()
 	sprite.rotation = -normal.angle()
+	animation_player.play("bounce")
 
 	# Update the normal with the paddle's velocity if we collide with
 	# the paddle

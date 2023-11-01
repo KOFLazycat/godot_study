@@ -36,7 +36,7 @@ func update_progress() -> void:
 	if is_max:
 		purchase_button.text = "Max"
 	progress_label.text = str(currency) + "/" + str(upgrade_info.experience_cost)
-	count_label.text = "x%d" % MetaProgression.save_data["meta_upgrades"][upgrade_info.id]["quantity"]
+	count_label.text = "x%d" % current_quantity
 
 
 func select_card() -> void:

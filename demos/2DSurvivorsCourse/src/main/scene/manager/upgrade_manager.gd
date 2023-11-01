@@ -11,6 +11,7 @@ var upgrade_sword_rate = preload("res://src/main/assets/resources/upgrades/sword
 var upgrade_sword_damage = preload("res://src/main/assets/resources/upgrades/sword_damage.tres")
 var upgrade_player_speed = preload("res://src/main/assets/resources/upgrades/player_speed.tres")
 var upgrade_anvil = preload("res://src/main/assets/resources/upgrades/anvil.tres")
+var upgrade_anvil_count = preload("res://src/main/assets/resources/upgrades/anvil_count.tres")
 # 升级卡片数量
 var max_pick_card_num: int = 3
 
@@ -25,8 +26,11 @@ func _ready() -> void:
 
 
 func update_upgrade_pool(chosen_upgrade: AbilityUpgrade) -> void:
-	if chosen_upgrade.id == upgrade_axe.id:
-		upgrade_pool.add_itme(upgrade_axe_damage, 10)
+	match chosen_upgrade.id:
+		upgrade_axe.id:
+			upgrade_pool.add_itme(upgrade_axe_damage, 10)
+		upgrade_anvil.id:
+			upgrade_pool.add_itme(upgrade_anvil_count, 5)
 
 
 func apply_upgrade(upgrade: AbilityUpgrade) -> void:

@@ -8,11 +8,11 @@ var hit_flash_tween: Tween
 
 
 func _ready() -> void:
-	health_component.health_changed.connect(on_health_changed)
+	health_component.health_decresed.connect(on_health_decresed)
 	sprite.material = hit_flash_material
 
 
-func on_health_changed() -> void:
+func on_health_decresed() -> void:
 	if hit_flash_tween != null && hit_flash_tween.is_valid():
 		hit_flash_tween.kill()
 	

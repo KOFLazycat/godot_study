@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=2 format=3 uid="uid://cnx5mfkcu60fr"]
+
+[ext_resource type="Script" path="res://src/main/common/script/meta_upgrades/meta_upgrade.gd" id="1_ofilm"]
+
+[resource]
+script = ExtResource("1_ofilm")
+id = "health_regeneration"
+max_quantity = 3
+experience_cost = 100
+title = "Health Regen"
+description = "Regenerates 1 health every 30 seconds."

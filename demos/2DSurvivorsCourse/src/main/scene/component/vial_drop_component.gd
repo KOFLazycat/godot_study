@@ -12,7 +12,6 @@ func _ready() -> void:
 func on_died() -> void:
 	var adjusted_drop_percent = drop_percent
 	var experience_gain_upgrade_count: int = MetaProgression.get_upgrade_count("experience_gain")
-	print(experience_gain_upgrade_count)
 	if experience_gain_upgrade_count > 0:
 		adjusted_drop_percent += 0.1
 	

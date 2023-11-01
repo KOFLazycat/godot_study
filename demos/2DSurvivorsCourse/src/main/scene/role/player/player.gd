@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var arena_time_manager: Node
+
 @onready var collision_area_2d: Area2D = $CollisionArea2D
 @onready var damage_interval_timer: Timer = $DamageIntervalTimer
 @onready var health_component: HealthComponent = $HealthComponent
@@ -16,10 +18,12 @@ var base_speed: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	arena_time_manager.arena_difficulty_increased.connect(on_arena_difficulty_increased)
 	base_speed = velocity_component.max_speed
 	collision_area_2d.body_entered.connect(on_body_entered)
 	collision_area_2d.body_exited.connect(on_body_exited)
 	damage_interval_timer.timeout.connect(on_damage_interval_timer_timeout)
+	health_component.health_decresed.connect(on_health_decresed)
 	health_component.health_changed.connect(on_health_changed)
 	GameEvents.ability_upgrade_added.connect(on_ability_upgrade_added)
 	update_health_display()
@@ -72,13 +76,27 @@ func on_damage_interval_timer_timeout() -> void:
 	check_deal_damage()
 
 
-func on_health_changed() -> void:
+func on_health_decresed() -> void:
 	GameEvents.emit_player_damaged()
 	update_health_display()
 	hit_random_audio_player_component.play_random()
+
+
+func on_health_changed() -> void:
+	update_health_display()
 
 
 func on_ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary) -> void:
 	match upgrade.id:
 		"player_speed":
 			velocity_component.max_speed = base_speed + (base_speed * current_upgrades["player_speed"]["quantity"] * 0.1)
+
+
+func on_arena_difficulty_increased(difficulty: int) -> void:
+	var is_thirty_second_interval = ((difficulty % 6) == 0)
+	if !is_thirty_second_interval:
+		return
+	var health_regeneration_quantity: int = MetaProgression.get_upgrade_count("health_regeneration")
+	if health_regeneration_quantity > 0:
+		health_component.heal(health_regeneration_quantity)
+	

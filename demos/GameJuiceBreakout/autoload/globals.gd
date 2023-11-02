@@ -16,6 +16,8 @@ var stats = {
 	"ball_bounces": 0
 }
 
+var camera: Camera2D
+
 func _ready() -> void:
 	pass
 

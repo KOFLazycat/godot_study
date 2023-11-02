@@ -5,6 +5,7 @@ signal hit_block(block)
 @export var bump_timing_scene: PackedScene = preload("res://scenes/effects/bump/bump_timing.tscn")
 @export var bounce_particles_scene: PackedScene = preload("res://scenes/ball/bounce_particles.tscn") as PackedScene
 @export var bump_particles_scene: PackedScene = preload("res://scenes/ball/bump_particles.tscn") as PackedScene
+@export var explode_particles_scene: PackedScene = preload("res://scenes/ball/ball_explode_particles.tscn") as PackedScene
 
 @export var speed: float = 400.0
 @export var accel: float = 20.0
@@ -161,6 +162,10 @@ func appear() -> void:
 	animation_player.play("appear")
 
 
+func die() -> void:
+	spawn_explode_particles(global_position)
+
+
 func scale_based_on_velocity() -> void:
 	if animation_player.is_playing(): return
 	sprite.scale = lerp(sprite_base_scale, sprite_base_scale * Vector2(1.4, 0.5), velocity.length()/max_speed)
@@ -179,6 +184,12 @@ func spawn_bump_particles(pos: Vector2, normal: Vector2) -> void:
 	get_tree().get_current_scene().add_child(instance)
 	instance.global_position = pos
 	instance.rotation = normal.angle()
+
+
+func spawn_explode_particles(pos: Vector2) -> void:
+	var instance = explode_particles_scene.instantiate() as GPUParticles2D
+	get_tree().get_current_scene().add_child(instance)
+	instance.global_position = pos
 
 
 func start_hitstop(hitstop_amount: int) -> void:

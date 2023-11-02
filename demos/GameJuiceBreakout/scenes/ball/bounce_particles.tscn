@@ -33,4 +33,3 @@ explosiveness = 0.8
 script = ExtResource("2_ogbe4")
 
 [node name="Timer" type="Timer" parent="."]
-autostart = true

@@ -9,7 +9,7 @@ signal hit_block(block)
 
 @export var speed: float = 400.0
 @export var accel: float = 20.0
-@export var deccel: float = 10.0
+@export var deccel: float = 3.0
 @export var max_normal_angle: float = 15.0
 @export var max_speed: float = 1600.0
 @export var steering_max_speed: float = 1200.0
@@ -25,6 +25,7 @@ var attracted: bool = false
 var attracted_to = null
 var frames_since_paddle_collison: int = 0
 var max_bump_distance: float = 40.0
+var boost_factor_base: float = 1.15
 var boost_factor: float = 1.0
 var boost_factor_perfect: float = 1.3
 var boost_factor_late_early: float = 1.15
@@ -61,6 +62,8 @@ func _physics_process(delta: float) -> void:
 	
 	$VelocityLine.rotation = velocity.angle()
 	frames_since_paddle_collison += 1
+	
+	velocity = lerp(velocity, velocity.limit_length(speed), deccel * delta)
 	
 	if attached_to:
 		global_position = attached_to.global_position
@@ -111,20 +114,20 @@ func _physics_process(delta: float) -> void:
 				velocity.x += collision.get_collider().velocity.x * 0.6
 				velocity = velocity.normalized()
 				velocity *= length_before_collison
-				velocity *= boost_factor
+				velocity *= (boost_factor + boost_factor_base)
 			else:
 				## Tilt the normal near the edge
 				# Calculate the distance between the collision point and the center of the paddle
 				var distance = collision.get_position() - collision.get_collider().global_position
 				var amount = distance.x/96.0
 				normal = normal.rotated(deg_to_rad(max_normal_angle)*amount)
-				velocity = velocity.bounce(normal)*boost_factor
+				velocity = velocity.bounce(normal)*(boost_factor + boost_factor_base)
 		else:
 #			print("HIT SIDE: ", Globals.stats["ball_bounces"])
 			# Check if below half of the thickness
 			if collision.get_position().y > collision.get_collider().global_position.y:
 #				print("BELOW HALF")
-				velocity = velocity.bounce(normal)*boost_factor
+				velocity = velocity.bounce(normal)*(boost_factor + boost_factor_base)
 			else:
 				# Lateral normal respecting the sign checked the collision
 				normal = Vector2(sign(normal.x), 0)
@@ -133,7 +136,7 @@ func _physics_process(delta: float) -> void:
 				
 				# Create the new velocity using the velocity length and the normal direction
 				velocity = normal_rotated * velocity.length()
-				velocity *= boost_factor
+				velocity *= (boost_factor + boost_factor_base)
 		# Reset bump boost
 		boost_factor = 1.0
 	elif collision.get_collider().is_in_group("Bricks"):

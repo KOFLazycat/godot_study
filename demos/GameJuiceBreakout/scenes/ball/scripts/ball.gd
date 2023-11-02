@@ -11,10 +11,12 @@ signal hit_block(block)
 @export var accel: float = 20.0
 @export var deccel: float = 3.0
 @export var max_normal_angle: float = 15.0
-@export var max_speed: float = 1600.0
+@export var max_speed: float = 1200.0
 @export var steering_max_speed: float = 1200.0
 @export var steer_force = 110.0
 @export var steer_speed = 300.0
+@export var max_speed_color: Color
+@export var speed_threshold: float = 100.0
 
 var acceleration: Vector2 = Vector2.ZERO
 var attached_to = null
@@ -42,6 +44,8 @@ var hitstop_bomb: int = 10
 @onready var animation_player = $AnimationPlayer
 @onready var sprite = $Sprite2D
 @onready var appear_particles: GPUParticles2D = $AppearParticles
+@onready var trail_2d: Line2D = $Trail2D
+@onready var speed_particles: GPUParticles2D = $SpeedParticles
 
 
 func _ready() -> void:
@@ -50,6 +54,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	color_based_on_velocity()
 	scale_based_on_velocity()
 
 
@@ -173,6 +178,18 @@ func scale_based_on_velocity() -> void:
 	if animation_player.is_playing(): return
 	sprite.scale = lerp(sprite_base_scale, sprite_base_scale * Vector2(1.4, 0.5), velocity.length()/max_speed)
 	sprite.rotation = velocity.angle()
+
+
+func color_based_on_velocity() -> void:
+	var val = remap(velocity.length(), speed, max_speed, 0, 1.0)
+	sprite.self_modulate = lerp(Color.WHITE, max_speed_color, val)
+	trail_2d.self_modulate = lerp(Color.WHITE, max_speed_color, val)
+	speed_particles.self_modulate = lerp(Color.WHITE, max_speed_color, val)
+	
+	if velocity.length() > (speed + speed_threshold) and not speed_particles.emitting:
+		speed_particles.emitting = true
+	else:
+		speed_particles.emitting = false
 
 
 func spawn_bounce_particles(pos: Vector2, normal: Vector2) -> void:

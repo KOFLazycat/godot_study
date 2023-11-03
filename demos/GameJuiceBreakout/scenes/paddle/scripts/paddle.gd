@@ -8,6 +8,8 @@ signal start()
 @export var deccel: float = 10.0
 @export var dash_speed: float = 1000.0
 @export var dash_duration: float = 0.1
+@export var max_lean_angle: float = 5.0
+@export var lean_speed: float = 4.0
 
 var dashing: bool = false
 var ball_attached = null
@@ -22,6 +24,7 @@ var frames_since_bump: int = 0
 @onready var launch_point: Marker2D = $LaunchPoint
 @onready var laser: Area2D = $Laser
 @onready var thickness: float = $CollisionShape2D.shape.extents.y
+@onready var paddle: Sprite2D = $Paddle
 
 func _ready() -> void:
 	pass
@@ -35,6 +38,8 @@ func _process(delta: float) -> void:
 		velocity.x = lerp(velocity.x, dir * speed, accel * delta)
 	else:
 		velocity.x = lerp(velocity.x, 0.0, deccel * delta)
+	
+	paddle.rotation = lerp_angle(paddle.rotation, deg_to_rad(max_lean_angle) * dir, lean_speed * delta)
 	
 	if Input.is_action_just_pressed("bump"):
 		frames_since_bump = 0

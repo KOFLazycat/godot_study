@@ -1,8 +1,36 @@
-[gd_scene load_steps=8 format=3 uid="uid://dyy7lp07carkr"]
+[gd_scene load_steps=13 format=3 uid="uid://dyy7lp07carkr"]
 
 [ext_resource type="Script" path="res://scenes/paddle/scripts/paddle.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://bf0hn220saeh8" path="res://scenes/paddle/laser.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://blae5o6klukpa" path="res://scenes/paddle/visuals/Paddle.png" id="3"]
+
+[sub_resource type="Gradient" id="Gradient_vyix7"]
+offsets = PackedFloat32Array(0, 0.211321, 0.509434, 1)
+colors = PackedColorArray(0, 0.207427, 0.999999, 1, 0.890218, 0.0624845, 0.507377, 1, 0.939266, 0.861569, 0.127301, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bstb3"]
+gradient = SubResource("Gradient_vyix7")
+
+[sub_resource type="Curve" id="Curve_rlk85"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qheoj"]
+curve = SubResource("Curve_rlk85")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e5odn"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+spread = 4.0
+initial_velocity_min = 45.0
+initial_velocity_max = 55.0
+gravity = Vector3(0, 0, 0)
+scale_min = 20.0
+scale_max = 25.0
+scale_curve = SubResource("CurveTexture_qheoj")
+color_ramp = SubResource("GradientTexture1D_bstb3")
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(152, 34)
@@ -24,19 +52,19 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="2"]
 resource_name = "bump"
-length = 0.15
+length = 0.25
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Paddle:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.14, 0.25),
+"transitions": PackedFloat32Array(-2, -2, -2, -2),
 "update": 0,
-"values": [Vector2(0, 4), Vector2(0, -10.639), Vector2(0, 4)]
+"values": [Vector2(0, 4), Vector2(0, -10), Vector2(0, 10), Vector2(0, 4)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cnhir"]
@@ -56,9 +84,16 @@ velocity_multiplier = 0.25
 [node name="Laser" parent="." instance=ExtResource("2")]
 
 [node name="Paddle" type="Sprite2D" parent="."]
-modulate = Color(0.0980392, 0.0980392, 0.0980392, 1)
+self_modulate = Color(0, 0, 0, 1)
 position = Vector2(0, 4)
 texture = ExtResource("3")
+
+[node name="ThrustParticles" type="GPUParticles2D" parent="Paddle"]
+show_behind_parent = true
+position = Vector2(0, 13)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_e5odn")
+local_coords = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("1")

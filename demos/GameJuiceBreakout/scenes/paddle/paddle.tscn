@@ -50,6 +50,8 @@ process_priority = -2
 script = ExtResource("1")
 speed = 850.0
 dash_speed = 2500.0
+spring = 180.0
+velocity_multiplier = 0.25
 
 [node name="Laser" parent="." instance=ExtResource("2")]
 

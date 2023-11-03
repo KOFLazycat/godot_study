@@ -10,6 +10,10 @@ signal start()
 @export var dash_duration: float = 0.1
 @export var max_lean_angle: float = 5.0
 @export var lean_speed: float = 4.0
+@export_category("Oscillator")
+@export var spring: float = 150.0
+@export var damp: float = 10.0
+@export var velocity_multiplier: float = 1.0
 
 var dashing: bool = false
 var ball_attached = null
@@ -18,6 +22,10 @@ var game_over: bool = false
 var stage_clear: bool = false
 var ball = null
 var frames_since_bump: int = 0
+
+## Oscillator
+var displacement: float = 0.0
+var oscillator_velocity: float = 0.0
 
 @onready var dash_timer: Timer = $DashTimer
 @onready var anim: AnimationPlayer = $AnimationPlayer
@@ -39,7 +47,15 @@ func _process(delta: float) -> void:
 	else:
 		velocity.x = lerp(velocity.x, 0.0, deccel * delta)
 	
-	paddle.rotation = lerp_angle(paddle.rotation, deg_to_rad(max_lean_angle) * dir, lean_speed * delta)
+	## Oscillator
+	oscillator_velocity += (velocity.x / speed) * velocity_multiplier
+	var force = -spring * displacement + damp * oscillator_velocity
+	oscillator_velocity -= force * delta
+	displacement -= oscillator_velocity * delta
+	
+	paddle.rotation = -displacement
+	
+	#paddle.rotation = lerp_angle(paddle.rotation, deg_to_rad(max_lean_angle) * dir, lean_speed * delta)
 	
 	if Input.is_action_just_pressed("bump"):
 		frames_since_bump = 0

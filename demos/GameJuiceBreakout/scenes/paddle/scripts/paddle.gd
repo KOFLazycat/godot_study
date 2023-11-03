@@ -30,7 +30,11 @@ func _process(delta: float) -> void:
 	if dashing or game_over or stage_clear: return
 	var dir: float = Input.get_action_strength("right") - Input.get_action_strength("left")
 	
-	velocity.x = dir * speed
+	# 平滑移动
+	if dir != 0:
+		velocity.x = lerp(velocity.x, dir * speed, accel * delta)
+	else:
+		velocity.x = lerp(velocity.x, 0.0, deccel * delta)
 	
 	if Input.is_action_just_pressed("bump"):
 		frames_since_bump = 0

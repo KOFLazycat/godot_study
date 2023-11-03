@@ -15,9 +15,10 @@ extends Node2D
 @onready var brick_container: Node = $Bricks
 @onready var combo_timer: Timer = $ComboTimer
 @onready var combo_lbl = $Combo
-@onready var camera_2d: Camera2D = $Camera2D
 @onready var hud_canvas_layer: CanvasLayer = $HUDCanvasLayer
 @onready var ui_canvas_layer: CanvasLayer = $UICanvasLayer
+@onready var camera_2d: Camera2D = $Camera2D
+#@onready var advanced_camera: Camera2D = $AdvancedCamera
 
 var health: int = 3
 var energy: float = 0.0
@@ -35,6 +36,7 @@ func _ready() -> void:
 	
 	hide_combo()
 	
+	#Globals.camera = advanced_camera
 	Globals.camera = camera_2d
 	Globals.camera.objects = [ball]
 	

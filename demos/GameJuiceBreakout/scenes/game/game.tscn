@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c1cvnrsabg3s1"]
+[gd_scene load_steps=19 format=3 uid="uid://c1cvnrsabg3s1"]
 
 [ext_resource type="PackedScene" uid="uid://dyy7lp07carkr" path="res://scenes/paddle/paddle.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://cvg0cmgxvdkk0" path="res://scenes/ball/ball.tscn" id="2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dds87jvstluyg" path="res://scenes/game/visuals/background.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://sh7g4gfmqe73" path="res://scenes/game/visuals/pattern.png" id="9"]
 [ext_resource type="Script" path="res://scenes/game/scripts/camera_final.gd" id="9_e0ti7"]
+[ext_resource type="PackedScene" uid="uid://dfq3cdnf38l2b" path="res://scenes/ball/advanced_camera.tscn" id="10_0e8dv"]
 [ext_resource type="PackedScene" uid="uid://cn3a4bs7x53tq" path="res://scenes/ui/score/score.tscn" id="10_lkj00"]
 
 [sub_resource type="Shader" id="6"]
@@ -228,6 +229,14 @@ position = Vector2(960, 540)
 script = ExtResource("9_e0ti7")
 dynamic_enabled = true
 dynamic_factor = 0.3
+
+[node name="AdvancedCamera" parent="." instance=ExtResource("10_0e8dv")]
+visible = false
+position = Vector2(960, 540)
+enabled = false
+dynamic_enabled = true
+decay = 0.8
+amplitude = 40.0
 
 [node name="HUDCanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true

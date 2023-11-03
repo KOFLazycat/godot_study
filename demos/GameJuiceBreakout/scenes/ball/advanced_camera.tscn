@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfq3cdnf38l2b"]
+
+[ext_resource type="Script" path="res://scenes/ball/scripts/advanced_camera.gd" id="1_vpw3h"]
+
+[node name="AdvancedCamera" type="Camera2D"]
+script = ExtResource("1_vpw3h")

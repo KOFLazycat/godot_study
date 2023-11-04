@@ -100,6 +100,7 @@ func _physics_process(delta: float) -> void:
 	# Update the normal with the paddle's velocity if we collide with
 	# the paddle
 	if collision.get_collider().is_in_group("Paddle"):
+		collision.get_collider().ball_bounce()
 		frames_since_paddle_collison = 0
 		Globals.camera.shake(0.3, 20, 15)
 #		print("Normal:", normal)

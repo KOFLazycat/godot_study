@@ -27,12 +27,17 @@ var frames_since_bump: int = 0
 var displacement: float = 0.0
 var oscillator_velocity: float = 0.0
 
+## HitStop
+var hitstop_frames: int = 0
+
 @onready var dash_timer: Timer = $DashTimer
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var launch_point: Marker2D = $LaunchPoint
 @onready var laser: Area2D = $Laser
 @onready var thickness: float = $CollisionShape2D.shape.extents.y
 @onready var paddle: Sprite2D = $Paddle
+@onready var ghost_spawner: Node2D = $GhostSpawner
+
 
 func _ready() -> void:
 	pass
@@ -69,6 +74,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("dash") and not dashing:
 		dashing = true
 		dash_timer.start(dash_duration)
+		ghost_spawner.start_spawn()
 		velocity.x = sign(velocity.x) * dash_speed
 		
 	if Input.is_action_just_pressed("special"):
@@ -85,6 +91,13 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if game_over or stage_clear: return
 	
+	# HitStop
+	if hitstop_frames > 0:
+		hitstop_frames -= 1
+		if hitstop_frames <= 0:
+			stop_hitstop()
+		return
+	
 	frames_since_bump += 1
 	
 	var collision = move_and_collide(velocity * delta)
@@ -97,6 +110,16 @@ func _physics_process(delta: float) -> void:
 func ball_bounce() -> void:
 	anim.stop()
 	anim.play("bounce")
+
+
+func start_hitstop(hitstop_amount: int) -> void:
+	anim.pause()
+	hitstop_frames = hitstop_amount
+
+
+func stop_hitstop() -> void:
+	anim.play()
+	hitstop_frames = 0
 
 		
 func set_bumping(new_value: bool) -> void:
@@ -112,3 +135,4 @@ func launch_ball() -> void:
 
 func _on_DashTimer_timeout() -> void:
 	dashing = false
+	ghost_spawner.stop_spawn()

@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://dyy7lp07carkr"]
+[gd_scene load_steps=17 format=3 uid="uid://dyy7lp07carkr"]
 
 [ext_resource type="Script" path="res://scenes/paddle/scripts/paddle.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://bf0hn220saeh8" path="res://scenes/paddle/laser.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://blae5o6klukpa" path="res://scenes/paddle/visuals/Paddle.png" id="3"]
 [ext_resource type="Shader" path="res://scenes/effects/deform.gdshader" id="3_fys6v"]
+[ext_resource type="PackedScene" uid="uid://bwyg73gbjrgkp" path="res://scenes/paddle/ghost_spawner.tscn" id="5_ubyon"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wb8cu"]
 shader = ExtResource("3_fys6v")
@@ -81,23 +82,6 @@ tracks/2/keys = {
 "values": [Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="2"]
-resource_name = "bump"
-length = 0.25
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Paddle:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.14, 0.25),
-"transitions": PackedFloat32Array(-2, -2, -2, -2),
-"update": 0,
-"values": [Vector2(0, 4), Vector2(0, -10), Vector2(0, 10), Vector2(0, 4)]
-}
-
 [sub_resource type="Animation" id="Animation_1pgby"]
 resource_name = "bounce"
 length = 0.4
@@ -125,6 +109,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(-2, -2, -2, -2),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 0.622), Vector2(1, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="2"]
+resource_name = "bump"
+length = 0.25
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Paddle:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.14, 0.25),
+"transitions": PackedFloat32Array(-2, -2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 4), Vector2(0, -10), Vector2(0, 10), Vector2(0, 4)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cnhir"]
@@ -172,5 +173,9 @@ libraries = {
 }
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="GhostSpawner" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("5_ubyon")]
+sprite = NodePath("../Paddle")
+color = Color(0.0117647, 0.211765, 0.92549, 0.643137)
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_DashTimer_timeout"]

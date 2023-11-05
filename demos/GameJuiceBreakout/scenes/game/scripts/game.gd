@@ -56,11 +56,13 @@ func _process(delta) -> void:
 	time += delta
 		
 func layout_bricks() -> void:
+	var bricks_tween: Tween = create_tween()
 	var max_bricks: int = spawn_pos_container.get_child_count()
 	for i in range(max_bricks):
 		# 90% chance of having a block
 		if randf() < 0.1: continue
-		add_brick(brick_container, spawn_pos_container.get_child(i).global_position)
+		bricks_tween.tween_callback(add_brick.bind(brick_container, spawn_pos_container.get_child(i).global_position))
+		bricks_tween.tween_interval(randf_range(0.05, 0.15))
 	
 func add_brick(parent: Node, pos: Vector2) -> void:
 	var instance = brick_scene.instantiate()

@@ -3,6 +3,8 @@ extends StaticBody2D
 signal energy_brick_destroyed()
 signal destroyed(which)
 
+@export var birck_particles_scene: PackedScene = preload("res://scenes/brick/brick_explode_particles.tscn") as PackedScene
+@export var bomb_particles_scene: PackedScene = preload("res://scenes/brick/bomb_explode_particles.tscn") as PackedScene
 @export var long_full: CompressedTexture2D = preload("res://scenes/brick/visuals/BlockLongFull.png")
 @export var long_border: CompressedTexture2D = preload("res://scenes/brick/visuals/BlockLongBorder.png")
 @export var small_full: CompressedTexture2D = preload("res://scenes/brick/visuals/BlockSmallFull.png")
@@ -42,10 +44,13 @@ var health_dict = {
 @onready var explosion_area: Area2D = $ExplosionArea
 @onready var size_sprite: Sprite2D = $Size
 @onready var type_sprite: Sprite2D = $Type
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var _destroyed: bool = false
+var bounce_tween: Tween
 
 func _ready() -> void:
+	animation_player.animation_finished.connect(on_animation_finished)
 	choose_type_random()
 	choose_size_random()
 	
@@ -107,6 +112,29 @@ func update_type_visuals() -> void:
 		TYPE.ENERGY:
 			type_sprite.texture = energy
 
+
+func bounce() -> void:
+	if is_instance_valid(bounce_tween) and bounce_tween.is_running():
+		bounce_tween.kill()
+	bounce_tween = create_tween()
+	bounce_tween.tween_property(size_sprite, "scale", Vector2(1.15, 1.15), 0.15).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	bounce_tween.parallel().tween_property(size_sprite, "rotation_degrees", randf_range(-10.0, 10.0), 0.15).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	bounce_tween.tween_property(size_sprite, "scale", Vector2.ONE, 0.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+	bounce_tween.parallel().tween_property(size_sprite, "rotation_degrees", 0.0, 0.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+
+
+func spawn_brick_explosion() -> void:
+	var instance = birck_particles_scene.instantiate() as GPUParticles2D
+	get_tree().get_current_scene().add_child(instance)
+	instance.global_position = global_position
+
+
+func spawn_bomb_explosion() -> void:
+	var instance = bomb_particles_scene.instantiate() as GPUParticles2D
+	get_tree().get_current_scene().add_child(instance)
+	instance.global_position = global_position
+
+
 func damage(value: int) -> void:
 	health -= value
 	
@@ -118,6 +146,8 @@ func damage(value: int) -> void:
 			TYPE.ENERGY:
 				give_energy()
 		destroy()
+		
+	bounce()
 	
 	update_type_health()
 
@@ -144,5 +174,15 @@ func explode() -> void:
 		body.damage(10)
 
 func destroy() -> void:
+	if type == TYPE.EXPLOSIVE:
+		spawn_bomb_explosion()
+	else:
+		spawn_brick_explosion()
 	emit_signal("destroyed", self)
 	queue_free()
+
+
+func on_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "appear":
+		if type == TYPE.ENERGY or type == TYPE.EXPLOSIVE:
+			animation_player.play("wiggle")

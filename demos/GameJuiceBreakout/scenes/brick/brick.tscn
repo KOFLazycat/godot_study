@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://stcivysk52ie"]
+[gd_scene load_steps=11 format=3 uid="uid://stcivysk52ie"]
 
 [ext_resource type="Script" path="res://scenes/brick/scripts/brick.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://db465xyaa66b4" path="res://scenes/brick/visuals/One.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://dy8bxg728dvar" path="res://scenes/brick/visuals/BlockSmallFull.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://sj3pgix10e46" path="res://scenes/brick/visuals/BlockSmallBorder.png" id="2_tssm8"]
+[ext_resource type="Texture2D" uid="uid://bwm4qn3tg7gfe" path="res://scenes/brick/visuals/Bomb.png" id="3_o7rvo"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(124.434, 61.9452)
@@ -12,6 +12,137 @@ size = Vector2(62.7676, 61.469)
 
 [sub_resource type="CircleShape2D" id="3"]
 radius = 288.0
+
+[sub_resource type="Animation" id="Animation_5fjsg"]
+resource_name = "appear"
+length = 0.6
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Size:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.2, 2.48771, 1, -0.2, -0.528321, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Size:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.2, 3.11377, 1, -0.3, -0.566722, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Type:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.00422503, -0.25, 0, 0.2, 0.024944, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.1, 0.6)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Type:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.3, 0.0331909, 1, -0.2, -0.0314109, 0.25, 0),
+"times": PackedFloat32Array(0.1, 0.6)
+}
+
+[sub_resource type="Animation" id="Animation_a0pj5"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Size:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Size:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Type:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Type:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Type:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5ojv3"]
+resource_name = "wiggle"
+length = 2.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Type:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.6, 1, 2.5),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [0.0, -0.610865, 0.610865, -0.349066, 0.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_73rso"]
+_data = {
+"RESET": SubResource("Animation_a0pj5"),
+"appear": SubResource("Animation_5fjsg"),
+"wiggle": SubResource("Animation_5ojv3")
+}
 
 [node name="Brick" type="StaticBody2D" groups=["Bricks"]]
 collision_layer = 5
@@ -25,15 +156,21 @@ shape = SubResource("1")
 shape = SubResource("2")
 disabled = true
 
-[node name="Size" type="Sprite2D" parent="."]
-texture = ExtResource("3")
-
-[node name="Type" type="Sprite2D" parent="."]
-texture = ExtResource("2")
-
 [node name="ExplosionArea" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
 shape = SubResource("3")
+
+[node name="Size" type="Sprite2D" parent="."]
+texture = ExtResource("2_tssm8")
+
+[node name="Type" type="Sprite2D" parent="."]
+texture = ExtResource("3_o7rvo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_73rso")
+}
+autoplay = "appear"

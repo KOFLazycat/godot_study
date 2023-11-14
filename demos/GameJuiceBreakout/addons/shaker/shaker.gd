@@ -20,6 +20,8 @@ extends Node
 @export var fall_off: Curve; 
 var timer: Timer = Timer.new();
 
+@onready var initial_value = target_node.get(target_property);
+
 
 func _ready() -> void:
 	if !target_node: target_node = get_parent();
@@ -43,6 +45,7 @@ func start(time_sec: float = -1.0) -> void:
 func stop() -> void:
 	timer.stop();
 	set_process(false);
+	target_node.set(target_property, initial_value);
 
 func _process(_delta: float) -> void:
 	match typeof(target_node.get(target_property)):

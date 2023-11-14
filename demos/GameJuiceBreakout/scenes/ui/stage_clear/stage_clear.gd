@@ -16,13 +16,12 @@ var bump_perfect_multiplicator: int = 2000
 var bounce_multiplicator: int = 10
 
 func _ready() -> void:
-	$VBoxContainer/NextBtn.grab_focus()
+	#$VBoxContainer/NextBtn.grab_focus()
 	#Globals.stats["ball_bounces"] = 1000
 	#Globals.stats["score"] = 1000
-	
 	update_stats()
 	hide_stats()
-	animate_stats()
+	#animate_stats()
 
 func update_stats() -> void:
 	var ms = Globals.stats["time"] * 1000
@@ -64,7 +63,8 @@ func animate_stats() -> void:
 		var key = Globals.stats.keys()[i]
 		tween.tween_method(set_label_number.bind(child), 0, Globals.stats[key], 0.5)
 		tween.parallel().tween_property(child, "self_modulate:a", 1.0, 0.05).from(0.0)
-		tween.tween_callback(screen_shake.bind(0.4, 20, 10))
+		#tween.parallel().tween_callback(screen_shake.bind(0.4, 20, 10))
+		tween.parallel().tween_callback($Shaker.start.bind(0.25))
 		tween.tween_interval(0.25)
 	tween.tween_interval(0.25)
 	
@@ -75,7 +75,8 @@ func animate_stats() -> void:
 	# final score count up
 	tween.tween_method(set_label_number.bind(final_score), 0, str_to_var(final_score.text), 0.5)
 	tween.parallel().tween_property(final_score, "self_modulate:a", 1.0, 0.05).from(0.0)
-	tween.tween_callback(screen_shake.bind(1.0, 30, 25))
+	#tween.parallel().tween_callback(screen_shake.bind(1.0, 30, 25))
+	tween.parallel().tween_callback($Shaker.start.bind(1.0))
 	tween.tween_interval(1.0)
 	
 	tween.tween_property($VBoxContainer, "position:y", 904, 0.3).from(get_viewport_rect().size.y)

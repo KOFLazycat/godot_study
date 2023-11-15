@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://canp13qn2ffhd"]
+[gd_scene load_steps=15 format=3 uid="uid://canp13qn2ffhd"]
 
 [ext_resource type="FontFile" uid="uid://br01odh1twpni" path="res://shared/fonts/aldo_the_apache/AldotheApache.ttf" id="1"]
 [ext_resource type="Script" path="res://scenes/ui/game_over/scripts/game_over.gd" id="2"]
 [ext_resource type="Theme" uid="uid://8wej1kve5gix" path="res://scenes/ui/shared/theme.tres" id="3_h2orf"]
+[ext_resource type="Script" path="res://addons/shaker/shaker.gd" id="4_udiyb"]
 
 [sub_resource type="Gradient" id="5"]
 offsets = PackedFloat32Array(0, 0.993528)
@@ -75,7 +76,7 @@ void fragment( )
 
 [sub_resource type="ShaderMaterial" id="4"]
 shader = SubResource("3")
-shader_parameter/shake_power = 0.019
+shader_parameter/shake_power = 0.0
 shader_parameter/shake_rate = 0.691
 shader_parameter/shake_speed = 2.09
 shader_parameter/shake_block_size = 40.0
@@ -114,8 +115,234 @@ void fragment( )
 [sub_resource type="ShaderMaterial" id="8"]
 shader = SubResource("7")
 shader_parameter/blur_center = Vector2(0.5, 0.5)
-shader_parameter/blur_power = 0.004
+shader_parameter/blur_power = 0.0
 shader_parameter/sampling_count = 35
+
+[sub_resource type="Animation" id="Animation_aupad"]
+resource_name = "appear"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Vignette:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Glitch:material:shader_parameter/shake_power")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.0, 0.019]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2, 0.5, 0.6),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("VBoxContainer:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.4, 0.6),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(736, 1150), Vector2(736, 783)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RadialBlur:material:shader_parameter/blur_power")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.0, 0.004]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Shaker")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [1.0],
+"method": &"start"
+}]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = false
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.6, 25.0, 20.0],
+"method": &"screen_shake"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_apjr8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Vignette:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Glitch:material:shader_parameter/shake_power")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("VBoxContainer:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(736, 1150)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RadialBlur:material:shader_parameter/blur_power")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Label:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.0785398]
+}
+
+[sub_resource type="Animation" id="Animation_ijk0m"]
+resource_name = "wiggle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.9),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [-0.0785398, 0.0785398]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ppfni"]
+_data = {
+"RESET": SubResource("Animation_apjr8"),
+"appear": SubResource("Animation_aupad"),
+"wiggle": SubResource("Animation_ijk0m")
+}
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -124,9 +351,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(960, 540)
 script = ExtResource("2")
 
 [node name="Vignette" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -152,6 +381,7 @@ anchor_bottom = 1.0
 color = Color(0.203922, 0.203922, 0.203922, 0.627451)
 
 [node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 anchor_left = 0.5
 anchor_right = 0.5
@@ -159,6 +389,9 @@ offset_left = -407.5
 offset_top = 146.0
 offset_right = 407.5
 offset_bottom = 313.0
+rotation = -0.0785398
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(407, 83)
 theme_override_fonts/font = ExtResource("1")
 theme_override_font_sizes/font_size = 200
 text = "GAME OVER"
@@ -170,9 +403,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -224.0
-offset_top = -297.0
+offset_top = 70.0
 offset_right = 224.0
-offset_bottom = -80.0
+offset_bottom = 287.0
 
 [node name="RetryBtn" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 90)
@@ -191,6 +424,20 @@ theme = ExtResource("3_h2orf")
 theme_override_fonts/font = ExtResource("1")
 theme_override_font_sizes/font_size = 80
 text = "QUIT"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ppfni")
+}
+autoplay = "appear"
+
+[node name="Shaker" type="Node" parent="." node_paths=PackedStringArray("target_node")]
+script = ExtResource("4_udiyb")
+target_node = NodePath("..")
+target_property = &"rotation_degrees"
+min_value = -4.0
+max_value = 4.0
+constant = true
 
 [connection signal="pressed" from="VBoxContainer/RetryBtn" to="." method="_on_RetryBtn_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitBtn" to="." method="_on_QuitBtn_pressed"]

@@ -51,6 +51,8 @@ var bounce_tween: Tween
 
 func _ready() -> void:
 	animation_player.animation_finished.connect(on_animation_finished)
+	$Destroy.finished.connect(on_audio_finished)
+	$Explode.finished.connect(on_audio_finished)
 	choose_type_random()
 	choose_size_random()
 	
@@ -165,6 +167,8 @@ func give_energy() -> void:
 	emit_signal("energy_brick_destroyed")
 
 func explode() -> void:
+	$Explode.play()
+	$Explode/Explode2.play()
 	var bodies = explosion_area.get_overlapping_bodies()
 	for body in bodies:
 		if body._destroyed: continue
@@ -177,12 +181,19 @@ func destroy() -> void:
 	if type == TYPE.EXPLOSIVE:
 		spawn_bomb_explosion()
 	else:
+		$Destroy.play()
 		spawn_brick_explosion()
+	visible = false
+	$CollisionShapeLong.set_deferred("disabled", true)
+	$CollisionShapeSmall.set_deferred("disabled", true)
 	emit_signal("destroyed", self)
-	queue_free()
 
 
 func on_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "appear":
 		if type == TYPE.ENERGY or type == TYPE.EXPLOSIVE:
 			animation_player.play("wiggle")
+
+
+func on_audio_finished() -> void:
+	queue_free()

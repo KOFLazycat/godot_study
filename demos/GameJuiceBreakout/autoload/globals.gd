@@ -17,6 +17,7 @@ var stats = {
 }
 
 var camera: Camera2D
+var pattern: ColorRect
 
 func _ready() -> void:
 	pass

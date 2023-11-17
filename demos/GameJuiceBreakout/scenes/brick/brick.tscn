@@ -1,8 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://stcivysk52ie"]
+[gd_scene load_steps=14 format=3 uid="uid://stcivysk52ie"]
 
 [ext_resource type="Script" path="res://scenes/brick/scripts/brick.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://sj3pgix10e46" path="res://scenes/brick/visuals/BlockSmallBorder.png" id="2_tssm8"]
 [ext_resource type="Texture2D" uid="uid://bwm4qn3tg7gfe" path="res://scenes/brick/visuals/Bomb.png" id="3_o7rvo"]
+[ext_resource type="AudioStream" uid="uid://5411lypwr5lo" path="res://scenes/brick/audio/destroyed.sfxr" id="4_cq5wu"]
+[ext_resource type="AudioStream" uid="uid://dx8y1bnsxpc3s" path="res://scenes/brick/audio/explosion.sfxr" id="5_7v88f"]
+[ext_resource type="AudioStream" uid="uid://djxnqbpa1cnpo" path="res://scenes/brick/audio/explosion_2.sfxr" id="6_l2mwo"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(124.434, 61.9452)
@@ -174,3 +177,15 @@ libraries = {
 "": SubResource("AnimationLibrary_73rso")
 }
 autoplay = "appear"
+
+[node name="Destroy" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_cq5wu")
+volume_db = -5.0
+
+[node name="Explode" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_7v88f")
+volume_db = -15.0
+
+[node name="Explode2" type="AudioStreamPlayer2D" parent="Explode"]
+stream = ExtResource("6_l2mwo")
+volume_db = -15.0

@@ -66,6 +66,8 @@ func _process(delta: float) -> void:
 		frames_since_bump = 0
 		anim.stop()
 		anim.play("bump")
+		Input.start_joy_vibration(0, 0.2, 0.2, 0.3)
+		$Bump.play()
 		if ball_attached:
 			launch_ball()
 		else:

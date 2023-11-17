@@ -101,8 +101,11 @@ func _physics_process(delta: float) -> void:
 	# Update the normal with the paddle's velocity if we collide with
 	# the paddle
 	if collision.get_collider().is_in_group("Paddle"):
+		Globals.pattern.bounce(0.3)
+		$BumpOthers.play()
 		collision.get_collider().ball_bounce()
 		frames_since_paddle_collison = 0
+		Input.start_joy_vibration(0, 0.1, 0.1, 0.2)
 		Globals.camera.shake(0.3, 20, 15)
 #		print("Normal:", normal)
 #		print("Dot:", normal.dot(Vector2.UP))
@@ -152,16 +155,24 @@ func _physics_process(delta: float) -> void:
 		if collision.get_collider().type == collision.get_collider().TYPE.ENERGY or \
 			collision.get_collider().type == collision.get_collider().TYPE.EXPLOSIVE:
 			Globals.camera.shake(1.0, 25, 20)
+			Input.start_joy_vibration(0, 0.5, 0.5, 0.3)
+			Globals.pattern.bounce(0.8)
 			velocity = velocity_before_collision
+			$BumpStrong.play()
 			start_hitstop(hitstop_bomb)
 		else:
 			Globals.camera.shake(0.25, 20, 15)
+			Input.start_joy_vibration(0, 0.2, 0.1, 0.15)
+			Globals.pattern.bounce(0.25)
 			velocity = velocity.bounce(normal)
+			$Bump.play()
 			start_hitstop(hitstop_block)
 	else:
 #		print("HIT OTHER: ", Globals.stats["ball_bounces"])
 		Globals.camera.shake(0.15, 20, 5)
+		Globals.pattern.bounce(0.1)
 		spawn_bounce_particles(collision.get_position(), normal)
+		$BumpOthers.play()
 		velocity = velocity.bounce(normal)
 	
 	velocity = velocity.limit_length(max_speed)
@@ -178,6 +189,8 @@ func appear() -> void:
 
 
 func die() -> void:
+	$Destroyed.play()
+	Input.start_joy_vibration(0, 0.5, 0.5, 0.4)
 	Globals.camera.shake(0.45, 30, 25)
 	spawn_explode_particles(global_position)
 
@@ -256,6 +269,8 @@ func bump_boost(who) -> void:
 		print("BUMP LATE")
 		boost_factor = boost_factor_late_early
 		Globals.stats["bumps_late"] += 1
+		Globals.pattern.bounce(0.5)
+		Input.start_joy_vibration(0, 0.2, 0.2, 0.3)
 		spawn_bump_timing(Globals.BUMP.LATE)
 		start_hitstop(hitstop_bump_late_early)
 		who.start_hitstop(hitstop_bump_late_early)
@@ -265,6 +280,8 @@ func bump_boost(who) -> void:
 		print("BUMP PERFECT")
 		boost_factor = boost_factor_perfect
 		Globals.stats["bumps_perfect"] += 1
+		Globals.pattern.bounce(0.8)
+		Input.start_joy_vibration(0, 0.3, 0.3, 0.3)
 		spawn_bump_timing(Globals.BUMP.PERFECT)
 		start_hitstop(hitstop_bump_perfect)
 		who.start_hitstop(hitstop_bump_perfect)
@@ -274,6 +291,8 @@ func bump_boost(who) -> void:
 		print("BUMP EARLY")
 		boost_factor = boost_factor_late_early
 		Globals.stats["bumps_early"] += 1
+		Globals.pattern.bounce(0.5)
+		Input.start_joy_vibration(0, 0.2, 0.2, 0.3)
 		spawn_bump_timing(Globals.BUMP.EARLY)
 		start_hitstop(hitstop_bump_late_early)
 		who.start_hitstop(hitstop_bump_late_early)

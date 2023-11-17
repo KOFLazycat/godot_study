@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://dyy7lp07carkr"]
+[gd_scene load_steps=18 format=3 uid="uid://dyy7lp07carkr"]
 
 [ext_resource type="Script" path="res://scenes/paddle/scripts/paddle.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://bf0hn220saeh8" path="res://scenes/paddle/laser.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://blae5o6klukpa" path="res://scenes/paddle/visuals/Paddle.png" id="3"]
 [ext_resource type="Shader" path="res://scenes/effects/deform.gdshader" id="3_fys6v"]
 [ext_resource type="PackedScene" uid="uid://bwyg73gbjrgkp" path="res://scenes/paddle/ghost_spawner.tscn" id="5_ubyon"]
+[ext_resource type="AudioStream" uid="uid://cbokwv8a2tnrh" path="res://scenes/paddle/audio/paddle_bump.sfxr" id="6_uaytd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wb8cu"]
 shader = ExtResource("3_fys6v")
@@ -177,5 +178,9 @@ libraries = {
 [node name="GhostSpawner" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("5_ubyon")]
 sprite = NodePath("../Paddle")
 color = Color(0.0117647, 0.211765, 0.92549, 0.643137)
+
+[node name="Bump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_uaytd")
+volume_db = -15.0
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_DashTimer_timeout"]

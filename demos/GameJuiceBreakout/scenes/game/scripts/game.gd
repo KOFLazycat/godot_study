@@ -19,6 +19,7 @@ extends Node2D
 @onready var hud_canvas_layer: CanvasLayer = $HUDCanvasLayer
 @onready var ui_canvas_layer: CanvasLayer = $UICanvasLayer
 @onready var camera_2d: Camera2D = $Camera2D
+@onready var pattern: ColorRect = $Pattern
 #@onready var advanced_camera: Camera2D = $AdvancedCamera
 
 var health: int = 3
@@ -27,6 +28,7 @@ var score_brick_destroyed: int = 200
 var score_brick_touched: int = 50
 var score: int = 0
 var combo: int = 0
+var combo_tween: Tween
 var bricks: Array
 var bricks_to_destroy: Array
 var time: float = 0
@@ -40,10 +42,13 @@ func _ready() -> void:
 	#Globals.camera = advanced_camera
 	Globals.camera = camera_2d
 	Globals.camera.objects = [ball]
+	Globals.pattern = pattern
 	
 	ball.attached_to = paddle.launch_point
 	paddle.ball_attached = ball
 	paddle.ball = ball
+	
+	combo_lbl.scale = Vector2.ZERO
 	
 	for brick in get_tree().get_nodes_in_group("Bricks"):
 		brick.energy_brick_destroyed.connect(on_energy_brick_destroyed)
@@ -114,11 +119,21 @@ func reset_score() -> void:
 	score_ui.set_score(score)
 	
 func show_combo(combo: int) -> void:
+	combo_timer.start()
 	combo_lbl.text = "COMBO " + str(combo)
-	combo_lbl.visible = true
-	
+	combo_lbl.material.set_shader_parameter("fill_v", 0.0)
+	if combo_tween and combo_tween.is_running():
+		combo_tween.kill()
+	combo_tween = create_tween()
+	combo_tween.tween_property(combo_lbl, "scale", Vector2.ONE, 0.25).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	combo_tween.tween_property(combo_lbl.material, "shader_parameter/fill_v", 0.28, combo_timer.wait_time).set_trans(Tween.TRANS_LINEAR)
+
+
 func hide_combo() -> void:
-	combo_lbl.visible = false
+	if combo_tween and combo_tween.is_running():
+		combo_tween.kill()
+	combo_tween = create_tween()
+	combo_tween.tween_property(combo_lbl, "scale", Vector2.ZERO, 0.3).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 
 
 func spawn_ultimate_ready() -> void:
@@ -133,7 +148,6 @@ func on_brick_destroyed(which) -> void:
 	
 	combo += 1
 	show_combo(combo)
-	combo_timer.start()
 	score += score_brick_destroyed * combo
 	Globals.stats["score"] = score
 	score_ui.set_score(score)

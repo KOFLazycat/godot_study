@@ -1,13 +1,47 @@
-[gd_scene load_steps=3 format=3 uid="uid://kecm2g5qh537"]
+[gd_scene load_steps=9 format=3 uid="uid://kecm2g5qh537"]
 
 [ext_resource type="FontFile" uid="uid://br01odh1twpni" path="res://shared/fonts/aldo_the_apache/AldotheApache.ttf" id="1_j4jg6"]
 [ext_resource type="Script" path="res://scenes/effects/bump/scripts/bump_timing.gd" id="1_nfrxx"]
+[ext_resource type="Texture2D" uid="uid://doqriorw2lonx" path="res://scenes/ball/visuals/ball.png" id="3_g3j3k"]
+
+[sub_resource type="Gradient" id="Gradient_weah3"]
+offsets = PackedFloat32Array(0, 0.191489, 0.343972, 0.542553, 0.698582, 0.843972, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0, 0.677296, 0.0540528, 1, 0.900405, 0.499333, 0.158968, 1, 0.972549, 0.870588, 0, 1, 1, 0.611765, 0.894118, 0, 0.806233, 0.679294, 0.951275, 0.333333, 0, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_12h36"]
+gradient = SubResource("Gradient_weah3")
+
+[sub_resource type="Curve" id="Curve_gpcy1"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_h5oux"]
+curve = SubResource("Curve_gpcy1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nx48w"]
+lifetime_randomness = 0.15
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 40.0
+direction = Vector3(1, -1, 0)
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, -30, 0)
+scale_min = 0.05
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_h5oux")
+color_ramp = SubResource("GradientTexture1D_12h36")
 
 [node name="BumpTimings" type="Node2D"]
 script = ExtResource("1_nfrxx")
+color_too_far = Color(0, 0, 0, 0.784314)
+color_early = Color(0.85098, 0.847059, 0.0588235, 0.784314)
+color_late = Color(0.113725, 0.14902, 0.768627, 0.784314)
+color_perfect = Color(0.152941, 0.682353, 0.117647, 0.784314)
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(0.658824, 0.941176, 0.207843, 1)
+self_modulate = Color(0.658824, 0.941176, 0.207843, 1)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -25,7 +59,11 @@ text = "COMBO 4"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Timer" type="Timer" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Label"]
+position = Vector2(83, 22)
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_nx48w")
+texture = ExtResource("3_g3j3k")
 one_shot = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+explosiveness = 0.5

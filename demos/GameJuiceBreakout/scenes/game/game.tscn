@@ -1,11 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://c1cvnrsabg3s1"]
+[gd_scene load_steps=22 format=3 uid="uid://c1cvnrsabg3s1"]
 
 [ext_resource type="PackedScene" uid="uid://dyy7lp07carkr" path="res://scenes/paddle/paddle.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://cvg0cmgxvdkk0" path="res://scenes/ball/ball.tscn" id="2"]
 [ext_resource type="Script" path="res://scenes/game/scripts/game.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://stcivysk52ie" path="res://scenes/brick/brick.tscn" id="4"]
+[ext_resource type="Script" path="res://scenes/game/scripts/pattern.gd" id="4_6pvyh"]
 [ext_resource type="FontFile" uid="uid://br01odh1twpni" path="res://shared/fonts/aldo_the_apache/AldotheApache.ttf" id="4_lbq23"]
 [ext_resource type="PackedScene" uid="uid://c48m66isx4utm" path="res://scenes/ui/energy_bar/energy_bar.tscn" id="5"]
+[ext_resource type="Shader" path="res://scenes/game/effects/combo.gdshader" id="5_n51my"]
 [ext_resource type="PackedScene" uid="uid://lc5lho6dqctj" path="res://scenes/ui/health/health.tscn" id="6"]
 [ext_resource type="Texture2D" uid="uid://cca2cimj26xys" path="res://scenes/game/visuals/walls.png" id="7"]
 [ext_resource type="Texture2D" uid="uid://dds87jvstluyg" path="res://scenes/game/visuals/background.png" id="8"]
@@ -38,6 +40,11 @@ shader_parameter/size_scale = 30.0
 shader_parameter/color = Color(0.74902, 0.74902, 0.74902, 0.254902)
 shader_parameter/pattern = ExtResource("9")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j3eot"]
+shader = ExtResource("5_n51my")
+shader_parameter/fill_v = 0.0
+shader_parameter/color = Color(0.462745, 0.462745, 0.462745, 0.180392)
+
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(1920, 80)
 
@@ -65,13 +72,16 @@ offset_right = 2756.0
 offset_bottom = 2463.0
 rotation = -0.785398
 pivot_offset = Vector2(1801, 1801)
+script = ExtResource("4_6pvyh")
 
 [node name="Combo" type="Label" parent="."]
 modulate = Color(0.462745, 0.462745, 0.462745, 0.180392)
+material = SubResource("ShaderMaterial_j3eot")
 offset_left = 310.0
 offset_top = 402.0
 offset_right = 1629.0
 offset_bottom = 737.0
+pivot_offset = Vector2(659, 167)
 theme_override_fonts/font = ExtResource("4_lbq23")
 theme_override_font_sizes/font_size = 400
 text = "COMBO 4"
@@ -277,6 +287,7 @@ grow_horizontal = 2
 [node name="UICanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ComboTimer" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
 
 [connection signal="body_entered" from="DeathArea" to="." method="_on_DeathArea_body_entered"]

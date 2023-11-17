@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c48m66isx4utm"]
+[gd_scene load_steps=12 format=3 uid="uid://c48m66isx4utm"]
 
 [ext_resource type="Script" path="res://scenes/ui/energy_bar/scripts/energy_bar.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://clkxun12gq2gv" path="res://scenes/ui/shared/visuals/Container.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://doqriorw2lonx" path="res://scenes/ball/visuals/ball.png" id="3_iwsot"]
+[ext_resource type="Script" path="res://addons/shaker/shaker.gd" id="4_l156s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_531ku"]
 bg_color = Color(0, 0, 0, 1)
@@ -21,6 +23,34 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+
+[sub_resource type="Gradient" id="Gradient_iircq"]
+offsets = PackedFloat32Array(0, 0.450355, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gkdpq"]
+gradient = SubResource("Gradient_iircq")
+
+[sub_resource type="Curve" id="Curve_80orq"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_i5up0"]
+curve = SubResource("Curve_80orq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m4ysh"]
+lifetime_randomness = 0.13
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(20, 90, 1)
+spread = 180.0
+initial_velocity_min = 6.0
+initial_velocity_max = 12.0
+gravity = Vector3(0, -25, 0)
+scale_min = 0.03
+scale_max = 0.1
+scale_curve = SubResource("CurveTexture_i5up0")
+color_ramp = SubResource("GradientTexture1D_gkdpq")
 
 [node name="EnergyBar" type="Control"]
 layout_mode = 3
@@ -54,8 +84,26 @@ offset_right = -40.0
 offset_bottom = -36.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(15, 91)
 theme_override_styles/background = SubResource("StyleBoxFlat_531ku")
 theme_override_styles/fill = SubResource("StyleBoxFlat_opnc5")
 value = 48.67
 fill_mode = 3
 show_percentage = false
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="EnergyBar"]
+show_behind_parent = true
+position = Vector2(15, 93)
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_m4ysh")
+texture = ExtResource("3_iwsot")
+lifetime = 2.0
+explosiveness = 0.2
+
+[node name="Shaker" type="Node" parent="." node_paths=PackedStringArray("target_node")]
+script = ExtResource("4_l156s")
+target_node = NodePath("../EnergyBar")
+target_property = &"rotation_degrees"
+min_value = -5.0
+max_value = 5.0
+constant = true

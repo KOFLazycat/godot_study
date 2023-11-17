@@ -38,7 +38,8 @@ func var_is_valid(node: Node, property: String) -> bool:
 	return property in node;
 
 func start(time_sec: float = -1.0) -> void:
-	timer.start(time_sec);
+	if time_sec > -1.0:
+		timer.start(time_sec);
 	if !var_is_valid(target_node, target_property): print("%s does not have a variable called %s" % [target_node, target_property]);
 	else: set_process(true);
 	

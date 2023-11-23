@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bervma1flx3n4"]
+
+[ext_resource type="Shader" path="res://src/main/assets/shaders/map_5.gdshader" id="1_21umd"]
+[ext_resource type="Texture2D" uid="uid://ds4rnuhypjs8a" path="res://addons/shaderV/examples/godot_logo.png" id="1_mnucj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lg1bk"]
+shader = ExtResource("1_21umd")
+shader_parameter/fov = 90.0
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[node name="Map5" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_lg1bk")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_mnucj")

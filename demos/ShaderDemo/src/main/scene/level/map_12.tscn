@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://cnqfaw1ct76kr"]
+
+[ext_resource type="Script" path="res://src/main/scene/level/map_12.gd" id="1_sbvny"]
+[ext_resource type="Shader" path="res://src/main/assets/shaders/map_12.gdshader" id="2_6gmc6"]
+
+[sub_resource type="Gradient" id="Gradient_5js3s"]
+offsets = PackedFloat32Array(0, 0.381132, 0.675472, 1)
+colors = PackedColorArray(0.913725, 0.913725, 0.0196078, 1, 0.941176, 0.258824, 0.278431, 1, 0.686275, 0.776471, 0.329412, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_770im"]
+gradient = SubResource("Gradient_5js3s")
+
+[sub_resource type="Curve" id="Curve_5f61k"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vaifw"]
+curve = SubResource("Curve_5f61k")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tas83"]
+shader = ExtResource("2_6gmc6")
+shader_parameter/iTime = 0.0
+shader_parameter/curve = SubResource("CurveTexture_vaifw")
+shader_parameter/color_length = SubResource("GradientTexture1D_770im")
+
+[node name="Map12" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sbvny")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_tas83")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

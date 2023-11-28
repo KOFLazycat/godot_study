@@ -4,10 +4,10 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_43dgu"]
 shader = ExtResource("1_cmojy")
-shader_parameter/iResolution = null
-shader_parameter/iTime = null
-shader_parameter/iTimeDelta = null
-shader_parameter/iFrameRate = null
+shader_parameter/iResolution = Vector3(1920, 1080, 0)
+shader_parameter/iTime = -0.17
+shader_parameter/iTimeDelta = 0.06
+shader_parameter/iFrameRate = 0.45
 shader_parameter/iFrame = null
 shader_parameter/iChannelTime = null
 shader_parameter/iChannelResolution = null

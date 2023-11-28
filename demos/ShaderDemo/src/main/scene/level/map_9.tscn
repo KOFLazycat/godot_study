@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3yw0vnwf67n2"]
+
+[ext_resource type="Shader" path="res://src/main/assets/shaders/map_9.gdshader" id="1_4qo8n"]
+[ext_resource type="Texture2D" uid="uid://ds4rnuhypjs8a" path="res://addons/shaderV/examples/godot_logo.png" id="2_x3y65"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pqrur"]
+shader = ExtResource("1_4qo8n")
+shader_parameter/img = ExtResource("2_x3y65")
+
+[node name="Map9" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_pqrur")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

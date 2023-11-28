@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://ew27sam5g7rt"]
+
+[ext_resource type="Shader" path="res://src/main/assets/shaders/map_10.gdshader" id="1_cmojy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_43dgu"]
+shader = ExtResource("1_cmojy")
+shader_parameter/iResolution = null
+shader_parameter/iTime = null
+shader_parameter/iTimeDelta = null
+shader_parameter/iFrameRate = null
+shader_parameter/iFrame = null
+shader_parameter/iChannelTime = null
+shader_parameter/iChannelResolution = null
+shader_parameter/iMouse = null
+shader_parameter/iDate = null
+shader_parameter/iSampleRate = null
+
+[node name="Map10" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_43dgu")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

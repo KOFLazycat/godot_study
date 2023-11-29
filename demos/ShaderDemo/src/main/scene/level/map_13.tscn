@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://do5i4jf2c7tsb"]
+
+[node name="Map13" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 4000
+visibility_rect = Rect2(-99.7461, -96.091, 199.778, 191.086)

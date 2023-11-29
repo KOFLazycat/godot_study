@@ -4,6 +4,18 @@ godotshaders.com/shader/god-rays
 
 Feel free to use, improve and change this shader according to your needs
 and consider sharing the modified result on godotshaders.com.
+
+    Angle – The angle of the rays.
+    Position – Move the rays left and right.
+    Spread – Should the rays be parallel or spread out.
+    Cut off – The width of the effect.
+    Fall off – Fade to transparent towards the bottom.
+    Edge fade – The edges can be sharp or blurry.
+    Speed – Speed of the “shimmer” animation.
+    Ray 1 density – The effect has two layers of rays. This is how compact the back layer is, e.g how close together the gaps are. For best effect have the Ray 1 be wide and Ray 2 more compact.
+    Ray 2 density – This is how compact the top layer is.
+    Ray 2 intensity – Opacity of the top layer.
+
 */
 
 shader_type canvas_item;

@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://du8pxvy8j016k"]
+
+[ext_resource type="PackedScene" uid="uid://dt5rhfpxlgyii" path="res://src/main/assets/shaders/dust_gpu_particles_2d.tscn" id="1_671un"]
+[ext_resource type="Shader" path="res://src/main/assets/shaders/circle_gradient.gdshader" id="1_ysm8p"]
+[ext_resource type="Shader" path="res://src/main/assets/shaders/ripple_effect.gdshader" id="2_eocon"]
+[ext_resource type="Shader" path="res://src/main/assets/shaders/mesh_spiral.gdshader" id="4_qhke1"]
+
+[sub_resource type="Environment" id="Environment_xqw8p"]
+background_mode = 3
+glow_enabled = true
+glow_blend_mode = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hdji0"]
+shader = ExtResource("1_ysm8p")
+shader_parameter/size = 0.54
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lp4ue"]
+shader = ExtResource("2_eocon")
+shader_parameter/wave_count = 10.0
+shader_parameter/speed = 3.8
+shader_parameter/height = 0.004
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8c5af"]
+shader = ExtResource("4_qhke1")
+
+[node name="PBlackHole" type="Node2D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xqw8p")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="BgColorRect" type="ColorRect" parent="Node2D"]
+material = SubResource("ShaderMaterial_hdji0")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 150)
+color = Color(0, 0, 0, 1)
+
+[node name="RippleColorRect" type="ColorRect" parent="Node2D"]
+material = SubResource("ShaderMaterial_lp4ue")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(200, 200)
+
+[node name="DustGPUParticles2D" parent="Node2D" instance=ExtResource("1_671un")]
+
+[node name="OutSideMeshInstance2D" type="MeshInstance2D" parent="Node2D"]
+material = SubResource("ShaderMaterial_8c5af")
+
+[node name="MidSideMeshInstance2D" type="MeshInstance2D" parent="Node2D"]
+
+[node name="InSideMeshInstance2D" type="MeshInstance2D" parent="Node2D"]
+
+[node name="SpiralMeshInstance2D" type="MeshInstance2D" parent="Node2D"]

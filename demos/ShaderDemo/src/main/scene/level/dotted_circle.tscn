@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpqx6ib3vcjbi"]
+
+[ext_resource type="Shader" path="res://src/main/assets/shaders/dotted_circle.gdshader" id="1_5684l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xr8eg"]
+shader = ExtResource("1_5684l")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/diameter = 0.811
+shader_parameter/thickness = 0.088
+shader_parameter/frequency = 10.0
+shader_parameter/phase = 0.0
+
+[node name="DottedCircle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_xr8eg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

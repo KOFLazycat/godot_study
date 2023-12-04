@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://du8pxvy8j016k"]
+[gd_scene load_steps=13 format=3 uid="uid://du8pxvy8j016k"]
 
 [ext_resource type="PackedScene" uid="uid://dt5rhfpxlgyii" path="res://src/main/assets/shaders/dust_gpu_particles_2d.tscn" id="1_671un"]
 [ext_resource type="Shader" path="res://src/main/assets/shaders/circle_gradient.gdshader" id="1_ysm8p"]
 [ext_resource type="Shader" path="res://src/main/assets/shaders/ripple_effect.gdshader" id="2_eocon"]
 [ext_resource type="Shader" path="res://src/main/assets/shaders/mesh_spiral.gdshader" id="4_qhke1"]
+[ext_resource type="Texture2D" uid="uid://l87l85qmiqq" path="res://src/main/assets/textures/dianxain.png" id="5_6irpx"]
 
 [sub_resource type="Environment" id="Environment_xqw8p"]
 background_mode = 3
@@ -22,6 +23,84 @@ shader_parameter/height = 0.004
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8c5af"]
 shader = ExtResource("4_qhke1")
+shader_parameter/Tiling = Vector2(1, 1)
+shader_parameter/ImgSize = Vector2(1, 1)
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/MainTexPanner = Vector2(1, 0)
+shader_parameter/MainTexColor = Color(1, 1, 1, 1)
+shader_parameter/MainTexBrightness = 1.0
+shader_parameter/MainTexContrast = 1.0
+shader_parameter/MainTexSaturation = 1.0
+shader_parameter/MaskTiling = Vector2(1, 1)
+shader_parameter/MaskImgSize = Vector2(1, 1)
+shader_parameter/Maskoffset = Vector2(0, 0)
+shader_parameter/TurbulenceTiling = Vector2(1, 1)
+shader_parameter/TurbulenceImgSize = Vector2(1, 1)
+shader_parameter/Turbulenceoffset = Vector2(0, 0)
+shader_parameter/TurbulenceTexPower = 0.0
+shader_parameter/TurbulencePanner = null
+shader_parameter/TurbulenceTexDis = 0.0
+shader_parameter/MainTex = ExtResource("5_6irpx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sr34p"]
+shader = ExtResource("4_qhke1")
+shader_parameter/Tiling = Vector2(1, 1)
+shader_parameter/ImgSize = Vector2(1, 1)
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/MainTexPanner = null
+shader_parameter/MainTexColor = Color(1, 1, 1, 1)
+shader_parameter/MainTexBrightness = 1.0
+shader_parameter/MainTexContrast = 1.0
+shader_parameter/MainTexSaturation = 1.0
+shader_parameter/MaskTiling = Vector2(1, 1)
+shader_parameter/MaskImgSize = Vector2(1, 1)
+shader_parameter/Maskoffset = Vector2(0, 0)
+shader_parameter/TurbulenceTiling = Vector2(1, 1)
+shader_parameter/TurbulenceImgSize = Vector2(1, 1)
+shader_parameter/Turbulenceoffset = Vector2(0, 0)
+shader_parameter/TurbulenceTexPower = 0.0
+shader_parameter/TurbulencePanner = null
+shader_parameter/TurbulenceTexDis = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p4w01"]
+shader = ExtResource("4_qhke1")
+shader_parameter/Tiling = Vector2(1, 1)
+shader_parameter/ImgSize = Vector2(1, 1)
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/MainTexPanner = null
+shader_parameter/MainTexColor = Color(1, 1, 1, 1)
+shader_parameter/MainTexBrightness = 1.0
+shader_parameter/MainTexContrast = 1.0
+shader_parameter/MainTexSaturation = 1.0
+shader_parameter/MaskTiling = Vector2(1, 1)
+shader_parameter/MaskImgSize = Vector2(1, 1)
+shader_parameter/Maskoffset = Vector2(0, 0)
+shader_parameter/TurbulenceTiling = Vector2(1, 1)
+shader_parameter/TurbulenceImgSize = Vector2(1, 1)
+shader_parameter/Turbulenceoffset = Vector2(0, 0)
+shader_parameter/TurbulenceTexPower = 0.0
+shader_parameter/TurbulencePanner = null
+shader_parameter/TurbulenceTexDis = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_21pw6"]
+shader = ExtResource("4_qhke1")
+shader_parameter/Tiling = Vector2(1, 1)
+shader_parameter/ImgSize = Vector2(1, 1)
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/MainTexPanner = null
+shader_parameter/MainTexColor = Color(1, 1, 1, 1)
+shader_parameter/MainTexBrightness = 1.0
+shader_parameter/MainTexContrast = 1.0
+shader_parameter/MainTexSaturation = 1.0
+shader_parameter/MaskTiling = Vector2(1, 1)
+shader_parameter/MaskImgSize = Vector2(1, 1)
+shader_parameter/Maskoffset = Vector2(0, 0)
+shader_parameter/TurbulenceTiling = Vector2(1, 1)
+shader_parameter/TurbulenceImgSize = Vector2(1, 1)
+shader_parameter/Turbulenceoffset = Vector2(0, 0)
+shader_parameter/TurbulenceTexPower = 0.0
+shader_parameter/TurbulencePanner = null
+shader_parameter/TurbulenceTexDis = 0.0
 
 [node name="PBlackHole" type="Node2D"]
 
@@ -72,7 +151,10 @@ pivot_offset = Vector2(200, 200)
 material = SubResource("ShaderMaterial_8c5af")
 
 [node name="MidSideMeshInstance2D" type="MeshInstance2D" parent="Node2D"]
+material = SubResource("ShaderMaterial_sr34p")
 
 [node name="InSideMeshInstance2D" type="MeshInstance2D" parent="Node2D"]
+material = SubResource("ShaderMaterial_p4w01")
 
 [node name="SpiralMeshInstance2D" type="MeshInstance2D" parent="Node2D"]
+material = SubResource("ShaderMaterial_21pw6")

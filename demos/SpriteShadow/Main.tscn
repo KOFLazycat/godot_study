@@ -1,0 +1,372 @@
+[gd_scene load_steps=12 format=3 uid="uid://b7mx26eqgb5xm"]
+
+[ext_resource type="Texture2D" uid="uid://bdqidqtndc6nt" path="res://map.png" id="1_u3w4m"]
+[ext_resource type="Texture2D" uid="uid://c7flux3ldkqyh" path="res://pond.png" id="2_3ny3o"]
+[ext_resource type="Texture2D" uid="uid://s6jxubhnnvwn" path="res://animation-Sheet.png" id="2_8wgyg"]
+[ext_resource type="Script" path="res://player.gd" id="3_eqgxi"]
+[ext_resource type="Texture2D" uid="uid://cx611svniesu4" path="res://car.png" id="5_3srip"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5qv3n"]
+texture = ExtResource("1_u3w4m")
+texture_region_size = Vector2i(32, 32)
+5:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+3:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+3:5/0 = 0
+6:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+3:8/0 = 0
+5:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_15i13"]
+tile_size = Vector2i(32, 32)
+sources/1 = SubResource("TileSetAtlasSource_5qv3n")
+
+[sub_resource type="Animation" id="Animation_x727y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_i3wil"]
+resource_name = "idling"
+length = 0.6
+loop_mode = 1
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_07i7d"]
+_data = {
+"RESET": SubResource("Animation_x727y"),
+"idling": SubResource("Animation_i3wil")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_crp11"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(5, 1, 1)
+spread = 19.34
+initial_velocity_min = 46.51
+initial_velocity_max = 85.27
+gravity = Vector3(2.08165e-12, -98, 2.08165e-12)
+color = Color(0.117647, 0.164706, 0.54902, 1)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Map" type="Node" parent="."]
+
+[node name="TileMap" type="TileMap" parent="Map"]
+tile_set = SubResource("TileSet_15i13")
+rendering_quadrant_size = 32
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 393217, 7, 65536, 393217, 7, 131072, 393217, 7, 196608, 393217, 7, 262144, 393217, 7, 327680, 393217, 7, 393216, 393217, 7, 458752, 393217, 7, 524288, 524289, 7, 589824, 524289, 8, 589825, 589825, 8, 589826, 589825, 8, 589827, 589825, 8, 589828, 524289, 8, 589829, 589825, 8, 589830, 589825, 8, 589831, 589825, 8, 589832, 589825, 8, 589833, 589825, 8, 589834, 524289, 8, 589835, 589825, 8, 589836, 589825, 8, 589837, 589825, 8, 589838, 589825, 8, 589839, 589825, 8, 589840, 524289, 8, 589841, 589825, 8, 589842, 589825, 8, 589843, 589825, 8, 589844, 589825, 8, 589845, 589825, 8, 589846, 524289, 8, 589847, 589825, 8, 589848, 589825, 8, 589849, 589825, 8, 589850, 589825, 8, 589851, 589825, 8, 589852, 524289, 8, 589853, 589825, 8, 589854, 589825, 8, 589855, 589825, 8, 524319, 589825, 7, 458783, 393217, 7, 393247, 393217, 7, 327711, 393217, 7, 262175, 393217, 7, 196639, 393217, 7, 131103, 393217, 7, 65567, 393217, 7, 31, 393217, 7, 30, 393217, 7, 29, 393217, 7, 28, 393217, 7, 27, 393217, 7, 26, 393217, 7, 25, 393217, 7, 24, 393217, 7, 23, 393217, 7, 22, 393217, 7, 21, 393217, 7, 20, 393217, 7, 19, 393217, 7, 18, 393217, 7, 17, 393217, 7, 16, 393217, 7, 15, 393217, 7, 14, 393217, 7, 13, 393217, 7, 12, 393217, 7, 11, 393217, 7, 10, 393217, 7, 9, 393217, 7, 8, 393217, 7, 7, 393217, 7, 6, 393217, 7, 5, 393217, 7, 4, 393217, 7, 3, 393217, 7, 2, 393217, 7, 1, 393217, 7, 65537, 393217, 7, 131073, 393217, 7, 196609, 393217, 7, 262145, 393217, 7, 327681, 393217, 7, 65538, 393217, 7, 65539, 393217, 7, 65540, 393217, 7, 65541, 393217, 7, 65542, 393217, 7, 65543, 393217, 7, 65544, 393217, 7, 65545, 393217, 7, 65546, 393217, 7, 65547, 393217, 7, 65548, 393217, 7, 65549, 393217, 7, 65550, 393217, 7, 65551, 393217, 7, 65552, 393217, 7, 65553, 393217, 7, 65554, 393217, 7, 65555, 393217, 7, 65556, 393217, 7, 65557, 393217, 7, 65558, 393217, 7, 65559, 393217, 7, 65560, 393217, 7, 65561, 393217, 7, 65562, 393217, 7, 65563, 393217, 7, 65564, 393217, 7, 65565, 393217, 7, 65566, 393217, 7, 131102, 393217, 7, 196638, 393217, 7, 262174, 393217, 7, 327710, 393217, 7, 393246, 393217, 7, 458782, 393217, 7, 524318, 589825, 7, 524317, 589825, 7, 524316, 524289, 7, 524315, 589825, 7, 524314, 589825, 7, 524313, 589825, 7, 524312, 589825, 7, 524311, 589825, 7, 524310, 524289, 7, 524309, 589825, 7, 524308, 589825, 7, 524307, 589825, 7, 524306, 589825, 7, 524305, 589825, 7, 524304, 524289, 7, 524303, 589825, 7, 524302, 589825, 7, 524301, 589825, 7, 524300, 589825, 7, 524299, 589825, 7, 524298, 524289, 7, 524297, 589825, 7, 524296, 589825, 7, 524295, 589825, 7, 524294, 589825, 7, 524293, 589825, 7, 524292, 524289, 7, 524291, 589825, 7, 524290, 589825, 7, 524289, 589825, 7, 458753, 393217, 7, 393217, 393217, 7, 196610, 393217, 7, 131074, 393217, 7, 131075, 393217, 7, 131076, 393217, 7, 131077, 393217, 7, 131078, 393217, 7, 131079, 393217, 7, 131080, 393217, 7, 131081, 393217, 7, 131082, 393217, 7, 131083, 393217, 7, 131084, 393217, 7, 131085, 393217, 7, 131086, 393217, 7, 131087, 393217, 7, 131088, 393217, 7, 131089, 393217, 7, 131090, 393217, 7, 131091, 393217, 7, 196637, 393217, 7, 196636, 393217, 7, 131099, 393217, 7, 131098, 393217, 7, 131097, 393217, 7, 131096, 393217, 7, 131095, 393217, 7, 131094, 393217, 7, 131093, 393217, 7, 131092, 393217, 7, 131100, 393217, 7, 131101, 393217, 7, 196633, 393217, 7, 196632, 393217, 7, 196631, 393217, 7, 196630, 393217, 7, 196629, 393217, 7, 196628, 393217, 7, 196627, 393217, 7, 196626, 393217, 7, 196625, 393217, 7, 196624, 393217, 7, 196623, 393217, 7, 196622, 393217, 7, 196621, 393217, 7, 196620, 393217, 7, 196619, 393217, 7, 196618, 393217, 7, 196617, 393217, 7, 196616, 393217, 7, 196615, 393217, 7, 196614, 393217, 7, 196613, 393217, 7, 196612, 393217, 7, 196611, 393217, 7, 393218, 393217, 7, 458754, 393217, 7, 327682, 393217, 7, 262146, 393217, 7, 262147, 393217, 7, 327683, 393217, 7, 393219, 393217, 7, 458755, 393217, 7, 262148, 393217, 7, 327684, 393217, 7, 393220, 393217, 7, 458756, 393217, 7, 393221, 393217, 7, 327685, 393217, 7, 262149, 393217, 7, 262150, 393217, 7, 327686, 393217, 7, 393222, 393217, 7, 458757, 393217, 7, 327687, 393217, 7, 262151, 393217, 7, 393223, 393217, 7, 458758, 393217, 7, 458759, 393217, 7, 458760, 393217, 7, 458761, 393217, 7, 393226, 393217, 7, 393227, 393217, 7, 393228, 393217, 7, 393229, 393217, 7, 393230, 393217, 7, 393231, 393217, 7, 393232, 393217, 7, 458769, 393217, 7, 458770, 393217, 7, 458771, 393217, 7, 458772, 393217, 7, 458773, 393217, 7, 458774, 393217, 7, 458775, 393217, 7, 458776, 393217, 7, 458777, 393217, 7, 458778, 393217, 7, 458779, 393217, 7, 393243, 393217, 7, 393244, 393217, 7, 393245, 393217, 7, 327709, 393217, 7, 262173, 393217, 7, 196635, 393217, 7, 196634, 393217, 7, 262165, 393217, 7, 262164, 393217, 7, 262163, 393217, 7, 262162, 393217, 7, 262161, 393217, 7, 262160, 393217, 7, 262159, 393217, 7, 262158, 393217, 7, 262157, 393217, 7, 262156, 393217, 7, 262155, 393217, 7, 262154, 393217, 7, 262153, 393217, 7, 262152, 393217, 7, 327688, 393217, 7, 393224, 393217, 7, 327689, 393217, 7, 327690, 393217, 7, 393225, 393217, 7, 327691, 393217, 7, 327692, 393217, 7, 458762, 393217, 7, 458763, 393217, 7, 458764, 393217, 7, 458765, 393217, 7, 458766, 393217, 7, 458767, 393217, 7, 458768, 393217, 7, 393241, 393217, 7, 393242, 393217, 7, 458781, 393217, 7, 458780, 393217, 7, 327708, 393217, 7, 262172, 393217, 7, 262171, 393217, 7, 262170, 393217, 7, 262169, 393217, 7, 262168, 393217, 7, 262167, 393217, 7, 262166, 393217, 7, 327693, 393217, 7, 327694, 393217, 7, 327695, 393217, 7, 327696, 393217, 7, 327697, 393217, 7, 327698, 393217, 7, 327699, 393217, 7, 327700, 393217, 7, 327701, 393217, 7, 327702, 393217, 7, 327703, 393217, 7, 327704, 393217, 7, 327705, 393217, 7, 327706, 393217, 7, 327707, 393217, 7, 393240, 393217, 7, 393239, 393217, 7, 393238, 393217, 7, 393237, 393217, 7, 393236, 393217, 7, 393235, 393217, 7, 393234, 393217, 7, 393233, 393217, 7)
+
+[node name="Map24" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(395, 98)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(226, 35, 106, 138)
+
+[node name="Map25" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(592, 70)
+texture = ExtResource("1_u3w4m")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(226, 35, 106, 138)
+
+[node name="Pond" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(125, 67)
+texture = ExtResource("2_3ny3o")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = 0
+limit_right = 1024
+limit_bottom = 320
+
+[node name="Map2" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(10, 197)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(128, 12, 97, 120)
+
+[node name="Map23" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(40, 202)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(128, 12, 97, 120)
+
+[node name="Map22" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(64, 201)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(128, 12, 97, 120)
+
+[node name="Map12" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(99.5, 206)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(128, 12, 97, 120)
+
+[node name="Map3" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(133.5, 204)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(128, 12, 97, 120)
+
+[node name="Map13" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(164.5, 204)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(128, 12, 97, 120)
+
+[node name="Map4" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(207.5, 203)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(128, 12, 97, 120)
+
+[node name="Map14" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(244.5, 203)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(128, 12, 97, 120)
+
+[node name="Map5" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(286.5, 202)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(128, 12, 97, 120)
+
+[node name="Map15" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(326.5, 202)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(128, 12, 97, 120)
+
+[node name="Map6" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(367.5, 203)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(128, 12, 97, 120)
+
+[node name="Map16" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(405.5, 204)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(128, 12, 97, 120)
+
+[node name="Map7" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(449.5, 201)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(128, 12, 97, 120)
+
+[node name="Map17" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(486.5, 201)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(128, 12, 97, 120)
+
+[node name="Map8" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(533.5, 199)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(128, 12, 97, 120)
+
+[node name="Map18" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(572.5, 199)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(128, 12, 97, 120)
+
+[node name="Map9" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(621.5, 199)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(128, 12, 97, 120)
+
+[node name="Map19" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(660.5, 200)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(128, 12, 97, 120)
+
+[node name="Map10" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(708.5, 196)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(128, 12, 97, 120)
+
+[node name="Map20" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(747.5, 195)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(128, 12, 97, 120)
+
+[node name="Map11" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(794.5, 194)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(128, 12, 97, 120)
+
+[node name="Map21" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(847.5, 196)
+texture = ExtResource("1_u3w4m")
+region_enabled = true
+region_rect = Rect2(128, 12, 97, 120)
+
+[node name="Player10" type="Sprite2D" parent="."]
+self_modulate = Color(0.027451, 0.631373, 1, 1)
+z_index = 1
+position = Vector2(221, 239)
+texture = ExtResource("2_8wgyg")
+hframes = 2
+script = ExtResource("3_eqgxi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player10"]
+libraries = {
+"": SubResource("AnimationLibrary_07i7d")
+}
+autoplay = "idling"
+
+[node name="Player11" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(0.027451, 0.631373, 1, 1)
+z_index = 1
+position = Vector2(221, 239)
+texture = ExtResource("2_8wgyg")
+hframes = 2
+script = ExtResource("3_eqgxi")
+modulate_config = Vector4(2.08165e-12, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player11"]
+libraries = {
+"": SubResource("AnimationLibrary_07i7d")
+}
+autoplay = "idling"
+
+[node name="Player12" type="Sprite2D" parent="."]
+self_modulate = Color(1.76, 0.45, 5.29, 1)
+z_index = 1
+position = Vector2(264, 71)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_8wgyg")
+hframes = 2
+script = ExtResource("3_eqgxi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player12"]
+libraries = {
+"": SubResource("AnimationLibrary_07i7d")
+}
+autoplay = "idling"
+
+[node name="Player5" type="Sprite2D" parent="."]
+modulate = Color(0.596078, 0.94902, 0.552941, 1)
+z_index = 1
+position = Vector2(97, 257)
+texture = ExtResource("2_8wgyg")
+hframes = 2
+script = ExtResource("3_eqgxi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player5"]
+libraries = {
+"": SubResource("AnimationLibrary_07i7d")
+}
+autoplay = "idling"
+
+[node name="Car" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(356, 245)
+texture = ExtResource("5_3srip")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Car"]
+position = Vector2(100, 1)
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_crp11")
+
+[node name="Car2" type="Sprite2D" parent="."]
+modulate = Color(0.00392157, 0.00392157, 0.00392157, 0.486275)
+z_index = 2
+position = Vector2(343, 346)
+skew = 0.314159
+texture = ExtResource("5_3srip")
+flip_v = true

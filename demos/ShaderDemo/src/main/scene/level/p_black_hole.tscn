@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://du8pxvy8j016k"]
+[gd_scene load_steps=14 format=3 uid="uid://du8pxvy8j016k"]
 
 [ext_resource type="PackedScene" uid="uid://dt5rhfpxlgyii" path="res://src/main/assets/shaders/dust_gpu_particles_2d.tscn" id="1_671un"]
 [ext_resource type="Shader" path="res://src/main/assets/shaders/circle_gradient.gdshader" id="1_ysm8p"]
@@ -41,6 +41,8 @@ shader_parameter/TurbulenceTexPower = 0.0
 shader_parameter/TurbulencePanner = null
 shader_parameter/TurbulenceTexDis = 0.0
 shader_parameter/MainTex = ExtResource("5_6irpx")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_aveg3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sr34p"]
 shader = ExtResource("4_qhke1")
@@ -149,6 +151,7 @@ pivot_offset = Vector2(200, 200)
 
 [node name="OutSideMeshInstance2D" type="MeshInstance2D" parent="Node2D"]
 material = SubResource("ShaderMaterial_8c5af")
+mesh = SubResource("ArrayMesh_aveg3")
 
 [node name="MidSideMeshInstance2D" type="MeshInstance2D" parent="Node2D"]
 material = SubResource("ShaderMaterial_sr34p")

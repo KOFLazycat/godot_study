@@ -146,10 +146,10 @@ scale = Vector2(3, 3)
 texture = ExtResource("3_aea1l")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Food"]
-autoplay = "shake"
 libraries = {
 "": SubResource("AnimationLibrary_l8psn")
 }
+autoplay = "shake"
 
 [node name="Area2D" type="Area2D" parent="Food"]
 

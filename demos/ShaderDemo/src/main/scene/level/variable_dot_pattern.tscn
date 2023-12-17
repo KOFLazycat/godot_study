@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3bfmvlio23dj"]
+
+[ext_resource type="Shader" path="res://src/main/assets/shaders/variable_dot_pattern.gdshader" id="1_rcu5f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w7tn8"]
+shader = ExtResource("1_rcu5f")
+shader_parameter/variant = 1.695
+shader_parameter/distortion = 1.535
+shader_parameter/seed = 0.3
+shader_parameter/stretch = Vector3(3.125, 3.145, 3.215)
+shader_parameter/pattern = 5.085
+shader_parameter/blur = 2.35
+
+[node name="VariableDotPattern" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_w7tn8")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

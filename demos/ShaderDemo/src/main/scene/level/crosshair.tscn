@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://jd71nyd0s768"]
+
+[ext_resource type="Shader" path="res://src/main/assets/shaders/crosshair.gdshader" id="1_8pwtf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r1uhc"]
+shader = ExtResource("1_8pwtf")
+shader_parameter/shift_x = 0.0
+shader_parameter/shift_y = 0.0
+shader_parameter/shift_rotate = 0.0
+shader_parameter/crosshair_color = Color(1, 1, 1, 0.905882)
+shader_parameter/spread = 0.0
+shader_parameter/shape_sides = 4.0
+shader_parameter/radius_rectangle = 0.14
+shader_parameter/rectangle_size_x = 1.3
+shader_parameter/rectangle_scale = 3.0
+
+[node name="Crosshair" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_r1uhc")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

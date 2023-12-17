@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://f5p5w5c62gwo"]
+
+[ext_resource type="Shader" path="res://src/main/assets/shaders/circle_progress_mirror.gdshader" id="1_gx5bg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7h2pe"]
+shader = ExtResource("1_gx5bg")
+shader_parameter/outer_radius = 0.712
+shader_parameter/inner_radius = 0.796
+shader_parameter/turn = 0.307
+shader_parameter/blur = 0.0311
+shader_parameter/fill_ratio = 0.869
+
+[node name="CircleProgressMirror" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_7h2pe")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

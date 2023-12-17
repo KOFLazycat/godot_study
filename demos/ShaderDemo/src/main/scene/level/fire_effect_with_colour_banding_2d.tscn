@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://cah7tnf0nqrms"]
+
+[ext_resource type="Shader" path="res://src/main/assets/shaders/fire_effect_with_colour_banding_2d.gdshader" id="1_k1wwl"]
+[ext_resource type="Texture2D" uid="uid://ds4hs0vw0we1r" path="res://src/main/assets/textures/spreadnoise.png" id="2_gffcf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cbrf2"]
+shader = ExtResource("1_k1wwl")
+shader_parameter/color1 = Color(0.639216, 0.466667, 0, 1)
+shader_parameter/color2 = Color(0.415686, 0.345098, 0.188235, 1)
+shader_parameter/brightness = 0.225
+shader_parameter/timeOffset = -0.215
+shader_parameter/timeRate = 1.235
+shader_parameter/noiseAmmount = -0.005
+shader_parameter/offsetX = 0.31
+shader_parameter/flickerT = 0.98
+shader_parameter/noise = ExtResource("2_gffcf")
+
+[node name="FireEffectWithColourBanding2D" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_cbrf2")
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2

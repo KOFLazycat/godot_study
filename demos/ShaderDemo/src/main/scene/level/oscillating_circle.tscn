@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpjogxf3agk7p"]
+
+[ext_resource type="Shader" path="res://src/main/assets/shaders/oscillating_circle.gdshader" id="1_kuwyw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jtjav"]
+shader = ExtResource("1_kuwyw")
+shader_parameter/ring_radius = 0.38
+shader_parameter/thickness_scalar = 0.35
+shader_parameter/oscillation_scalar = 0.03
+shader_parameter/speed = 1.0
+shader_parameter/main_color = Color(0.486275, 0.443137, 0.486275, 1)
+shader_parameter/lerp_color = Color(0.721569, 0.768627, 0.270588, 1)
+
+[node name="OscillatingCircle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_jtjav")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://wmdvgxbilx5v"]
+
+[ext_resource type="Shader" path="res://src/main/assets/shaders/blackhole.gdshader" id="1_00jfi"]
+[ext_resource type="Texture2D" uid="uid://ds4hs0vw0we1r" path="res://src/main/assets/textures/spreadnoise.png" id="2_e6pam"]
+[ext_resource type="Texture2D" uid="uid://dkd02pn2fouoy" path="res://src/main/assets/textures/godot_icon_color.png" id="3_5h7pt"]
+[ext_resource type="Texture2D" uid="uid://bfeu0i1k10x3c" path="res://src/main/assets/textures/godot_icon_parchment.png" id="4_3utkm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u11m4"]
+shader = ExtResource("1_00jfi")
+shader_parameter/screen_resolution = 1.0
+shader_parameter/iChannel0 = ExtResource("2_e6pam")
+shader_parameter/iChannel1 = ExtResource("3_5h7pt")
+shader_parameter/iChannel2 = ExtResource("4_3utkm")
+
+[node name="Blackhole" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_u11m4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

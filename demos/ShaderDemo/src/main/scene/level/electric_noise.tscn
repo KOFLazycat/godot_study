@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2bv2mjnwu7f6"]
+
+[ext_resource type="Shader" path="res://src/main/assets/shaders/electric_noise.gdshader" id="1_ufwgb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1osj4"]
+shader = ExtResource("1_ufwgb")
+shader_parameter/baseColorRGB = Vector3(0.2, 0.1, 0.4)
+shader_parameter/speed = 0.15
+
+[node name="ElectricNoise" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_1osj4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

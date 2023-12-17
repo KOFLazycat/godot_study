@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnumlpws7yfil"]
+
+[ext_resource type="Shader" path="res://src/main/assets/shaders/waving_particles.gdshader" id="1_feh13"]
+[ext_resource type="Texture2D" uid="uid://l87l85qmiqq" path="res://src/main/assets/textures/dianxain.png" id="2_42qg5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_utdng"]
+shader = ExtResource("1_feh13")
+shader_parameter/dimensions = Vector2(1152, 648)
+shader_parameter/rows = 20.0
+shader_parameter/columns = 5.0
+shader_parameter/vertical_scroll = 0.5
+shader_parameter/horizontal_scroll = 0.1
+shader_parameter/size_min = 0.3
+shader_parameter/size_max = 0.7
+shader_parameter/wave_min = 0.1
+shader_parameter/wave_max = 1.0
+shader_parameter/wave_speed = 0.5
+shader_parameter/wave_rotation = 1.0
+shader_parameter/far_color = Color(0.403922, 0.403922, 0.403922, 1)
+shader_parameter/near_color = Color(1, 1, 1, 1)
+shader_parameter/particle_texture = ExtResource("2_42qg5")
+
+[node name="WavingParticles" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_utdng")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

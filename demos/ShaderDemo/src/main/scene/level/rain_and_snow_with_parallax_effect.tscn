@@ -5,15 +5,15 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1tvox"]
 shader = ExtResource("1_66174")
 shader_parameter/rain_amount = 200.0
-shader_parameter/near_rain_length = 0.2
-shader_parameter/far_rain_length = 0.1
+shader_parameter/near_rain_length = 0.02
+shader_parameter/far_rain_length = 0.01
 shader_parameter/near_rain_width = 1.0
 shader_parameter/far_rain_width = 0.5
 shader_parameter/near_rain_transparency = 1.0
 shader_parameter/far_rain_transparency = 0.5
-shader_parameter/rain_color = Color(0.8, 0.8, 0.8, 1)
-shader_parameter/base_rain_speed = 0.5
-shader_parameter/additional_rain_speed = 0.5
+shader_parameter/rain_color = Color(1, 1, 1, 1)
+shader_parameter/base_rain_speed = 0.3
+shader_parameter/additional_rain_speed = 0.3
 shader_parameter/slant = 0.2
 
 [node name="RainAndSnowWithParallaxEffect" type="Control"]

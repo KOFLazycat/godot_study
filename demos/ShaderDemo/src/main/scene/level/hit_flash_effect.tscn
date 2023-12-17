@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://b147s3r66v13w"]
+
+[ext_resource type="Texture2D" uid="uid://dkd02pn2fouoy" path="res://src/main/assets/textures/godot_icon_color.png" id="1_1jcco"]
+[ext_resource type="Shader" path="res://src/main/assets/shaders/hit_flash_effect.gdshader" id="1_r4yky"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j2b5p"]
+shader = ExtResource("1_r4yky")
+shader_parameter/active = false
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[node name="HitFlashEffect" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_j2b5p")
+position = Vector2(837, 329)
+texture = ExtResource("1_1jcco")

@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0uap824qofks"]
+
+[ext_resource type="Shader" path="res://src/main/assets/shaders/noise.gdshader" id="1_y6m0v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8t22b"]
+shader = ExtResource("1_y6m0v")
+shader_parameter/colorMode = 0
+shader_parameter/color = null
+shader_parameter/timescale = 0.2
+shader_parameter/hScrollSpeedFactor = 1.0
+shader_parameter/vScrollSpeedFactor = 1.0
+shader_parameter/entropyFactor = 1.0
+shader_parameter/sharpness = 10.0
+
+[node name="Noise" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_8t22b")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -6,11 +6,13 @@ extends Node2D
 @onready var pipe_upper_pos: Marker2D = $PipeUpperPos
 @onready var pipe_lower_pos: Marker2D = $PipeLowerPos
 @onready var pipe_spawn_timer: Timer = $PipeSpawnTimer
+@onready var plane_cb: CharacterBody2D = $PlaneCB
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pipe_spawn_timer.timeout.connect(on_pipe_spawn_timer_timeout)
+	plane_cb.plane_died.connect(on_plane_cb_plane_died)
 	spawn_pipe()
 
 
@@ -28,3 +30,7 @@ func spawn_pipe() -> void:
 
 func on_pipe_spawn_timer_timeout() -> void:
 	spawn_pipe()
+
+
+func on_plane_cb_plane_died() -> void:
+	Global.load_main_scene()

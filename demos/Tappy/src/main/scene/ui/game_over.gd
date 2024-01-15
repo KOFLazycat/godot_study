@@ -13,6 +13,7 @@ func _ready() -> void:
 	gameover_label.show()
 	press_space_label.hide()
 	timer.timeout.connect(on_timer_timeout)
+	Global.game_over.connect(on_game_over)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,3 +27,8 @@ func on_timer_timeout() -> void:
 	gameover_label.hide()
 	press_space_label.show()
 	_can_press_space = true
+
+
+func on_game_over() -> void:
+	show()
+	timer.start()

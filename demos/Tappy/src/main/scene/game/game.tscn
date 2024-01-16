@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dv51w5b2un8g2"]
+[gd_scene load_steps=10 format=3 uid="uid://dv51w5b2un8g2"]
 
-[ext_resource type="Texture2D" uid="uid://cv7km4yosa8sp" path="res://src/main/assets/textures/background/rocks_2.png" id="1_ng2hh"]
 [ext_resource type="Script" path="res://src/main/scene/game/game.gd" id="1_u822o"]
 [ext_resource type="PackedScene" uid="uid://dwbegtx13j1a3" path="res://src/main/scene/plane_cb/plane_cb.tscn" id="2_hlphn"]
 [ext_resource type="PackedScene" uid="uid://bxpy6hi083q6f" path="res://src/main/scene/pipes/pipes.tscn" id="3_aopom"]
 [ext_resource type="PackedScene" uid="uid://cxpoddodx5501" path="res://src/main/scene/ui/game_over.tscn" id="5_dxbu7"]
+[ext_resource type="AudioStream" uid="uid://bug3sy7ungdhr" path="res://src/main/assets/sounds/engine.mp3" id="6_mk4x3"]
+[ext_resource type="AudioStream" uid="uid://6jjx1jrmpce0" path="res://src/main/assets/sounds/game_over.wav" id="7_040j8"]
+[ext_resource type="PackedScene" uid="uid://cvy2d81pxdjlh" path="res://src/main/scene/ui/hud.tscn" id="8_8e63t"]
+[ext_resource type="PackedScene" uid="uid://cb1geg81i3xao" path="res://src/main/scene/scrolling_bg/scrolling_bg.tscn" id="9_7yfil"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yotji"]
 size = Vector2(649, 87)
@@ -13,9 +16,7 @@ size = Vector2(649, 87)
 script = ExtResource("1_u822o")
 pipes_scene = ExtResource("3_aopom")
 
-[node name="Bg" type="Sprite2D" parent="."]
-position = Vector2(87, 362)
-texture = ExtResource("1_ng2hh")
+[node name="ScrollingBg" parent="." instance=ExtResource("9_7yfil")]
 
 [node name="PlaneCB" parent="." instance=ExtResource("2_hlphn")]
 position = Vector2(115, 471)
@@ -43,3 +44,14 @@ autostart = true
 
 [node name="GameOver" parent="CanvasLayer" instance=ExtResource("5_dxbu7")]
 visible = false
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("8_8e63t")]
+
+[node name="EngineSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_mk4x3")
+volume_db = -20.0
+autoplay = true
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_040j8")
+volume_db = -10.0

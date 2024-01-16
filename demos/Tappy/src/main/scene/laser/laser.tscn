@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dg1x6vp47ggti"]
+[gd_scene load_steps=7 format=3 uid="uid://dg1x6vp47ggti"]
 
+[ext_resource type="Script" path="res://src/main/scene/laser/laser.gd" id="1_4ggsf"]
 [ext_resource type="Texture2D" uid="uid://c0hbrg2j5obtd" path="res://src/main/assets/textures/pipes/laser2.png" id="1_as1nu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_21hpw"]
@@ -44,13 +45,14 @@ _data = {
 }
 
 [node name="Laser" type="Area2D"]
+script = ExtResource("1_4ggsf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1, 8)
 texture = ExtResource("1_as1nu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(50, 0)
+position = Vector2(40, 0)
 shape = SubResource("RectangleShape2D_21hpw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

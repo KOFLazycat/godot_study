@@ -5,8 +5,8 @@
 [resource]
 font = ExtResource("1_lwph6")
 font_size = 48
-font_color = Color(1, 0.122067, 0.108224, 0.886275)
+font_color = Color(1, 0.301961, 0.364706, 0.886275)
 outline_size = 3
-outline_color = Color(1, 0.497872, 0.470304, 1)
+outline_color = Color(0, 0, 0, 1)
 shadow_size = 5
-shadow_color = Color(0, 0, 0, 0.882353)
+shadow_color = Color(0, 0, 0, 1)

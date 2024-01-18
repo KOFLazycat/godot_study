@@ -1,7 +1,72 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0g6vn5qagcxv"]
+[gd_scene load_steps=11 format=3 uid="uid://b0g6vn5qagcxv"]
 
 [ext_resource type="Script" path="res://src/main/scene/ui/main.gd" id="1_q6rb6"]
 [ext_resource type="Texture2D" uid="uid://epl8tqpahbnv" path="res://src/main/assets/textures/background/sky.png" id="1_w2cu7"]
+[ext_resource type="FontFile" uid="uid://ejruvibnkljl" path="res://src/main/assets/fonts/LuckiestGuy-Regular.ttf" id="3_2ixq0"]
+[ext_resource type="AudioStream" uid="uid://rq60p28pb8aa" path="res://src/main/assets/sounds/bgm_menu.mp3" id="4_exykq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ypya2"]
+font = ExtResource("3_2ixq0")
+font_size = 72
+font_color = Color(1, 0.122067, 0.108224, 0.886275)
+outline_size = 3
+outline_color = Color(1, 0.497872, 0.470304, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.882353)
+
+[sub_resource type="LabelSettings" id="LabelSettings_coxqg"]
+font = ExtResource("3_2ixq0")
+font_size = 48
+font_color = Color(1, 1, 1, 0.886275)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5qsrl"]
+font = ExtResource("3_2ixq0")
+font_size = 24
+font_color = Color(0.999999, 0.239947, 0.330109, 0.886275)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_gn0uc"]
+resource_name = "flash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/Label2:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3oyxn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/Label2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a74ib"]
+_data = {
+"RESET": SubResource("Animation_3oyxn"),
+"flash": SubResource("Animation_gn0uc")
+}
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -20,3 +85,61 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_w2cu7")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "TAPPY
+PLANE"
+label_settings = SubResource("LabelSettings_ypya2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer"]
+layout_mode = 2
+text = "PRESS SPACE
+TO PLAY"
+label_settings = SubResource("LabelSettings_coxqg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="HighScoreText" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "HIGH SCORE"
+label_settings = SubResource("LabelSettings_5qsrl")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HighScoreValue" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "000"
+label_settings = SubResource("LabelSettings_5qsrl")
+vertical_alignment = 1
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_exykq")
+volume_db = -15.0
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_a74ib")
+}

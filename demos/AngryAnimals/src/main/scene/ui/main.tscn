@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcjm3qt4i6p2k"]
+
+[ext_resource type="Texture2D" uid="uid://up2jjg73bcp4" path="res://src/main/assets/textures/env/MainBG.png" id="1_i1rur"]
+[ext_resource type="AudioStream" uid="uid://duv1nua25opuh" path="res://src/main/assets/sounds/birdsong.wav" id="2_g3tlv"]
+[ext_resource type="FontFile" uid="uid://rdqife4i34p1" path="res://src/main/assets/fonts/LuckiestGuy-Regular.ttf" id="3_ctfei"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6cxs2"]
+font = ExtResource("3_ctfei")
+font_size = 72
+font_color = Color(0.207843, 0.917647, 0.8, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.552941)
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_i1rur")
+expand_mode = 3
+
+[node name="BirdSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_g3tlv")
+volume_db = -10.0
+autoplay = true
+
+[node name="MC" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+rotation = 0.0174533
+theme_override_constants/margin_top = 32
+
+[node name="Label" type="Label" parent="MC"]
+layout_mode = 2
+text = "ANGRY ANIMAL"
+label_settings = SubResource("LabelSettings_6cxs2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HB" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2

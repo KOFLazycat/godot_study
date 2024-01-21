@@ -15,14 +15,28 @@ universal_fade/patterns_directory="res://addons/UniversalFade/Patterns"
 [application]
 
 config/name="AngryAnimals"
+run/main_scene="res://src/main/scene/ui/main.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SignalManager="*res://src/main/common/autoload/signal_manager.tscn"
+GameManager="*res://src/main/common/autoload/game_manager.tscn"
 
 [display]
 
 window/size/viewport_width=1024
 window/size/viewport_height=600
 window/stretch/mode="canvas_items"
+
+[input]
+
+drag={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(192, 16),"global_position":Vector2(196, 57),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
 
 [rendering]
 

@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://m2uqv8oxhk15"]
+[gd_scene load_steps=5 format=3 uid="uid://m2uqv8oxhk15"]
 
 [ext_resource type="Script" path="res://src/main/scene/level/level.gd" id="1_lftok"]
 [ext_resource type="Texture2D" uid="uid://l0rwyyu3b8q4" path="res://src/main/assets/textures/scene/colored_castle.png" id="1_v5rrj"]
 [ext_resource type="PackedScene" uid="uid://ds5eb8hlxksbj" path="res://src/main/scene/role/cup/cup.tscn" id="2_26t6u"]
 [ext_resource type="FontFile" uid="uid://wyo2gcknm2wm" path="res://src/main/assets/fonts/VonwaonBitmap-12px.ttf" id="4_ko7fp"]
-[ext_resource type="PackedScene" uid="uid://mfyfqkps036m" path="res://src/main/scene/role/water/water.tscn" id="5_lem7c"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_lftok")
@@ -15,22 +14,7 @@ scale = Vector2(1.2, 1.2)
 texture = ExtResource("1_v5rrj")
 
 [node name="Cup" parent="." instance=ExtResource("2_26t6u")]
-position = Vector2(650, 444)
-
-[node name="Cup2" parent="." instance=ExtResource("2_26t6u")]
-position = Vector2(650, 444)
-
-[node name="Cup3" parent="." instance=ExtResource("2_26t6u")]
-position = Vector2(831, 467)
-
-[node name="Cup4" parent="." instance=ExtResource("2_26t6u")]
-position = Vector2(957, 339)
-
-[node name="Cup5" parent="." instance=ExtResource("2_26t6u")]
-position = Vector2(477, 411)
-
-[node name="Cup6" parent="." instance=ExtResource("2_26t6u")]
-position = Vector2(291, 474)
+position = Vector2(217, 506)
 
 [node name="DebugLabel" type="Label" parent="."]
 offset_left = 25.0
@@ -49,5 +33,3 @@ ffff"
 
 [node name="AnimalStart" type="Marker2D" parent="."]
 position = Vector2(150, 170)
-
-[node name="Water" parent="." instance=ExtResource("5_lem7c")]

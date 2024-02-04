@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [gd_scene load_steps=8 format=3 uid="uid://ds5eb8hlxksbj"]
 
 [ext_resource type="Texture2D" uid="uid://bf70pr6ijnpqs" path="res://src/main/assets/textures/env/elementWood004.png" id="1_ex5ds"]
@@ -44,6 +45,14 @@ _data = {
 
 [node name="Cup" type="StaticBody2D" groups=["cup"]]
 script = ExtResource("1_nou1k")
+=======
+[gd_scene load_steps=3 format=3 uid="uid://ds5eb8hlxksbj"]
+
+[ext_resource type="Texture2D" uid="uid://bf70pr6ijnpqs" path="res://src/main/assets/textures/env/elementWood004.png" id="1_ex5ds"]
+[ext_resource type="Texture2D" uid="uid://cip4os32xrm1y" path="res://src/main/assets/textures/env/elementWood015.png" id="2_rdo1v"]
+
+[node name="Cup" type="StaticBody2D"]
+>>>>>>> d0bef918e6c2aa51edb26de0fc6427ff8a369455
 
 [node name="Sprites" type="Node2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -62,6 +71,7 @@ texture = ExtResource("2_rdo1v")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-54, -54, -55, 17, 55, 17, 53, -53, 18, -17, -18, -17)
+<<<<<<< HEAD
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -71,3 +81,5 @@ libraries = {
 [node name="VanishSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_k23px")
 volume_db = -10.0
+=======
+>>>>>>> d0bef918e6c2aa51edb26de0fc6427ff8a369455

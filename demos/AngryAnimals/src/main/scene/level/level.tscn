@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [gd_scene load_steps=7 format=3 uid="uid://m2uqv8oxhk15"]
 
 [ext_resource type="Script" path="res://src/main/scene/level/level.gd" id="1_lftok"]
@@ -11,12 +12,22 @@
 script = ExtResource("1_lftok")
 
 [node name="GameUi" parent="." instance=ExtResource("5_qys5a")]
+=======
+[gd_scene load_steps=4 format=3 uid="uid://m2uqv8oxhk15"]
+
+[ext_resource type="Texture2D" uid="uid://l0rwyyu3b8q4" path="res://src/main/assets/textures/scene/colored_castle.png" id="1_v5rrj"]
+[ext_resource type="PackedScene" uid="uid://ds5eb8hlxksbj" path="res://src/main/scene/role/cup/cup.tscn" id="2_26t6u"]
+[ext_resource type="PackedScene" uid="uid://xwunu8wwcoy1" path="res://src/main/scene/role/animal/animal.tscn" id="3_onvhw"]
+
+[node name="Level" type="Node2D"]
+>>>>>>> d0bef918e6c2aa51edb26de0fc6427ff8a369455
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(513, 302)
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("1_v5rrj")
 
+<<<<<<< HEAD
 [node name="DebugLabel" type="Label" parent="."]
 visible = false
 offset_left = 25.0
@@ -40,3 +51,16 @@ position = Vector2(150, 170)
 
 [node name="LauchArea" parent="." instance=ExtResource("6_vx5ba")]
 position = Vector2(37, 230)
+=======
+[node name="Cup" parent="." instance=ExtResource("2_26t6u")]
+position = Vector2(458, 470)
+
+[node name="Cup2" parent="." instance=ExtResource("2_26t6u")]
+position = Vector2(567, 492)
+
+[node name="Cup3" parent="." instance=ExtResource("2_26t6u")]
+position = Vector2(347, 508)
+
+[node name="Animal" parent="." instance=ExtResource("3_onvhw")]
+position = Vector2(488, 283)
+>>>>>>> d0bef918e6c2aa51edb26de0fc6427ff8a369455

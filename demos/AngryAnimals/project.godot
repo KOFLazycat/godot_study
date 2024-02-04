@@ -15,6 +15,7 @@ universal_fade/patterns_directory="res://addons/UniversalFade/Patterns"
 [application]
 
 config/name="AngryAnimals"
+<<<<<<< HEAD
 run/main_scene="res://src/main/scene/ui/main.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
@@ -25,12 +26,18 @@ SignalManager="*res://src/main/common/autoload/signal_manager.tscn"
 GameManager="*res://src/main/common/autoload/game_manager.tscn"
 ScoreManger="*res://src/main/common/autoload/score_manger.tscn"
 
+=======
+config/features=PackedStringArray("4.3", "Mobile")
+config/icon="res://icon.svg"
+
+>>>>>>> d0bef918e6c2aa51edb26de0fc6427ff8a369455
 [display]
 
 window/size/viewport_width=1024
 window/size/viewport_height=600
 window/stretch/mode="canvas_items"
 
+<<<<<<< HEAD
 [input]
 
 drag={
@@ -39,6 +46,8 @@ drag={
 ]
 }
 
+=======
+>>>>>>> d0bef918e6c2aa51edb26de0fc6427ff8a369455
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8vpx8dwtdcnc"]
+
+[ext_resource type="AudioStream" uid="uid://dgkb3g4kbhfr1" path="res://src/main/assets/sounds/gentle_piano.mp3" id="1_7ulg8"]
+[ext_resource type="PackedScene" uid="uid://bwfmn30riug1" path="res://src/main/scene/level/music_visualize.tscn" id="1_fg3m4"]
+
+[node name="Main" type="Node2D"]
+
+[node name="MusicVisualize1" parent="." instance=ExtResource("1_fg3m4")]
+position = Vector2(540, 360)
+width = 1.0
+
+[node name="MusicVisualize2" parent="." instance=ExtResource("1_fg3m4")]
+position = Vector2(540, 360)
+rotation = 3.14159
+width = 1.0
+
+[node name="MusicSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_7ulg8")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"

@@ -7,6 +7,6 @@ extends StaticBody2D
 func die() -> void:
 	vanish_sound.play()
 	animation_player.play("vanish")
-	await vanish_sound.finished and animation_player.animation_finished
+	await vanish_sound.finished
 	SignalManager.cup_destroyed.emit()
 	queue_free()

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv12niegvouw1"]
+
+[ext_resource type="Script" path="res://src/main/common/autoload/score_manger.gd" id="1_rshkp"]
+
+[node name="ScoreManger" type="Node"]
+script = ExtResource("1_rshkp")

@@ -5,10 +5,12 @@ extends RigidBody2D
 @onready var stretch_sound: AudioStreamPlayer2D = $StretchSound
 @onready var launch_sound: AudioStreamPlayer2D = $LaunchSound
 @onready var collision_sound: AudioStreamPlayer2D = $CollisionSound
+@onready var arrow_sprite_2d: Sprite2D = $ArrowSprite2D
 
 const DRAG_LIM_MAX: Vector2 = Vector2(0, 60)
 const DRAG_LIM_MIN: Vector2 = Vector2(-60, 0)
 const IMPULSE_MULT: float = 10.0
+const IMPULSE_MAX: float = 1200.0
 const FIRE_DELAY: float = 0.25
 const STOPPED: float = 0.1
 
@@ -21,6 +23,7 @@ var _dragged_vector: Vector2 = Vector2.ZERO
 var _last_dragged_position: Vector2 = Vector2.ZERO
 var _last_drag_amount: float = 0.0
 var _fired_time: float = 0.0
+var _arrow_scale_x: float = 0.0
 var _last_collision_count: int = 0
 
 
@@ -29,6 +32,8 @@ func _ready() -> void:
 	visible_on_screen_notifier_2d.screen_exited.connect(on_visible_on_screen_notifier_2d_screen_exited)
 	animal.input_event.connect(on_animal_input_event)
 	_start = global_position
+	_arrow_scale_x = arrow_sprite_2d.scale.x
+	arrow_sprite_2d.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -76,6 +81,13 @@ func update_debug_label() -> void:
 	SignalManager.update_debug_label.emit(s)
 
 
+func scale_arrow() -> void:
+	var imp_len = get_impulse().length()
+	var perc = imp_len / IMPULSE_MAX
+	arrow_sprite_2d.scale.x = (_arrow_scale_x * perc) + _arrow_scale_x
+	arrow_sprite_2d.rotation = (_start - global_position).angle()
+
+
 func stopped_rolling() -> bool:
 	if get_contact_count() > 0:
 		if (
@@ -114,6 +126,7 @@ func grab_it() -> void:
 	_dragging = true
 	_drag_start = get_global_mouse_position()
 	_last_dragged_position = _drag_start
+	arrow_sprite_2d.show()
 
 
 func drag_it() -> void:
@@ -128,6 +141,8 @@ func drag_it() -> void:
 	_dragged_vector.x = clampf(_dragged_vector.x, DRAG_LIM_MIN.x, DRAG_LIM_MAX.x)
 	_dragged_vector.y = clampf(_dragged_vector.y, DRAG_LIM_MIN.y, DRAG_LIM_MAX.y)
 	global_position = _start + _dragged_vector
+	
+	scale_arrow()
 
 
 func release_it() -> void:
@@ -137,6 +152,8 @@ func release_it() -> void:
 	apply_central_impulse(get_impulse())
 	stretch_sound.stop()
 	launch_sound.play()
+	ScoreManger.attempt_made()
+	arrow_sprite_2d.hide()
 
 
 func get_impulse() -> Vector2:
@@ -155,7 +172,7 @@ func on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	die()
 
 
-func on_animal_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func on_animal_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if _dragging or _released:
 		return
 	

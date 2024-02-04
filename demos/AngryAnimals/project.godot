@@ -23,6 +23,7 @@ config/icon="res://icon.svg"
 
 SignalManager="*res://src/main/common/autoload/signal_manager.tscn"
 GameManager="*res://src/main/common/autoload/game_manager.tscn"
+ScoreManger="*res://src/main/common/autoload/score_manger.tscn"
 
 [display]
 

@@ -8,11 +8,13 @@
 [node name="MusicVisualize1" parent="." instance=ExtResource("1_fg3m4")]
 position = Vector2(540, 360)
 width = 1.0
+default_color = Color(0, 0, 0, 0.784314)
 
 [node name="MusicVisualize2" parent="." instance=ExtResource("1_fg3m4")]
 position = Vector2(540, 360)
 rotation = 3.14159
 width = 1.0
+default_color = Color(0, 0, 0, 0.784314)
 
 [node name="MusicSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_7ulg8")

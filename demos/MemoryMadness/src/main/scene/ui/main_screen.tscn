@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://drsre6hl6yd74"]
+[gd_scene load_steps=6 format=3 uid="uid://drsre6hl6yd74"]
 
+[ext_resource type="Script" path="res://src/main/scene/ui/main_screen.gd" id="1_h7uew"]
 [ext_resource type="FontFile" uid="uid://brydf0rl5jyqa" path="res://src/main/assets/fonts/VonwaonBitmap-16px.ttf" id="1_kx6xa"]
+[ext_resource type="PackedScene" uid="uid://1b2or3ftq7rp" path="res://src/main/scene/ui/level_button.tscn" id="2_27gfn"]
 [ext_resource type="PackedScene" uid="uid://dxl80a3b0tm8g" path="res://src/main/scene/ui/front_sprite.tscn" id="2_crs4q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7fkvw"]
@@ -19,6 +21,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_h7uew")
+level_button_scene = ExtResource("2_27gfn")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -55,6 +59,7 @@ size_flags_vertical = 3
 [node name="HBLevels" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/separation = 10
 alignment = 1
 
 [node name="Spacer3" type="Control" parent="VBoxContainer"]

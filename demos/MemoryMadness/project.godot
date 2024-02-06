@@ -18,6 +18,8 @@ config/icon="res://icon.png"
 [autoload]
 
 ImageManager="*res://src/main/common/autoload/image_manager.tscn"
+SoundManager="*res://src/main/common/autoload/sound_manager.tscn"
+GameManager="*res://src/main/common/autoload/game_manager.tscn"
 
 [display]
 

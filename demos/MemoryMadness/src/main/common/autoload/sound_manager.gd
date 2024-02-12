@@ -31,7 +31,6 @@ func play_sound(player: AudioStreamPlayer, key: String, random: bool) -> void:
 		player.volume_db = player.volume_db + randf_range(-5.0, 5.0)
 		player.pitch_scale = player.pitch_scale + randf_range(-0.2, 0.2)
 	player.play()
-	print(player.volume_db)
 	await player.finished
 	player.volume_db = volume_db
 	player.pitch_scale = pitch_scale

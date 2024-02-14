@@ -1,4 +1,5 @@
 extends TextureButton
+class_name MemoryTile
 
 @onready var memory_tile: TextureButton = $"."
 @onready var frame_image: TextureRect = $FrameImage
@@ -30,9 +31,21 @@ func setup(ii_dict: Dictionary, fi: CompressedTexture2D) -> void:
 	reveal(false)
 
 
+func kill_on_success() -> void:
+	z_index = 1
+	var tween = get_tree().create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(self, "disabled", true, 0)
+	tween.tween_property(self, "scale", Vector2(1.2, 1.2), 0.5)
+	tween.tween_property(self, "rotation", deg_to_rad(720), 0.5)
+	tween.set_parallel(false)
+	tween.tween_interval(0.6)
+	tween.tween_property(self, "scale", Vector2(0, 0), 0.1)
+
+
 func on_memory_tile_pressed() -> void:
 	if _can_select_me == true:
-		reveal(true)
+		SignalManager.tile_selected.emit(self)
 
 
 func on_selection_enabled() -> void:

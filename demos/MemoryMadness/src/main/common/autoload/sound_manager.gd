@@ -38,3 +38,7 @@ func play_sound(player: AudioStreamPlayer, key: String, random: bool) -> void:
 
 func play_button_click(player: AudioStreamPlayer, random: bool) -> void:
 	play_sound(player, SOUND_SELECT_BUTTON, random)
+
+
+func play_tile_click(player: AudioStreamPlayer, random: bool) -> void:
+	play_sound(player, SOUND_SELECT_TILE, random)

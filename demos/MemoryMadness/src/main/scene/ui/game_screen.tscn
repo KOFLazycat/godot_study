@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bf8gpgekt6jyy"]
+[gd_scene load_steps=10 format=3 uid="uid://bf8gpgekt6jyy"]
 
 [ext_resource type="Script" path="res://src/main/scene/ui/game_screen.gd" id="1_1di74"]
 [ext_resource type="LabelSettings" uid="uid://c1utb4vpk7e5" path="res://src/main/assets/resources/vb_32_dark.tres" id="1_3str6"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bxxrd2at444ik" path="res://src/main/scene/ui/memory_tile.tscn" id="2_14of7"]
 [ext_resource type="Texture2D" uid="uid://dhs610cbh4dpd" path="res://src/main/assets/ui/yellow_button00.png" id="3_l3wnt"]
 [ext_resource type="Texture2D" uid="uid://0qlc0lyyqejg" path="res://src/main/assets/ui/green_button00.png" id="4_5spbl"]
+[ext_resource type="PackedScene" uid="uid://c7k5ahxn2o2mp" path="res://src/main/scene/ui/game_over.tscn" id="4_ts5uy"]
 [ext_resource type="LabelSettings" uid="uid://bhixcyfrq4kad" path="res://src/main/assets/resources/vb_32_white.tres" id="5_ykpjm"]
+[ext_resource type="PackedScene" uid="uid://cpcft0xaeaihv" path="res://src/main/scene/ui/scorer.tscn" id="8_btlgp"]
 
 [node name="GameScreen" type="Control"]
 layout_mode = 3
@@ -104,3 +106,9 @@ vertical_alignment = 1
 
 [node name="Sound" type="AudioStreamPlayer" parent="."]
 volume_db = -15.0
+
+[node name="Scorer" parent="." instance=ExtResource("8_btlgp")]
+
+[node name="GameOver" parent="." instance=ExtResource("4_ts5uy")]
+visible = false
+layout_mode = 1

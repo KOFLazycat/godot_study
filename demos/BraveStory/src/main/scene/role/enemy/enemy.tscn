@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bs3gp50k1e60f"]
+[gd_scene load_steps=6 format=3 uid="uid://bs3gp50k1e60f"]
 
 [ext_resource type="Script" path="res://src/main/common/util/state_machine/state_machine.gd" id="1_08o4h"]
 [ext_resource type="Script" path="res://src/main/scene/role/enemy/enemy.gd" id="1_sl41o"]
 [ext_resource type="Script" path="res://src/main/common/util/hitbox.gd" id="2_ealna"]
 [ext_resource type="Script" path="res://src/main/common/util/hurtbox.gd" id="3_m5gl8"]
+[ext_resource type="Script" path="res://src/main/common/util/stats.gd" id="5_hyc70"]
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 4
@@ -20,8 +21,6 @@ script = ExtResource("2_ealna")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hitbox"]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Graphics/Hitbox"]
-
 [node name="Hurtbox" type="Area2D" parent="Graphics"]
 collision_layer = 16
 collision_mask = 0
@@ -29,11 +28,12 @@ script = ExtResource("3_m5gl8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Graphics/Hurtbox"]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Graphics/Hurtbox"]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("1_08o4h")
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("5_hyc70")

@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var graphics: Node2D = $Graphics
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var state_machine: StateMachine = $StateMachine
+@onready var stats: Stats = $Stats
 
 enum Direction {
 	LEFT = -1,
@@ -27,3 +28,7 @@ func move(delta: float, speed: float) -> void:
 	velocity.x = move_toward(velocity.x, speed * direction, acceleration * delta)
 	velocity.y += default_gravity * delta
 	move_and_slide()
+
+
+func die() -> void:
+	queue_free()

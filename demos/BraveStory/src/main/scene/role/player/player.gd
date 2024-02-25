@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var state_machine: StateMachine = $StateMachine
 @onready var stats: Stats = $Stats
 @onready var invincible_timer: Timer = $InvincibleTimer
+@onready var slide_request_timer: Timer = $SlideRequestTimer
 
 
 enum State {
@@ -25,6 +26,9 @@ enum State {
 	ATTACK_3,
 	HURT,
 	DYING,
+	SLIDING_START,
+	SLIDING_LOOP,
+	SLIDING_END,
 }
 
 const GROUND_SATATES := [State.IDLE, State.RUNNING, State.LANDING, State.ATTACK_1, State.ATTACK_2, State.ATTACK_3]
@@ -34,12 +38,17 @@ const AIR_ACCELERATION: float = RUN_SPEED/0.1
 const JUMP_VELOCITY: float = -320.0
 const WALL_JUMP_VELOCITY: Vector2 = Vector2(400, -280)
 const KNOCKBACK_AMOUNT: float = 512.0
+const SLIDING_DURATION: float = 0.2
+const SLIDING_SPEED: float = 250.0
+const SLIDING_ENERGY: float = 4.0
+const LANDING_HEIGHT: float = 100.0
 @export var can_combo: bool = false
 var default_gravity := ProjectSettings.get("physics/2d/default_gravity") as float
 ## 是否是第一帧
 var is_first_tick: bool = false
 var is_combo_requested: bool = false
 var pending_damage: Damage
+var fall_from_y: float
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
@@ -50,6 +59,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			velocity.y = JUMP_VELOCITY / 2
 	if event.is_action_pressed("attack") and can_combo:
 		is_combo_requested = true
+	
+	if event.is_action_pressed("slide"):
+		slide_request_timer.start()
 
 
 func tick_physics(delta: float, state: State) -> void:
@@ -82,6 +94,10 @@ func tick_physics(delta: float, state: State) -> void:
 			stand(default_gravity, delta)
 		State.HURT, State.DYING:
 			stand(default_gravity, delta)
+		State.SLIDING_START, State.SLIDING_LOOP:
+			slide(delta)
+		State.SLIDING_END:
+			stand(default_gravity, delta)
 	is_first_tick = false
 
 func move(delta: float, gravity: float) -> void:
@@ -100,6 +116,12 @@ func stand(gravity: float, delta: float) -> void:
 	var acceleration := FLOOR_ACCELERATION if is_on_floor() else AIR_ACCELERATION
 	velocity.x = move_toward(velocity.x, 0.0, acceleration * delta)
 	velocity.y += gravity * delta
+	move_and_slide()
+
+
+func slide(delta: float) -> void:
+	velocity.x = graphics.scale.x * SLIDING_SPEED
+	velocity.y += default_gravity * delta
 	move_and_slide()
 
 
@@ -132,11 +154,15 @@ func get_next_state(state: State) -> int:
 			State.IDLE:
 				if Input.is_action_just_pressed("attack"):
 					next_state = State.ATTACK_1
+				elif should_slide():
+					next_state = State.SLIDING_START
 				elif not is_still:
 					next_state = State.RUNNING
 			State.RUNNING:
 				if Input.is_action_just_pressed("attack"):
 						next_state = State.ATTACK_1
+				elif should_slide():
+					next_state = State.SLIDING_START
 				elif is_still:
 					next_state = State.IDLE
 			State.JUMP:
@@ -144,13 +170,12 @@ func get_next_state(state: State) -> int:
 					next_state = State.FALL
 			State.FALL:
 				if is_on_floor():
-					next_state = State.LANDING if is_still else State.RUNNING
+					var height: float = global_position.y - fall_from_y
+					next_state = State.LANDING if height >= LANDING_HEIGHT else State.RUNNING
 				elif can_wall_slide():
 					next_state = State.WALL_SLIDING
 			State.LANDING:
-				if not is_still:
-					next_state = State.RUNNING
-				elif not animation_player.is_playing():
+				if not animation_player.is_playing():
 					next_state = State.IDLE
 			State.WALL_SLIDING:
 				if jump_request_timer.time_left > 0:
@@ -177,15 +202,31 @@ func get_next_state(state: State) -> int:
 			State.HURT:
 				if not animation_player.is_playing():
 					next_state = State.IDLE
+			State.SLIDING_START:
+				if not animation_player.is_playing():
+					next_state = State.SLIDING_LOOP
+			State.SLIDING_END:
+				if not animation_player.is_playing():
+					next_state = State.IDLE
+			State.SLIDING_LOOP:
+				if state_machine.state_time > SLIDING_DURATION or is_on_wall():
+					next_state = State.SLIDING_END
 	return next_state
 
 
+func should_slide() -> bool:
+	if slide_request_timer.is_stopped() or foot_checker.is_colliding() or stats.energy < SLIDING_ENERGY:
+		return false
+	
+	return true
+
+
 func transition_state(from: State, to: State) -> void:
-	print("[%s] %s => %s" % [
-		Engine.get_physics_frames(),
-		State.keys()[from] if from != 1 else "<START>",
-		State.keys()[to],
-		])
+	#print("[%s] %s => %s" % [
+		#Engine.get_physics_frames(),
+		#State.keys()[from] if from != 1 else "<START>",
+		#State.keys()[to],
+		#])
 	if from not in GROUND_SATATES and to in GROUND_SATATES:
 		coyote_timer.stop()
 	match to:
@@ -202,6 +243,7 @@ func transition_state(from: State, to: State) -> void:
 			animation_player.play("fall")
 			if from in GROUND_SATATES:
 				coyote_timer.start()
+			fall_from_y = global_position.y
 		State.LANDING:
 			animation_player.play("landing")
 		State.WALL_SLIDING:
@@ -231,6 +273,14 @@ func transition_state(from: State, to: State) -> void:
 		State.DYING:
 			animation_player.play("die")
 			invincible_timer.stop()
+		State.SLIDING_START:
+			animation_player.play("sliding_start")
+			slide_request_timer.stop()
+			stats.energy -= SLIDING_ENERGY
+		State.SLIDING_LOOP:
+			animation_player.play("sliding_loop")
+		State.SLIDING_END:
+			animation_player.play("sliding_end")
 		
 	is_first_tick = true
 

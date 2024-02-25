@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://p66c1hgdvgbg"]
+[gd_scene load_steps=27 format=3 uid="uid://p66c1hgdvgbg"]
 
 [ext_resource type="Script" path="res://src/main/scene/role/player/player.gd" id="1_4qf4w"]
 [ext_resource type="Texture2D" uid="uid://c3y53ttq03c1h" path="res://src/main/assets/textures/brave/blue/char_blue_1.png" id="1_di5w7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://src/main/common/util/state_machine/state_machine.gd" id="3_oew4a"]
 [ext_resource type="Script" path="res://src/main/common/util/hitbox.gd" id="4_r52k8"]
 [ext_resource type="Script" path="res://src/main/common/util/stats.gd" id="7_kckjd"]
+[ext_resource type="PackedScene" uid="uid://ct52x5m1aveht" path="res://src/main/scene/ui/status_pannel.tscn" id="8_of2m0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dfw3r"]
 size = Vector2(10, 20)
@@ -2779,5 +2780,12 @@ script = ExtResource("7_kckjd")
 [node name="InvincibleTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StatusPannel" parent="CanvasLayer" node_paths=PackedStringArray("stats") instance=ExtResource("8_of2m0")]
+offset_right = -384.0
+offset_bottom = -216.0
+stats = NodePath("../../Stats")
 
 [connection signal="hurt" from="Graphics/Hurtbox" to="." method="_on_hurtbox_hurt"]

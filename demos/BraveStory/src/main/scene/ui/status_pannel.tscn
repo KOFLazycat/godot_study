@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://ct52x5m1aveht"]
+
+[ext_resource type="Script" path="res://src/main/scene/ui/status_pannel.gd" id="1_0b24d"]
+[ext_resource type="Texture2D" uid="uid://djb38kctobtit" path="res://src/main/assets/textures/Legacy-Fantasy/HUD/Base-01.png" id="1_gwak0"]
+[ext_resource type="Texture2D" uid="uid://c3y53ttq03c1h" path="res://src/main/assets/textures/brave/blue/char_blue_1.png" id="1_qneu8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_avb6m"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+texture = ExtResource("1_gwak0")
+region_rect = Rect2(323, 203, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spch2"]
+atlas = ExtResource("1_qneu8")
+region = Rect2(22, 24, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s271t"]
+atlas = ExtResource("1_gwak0")
+region = Rect2(307, 21, 58, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhv2l"]
+atlas = ExtResource("1_gwak0")
+region = Rect2(308, 118, 56, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5jr0"]
+atlas = ExtResource("1_gwak0")
+region = Rect2(308, 86, 56, 4)
+
+[node name="StatusPannel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0b24d")
+
+[node name="HB" type="HBoxContainer" parent="."]
+layout_mode = 0
+
+[node name="AvatarBox" type="PanelContainer" parent="HB"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_avb6m")
+
+[node name="Avatar" type="TextureRect" parent="HB/AvatarBox"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_spch2")
+stretch_mode = 5
+
+[node name="HealthBar" type="TextureProgressBar" parent="HB"]
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.0
+value = 1.0
+texture_over = SubResource("AtlasTexture_s271t")
+texture_progress = SubResource("AtlasTexture_bhv2l")
+texture_progress_offset = Vector2(1, 1)
+
+[node name="EasedHealthBar" type="TextureProgressBar" parent="HB/HealthBar"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -2.0
+offset_right = 28.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.0
+value = 1.0
+texture_progress = SubResource("AtlasTexture_g5jr0")

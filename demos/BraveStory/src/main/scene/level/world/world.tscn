@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://d24hyev0gavnb"]
+[gd_scene load_steps=11 format=3 uid="uid://d24hyev0gavnb"]
 
 [ext_resource type="Script" path="res://src/main/scene/level/world/world.gd" id="1_d3foi"]
 [ext_resource type="Texture2D" uid="uid://b60d5guy6mx63" path="res://src/main/assets/textures/Legacy-Fantasy/Assets/Tree-Assets.png" id="1_jgirr"]
 [ext_resource type="PackedScene" uid="uid://p66c1hgdvgbg" path="res://src/main/scene/role/player/player.tscn" id="2_dwfcy"]
+[ext_resource type="Script" path="res://src/main/common/util/entry_point.gd" id="4_5vm26"]
 [ext_resource type="Texture2D" uid="uid://dno8tldsee8f6" path="res://src/main/assets/textures/Legacy-Fantasy/Background/Background.png" id="4_gi8fr"]
 [ext_resource type="Texture2D" uid="uid://csp5m7tba0lvq" path="res://src/main/assets/textures/Legacy-Fantasy/Trees/Background.png" id="5_5fjip"]
 [ext_resource type="PackedScene" uid="uid://1bsojv820rsf" path="res://src/main/scene/role/enemy/boar.tscn" id="6_6j8hw"]
+[ext_resource type="PackedScene" uid="uid://cq6w3ac0tlyio" path="res://src/main/scene/level/mine_gate.tscn" id="7_nyr2g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6w4ls"]
 texture = ExtResource("1_jgirr")
@@ -480,6 +482,26 @@ layer_1/tile_data = PackedInt32Array(851993, 196608, 4, 786457, 131072, 3, 72092
 layer_2/name = "Foreground"
 layer_2/tile_data = PackedInt32Array(720888, 458752, 3, 262134, 524288, 3, -65539, 589824, 2, -393208, 655360, 2, -131056, 458752, 3, -131053, 524288, 3, 655378, 655360, 2, 655379, 393216, 3, 655380, 458752, 3, 589846, 524288, 3, 655366, 589824, 3, 720895, 655360, 2, -196621, 589824, 3, -196619, 589824, 2, -196618, 589824, 2, -196617, 458752, 3)
 
+[node name="MineGate" parent="TileMap" instance=ExtResource("7_nyr2g")]
+position = Vector2(371, -65)
+path = "res://src/main/scene/level/world/world.tscn"
+entry_point = "TopLeftEntryPoint"
+
+[node name="MineGate2" parent="TileMap" instance=ExtResource("7_nyr2g")]
+position = Vector2(-299, -97)
+scale = Vector2(-1, 1)
+path = "res://src/main/scene/level/world/world.tscn"
+entry_point = "TopRightEntryPoint"
+
+[node name="TopLeftEntryPoint" type="Marker2D" parent="TileMap"]
+position = Vector2(-256, -48)
+script = ExtResource("4_5vm26")
+
+[node name="TopRightEntryPoint" type="Marker2D" parent="TileMap"]
+position = Vector2(320, -14)
+script = ExtResource("4_5vm26")
+direction = -1
+
 [node name="Player" parent="." instance=ExtResource("2_dwfcy")]
 position = Vector2(-85, 123)
 
@@ -491,8 +513,8 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="Decorations" type="Node2D" parent="."]
-metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Background" type="ParallaxBackground" parent="Decorations"]
 

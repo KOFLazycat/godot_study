@@ -1,6 +1,15 @@
 class_name Player
 extends CharacterBody2D
 
+@export var can_combo: bool = false
+@export var direction: Direction = Direction.RIGHT:
+	set(v):
+		direction = v
+		## 等待节点ready
+		if not is_node_ready():
+			await ready
+		graphics.scale.x = direction
+
 @onready var graphics: Node2D = $Graphics
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var coyote_timer: Timer = $CoyoteTimer
@@ -8,10 +17,15 @@ extends CharacterBody2D
 @onready var hand_checker: RayCast2D = $Graphics/HandChecker
 @onready var foot_checker: RayCast2D = $Graphics/FootChecker
 @onready var state_machine: StateMachine = $StateMachine
-@onready var stats: Stats = $Stats
+@onready var stats: Stats = Game.player_stats
 @onready var invincible_timer: Timer = $InvincibleTimer
 @onready var slide_request_timer: Timer = $SlideRequestTimer
+@onready var interaction_icon: AnimatedSprite2D = $InteractionIcon
 
+enum Direction {
+	LEFT = -1,
+	RIGHT = 1,
+}
 
 enum State {
 	IDLE,
@@ -42,13 +56,14 @@ const SLIDING_DURATION: float = 0.2
 const SLIDING_SPEED: float = 250.0
 const SLIDING_ENERGY: float = 4.0
 const LANDING_HEIGHT: float = 100.0
-@export var can_combo: bool = false
+
 var default_gravity := ProjectSettings.get("physics/2d/default_gravity") as float
 ## 是否是第一帧
 var is_first_tick: bool = false
 var is_combo_requested: bool = false
 var pending_damage: Damage
 var fall_from_y: float
+var interracting_with: Array[Interactable]
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
@@ -62,9 +77,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("slide"):
 		slide_request_timer.start()
-
+	
+	if event.is_action_pressed("interact") and not interracting_with.is_empty():
+		interracting_with.back().interact()
 
 func tick_physics(delta: float, state: State) -> void:
+	interaction_icon.visible = not interracting_with.is_empty()
 	if invincible_timer.time_left > 0:
 		graphics.modulate.a = sin(Time.get_ticks_msec()/30) * 0.5 + 0.5
 	else:
@@ -83,11 +101,11 @@ func tick_physics(delta: float, state: State) -> void:
 			stand(default_gravity, delta)
 		State.WALL_SLIDING:
 			move(delta, default_gravity / 20)
-			graphics.scale.x = get_wall_normal().x
+			direction = Direction.LEFT if get_wall_normal().x < 0 else Direction.RIGHT
 		State.WALL_JUMP:
 			if state_machine.state_time < 0.1:
 				stand(0.0 if is_first_tick else default_gravity, delta)
-				graphics.scale.x = get_wall_normal().x
+				direction = Direction.LEFT if get_wall_normal().x < 0 else Direction.RIGHT
 			else:
 				move(delta, 0.0 if is_first_tick else default_gravity)
 		State.ATTACK_1, State.ATTACK_2, State.ATTACK_3:
@@ -101,13 +119,13 @@ func tick_physics(delta: float, state: State) -> void:
 	is_first_tick = false
 
 func move(delta: float, gravity: float) -> void:
-	var direction := Input.get_axis("move_left", "move_right")
+	var movement := Input.get_axis("move_left", "move_right")
 	var acceleration := FLOOR_ACCELERATION if is_on_floor() else AIR_ACCELERATION
-	velocity.x = move_toward(velocity.x, direction * RUN_SPEED, acceleration * delta)
+	velocity.x = move_toward(velocity.x, movement * RUN_SPEED, acceleration * delta)
 	velocity.y += gravity * delta
 	
-	if not is_zero_approx(direction):
-		graphics.scale.x = -1 if direction < 0 else +1
+	if not is_zero_approx(movement):
+		direction = Direction.LEFT if movement < 0 else Direction.RIGHT
 	
 	move_and_slide()
 
@@ -129,6 +147,20 @@ func die() -> void:
 	get_tree().reload_current_scene()
 
 
+## 注册交互对象
+func register_interactable(v: Interactable) -> void:
+	if state_machine.current_state == State.DYING:
+		return
+	if v in interracting_with:
+		return
+	interracting_with.append(v)
+
+
+## 注销交互对象
+func unregister_interactable(v: Interactable) -> void:
+	interracting_with.erase(v)
+
+
 func can_wall_slide() -> bool:
 	return is_on_wall() and hand_checker.is_colliding() and foot_checker.is_colliding()
 
@@ -148,8 +180,8 @@ func get_next_state(state: State) -> int:
 	elif state in GROUND_SATATES and not is_on_floor():
 		next_state = State.FALL
 	else:
-		var direction := Input.get_axis("move_left", "move_right")
-		var is_still := is_zero_approx(direction) and is_zero_approx(velocity.x)
+		var movement := Input.get_axis("move_left", "move_right")
+		var is_still := is_zero_approx(movement) and is_zero_approx(velocity.x)
 		match state:
 			State.IDLE:
 				if Input.is_action_just_pressed("attack"):
@@ -273,6 +305,7 @@ func transition_state(from: State, to: State) -> void:
 		State.DYING:
 			animation_player.play("die")
 			invincible_timer.stop()
+			interracting_with.clear()
 		State.SLIDING_START:
 			animation_player.play("sliding_start")
 			slide_request_timer.stop()

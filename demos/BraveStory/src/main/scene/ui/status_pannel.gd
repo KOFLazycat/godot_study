@@ -9,18 +9,25 @@ extends Control
 
 
 func _ready() -> void:
+	if not stats:
+		stats = Game.player_stats
+	
 	stats.health_changed.connect(on_health_changed)
 	stats.energy_changed.connect(on_energy_changed)
-	update_health()
+	## 第一次同步血条时不播放画
+	update_health(true)
 	update_energy()
 
 
-func update_health() -> void:
+func update_health(skip_anim: bool = false) -> void:
 	var percentage: float = stats.health / float(stats.max_health)
 	health_bar.value = percentage
 	
-	var tween: Tween = create_tween()
-	tween.tween_property(eased_health_bar, "value", percentage, 0.5).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
+	if skip_anim:
+		eased_health_bar.value = percentage
+	else:
+		var tween: Tween = create_tween()
+		tween.tween_property(eased_health_bar, "value", percentage, 0.5).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
 
 
 func update_energy() -> void:

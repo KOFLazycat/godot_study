@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bdv3xgt7hvedf"
+path="res://.godot/imported/02 1 titles LOOP.mp3-06108381e4a2e9b3af4994d6185e8287.mp3str"
+
+[deps]
+
+source_file="res://src/main/assets/sounds/02 1 titles LOOP.mp3"
+dest_files=["res://.godot/imported/02 1 titles LOOP.mp3-06108381e4a2e9b3af4994d6185e8287.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

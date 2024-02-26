@@ -28,3 +28,18 @@ signal energy_changed
 func _process(delta: float) -> void:
 	# 自动恢复能量
 	energy += energy_regen * delta
+
+
+func to_dict() -> Dictionary:
+	return {
+		"max_energy": max_energy,
+		"max_health": max_health,
+		"health": health,
+	}
+
+
+func from_dict(dict: Dictionary) -> void:
+	max_energy = dict.max_energy
+	## 注意max_health和health的设置顺序，health要受到max_health的制约，所以需要先设置max_health
+	max_health = dict.max_health
+	health = dict.health

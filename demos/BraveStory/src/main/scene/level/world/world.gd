@@ -27,7 +27,7 @@ func to_dict() -> Dictionary:
 	var enemies_alive: Array[String] = []
 	
 	for node in get_tree().get_nodes_in_group("enemies"):
-		var path: NodePath = get_path_to(node) as String
+		var path: String = get_path_to(node) as String
 		if not path.is_empty():
 			enemies_alive.append(path)
 	
@@ -38,7 +38,7 @@ func to_dict() -> Dictionary:
 
 func from_dict(dict: Dictionary) -> void:
 	for node in get_tree().get_nodes_in_group("enemies"):
-		var path: NodePath = get_path_to(node) as String
+		var path: String = get_path_to(node) as String
 		if not path.is_empty() and path not in dict.enemies_alive:
 			node.queue_free()
 

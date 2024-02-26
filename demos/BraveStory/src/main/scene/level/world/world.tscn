@@ -503,7 +503,7 @@ script = ExtResource("4_5vm26")
 direction = -1
 
 [node name="Player" parent="." instance=ExtResource("2_dwfcy")]
-position = Vector2(-85, 123)
+position = Vector2(-48, 176)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -15)
@@ -667,4 +667,7 @@ region_enabled = true
 region_rect = Rect2(210, 293, 124, 86)
 
 [node name="Boar" parent="." instance=ExtResource("6_6j8hw")]
-position = Vector2(-122, 142)
+position = Vector2(-120, 176)
+
+[node name="Boar2" parent="." instance=ExtResource("6_6j8hw")]
+position = Vector2(104, 144)

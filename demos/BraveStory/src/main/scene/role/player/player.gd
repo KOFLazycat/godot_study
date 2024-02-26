@@ -65,6 +65,11 @@ var pending_damage: Damage
 var fall_from_y: float
 var interracting_with: Array[Interactable]
 
+func _ready() -> void:
+	## 解决在初始化时角色状态由IDLE转换成FALL的问题
+	stand(default_gravity, 0.01)
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		jump_request_timer.start()

@@ -16,7 +16,7 @@ func _ready() -> void:
 	stats.energy_changed.connect(on_energy_changed)
 	## 第一次同步血条时不播放画
 	update_health(true)
-	update_energy()
+	update_energy(true)
 
 
 func update_health(skip_anim: bool = false) -> void:
@@ -30,12 +30,15 @@ func update_health(skip_anim: bool = false) -> void:
 		tween.tween_property(eased_health_bar, "value", percentage, 0.5).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
 
 
-func update_energy() -> void:
+func update_energy(skip_anim: bool = false) -> void:
 	var percentage: float = stats.energy / stats.max_energy
 	energy_bar.value = percentage
 	
-	var tween: Tween = create_tween()
-	tween.tween_property(eased_energy_bar, "value", percentage, 0.5).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
+	if skip_anim:
+		eased_energy_bar.value = percentage
+	else:
+		var tween: Tween = create_tween()
+		tween.tween_property(eased_energy_bar, "value", percentage, 0.5).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
 
 
 func on_health_changed() -> void:

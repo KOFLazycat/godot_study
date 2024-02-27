@@ -1,0 +1,29 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://b4wnlu2uiwsfv"]
+
+[ext_resource type="FontFile" uid="uid://r1k7ox3s55t" path="res://src/main/assets/fonts/SmileySans-Oblique.otf" id="1_l6qdr"]
+[ext_resource type="Texture2D" uid="uid://djb38kctobtit" path="res://src/main/assets/textures/Legacy-Fantasy/HUD/Base-01.png" id="1_vpsje"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_31kpv"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cmd4y"]
+texture = ExtResource("1_vpsje")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+region_rect = Rect2(94, 14, 20, 20)
+
+[resource]
+default_font = ExtResource("1_l6qdr")
+Button/colors/font_outline_color = Color(0, 0, 0, 0.67451)
+Button/colors/font_pressed_color = Color(1, 1, 1, 0.709804)
+Button/constants/outline_size = 6
+Button/styles/disabled = SubResource("StyleBoxEmpty_31kpv")
+Button/styles/focus = SubResource("StyleBoxTexture_cmd4y")
+Button/styles/hover = SubResource("StyleBoxEmpty_31kpv")
+Button/styles/normal = SubResource("StyleBoxEmpty_31kpv")
+Button/styles/pressed = SubResource("StyleBoxEmpty_31kpv")

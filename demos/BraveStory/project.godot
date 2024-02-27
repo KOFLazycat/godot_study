@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="BraveStory"
-run/main_scene="res://src/main/scene/level/world/world.tscn"
+run/main_scene="res://src/main/scene/ui/title_screen.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 

@@ -1,61 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://bn2d7jxy6vc7s"]
+[gd_scene load_steps=7 format=3 uid="uid://bn2d7jxy6vc7s"]
 
 [ext_resource type="Theme" uid="uid://b4wnlu2uiwsfv" path="res://src/main/assets/resources/main_theme.tres" id="1_1vvnv"]
 [ext_resource type="FontFile" uid="uid://r1k7ox3s55t" path="res://src/main/assets/fonts/SmileySans-Oblique.otf" id="1_wq3nk"]
 [ext_resource type="Script" path="res://src/main/scene/ui/title_screen.gd" id="2_858a7"]
-[ext_resource type="Texture2D" uid="uid://dno8tldsee8f6" path="res://src/main/assets/textures/Legacy-Fantasy/Background/Background.png" id="4_e34ch"]
-[ext_resource type="Texture2D" uid="uid://csp5m7tba0lvq" path="res://src/main/assets/textures/Legacy-Fantasy/Trees/Background.png" id="5_h6784"]
-[ext_resource type="Texture2D" uid="uid://c3y53ttq03c1h" path="res://src/main/assets/textures/brave/blue/char_blue_1.png" id="5_xdyot"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ud78j"]
-atlas = ExtResource("5_xdyot")
-region = Rect2(0, 0, 56, 56)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ksce8"]
-atlas = ExtResource("5_xdyot")
-region = Rect2(56, 0, 56, 56)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nrbur"]
-atlas = ExtResource("5_xdyot")
-region = Rect2(112, 0, 56, 56)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f2lyc"]
-atlas = ExtResource("5_xdyot")
-region = Rect2(168, 0, 56, 56)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ai630"]
-atlas = ExtResource("5_xdyot")
-region = Rect2(224, 0, 56, 56)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bc6lj"]
-atlas = ExtResource("5_xdyot")
-region = Rect2(280, 0, 56, 56)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_lssmd"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ud78j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ksce8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nrbur")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f2lyc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ai630")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bc6lj")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}]
 
 [sub_resource type="Animation" id="Animation_ck43c"]
 resource_name = "enter"
@@ -128,97 +75,11 @@ grow_vertical = 2
 theme = ExtResource("1_1vvnv")
 script = ExtResource("2_858a7")
 
-[node name="Graphics" type="Node2D" parent="."]
-metadata/_edit_lock_ = true
-
-[node name="Decorations" type="Node2D" parent="Graphics"]
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="Background" type="ParallaxBackground" parent="Graphics/Decorations"]
-
-[node name="Sky" type="ParallaxLayer" parent="Graphics/Decorations/Background"]
-motion_scale = Vector2(0.3, 0.1)
-motion_mirroring = Vector2(480, 0)
-
-[node name="Background" type="Sprite2D" parent="Graphics/Decorations/Background/Sky"]
-position = Vector2(0, -30)
-texture = ExtResource("4_e34ch")
-centered = false
-
-[node name="Hills" type="ParallaxLayer" parent="Graphics/Decorations/Background"]
-motion_scale = Vector2(0.5, 0.2)
-motion_mirroring = Vector2(384, 0)
-
-[node name="Background" type="Sprite2D" parent="Graphics/Decorations/Background/Hills"]
-position = Vector2(0, 46)
-texture = ExtResource("5_h6784")
-centered = false
-region_enabled = true
-region_rect = Rect2(800, 0, 96, 256)
-
-[node name="Background2" type="Sprite2D" parent="Graphics/Decorations/Background/Hills"]
-position = Vector2(96, 46)
-texture = ExtResource("5_h6784")
-centered = false
-region_enabled = true
-region_rect = Rect2(800, 0, 96, 256)
-
-[node name="Background3" type="Sprite2D" parent="Graphics/Decorations/Background/Hills"]
-position = Vector2(192, 46)
-texture = ExtResource("5_h6784")
-centered = false
-region_enabled = true
-region_rect = Rect2(800, 0, 96, 256)
-
-[node name="Background4" type="Sprite2D" parent="Graphics/Decorations/Background/Hills"]
-position = Vector2(288, 46)
-texture = ExtResource("5_h6784")
-centered = false
-region_enabled = true
-region_rect = Rect2(800, 0, 96, 256)
-
-[node name="Trees" type="ParallaxLayer" parent="Graphics/Decorations/Background"]
-motion_scale = Vector2(0.7, 0.3)
-motion_mirroring = Vector2(384, 0)
-
-[node name="Background" type="Sprite2D" parent="Graphics/Decorations/Background/Trees"]
-position = Vector2(0, 80)
-texture = ExtResource("5_h6784")
-centered = false
-region_enabled = true
-region_rect = Rect2(112, 0, 96, 256)
-
-[node name="Background2" type="Sprite2D" parent="Graphics/Decorations/Background/Trees"]
-position = Vector2(96, 80)
-texture = ExtResource("5_h6784")
-centered = false
-region_enabled = true
-region_rect = Rect2(112, 0, 96, 256)
-
-[node name="Background3" type="Sprite2D" parent="Graphics/Decorations/Background/Trees"]
-position = Vector2(192, 80)
-texture = ExtResource("5_h6784")
-centered = false
-region_enabled = true
-region_rect = Rect2(112, 0, 96, 256)
-
-[node name="Background4" type="Sprite2D" parent="Graphics/Decorations/Background/Trees"]
-position = Vector2(288, 80)
-texture = ExtResource("5_h6784")
-centered = false
-region_enabled = true
-region_rect = Rect2(112, 0, 96, 256)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Graphics"]
-position = Vector2(78, 143)
-sprite_frames = SubResource("SpriteFrames_lssmd")
-autoplay = "default"
-
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
 offset_top = 16.0
 offset_right = 384.0
 offset_bottom = 72.0
@@ -238,16 +99,16 @@ vertical_alignment = 1
 
 [node name="VB" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 92.0
-offset_top = -26.0
-offset_right = 172.0
-offset_bottom = 81.0
-grow_horizontal = 2
+offset_left = 284.0
+offset_top = 82.0
+offset_right = 364.0
+offset_bottom = 189.0
+grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 7

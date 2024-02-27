@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://p66c1hgdvgbg"]
+[gd_scene load_steps=36 format=3 uid="uid://p66c1hgdvgbg"]
 
 [ext_resource type="Script" path="res://src/main/scene/role/player/player.gd" id="1_4qf4w"]
 [ext_resource type="Texture2D" uid="uid://c3y53ttq03c1h" path="res://src/main/assets/textures/brave/blue/char_blue_1.png" id="1_di5w7"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://src/main/common/util/hurtbox.gd" id="3_7qkwr"]
 [ext_resource type="Script" path="res://src/main/common/util/state_machine/state_machine.gd" id="3_oew4a"]
 [ext_resource type="Script" path="res://src/main/common/util/hitbox.gd" id="4_r52k8"]
+[ext_resource type="PackedScene" uid="uid://c32idnrhl8awh" path="res://src/main/scene/ui/game_over_screen.tscn" id="8_mcofh"]
 [ext_resource type="PackedScene" uid="uid://ct52x5m1aveht" path="res://src/main/scene/ui/status_pannel.tscn" id="8_of2m0"]
 [ext_resource type="Texture2D" uid="uid://fdrup3sk3puy" path="res://src/main/assets/textures/gdb-gamepad-2/gdb-keyboard-2.png" id="9_5m0xx"]
 
@@ -3495,6 +3496,8 @@ layer = 20
 [node name="StatusPannel" parent="CanvasLayer" instance=ExtResource("8_of2m0")]
 offset_right = -384.0
 offset_bottom = -216.0
+
+[node name="GameOverScreen" parent="CanvasLayer" instance=ExtResource("8_mcofh")]
 
 [node name="InteractionIcon" type="AnimatedSprite2D" parent="."]
 z_index = 1

@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://2qd18vls6qpq"]
+
+[ext_resource type="Script" path="res://src/main/scene/ui/game_end_screen.gd" id="1_5w0t8"]
+[ext_resource type="FontFile" uid="uid://r1k7ox3s55t" path="res://src/main/assets/fonts/SmileySans-Oblique.otf" id="1_kjssi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kud0i"]
+font = ExtResource("1_kjssi")
+font_size = 12
+
+[node name="GameEndScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5w0t8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "TTTSSSAAA"
+label_settings = SubResource("LabelSettings_kud0i")
+horizontal_alignment = 1
+vertical_alignment = 1

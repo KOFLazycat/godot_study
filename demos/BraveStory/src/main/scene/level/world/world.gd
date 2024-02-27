@@ -4,9 +4,13 @@ extends Node2D
 @onready var tile_map: TileMap = $TileMap
 @onready var camera_2d: Camera2D = $Player/Camera2D
 @onready var player: Player = $Player
+@onready var boar: CharacterBody2D = $Boar
+@onready var boar_2: CharacterBody2D = $Boar2
 
 
 func _ready() -> void:
+	# 野猪死亡 马上通关
+	boar.died.connect(on_boar_died)
 	var used := tile_map.get_used_rect().grow(-1)
 	var tile_size := tile_map.tile_set.tile_size
 	
@@ -49,4 +53,10 @@ func from_dict(dict: Dictionary) -> void:
 		if not path.is_empty() and path not in dict.enemies_alive:
 			node.queue_free()
 
+
+func on_boar_died() -> void:
+	await get_tree().create_timer(1).timeout
+	Game.change_scene("res://src/main/scene/ui/game_end_screen.tscn", {
+		"duration": 1,
+	})
 

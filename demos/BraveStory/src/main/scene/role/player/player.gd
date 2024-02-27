@@ -21,6 +21,7 @@ extends CharacterBody2D
 @onready var invincible_timer: Timer = $InvincibleTimer
 @onready var slide_request_timer: Timer = $SlideRequestTimer
 @onready var interaction_icon: AnimatedSprite2D = $InteractionIcon
+@onready var game_over_screen: Control = $CanvasLayer/GameOverScreen
 
 enum Direction {
 	LEFT = -1,
@@ -149,7 +150,7 @@ func slide(delta: float) -> void:
 
 
 func die() -> void:
-	get_tree().reload_current_scene()
+	game_over_screen.show_game_over()
 
 
 ## 注册交互对象

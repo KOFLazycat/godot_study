@@ -17,13 +17,14 @@ func _ready() -> void:
 
 
 func change_scene(path: String, params: Dictionary = {}) -> void:
+	var duration: float = params.get("duration", 0.2)
 	var tree: SceneTree = get_tree()
 	## 转场之前暂停游戏
 	tree.paused = true
 	
 	var tween: Tween = create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-	tween.tween_property(color_rect, "color:a", 1, 0.2).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
+	tween.tween_property(color_rect, "color:a", 1, duration).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
 	await tween.finished
 	
 	if tree.current_scene is World:
@@ -53,7 +54,8 @@ func change_scene(path: String, params: Dictionary = {}) -> void:
 	## 转场之后恢复游戏
 	tree.paused = false
 	tween = create_tween()
-	tween.tween_property(color_rect, "color:a", 0, 0.2).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	tween.tween_property(color_rect, "color:a", 0, duration).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
 	await tween.finished
 
 
@@ -107,6 +109,7 @@ func load_game() -> void:
 
 func new_game() -> void:
 	change_scene("res://src/main/scene/level/world/world.tscn", {
+		"duration": 1,
 		"init": func():
 			world_stats = {}
 			player_stats.from_dict(default_player_stats)
@@ -114,7 +117,9 @@ func new_game() -> void:
 
 
 func back_to_title() -> void:
-	change_scene("res://src/main/scene/ui/title_screen.tscn")
+	change_scene("res://src/main/scene/ui/title_screen.tscn", {
+		"duration": 1,
+	})
 
 
 func has_save() -> bool:

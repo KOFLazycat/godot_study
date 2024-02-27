@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d24hyev0gavnb"]
+[gd_scene load_steps=12 format=3 uid="uid://d24hyev0gavnb"]
 
 [ext_resource type="Script" path="res://src/main/scene/level/world/world.gd" id="1_d3foi"]
 [ext_resource type="Texture2D" uid="uid://b60d5guy6mx63" path="res://src/main/assets/textures/Legacy-Fantasy/Assets/Tree-Assets.png" id="1_jgirr"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://csp5m7tba0lvq" path="res://src/main/assets/textures/Legacy-Fantasy/Trees/Background.png" id="5_5fjip"]
 [ext_resource type="PackedScene" uid="uid://1bsojv820rsf" path="res://src/main/scene/role/enemy/boar.tscn" id="6_6j8hw"]
 [ext_resource type="PackedScene" uid="uid://cq6w3ac0tlyio" path="res://src/main/scene/level/mine_gate.tscn" id="7_nyr2g"]
+[ext_resource type="PackedScene" uid="uid://dwuoano0dq58x" path="res://src/main/scene/role/save/save_stone.tscn" id="9_3v01t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6w4ls"]
 texture = ExtResource("1_jgirr")
@@ -502,6 +503,10 @@ position = Vector2(320, -14)
 script = ExtResource("4_5vm26")
 direction = -1
 
+[node name="SaveStone" parent="TileMap" instance=ExtResource("9_3v01t")]
+position = Vector2(128, -80)
+scale = Vector2(0.5, 0.5)
+
 [node name="Player" parent="." instance=ExtResource("2_dwfcy")]
 position = Vector2(-48, 176)
 
@@ -671,3 +676,6 @@ position = Vector2(-120, 176)
 
 [node name="Boar2" parent="." instance=ExtResource("6_6j8hw")]
 position = Vector2(104, 144)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.454524, 0.454524, 0.454524, 1)

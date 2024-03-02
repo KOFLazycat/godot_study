@@ -18,6 +18,9 @@ func _ready() -> void:
 	new_game.pressed.connect(on_new_game_pressed)
 	load_game.pressed.connect(on_load_game_pressed)
 	exit_game.pressed.connect(on_exit_game_pressed)
+	
+	SoundManager.setup_ui_sounds(self)
+	SoundManager.play_bgm(preload("res://src/main/assets/sounds/02 1 titles LOOP.mp3"))
 
 
 func on_new_game_pressed() -> void:

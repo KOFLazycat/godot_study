@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/27 14 BOSS fixing LOOP.mp3-12288a667f78e2077a
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

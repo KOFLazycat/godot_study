@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://d24hyev0gavnb"]
+[gd_scene load_steps=13 format=3 uid="uid://d24hyev0gavnb"]
 
 [ext_resource type="Script" path="res://src/main/scene/level/world/world.gd" id="1_d3foi"]
 [ext_resource type="Texture2D" uid="uid://b60d5guy6mx63" path="res://src/main/assets/textures/Legacy-Fantasy/Assets/Tree-Assets.png" id="1_jgirr"]
 [ext_resource type="PackedScene" uid="uid://p66c1hgdvgbg" path="res://src/main/scene/role/player/player.tscn" id="2_dwfcy"]
+[ext_resource type="AudioStream" uid="uid://cplykywdihq8y" path="res://src/main/assets/sounds/27 14 BOSS fixing LOOP.mp3" id="2_kadfv"]
 [ext_resource type="Script" path="res://src/main/common/util/entry_point.gd" id="4_5vm26"]
 [ext_resource type="Texture2D" uid="uid://dno8tldsee8f6" path="res://src/main/assets/textures/Legacy-Fantasy/Background/Background.png" id="4_gi8fr"]
 [ext_resource type="Texture2D" uid="uid://csp5m7tba0lvq" path="res://src/main/assets/textures/Legacy-Fantasy/Trees/Background.png" id="5_5fjip"]
@@ -472,6 +473,7 @@ sources/0 = SubResource("TileSetAtlasSource_6w4ls")
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_d3foi")
+bgm = ExtResource("2_kadfv")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_qb3k5")

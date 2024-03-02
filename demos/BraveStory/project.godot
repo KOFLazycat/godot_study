@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Game="*res://src/main/common/global/game.tscn"
 Vignette="res://src/main/common/global/vignette.tscn"
+SoundManager="*res://src/main/common/global/sound_manager.tscn"
 
 [display]
 

@@ -4,6 +4,33 @@
 [ext_resource type="FontFile" uid="uid://r1k7ox3s55t" path="res://src/main/assets/fonts/SmileySans-Oblique.otf" id="1_wq3nk"]
 [ext_resource type="Script" path="res://src/main/scene/ui/title_screen.gd" id="2_858a7"]
 
+[sub_resource type="Animation" id="Animation_jnmsl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VB:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(284, 82)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 16)]
+}
+
 [sub_resource type="Animation" id="Animation_ck43c"]
 resource_name = "enter"
 length = 0.5
@@ -32,33 +59,6 @@ tracks/1/keys = {
 "values": [Vector2(0, -86), Vector2(0, 16)]
 }
 
-[sub_resource type="Animation" id="Animation_jnmsl"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VB:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(284, 82)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Label:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 16)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wwss7"]
 _data = {
 "RESET": SubResource("Animation_jnmsl"),
@@ -76,14 +76,10 @@ theme = ExtResource("1_1vvnv")
 script = ExtResource("2_858a7")
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
+layout_mode = 0
 offset_top = 16.0
-offset_right = 384.0
+offset_right = 148.0
 offset_bottom = 72.0
-grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0.811765, 0.572549, 0.0745098, 1)
@@ -98,18 +94,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="VB" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
+layout_mode = 0
 offset_left = 284.0
 offset_top = 82.0
 offset_right = 364.0
-offset_bottom = 189.0
-grow_horizontal = 0
-grow_vertical = 2
+offset_bottom = 186.0
 size_flags_horizontal = 4
 theme_override_constants/separation = 7
 

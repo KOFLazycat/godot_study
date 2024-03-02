@@ -16,6 +16,7 @@ var tween: Tween
 
 func _ready() -> void:
 	show_line(current_line)
+	SoundManager.play_bgm(preload("res://src/main/assets/sounds/29 15 game over LOOP.mp3"))
 
 
 func _input(event: InputEvent) -> void:

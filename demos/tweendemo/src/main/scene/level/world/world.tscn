@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5p8rhbnyte2t"]
+
+[ext_resource type="PackedScene" uid="uid://cff3e8gfwc2cc" path="res://src/main/scene/role/player/player.tscn" id="1_5wfpc"]
+[ext_resource type="PackedScene" uid="uid://l8jwdwfukicr" path="res://src/main/scene/role/laser/laser.tscn" id="2_w1p1s"]
+
+[node name="World" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_5wfpc")]
+position = Vector2(1002, 364)
+
+[node name="Laser" parent="." instance=ExtResource("2_w1p1s")]

@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbd2xnyrm2bsx"]
+
+[ext_resource type="Script" path="res://src/main/scene/ui/blood/blood.gd" id="1_kiypy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x86pq"]
+bg_color = Color(0.342834, 0.862802, 0.400495, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_emw67"]
+bg_color = Color(0.784896, 0.0425939, 0.139707, 0.654902)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjedl"]
+bg_color = Color(0.989227, 0.199292, 0.177218, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[node name="Blood" type="ProgressBar"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_x86pq")
+max_value = 1.0
+value = 0.5
+show_percentage = false
+script = ExtResource("1_kiypy")
+
+[node name="BloodUnder" type="ProgressBar" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_emw67")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bjedl")
+max_value = 1.0
+value = 0.5
+show_percentage = false

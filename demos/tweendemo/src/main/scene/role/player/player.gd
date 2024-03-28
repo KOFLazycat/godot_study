@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("hit"):
 		hit(Vector2(200, 0))
-		health -= 0.4
+		health -= 0.1
 		blood.set_health(health)
 
 

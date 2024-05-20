@@ -140,20 +140,6 @@ color = Color(1.77, 0.59, 0, 1)
 hue_variation_min = -2.23517e-08
 hue_variation_max = 0.08
 
-[sub_resource type="Animation" id="Animation_u7jva"]
-resource_name = "move"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SRT:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.1, -35.3483, -63.8577, -0.25, 0, 0.25, 0, 0, -0.1, -37.7422, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5, 1)
-}
-
 [sub_resource type="Animation" id="Animation_kte5f"]
 length = 0.001
 tracks/0/type = "bezier"
@@ -166,6 +152,20 @@ tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_u7jva"]
+resource_name = "move"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SRT:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.1, -35.3483, -63.8577, -0.25, 0, 0.25, 0, 0, -0.1, -37.7422, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_73kkm"]

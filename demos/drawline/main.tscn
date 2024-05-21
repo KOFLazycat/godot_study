@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://tbtgjdcudak1"]
+
+[ext_resource type="PackedScene" uid="uid://db11qhwkuujkg" path="res://draw_line_a2b.tscn" id="1_fayvs"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Path2D" parent="." instance=ExtResource("1_fayvs")]
+position = Vector2(300, 300)

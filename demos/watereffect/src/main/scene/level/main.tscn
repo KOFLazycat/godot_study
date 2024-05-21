@@ -8,4 +8,4 @@ script = ExtResource("1_sk6qg")
 
 [node name="WaterBody" parent="." instance=ExtResource("1_g7gws")]
 position = Vector2(228, 356)
-spring_number = 20
+spring_number = 10

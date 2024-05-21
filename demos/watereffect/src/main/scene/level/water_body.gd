@@ -17,9 +17,11 @@ extends Node2D
 
 
 @onready var water_spring: PackedScene = preload("res://src/main/scene/level/water_spring.tscn")
+@onready var water_particles: PackedScene = preload("res://src/main/scene/level/water_particles.tscn")
 @onready var water_polygon: Polygon2D = $WaterPolygon
 @onready var water_border: SmoothPath = $WaterBorder
-@onready var timer: Timer = $Timer
+@onready var water_area: Area2D = $WaterArea
+@onready var collision_shape_2d: CollisionShape2D = $WaterArea/CollisionShape2D
 
 var springs: Array = []
 var passes: int = 8
@@ -32,13 +34,21 @@ func _ready() -> void:
 		var x_position: float = distance_between_springs * i
 		var w: Node2D = water_spring.instantiate()
 		add_child(w)
-		w.initialize(x_position)
 		springs.append(w)
+		w.initialize(x_position, i)
+		w.set_collision_width(distance_between_springs)
+		w.splash.connect(splash)
 	
 	water_border.width = border_thickness
 	bottom = target_height + depth
 	
-	timer.timeout.connect(on_timer_timeout)
+	var total_length: float = distance_between_springs * (spring_number - 1)
+	var rectangle: RectangleShape2D = RectangleShape2D.new().duplicate()
+	var rect_position: Vector2 = Vector2(total_length / 2, depth / 2)
+	water_area.position = rect_position
+	rectangle.size = rect_position * 2
+	collision_shape_2d.shape = rectangle
+	water_area.body_entered.connect(on_water_area_body_entered)
 
 
 func _physics_process(delta: float) -> void:
@@ -98,11 +108,9 @@ func new_border() -> void:
 	water_border.update()
 
 
-func on_timer_timeout() -> void:
-	splash(randi_range(1, 20), randi_range(3, 8))
-
-
-
-
+func on_water_area_body_entered(body: Node2D) -> void:
+	var p = water_particles.instantiate()
+	add_child(p)
+	p.global_position = body.global_position
 
 

@@ -29,8 +29,13 @@ func _get_spline(i):
 
 func _get_point(i):
 	var point_count = curve.get_point_count()
-	i = wrapi(i, 0, point_count - 1)
-	return curve.get_point_position(i)
+	i = wrapi(i, 0, point_count )
+	if i >1 and i < point_count-1:
+		return curve.get_point_position(i)
+	elif i <= 1:
+		return Vector2(curve.get_point_position(1).x - spline_length,curve.get_point_position(1).y)
+	elif i >= point_count-1:
+		return Vector2(curve.get_point_position(point_count-1).x + spline_length,curve.get_point_position(point_count-1).y)
 
 func _draw():
 	var points = curve.get_baked_points()

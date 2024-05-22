@@ -50,6 +50,7 @@ emission_box_extents = Vector3(700, 1, 1)
 gravity = Vector3(-200, 980, 0)
 scale_min = 0.2
 scale_max = 2.0
+color = Color(0.756863, 1, 1, 1)
 
 [node name="Main" type="Node2D"]
 

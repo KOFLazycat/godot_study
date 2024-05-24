@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvrd7yyiivxbf"]
+
+[ext_resource type="Texture2D" uid="uid://blt5shl0j7so0" path="res://icon.svg" id="1_141e3"]
+[ext_resource type="Script" path="res://player.gd" id="1_nwa32"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3htad"]
+size = Vector2(143.5, 742)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_04wii"]
+size = Vector2(124, 760.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3ggc"]
+size = Vector2(1258, 115.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vxvcl"]
+size = Vector2(125, 126)
+
+[node name="BrickWorld" type="Node2D"]
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Left" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Left"]
+position = Vector2(23.25, 321)
+shape = SubResource("RectangleShape2D_3htad")
+
+[node name="Right" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Right"]
+position = Vector2(1132, 309.75)
+shape = SubResource("RectangleShape2D_04wii")
+
+[node name="Down" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Down"]
+position = Vector2(577, 646.75)
+shape = SubResource("RectangleShape2D_e3ggc")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(584, 523)
+script = ExtResource("1_nwa32")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("1_141e3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_vxvcl")

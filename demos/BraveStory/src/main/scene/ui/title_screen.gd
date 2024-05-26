@@ -12,9 +12,6 @@ func _ready() -> void:
 	load_game.disabled = not Game.has_save()
 	new_game.grab_focus()
 	
-	for button: Button in vb.get_children():
-		button.mouse_entered.connect(button.grab_focus)
-	
 	new_game.pressed.connect(on_new_game_pressed)
 	load_game.pressed.connect(on_load_game_pressed)
 	exit_game.pressed.connect(on_exit_game_pressed)

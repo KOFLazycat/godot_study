@@ -22,6 +22,7 @@ extends CharacterBody2D
 @onready var slide_request_timer: Timer = $SlideRequestTimer
 @onready var interaction_icon: AnimatedSprite2D = $InteractionIcon
 @onready var game_over_screen: Control = $CanvasLayer/GameOverScreen
+@onready var pause_screen: Control = $CanvasLayer/PauseScreen
 
 enum Direction {
 	LEFT = -1,
@@ -83,6 +84,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("slide"):
 		slide_request_timer.start()
+	
+	if event.is_action_pressed("pause"):
+		pause_screen.show_pause()
 	
 	if event.is_action_pressed("interact") and not interracting_with.is_empty():
 		interracting_with.back().interact()
@@ -305,6 +309,10 @@ func transition_state(from: State, to: State) -> void:
 			is_combo_requested = false
 		State.HURT:
 			animation_player.play("hurt")
+			
+			# 手柄震动
+			Input.start_joy_vibration(0, 0, 0.8, 0.5)
+			
 			stats.health -= pending_damage.amount
 			var dir: Vector2 = pending_damage.source.global_position.direction_to(global_position)
 			velocity = dir * KNOCKBACK_AMOUNT

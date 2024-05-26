@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://p66c1hgdvgbg"]
+[gd_scene load_steps=40 format=3 uid="uid://p66c1hgdvgbg"]
 
 [ext_resource type="Script" path="res://src/main/scene/role/player/player.gd" id="1_4qf4w"]
 [ext_resource type="Texture2D" uid="uid://c3y53ttq03c1h" path="res://src/main/assets/textures/brave/blue/char_blue_1.png" id="1_di5w7"]
@@ -8,7 +8,9 @@
 [ext_resource type="Script" path="res://src/main/common/util/hitbox.gd" id="4_r52k8"]
 [ext_resource type="PackedScene" uid="uid://c32idnrhl8awh" path="res://src/main/scene/ui/game_over_screen.tscn" id="8_mcofh"]
 [ext_resource type="PackedScene" uid="uid://ct52x5m1aveht" path="res://src/main/scene/ui/status_pannel.tscn" id="8_of2m0"]
+[ext_resource type="PackedScene" uid="uid://yu2wv8qs34pp" path="res://src/main/scene/ui/pause_screen.tscn" id="9_5er8w"]
 [ext_resource type="Texture2D" uid="uid://fdrup3sk3puy" path="res://src/main/assets/textures/gdb-gamepad-2/gdb-keyboard-2.png" id="9_5m0xx"]
+[ext_resource type="Script" path="res://src/main/scene/role/player/interaction_icon.gd" id="11_uk5jj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dfw3r"]
 size = Vector2(10, 20)
@@ -3384,6 +3386,14 @@ region = Rect2(96, 272, 16, 16)
 atlas = ExtResource("9_5m0xx")
 region = Rect2(96, 384, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5iq1"]
+atlas = ExtResource("9_5m0xx")
+region = Rect2(128, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jqmk"]
+atlas = ExtResource("9_5m0xx")
+region = Rect2(128, 192, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_ygy8k"]
 animations = [{
 "frames": [{
@@ -3400,7 +3410,24 @@ animations = [{
 "texture": SubResource("AtlasTexture_rr72l")
 }],
 "loop": true,
-"name": &"default",
+"name": &"keyboard",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5iq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jqmk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jqmk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5iq1")
+}],
+"loop": true,
+"name": &"nintendo",
 "speed": 6.0
 }]
 
@@ -3499,12 +3526,15 @@ offset_bottom = -216.0
 
 [node name="GameOverScreen" parent="CanvasLayer" instance=ExtResource("8_mcofh")]
 
+[node name="PauseScreen" parent="CanvasLayer" instance=ExtResource("9_5er8w")]
+
 [node name="InteractionIcon" type="AnimatedSprite2D" parent="."]
 z_index = 1
 position = Vector2(0, -40)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_ygy8k")
-autoplay = "default"
-frame_progress = 0.919265
+animation = &"nintendo"
+frame_progress = 0.741788
+script = ExtResource("11_uk5jj")
 
 [connection signal="hurt" from="Graphics/Hurtbox" to="." method="_on_hurtbox_hurt"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtsuaejai510l"]
+
+[ext_resource type="Script" path="res://spring.gd" id="1_4migl"]
+[ext_resource type="Texture2D" uid="uid://bq2wa78e7vwgo" path="res://icon.svg" id="2_gppn0"]
+
+[node name="Spring" type="Node2D"]
+script = ExtResource("1_4migl")
+
+[node name="Sprite2D_TanHuang" type="Sprite2D" parent="."]
+position = Vector2(256, 243)
+texture = ExtResource("2_gppn0")
+
+[node name="Sprite2D_TanHuang2" type="Sprite2D" parent="."]
+self_modulate = Color(0.686275, 0.647059, 1, 1)
+position = Vector2(525, 480)
+texture = ExtResource("2_gppn0")

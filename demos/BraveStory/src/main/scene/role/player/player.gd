@@ -23,6 +23,7 @@ extends CharacterBody2D
 @onready var interaction_icon: AnimatedSprite2D = $InteractionIcon
 @onready var game_over_screen: Control = $CanvasLayer/GameOverScreen
 @onready var pause_screen: Control = $CanvasLayer/PauseScreen
+@onready var hitbox: Hitbox = $Graphics/Hitbox
 
 enum Direction {
 	LEFT = -1,
@@ -68,6 +69,7 @@ var fall_from_y: float
 var interracting_with: Array[Interactable]
 
 func _ready() -> void:
+	hitbox.hit.connect(on_hitbox_hit)
 	## 解决在初始化时角色状态由IDLE转换成FALL的问题
 	stand(default_gravity, 0.01)
 
@@ -313,6 +315,9 @@ func transition_state(from: State, to: State) -> void:
 			# 手柄震动
 			Input.start_joy_vibration(0, 0, 0.8, 0.5)
 			
+			# 屏幕震动
+			Game.shake_camera(4)
+			
 			stats.health -= pending_damage.amount
 			var dir: Vector2 = pending_damage.source.global_position.direction_to(global_position)
 			velocity = dir * KNOCKBACK_AMOUNT
@@ -341,3 +346,15 @@ func _on_hurtbox_hurt(hitbox: Hitbox) -> void:
 	pending_damage = Damage.new()
 	pending_damage.amount = 1
 	pending_damage.source = hitbox.owner
+
+
+func on_hitbox_hit(hurtbox: Hurtbox) -> void:
+	Game.shake_camera(2)
+	
+	# 增加顿帧
+	Engine.time_scale = 0.01
+	# 注意第四个参数
+	await get_tree().create_timer(0.1, true, false, true).timeout
+	# 恢复
+	Engine.time_scale = 1
+

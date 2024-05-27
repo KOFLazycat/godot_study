@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d24hyev0gavnb"]
+[gd_scene load_steps=14 format=3 uid="uid://d24hyev0gavnb"]
 
 [ext_resource type="Script" path="res://src/main/scene/level/world/world.gd" id="1_d3foi"]
 [ext_resource type="Texture2D" uid="uid://b60d5guy6mx63" path="res://src/main/assets/textures/Legacy-Fantasy/Assets/Tree-Assets.png" id="1_jgirr"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://csp5m7tba0lvq" path="res://src/main/assets/textures/Legacy-Fantasy/Trees/Background.png" id="5_5fjip"]
 [ext_resource type="PackedScene" uid="uid://1bsojv820rsf" path="res://src/main/scene/role/enemy/boar.tscn" id="6_6j8hw"]
 [ext_resource type="PackedScene" uid="uid://cq6w3ac0tlyio" path="res://src/main/scene/level/mine_gate.tscn" id="7_nyr2g"]
+[ext_resource type="Script" path="res://src/main/scene/level/world/camera_2d.gd" id="8_vxhof"]
 [ext_resource type="PackedScene" uid="uid://dwuoano0dq58x" path="res://src/main/scene/role/save/save_stone.tscn" id="9_3v01t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6w4ls"]
@@ -402,10 +403,12 @@ position = Vector2(-48, 176)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -15)
+process_callback = 0
 limit_smoothed = true
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+script = ExtResource("8_vxhof")
 
 [node name="Decorations" type="Node2D" parent="."]
 metadata/_edit_group_ = true

@@ -12,6 +12,8 @@ const CONFIG_PATH : String = "user://config.ini"
 # }
 var world_stats: Dictionary = {}
 
+signal camera_should_shake(amount: float)
+
 
 func _ready() -> void:
 	color_rect.color.a = 0
@@ -144,7 +146,8 @@ func load_config() -> void:
 	SoundManager.set_volume(SoundManager.Bus.BGM, config.get_value("audio", "bgm", 1.0))
 	
 
-
+func shake_camera(amount: float) -> void:
+	camera_should_shake.emit(amount)
 
 
 

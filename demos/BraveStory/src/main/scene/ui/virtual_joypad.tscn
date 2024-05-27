@@ -1,0 +1,123 @@
+[gd_scene load_steps=14 format=3 uid="uid://cb45i6quf7jmd"]
+
+[ext_resource type="Texture2D" uid="uid://djb38kctobtit" path="res://src/main/assets/textures/Legacy-Fantasy/HUD/Base-01.png" id="1_nunlw"]
+[ext_resource type="Script" path="res://src/main/scene/ui/knob.gd" id="2_4hknd"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1g04e"]
+load_path = "res://.godot/imported/Base-01.png-bd550dcb12eda9a0edbeab5f5936f5e3.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pidk6"]
+atlas = SubResource("CompressedTexture2D_1g04e")
+region = Rect2(140, 252, 24, 24)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lr3tf"]
+load_path = "res://.godot/imported/Base-01.png-bd550dcb12eda9a0edbeab5f5936f5e3.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wm3s6"]
+atlas = SubResource("CompressedTexture2D_lr3tf")
+region = Rect2(140, 108, 24, 24)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oh105"]
+load_path = "res://.godot/imported/Base-01.png-bd550dcb12eda9a0edbeab5f5936f5e3.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e45c5"]
+atlas = SubResource("CompressedTexture2D_oh105")
+region = Rect2(140, 156, 24, 24)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tb0fw"]
+load_path = "res://.godot/imported/Base-01.png-bd550dcb12eda9a0edbeab5f5936f5e3.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3tua"]
+atlas = SubResource("CompressedTexture2D_tb0fw")
+region = Rect2(140, 60, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgt1b"]
+atlas = ExtResource("1_nunlw")
+region = Rect2(374, 6, 52, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpuys"]
+atlas = ExtResource("1_nunlw")
+region = Rect2(50, 210, 12, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lowo4"]
+
+[node name="VirtualJoypad" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Actions" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -54.0
+offset_top = -46.0
+offset_right = -54.0
+offset_bottom = -46.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Actions"]
+position = Vector2(-12, 6)
+texture_normal = SubResource("AtlasTexture_pidk6")
+action = "jump"
+visibility_mode = 1
+
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="Actions"]
+position = Vector2(-30, -12)
+texture_normal = SubResource("AtlasTexture_wm3s6")
+action = "attack"
+visibility_mode = 1
+
+[node name="TouchScreenButton3" type="TouchScreenButton" parent="Actions"]
+position = Vector2(-12, -30)
+texture_normal = SubResource("AtlasTexture_e45c5")
+action = "interact"
+visibility_mode = 1
+
+[node name="TouchScreenButton4" type="TouchScreenButton" parent="Actions"]
+position = Vector2(6, -12)
+texture_normal = SubResource("AtlasTexture_v3tua")
+action = "slide"
+visibility_mode = 1
+
+[node name="Stick" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = -46.0
+offset_right = 60.0
+offset_bottom = -46.0
+grow_vertical = 0
+
+[node name="Knob" type="TouchScreenButton" parent="Stick"]
+position = Vector2(-26, -26)
+texture_normal = SubResource("AtlasTexture_dgt1b")
+visibility_mode = 1
+script = ExtResource("2_4hknd")
+
+[node name="Pause" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_top = 27.0
+offset_right = -40.0
+offset_bottom = 27.0
+grow_horizontal = 0
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Pause"]
+position = Vector2(-6, -6)
+texture_normal = SubResource("AtlasTexture_lpuys")
+shape = SubResource("CircleShape2D_lowo4")
+action = "pause"
+visibility_mode = 1

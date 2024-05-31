@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw2dpeb4mukkx"]
+
+[ext_resource type="Script" path="res://src/main/common/global/load_save_system/load_save_system.gd" id="1_unlol"]
+
+[node name="LoadSaveSystem" type="Node"]
+script = ExtResource("1_unlol")

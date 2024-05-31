@@ -1,41 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dd75ksnr5yajn"]
+[gd_scene load_steps=4 format=3 uid="uid://dd75ksnr5yajn"]
 
 [ext_resource type="Script" path="res://src/main/scene/level/main.gd" id="1_wtnjk"]
+[ext_resource type="PackedScene" uid="uid://p71dw01qrd6g" path="res://src/main/scene/ui/test_audio.tscn" id="2_c63lt"]
+[ext_resource type="PackedScene" uid="uid://b4dlc4sd1d712" path="res://src/main/scene/ui/test_scene.tscn" id="3_bdl5u"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_wtnjk")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="TestAudio" parent="." instance=ExtResource("2_c63lt")]
+visible = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -220.0
-offset_top = -25.0
-offset_right = 220.0
-offset_bottom = 25.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 40
-
-[node name="Button" type="Button" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(120, 50)
-layout_mode = 2
-text = "音乐1"
-
-[node name="Button2" type="Button" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(120, 50)
-layout_mode = 2
-text = "音乐2"
-
-[node name="Button3" type="Button" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(120, 50)
-layout_mode = 2
-text = "音效"
-
-[connection signal="pressed" from="CanvasLayer/HBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="CanvasLayer/HBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[node name="TestScene" parent="." instance=ExtResource("3_bdl5u")]

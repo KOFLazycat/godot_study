@@ -1,0 +1,127 @@
+[gd_scene load_steps=10 format=3 uid="uid://e56832om3v05"]
+
+[ext_resource type="Script" path="res://src/main/common/global/scene_system/scene_system.gd" id="1_tgqt6"]
+[ext_resource type="PackedScene" uid="uid://p71dw01qrd6g" path="res://src/main/scene/ui/test_audio.tscn" id="2_lp6q8"]
+[ext_resource type="PackedScene" uid="uid://b4dlc4sd1d712" path="res://src/main/scene/ui/test_scene.tscn" id="3_8qkyv"]
+[ext_resource type="PackedScene" uid="uid://moix13pr35jw" path="res://src/main/scene/level/test_world.tscn" id="4_wqs4r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vco2x"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 1024
+corner_radius_top_right = 1024
+corner_radius_bottom_right = 1024
+corner_radius_bottom_left = 1024
+
+[sub_resource type="Animation" id="Animation_8lvje"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(576, 324)]
+}
+
+[sub_resource type="Animation" id="Animation_1wir0"]
+resource_name = "tran_in"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1998, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(1500, 1500)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1998, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(576, 324), Vector2(576, 324), Vector2(-174, -426)]
+}
+
+[sub_resource type="Animation" id="Animation_7f28h"]
+resource_name = "tran_out"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2331, 0.6993),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1500, 1500), Vector2(1500, 1500), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2331, 0.6993),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-174, -426), Vector2(-174, -426), Vector2(576, 324)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pi257"]
+_data = {
+"RESET": SubResource("Animation_8lvje"),
+"tran_in": SubResource("Animation_1wir0"),
+"tran_out": SubResource("Animation_7f28h")
+}
+
+[node name="SceneSystem" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_tgqt6")
+scenes = Array[PackedScene]([ExtResource("2_lp6q8"), ExtResource("3_8qkyv"), ExtResource("4_wqs4r")])
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 576.0
+offset_top = 324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vco2x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pi257")
+}

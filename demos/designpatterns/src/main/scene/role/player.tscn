@@ -1,0 +1,34 @@
+[gd_scene load_steps=8 format=3 uid="uid://deakcmd8chxlv"]
+
+[ext_resource type="Texture2D" uid="uid://d0jhyd8l7uyfq" path="res://icon.svg" id="1_4xgrf"]
+[ext_resource type="Script" path="res://src/main/scene/role/player.gd" id="1_x4vcc"]
+[ext_resource type="Script" path="res://src/main/common/state_machine/state_machine.gd" id="3_bc5fq"]
+[ext_resource type="Script" path="res://src/main/common/state_machine/player_state/idle.gd" id="4_jwgno"]
+[ext_resource type="Script" path="res://src/main/common/state_machine/player_state/move.gd" id="5_64d21"]
+[ext_resource type="Script" path="res://src/main/common/state_machine/player_state/sprint.gd" id="6_7o641"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qdyle"]
+size = Vector2(126, 126)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+position = Vector2(420, 260)
+script = ExtResource("1_x4vcc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4xgrf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qdyle")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("init_state")]
+script = ExtResource("3_bc5fq")
+init_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_jwgno")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource("5_64d21")
+
+[node name="Sprint" type="Node" parent="StateMachine"]
+script = ExtResource("6_7o641")

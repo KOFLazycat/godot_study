@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://bgyu1o0a0eriw"]
+
+[ext_resource type="Script" path="res://src/main/scene/role/enemy.gd" id="1_klmhl"]
+[ext_resource type="Texture2D" uid="uid://d0jhyd8l7uyfq" path="res://icon.svg" id="2_hvwc7"]
+[ext_resource type="Script" path="res://src/main/common/state_machine/state_machine.gd" id="3_k6dpb"]
+[ext_resource type="Script" path="res://src/main/common/state_machine/enemy_state/idle.gd" id="4_ggcta"]
+[ext_resource type="Script" path="res://src/main/common/state_machine/enemy_state/roam.gd" id="5_g5ruc"]
+[ext_resource type="Script" path="res://src/main/common/state_machine/enemy_state/follow.gd" id="6_4eptd"]
+[ext_resource type="Script" path="res://src/main/common/state_machine/enemy_state/attack.gd" id="7_mgbko"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwir2"]
+size = Vector2(126, 126)
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_klmhl")
+min_speed = 80.0
+max_speed = 150.0
+min_idel_and_roam_time = 1.0
+max_idel_and_roam_time = 3.0
+max_attack_time = 1.0
+follow_distance = 300.0
+exit_follow_distance = 600.0
+attack_distance = 200.0
+exit_attack_distance = 250.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.789946, 0.490823, 0.977995, 1)
+texture = ExtResource("2_hvwc7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qwir2")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("init_state")]
+script = ExtResource("3_k6dpb")
+init_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_ggcta")
+
+[node name="Roam" type="Node" parent="StateMachine"]
+script = ExtResource("5_g5ruc")
+
+[node name="Follow" type="Node" parent="StateMachine"]
+script = ExtResource("6_4eptd")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("7_mgbko")

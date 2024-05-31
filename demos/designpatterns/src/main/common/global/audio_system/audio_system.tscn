@@ -1,0 +1,16 @@
+[gd_scene load_steps=6 format=3 uid="uid://crmtx8g08367w"]
+
+[ext_resource type="Script" path="res://audio_system.gd" id="1_ojevr"]
+[ext_resource type="AudioStream" uid="uid://c4gcyto4wr1tv" path="res://src/main/assets/sounds/bgm/02 1 titles LOOP.mp3" id="2_ivgyu"]
+[ext_resource type="AudioStream" uid="uid://dhmh2qex20l6j" path="res://src/main/assets/sounds/sfx/Gold1.wav" id="3_af5yc"]
+[ext_resource type="AudioStream" uid="uid://c28ye8hh6smu4" path="res://src/main/assets/sounds/sfx/Gold2.wav" id="4_fofy8"]
+[ext_resource type="AudioStream" uid="uid://bm2el0yk0hi1u" path="res://src/main/assets/sounds/sfx/Gold3.wav" id="5_f0sbo"]
+
+[node name="AudioSystem" type="Node"]
+script = ExtResource("1_ojevr")
+musics = Array[AudioStreamMP3]([ExtResource("2_ivgyu")])
+sfxs = Array[AudioStreamWAV]([ExtResource("3_af5yc"), ExtResource("4_fofy8"), ExtResource("5_f0sbo")])
+
+[node name="BGMAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="SFXAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

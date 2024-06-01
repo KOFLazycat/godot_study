@@ -35,6 +35,7 @@ layout_mode = 2
 text = "保存游戏"
 
 [node name="PlayerHealthBar" type="ProgressBar" parent="TestUI"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(240, 30)
 anchors_preset = 5
 anchor_left = 0.5

@@ -46,7 +46,6 @@ shape = SubResource("CircleShape2D_ju5h8")
 
 [node name="HealthSystem" type="Node" parent="."]
 script = ExtResource("4_846u7")
-max_health = 100.0
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("init_state")]
 script = ExtResource("3_k6dpb")

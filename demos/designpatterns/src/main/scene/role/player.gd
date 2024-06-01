@@ -7,7 +7,6 @@ class_name Player
 @export var max_sprint_time: float = 3.0
 
 @onready var state_machine: StateMachine = $StateMachine
-@onready var attack_system: AttackSystem = $AttackSystem
 @onready var health_system: HealthSystem = $HealthSystem
 
 ## 移动方向
@@ -26,7 +25,6 @@ var sprint_time: float:
 var is_sprint: bool:
 	get:
 		return Input.is_action_just_pressed("sprint")
-
 
 
 func _physics_process(delta: float) -> void:

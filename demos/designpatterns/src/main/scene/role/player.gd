@@ -7,6 +7,8 @@ class_name Player
 @export var max_sprint_time: float = 3.0
 
 @onready var state_machine: StateMachine = $StateMachine
+@onready var attack_system: AttackSystem = $AttackSystem
+@onready var health_system: HealthSystem = $HealthSystem
 
 ## 移动方向
 var dir: Vector2 = Vector2.ZERO :

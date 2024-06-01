@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://moix13pr35jw"]
+[gd_scene load_steps=5 format=3 uid="uid://moix13pr35jw"]
 
 [ext_resource type="Script" path="res://src/main/scene/level/test_world.gd" id="1_j2lgi"]
 [ext_resource type="PackedScene" uid="uid://deakcmd8chxlv" path="res://src/main/scene/role/player.tscn" id="2_5ohsx"]
 [ext_resource type="PackedScene" uid="uid://bgyu1o0a0eriw" path="res://src/main/scene/role/enemy.tscn" id="3_wheia"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sb0bi"]
+bg_color = Color(0.952578, 0.372398, 0.493755, 1)
+border_color = Color(0, 0, 0, 1)
 
 [node name="TestWorld" type="Node2D"]
 script = ExtResource("1_j2lgi")
@@ -29,6 +33,20 @@ text = "返回主界面"
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 text = "保存游戏"
+
+[node name="PlayerHealthBar" type="ProgressBar" parent="TestUI"]
+custom_minimum_size = Vector2(240, 30)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_right = 120.0
+offset_bottom = 30.0
+grow_horizontal = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_sb0bi")
+max_value = 1.0
+value = 0.5
+show_percentage = false
 
 [connection signal="pressed" from="TestUI/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="TestUI/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

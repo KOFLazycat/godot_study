@@ -6,6 +6,7 @@ extends State
 ## 状态进入
 func enter() -> void: 
 	print("Enemy Attack.")
+	enemy.attack_system.attack()
 	enemy.attack_time = enemy.max_attack_time
 	pass
 
@@ -17,6 +18,7 @@ func update(_delta: float) -> void:
 		enemy.attack_time -= _delta
 		if is_zero_approx(enemy.attack_time):
 			enemy.attack_time = enemy.max_attack_time
+			enemy.attack_system.attack()
 			print("ATTACK!!!!")
 	pass
 

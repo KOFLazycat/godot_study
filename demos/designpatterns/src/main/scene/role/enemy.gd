@@ -28,6 +28,9 @@ class_name Enemy
 ## 脱离攻击范围
 @export var exit_attack_distance: float
 
+@onready var attack_system: AttackSystem = $AttackSystem
+@onready var health_system: HealthSystem = $HealthSystem
+
 var speed: float
 var dir: Vector2
 var target: Player
@@ -50,26 +53,3 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

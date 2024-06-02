@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 AudioSystem="*res://src/main/common/global/audio_system/audio_system.tscn"
 SceneSystem="*res://src/main/common/global/scene_system/scene_system.tscn"
 LoadSaveSystem="*res://src/main/common/global/load_save_system/load_save_system.tscn"
+CommandParser="*res://src/main/common/command_parser/command_parser.gd"
 
 [editor_plugins]
 

@@ -49,5 +49,15 @@ max_value = 1.0
 value = 0.5
 show_percentage = false
 
+[node name="LineEdit" type="LineEdit" parent="TestUI"]
+unique_name_in_owner = true
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+
 [connection signal="pressed" from="TestUI/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="TestUI/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

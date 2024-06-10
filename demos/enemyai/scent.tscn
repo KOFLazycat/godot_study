@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://t3oovfhdwxx0"]
+
+[ext_resource type="Script" path="res://scent.gd" id="1_2op44"]
+
+[node name="Scent" type="Node2D"]
+script = ExtResource("1_2op44")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]

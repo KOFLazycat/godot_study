@@ -3,7 +3,7 @@ class_name Player
 
 @onready var timer: Timer = $Timer
 
-const SPEED: float = 300.0
+const SPEED: float = 400.0
 
 var scent_scene: PackedScene = preload("res://scent.tscn")
 var scent_array: Array[Scent] = []
@@ -28,5 +28,8 @@ func get_movement_vector() -> Vector2:
 
 func _on_timer_timeout() ->void:
 	var new_scent: Scent = scent_scene.instantiate()
+	new_scent.player = self
 	new_scent.global_position = global_position
+	new_scent.show_behind_parent = true
 	get_parent().add_child(new_scent)
+	scent_array.push_front(new_scent)

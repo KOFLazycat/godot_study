@@ -30,14 +30,3 @@ func on_load_game_pressed() -> void:
 
 func on_exit_game_pressed() -> void:
 	get_tree().quit()
-
-
-
-
-
-
-
-
-
-
-

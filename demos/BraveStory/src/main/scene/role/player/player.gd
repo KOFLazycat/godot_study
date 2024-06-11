@@ -357,4 +357,3 @@ func on_hitbox_hit(hurtbox: Hurtbox) -> void:
 	await get_tree().create_timer(0.1, true, false, true).timeout
 	# 恢复
 	Engine.time_scale = 1
-

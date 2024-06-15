@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/AldotheApache.ttf-cffa48075c0951025613714b623
 Rendering=null
 antialiasing=1
 generate_mipmaps=false
+disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48

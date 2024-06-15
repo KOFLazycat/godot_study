@@ -39,20 +39,3 @@ func play_sfx(sfx_index: int) -> void:
 
 func on_sfx_finished(sfx_audio_stream: AudioStreamPlayer2D) -> void:
 	sfx_audio_stream.queue_free()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

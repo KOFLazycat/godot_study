@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://crmtx8g08367w"]
 
-[ext_resource type="Script" path="res://audio_system.gd" id="1_ojevr"]
+[ext_resource type="Script" path="res://src/main/common/global/audio_system/audio_system.gd" id="1_ojevr"]
 [ext_resource type="AudioStream" uid="uid://c4gcyto4wr1tv" path="res://src/main/assets/sounds/bgm/02 1 titles LOOP.mp3" id="2_ivgyu"]
 [ext_resource type="AudioStream" uid="uid://dhmh2qex20l6j" path="res://src/main/assets/sounds/sfx/Gold1.wav" id="3_af5yc"]
 [ext_resource type="AudioStream" uid="uid://c28ye8hh6smu4" path="res://src/main/assets/sounds/sfx/Gold2.wav" id="4_fofy8"]

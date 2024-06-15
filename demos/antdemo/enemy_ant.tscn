@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbspukqh6mkpr"]
+
+[ext_resource type="Script" path="res://enemy_ant.gd" id="1_4hy7s"]
+[ext_resource type="Texture2D" uid="uid://buxxxhwopito0" path="res://蚂蚁_1.png" id="2_b2ln4"]
+[ext_resource type="Texture2D" uid="uid://ptfxwdhvlj3w" path="res://蚂蚁_2.png" id="3_r247h"]
+[ext_resource type="Texture2D" uid="uid://b8ysdp2pafx3r" path="res://蚂蚁_3.png" id="4_ces32"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2kcj7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_b2ln4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_r247h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ces32")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ym2gk"]
+radius = 7.5
+height = 15.0
+
+[node name="EnemyAnt" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+motion_mode = 1
+script = ExtResource("1_4hy7s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 2)
+scale = Vector2(0.11, 0.11)
+sprite_frames = SubResource("SpriteFrames_2kcj7")
+frame = 2
+frame_progress = 0.361067
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ym2gk")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 30.0
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 3.0
+neighbor_distance = 100.0
+max_speed = 40.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true

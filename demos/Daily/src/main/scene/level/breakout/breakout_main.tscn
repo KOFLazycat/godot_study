@@ -89,10 +89,10 @@ vertical_alignment = 1
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 100
-process_material = SubResource("ParticleProcessMaterial_6e5p6")
 lifetime = 0.8
 one_shot = true
 explosiveness = 0.8
+process_material = SubResource("ParticleProcessMaterial_6e5p6")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_obglr")

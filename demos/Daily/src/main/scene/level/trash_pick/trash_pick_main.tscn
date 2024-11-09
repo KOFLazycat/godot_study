@@ -67,9 +67,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rcx0v"]
 _data = {
-"RESET": SubResource("Animation_p5mub"),
-"shake": SubResource("Animation_mlkpj"),
-"stretch": SubResource("Animation_b4pna")
+&"RESET": SubResource("Animation_p5mub"),
+&"shake": SubResource("Animation_mlkpj"),
+&"stretch": SubResource("Animation_b4pna")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a7mgs"]
@@ -109,8 +109,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l8psn"]
 _data = {
-"RESET": SubResource("Animation_8dq4b"),
-"shake": SubResource("Animation_bmdkh")
+&"RESET": SubResource("Animation_8dq4b"),
+&"shake": SubResource("Animation_bmdkh")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ble8o"]
@@ -131,7 +131,7 @@ hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Box"]
 libraries = {
-"": SubResource("AnimationLibrary_rcx0v")
+&"": SubResource("AnimationLibrary_rcx0v")
 }
 
 [node name="Area2DBox" type="Area2D" parent="Box"]
@@ -147,7 +147,7 @@ texture = ExtResource("3_aea1l")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Food"]
 libraries = {
-"": SubResource("AnimationLibrary_l8psn")
+&"": SubResource("AnimationLibrary_l8psn")
 }
 autoplay = "shake"
 

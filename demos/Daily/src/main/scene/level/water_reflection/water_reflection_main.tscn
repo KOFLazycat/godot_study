@@ -12,11 +12,11 @@ noise = SubResource("FastNoiseLite_weqgr")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_67rsf"]
 shader = ExtResource("3_2xnj5")
 shader_parameter/y_scale = 0.4
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_2jv3c")
 shader_parameter/speed = 0.125
 shader_parameter/strength = 0.0125
 shader_parameter/tint_color = Color(0.419608, 0.419608, 0.537255, 1)
 shader_parameter/blur_radius = 0.2
-shader_parameter/noise_tex = SubResource("NoiseTexture2D_2jv3c")
 
 [node name="WaterReflectionMain" type="Node2D"]
 script = ExtResource("1_gel8b")

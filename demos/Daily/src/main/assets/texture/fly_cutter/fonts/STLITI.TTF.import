@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/STLITI.TTF-129cffeba2b1caf55dfd1f6b5df7e427.f
 Rendering=null
 antialiasing=1
 generate_mipmaps=false
+disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48

@@ -65,5 +65,3 @@ func _on_fly_cutter_game_over():
 func spwan_half_fly_cutter():
 	var half_fly_cutter = half_fly_cutter_tscn.instantiate()
 	add_child(half_fly_cutter)
-
-

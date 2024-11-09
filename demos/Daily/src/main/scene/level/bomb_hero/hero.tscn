@@ -30,6 +30,7 @@ animations = [{
 }]
 
 [sub_resource type="Gradient" id="Gradient_c5ip6"]
+offsets = PackedFloat32Array(0, 0.996047)
 colors = PackedColorArray(0, 0, 0, 0.823529, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_m80pw"]
@@ -46,8 +47,6 @@ curve = SubResource("Curve_jqnb4")
 particle_flag_disable_z = true
 direction = Vector3(0, 0, 0)
 gravity = Vector3(0, 0, 0)
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
 scale_min = 3.0
 scale_max = 3.0
 scale_curve = SubResource("CurveTexture_dmbob")
@@ -72,9 +71,9 @@ speed_scale = 10.0
 show_behind_parent = true
 scale = Vector2(0.333333, 0.333333)
 amount = 5
-process_material = SubResource("ParticleProcessMaterial_0gwpj")
-texture = ExtResource("1_hc02r")
 lifetime = 0.5
+texture = ExtResource("1_hc02r")
+process_material = SubResource("ParticleProcessMaterial_0gwpj")
 
 [node name="Area2D" type="Area2D" parent="." groups=["hero"]]
 collision_mask = 2

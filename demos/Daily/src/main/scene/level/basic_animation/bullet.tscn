@@ -14,8 +14,8 @@ script = ExtResource("1_isu4e")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 mass = 10.0
-inertia = 1.0
 gravity_scale = 8.0
+inertia = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 shape = SubResource("CircleShape2D_d7fet")

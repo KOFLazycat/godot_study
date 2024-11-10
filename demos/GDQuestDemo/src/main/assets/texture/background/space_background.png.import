@@ -16,9 +16,9 @@ dest_files=["res://.godot/imported/space_background.png-48e62c4f74b6940941f62b5e
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

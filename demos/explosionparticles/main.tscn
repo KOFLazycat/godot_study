@@ -57,20 +57,19 @@ color = Color(0.756863, 1, 1, 1)
 [node name="ExplosionGPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 60
-process_material = SubResource("ParticleProcessMaterial_snydy")
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_snydy")
 
 [node name="FireGPUParticles2D" type="GPUParticles2D" parent="."]
-emitting = false
 amount = 1000
-process_material = SubResource("ParticleProcessMaterial_14a6w")
 lifetime = 0.8
-one_shot = true
+process_material = SubResource("ParticleProcessMaterial_14a6w")
 
 [node name="RainGPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
 position = Vector2(576, -50)
 amount = 200
-process_material = SubResource("ParticleProcessMaterial_ywl44")
 lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_ywl44")

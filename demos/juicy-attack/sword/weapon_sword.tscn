@@ -31,16 +31,14 @@ width = 2048
 curve = SubResource("Curve_fexup")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jffn8"]
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(40, 10, 1)
-particle_flag_disable_z = true
 direction = Vector3(0, 1, 0)
 spread = 25.0
-gravity = Vector3(0, 200, 0)
 angular_velocity_min = 20.0
 angular_velocity_max = 100.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 200, 0)
 damping_max = 5.0
 damping_curve = SubResource("CurveTexture_03ad7")
 scale_min = 0.01
@@ -75,9 +73,9 @@ disabled = true
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Pivot"]
 position = Vector2(61, 1)
 amount = 6
-process_material = SubResource("ParticleProcessMaterial_jffn8")
-texture = ExtResource("4_m6w5i")
 randomness = 1.0
+texture = ExtResource("4_m6w5i")
+process_material = SubResource("ParticleProcessMaterial_jffn8")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_30ysf")

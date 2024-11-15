@@ -89,8 +89,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_07i7d"]
 _data = {
-"RESET": SubResource("Animation_x727y"),
-"idling": SubResource("Animation_i3wil")
+&"RESET": SubResource("Animation_x727y"),
+&"idling": SubResource("Animation_i3wil")
 }
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_crp11"]
@@ -304,7 +304,7 @@ script = ExtResource("3_eqgxi")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player10"]
 libraries = {
-"": SubResource("AnimationLibrary_07i7d")
+&"": SubResource("AnimationLibrary_07i7d")
 }
 autoplay = "idling"
 
@@ -320,7 +320,7 @@ modulate_config = Vector4(2.08165e-12, 2.08165e-12, 2.08165e-12, 2.08165e-12)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player11"]
 libraries = {
-"": SubResource("AnimationLibrary_07i7d")
+&"": SubResource("AnimationLibrary_07i7d")
 }
 autoplay = "idling"
 
@@ -335,7 +335,7 @@ script = ExtResource("3_eqgxi")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player12"]
 libraries = {
-"": SubResource("AnimationLibrary_07i7d")
+&"": SubResource("AnimationLibrary_07i7d")
 }
 autoplay = "idling"
 
@@ -349,7 +349,7 @@ script = ExtResource("3_eqgxi")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player5"]
 libraries = {
-"": SubResource("AnimationLibrary_07i7d")
+&"": SubResource("AnimationLibrary_07i7d")
 }
 autoplay = "idling"
 

@@ -44,12 +44,12 @@ void process() {
 	uint alt_restart_seed = hash(NUMBER + uint(301184) + RANDOM_SEED);
 	bool restart = false;
 	if (CUSTOM.y > CUSTOM.w) { restart = true; }
-	
+
 	ivec2 sprite_size = textureSize(sprite, 0);
 	int x = int(NUMBER) % sprite_size.x;
 	int y = (int(NUMBER) / sprite_size.x) % sprite_size.y;
 	ivec2 starting_position = ivec2(x, y);
-	
+
 	vec4 color_value = texelFetch(sprite, starting_position, 0);
 	if (color_value.a == 0.0) { ACTIVE = false; }
 	COLOR = color_value;
@@ -57,9 +57,9 @@ void process() {
 	if ((RESTART || restart)) {
 		CUSTOM.y = 0.0;
 		CUSTOM.w = (1.0 - lifetime_randomness * rand_from_seed(alt_restart_seed));
-		
+
 		TRANSFORM[3].xy = vec2(starting_position);
-		
+
 		if (connect_lines) {
 			if (starting_position.x > 0 && color_value == texelFetch(sprite, starting_position - ivec2(1,0), 0)) {
 				ACTIVE = false;
@@ -69,11 +69,11 @@ void process() {
 			while ((starting_position.x + size < sprite_size.x) && texelFetch(sprite, starting_position + ivec2(size,0), 0) == color_value)  {
 				size += 1;
 			}
-			
+
 			TRANSFORM[0] = vec4(float(size), 0.0, 0.0, 0.0);
 			TRANSFORM[3].x = TRANSFORM[3].x + ((float(size) - 1.0)/2.0);
 		}
-		
+
 		TRANSFORM = EMISSION_TRANSFORM * TRANSFORM;
 		VELOCITY = vec3(0.0);
 
@@ -85,8 +85,8 @@ void process() {
 		vec3 rot = vec3(cos(angle1_rad), sin(angle1_rad), 0.0);
 		VELOCITY = rot * initial_linear_velocity * mix(1.0, rand_from_seed(alt_restart_seed), initial_linear_velocity_random);
 		VELOCITY = (EMISSION_TRANSFORM * vec4(VELOCITY, 0.0)).xyz;
-		
-		
+
+
 	} else if (float(starting_position.y) / float(sprite_size.y) < progress) {
 		CUSTOM.y += DELTA / LIFETIME;
 		float tv = clamp(CUSTOM.y / CUSTOM.w / particle_lifetime_fraction, 0.0, 1.0);

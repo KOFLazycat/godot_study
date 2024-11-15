@@ -72,12 +72,12 @@ void process() {
 	float anim_offset_rand = rand_from_seed(alt_seed);
 	float pi = 3.14159;
 	float degree_to_rad = pi / 180.0;
-	
+
 	ivec2 sprite_size = textureSize(sprite, 0);
 	int x = int(base_number) % sprite_size.x;
 	int y = (int(base_number) / sprite_size.x) % sprite_size.y;
 	ivec2 starting_position = ivec2(x, y);
-	
+
 	vec4 color_value = texelFetch(sprite, starting_position, 0);
 	if (color_value.a == 0.0) { ACTIVE = false; }
 	COLOR = color_value;
@@ -88,7 +88,7 @@ void process() {
 		restart = true;
 		tv = 1.0;
 	}
-	
+
 	float noise_val = texture(noise, vec2(starting_position) / vec2(sprite_size)).r;
 
 	if (RESTART || restart) {

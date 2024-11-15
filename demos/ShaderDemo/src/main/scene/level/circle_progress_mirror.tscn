@@ -4,11 +4,11 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7h2pe"]
 shader = ExtResource("1_gx5bg")
-shader_parameter/outer_radius = 0.712
+shader_parameter/outer_radius = 0.737
 shader_parameter/inner_radius = 0.796
-shader_parameter/turn = 0.307
-shader_parameter/blur = 0.0311
-shader_parameter/fill_ratio = 0.869
+shader_parameter/turn = 0.282
+shader_parameter/blur = 0.0373
+shader_parameter/fill_ratio = 0.719
 
 [node name="CircleProgressMirror" type="Control"]
 layout_mode = 3

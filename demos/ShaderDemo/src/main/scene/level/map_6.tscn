@@ -5,8 +5,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dukfo"]
 shader = ExtResource("1_fcusb")
-shader_parameter/offset_x = 0.02
 shader_parameter/img = ExtResource("1_85irs")
+shader_parameter/offset_x = 0.02
 
 [node name="Map6" type="Control"]
 layout_mode = 3

@@ -55,11 +55,13 @@ anim_speed_max = 2.0
 [node name="PoisonPool" type="Node2D"]
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
 color = Color(0.719285, 0.0563835, 0.723608, 0.576471)
 antialiased = true
 polygon = PackedVector2Array(0, -200, -200, 0, 0, 200, 200, 0)
 
 [node name="Line2D" type="Line2D" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_q8c2l")
 points = PackedVector2Array(0, -200, -200, 0, 0, 200, 200, 0, 0, -200)
 width = 50.0
@@ -70,14 +72,15 @@ joint_mode = 2
 antialiased = true
 
 [node name="DustGPUParticles2D" parent="." instance=ExtResource("3_ebosg")]
+visible = false
 self_modulate = Color(0.839216, 0.12549, 0.843137, 1)
 scale = Vector2(0.5, 0.5)
 
 [node name="SmokeGPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_r7m2u")
 amount = 50
-process_material = SubResource("ParticleProcessMaterial_v3l3d")
-texture = ExtResource("4_fthrp")
 lifetime = 3.0
 explosiveness = 0.1
 randomness = 0.05
+texture = ExtResource("4_fthrp")
+process_material = SubResource("ParticleProcessMaterial_v3l3d")

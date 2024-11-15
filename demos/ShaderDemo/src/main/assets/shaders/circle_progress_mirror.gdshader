@@ -17,12 +17,12 @@ vec2 rotate_uv(vec2 uv, vec2 pivot, float rotation) {
     uv -= pivot;
     return vec2(
         cosa * uv.x - sina * uv.y,
-        cosa * uv.y + sina * uv.x 
+        cosa * uv.y + sina * uv.x
     ) + pivot;
 }
 
 float circle(vec2 uv, float value)
-{   
+{
 	float d = length(uv);
 	float t = smoothstep(
 		inner_radius + blur,
@@ -32,7 +32,7 @@ float circle(vec2 uv, float value)
 		outer_radius + blur,
 		outer_radius - blur,
 		d
-	);   
+	);
 
 	return t;
 }
@@ -42,14 +42,14 @@ float mask(vec2 uv, float value)
 	float r = atan(uv.x, uv.y);
 	r = remap(-PI, PI, 0.0, 1.0, r);
 	r = step(r, value * 0.5);
-	
+
 	uv.x = uv.x + 1.0;
 	uv.x = uv.x * -1.0;
 	uv.x += 1.0;
 	float l = atan(uv.x, uv.y);
 	l = remap(-PI, PI, 0.0, 1.0, l);
 	l = step(l, value * 0.5);
-	
+
 	return r + l ;
 }
 

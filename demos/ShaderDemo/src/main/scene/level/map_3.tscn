@@ -5,8 +5,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8nher"]
 shader = ExtResource("1_h0cah")
-shader_parameter/angle = 0.0
 shader_parameter/img = ExtResource("2_k0741")
+shader_parameter/angle = 0.0
 
 [node name="Map3" type="Control"]
 layout_mode = 3

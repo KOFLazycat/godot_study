@@ -7,10 +7,10 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u11m4"]
 shader = ExtResource("1_00jfi")
-shader_parameter/screen_resolution = 1.0
 shader_parameter/iChannel0 = ExtResource("2_e6pam")
 shader_parameter/iChannel1 = ExtResource("3_5h7pt")
 shader_parameter/iChannel2 = ExtResource("4_3utkm")
+shader_parameter/screen_resolution = 1.0
 
 [node name="Blackhole" type="Control"]
 layout_mode = 3

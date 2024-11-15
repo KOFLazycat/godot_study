@@ -4,13 +4,6 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8t22b"]
 shader = ExtResource("1_y6m0v")
-shader_parameter/colorMode = 0
-shader_parameter/color = null
-shader_parameter/timescale = 0.2
-shader_parameter/hScrollSpeedFactor = 1.0
-shader_parameter/vScrollSpeedFactor = 1.0
-shader_parameter/entropyFactor = 1.0
-shader_parameter/sharpness = 10.0
 
 [node name="Noise" type="Control"]
 layout_mode = 3

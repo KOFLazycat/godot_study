@@ -5,13 +5,13 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pnhsd"]
 shader = ExtResource("1_a23sx")
+shader_parameter/noise = ExtResource("2_c6kkq")
 shader_parameter/line_color_a = Color(1, 1, 1, 1)
 shader_parameter/line_color_b = Color(0, 1, 1, 1)
-shader_parameter/line_threshold = 0.6
-shader_parameter/inverse_speed = 9.345
+shader_parameter/line_threshold = 0.57
+shader_parameter/inverse_speed = 10.0
 shader_parameter/line_length = 1000.0
 shader_parameter/angle = 0.0
-shader_parameter/noise = ExtResource("2_c6kkq")
 
 [node name="SPEEDLINES" type="Control"]
 layout_mode = 3

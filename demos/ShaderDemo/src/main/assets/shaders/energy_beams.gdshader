@@ -2,8 +2,8 @@
 Shader from Godot Shaders - the free shader library.
 godotshaders.com/shader/energy-beams
 
-This shader is under CC0 license. Feel free to use, improve and 
-change this shader according to your needs and consider sharing 
+This shader is under CC0 license. Feel free to use, improve and
+change this shader according to your needs and consider sharing
 the modified result to godotshaders.com.
 */
 
@@ -61,7 +61,7 @@ float fbm(vec2 uv, float time) {
     float amp = 0.01 * energy * progress;
     float freq = float(frequency);
 	float value = 0.0;
-	
+
     for(int i = 0; i < octaves; i++) {
         value += amp * noise(freq * vec2(uv.x, uv.y + time));
         amp *= 0.5;
@@ -78,36 +78,36 @@ vec4 bolt(vec2 uv, float time, float i)
 {
 	// Setup the beam locking to the edges.
 	float falloff = smoothstep(0.0, fixed_edge_size, uv.x) * smoothstep(0.0, fixed_edge_size, 1.0 - uv.x);
-	
+
 	// Use Fractal Brownian Motion to create a "cloud texture" and use Difference blend mode to make the beam
 	vec4 clouds = vec4(fbm((uv + vec2(i) ) * noise_scale, time * speed)) * falloff;
 	vec4 diff_clouds = difference(clouds, vec4(uv.y - 0.5 + y_offset + (uv.y * falloff * 0.02 * energy * progress)));
-	
+
 	// Create a new noise to mask the beams on low "progress" values. To make a "turn-off" effect more visually interesting.
 	vec4 clouds2 = vec4(fbm((uv * 2.0) * noise_scale, time * 1.)) * 5.0;
 	diff_clouds += smoothstep(0.0, 0.8, clouds2) * 0.1 * (1.-progress);
-	
+
 	// Set thickness of the beams. First beam is the Thickness size and all following beams are sized with beam_difference
 	float thickness2 =  1. - ( thickness / (min(i + beam_difference, 1.0) + (1.0-beam_difference))) * progress ;
 	vec4 beam = clamp(smoothstep(thickness2, thickness2 + 0.005 * progress, 1.0 - diff_clouds), vec4(0.0), vec4(1.0));
-	
+
 	//Set the beam outlines
 	vec4 beam_outline;
 	float outline = thickness2 - (outline_thickness * progress);
 	beam_outline = clamp(smoothstep(outline, outline + 0.04, 1.0 - diff_clouds), 0.0, 1.0);
 	beam_outline = clamp(beam_outline - beam, 0.0, 1.0);
-	
+
 	// Merge the beam and the outline and return to the fragment function
 	return (beam * (color + vec4(glow, glow, glow, 0.))) + (beam_outline * (outline_color + vec4(outline_glow, outline_glow, outline_glow, 0.)));
 }
 
 void fragment()
-{	
+{
 	vec4 beam = vec4(0.0);
-	
+
 	for (int i = 0; i < beams; i++){
 		beam = max(beam, bolt(UV, TIME, float(i)));
 	}
-	
+
 	COLOR = beam;
 }

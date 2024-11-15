@@ -47,7 +47,7 @@ void fragment() {
 	vec2 uv = (vec2(fract((UV.x + row_rn - horizontal_scroll * time + (wave * (wave_min + (wave_max - wave_min) * column_rn) / columns / 2.0)) * columns), fract((UV.y - vertical_scroll * time) * rows)) * 2.0 - 1.0) * vec2(dimensions.x / dimensions.y * rows / columns, 1.0);
 	float size = size_min + (size_max - size_min) * column_rn;
 	vec4 color = mix(far_color, near_color, column_rn);
-	
+
 // Comment out the below two lines if you do not need or want the particles to rotate:
 	float a = ((column_rn + wave) * wave_rotation) * PI;
 	uv *= mat2(vec2(sin(a), -cos(a)), vec2(cos(a), sin(a)));

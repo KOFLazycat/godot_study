@@ -62,7 +62,7 @@ float eye(vec2 p, float h) {
   const float b = 4.0;
   float rr = mix(1.6, b, a);
   float dd = mix(1.12, b, a);
-  
+
   vec2 p0 = p;
   p0 = p0.yx;
   float d0 =  vesica(p0, rr, dd);
@@ -109,30 +109,30 @@ void fragment() {
   vec2 q = FRAGCOORD.xy/(1.0 / SCREEN_PIXEL_SIZE).xy;
   vec2 p = -1. + 2. * q;
   p.x *= (1.0 / SCREEN_PIXEL_SIZE).x/(1.0 / SCREEN_PIXEL_SIZE).y;
-  
+
   float aa = 2.0/(1.0 / SCREEN_PIXEL_SIZE).y;
   vec3 col = vec3(1.0);
 
   float a = 0.25;
-  
+
   vec2 sp = p;
   spiralMod(sp, a);
   sp.x += -TIME*0.2;
   vec2 msp = sp;
   float nsp = mod1(msp.x, a);
-  
+
   float z = a*0.4;
-  
+
   float dd = length(msp)-z;
-  
+
   float h = hash(nsp+123.4);
-  
+
   float de = eye(msp/z,h)*z;
   de -= 0.25*aa;
-  
+
   col = mix(vec3(1.0-abs(2.0*sp.y/a)), vec3(0.0), smoothstep(aa, -aa, de));
   col *= smoothstep(0.0, 0.4, length(p));
-  
+
   col = sRGB(col);
   COLOR = vec4(col, 1.0);
 }

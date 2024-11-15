@@ -56,12 +56,12 @@ float dualfbm(in vec2 p)
 	vec2 basis = vec2(fbm(p2 - (TIME * speed) * 1.6), fbm(p2 + (TIME * speed) * 1.7));
 	basis = (basis - 0.5) * 0.2;
 	p += basis;
-	
+
 	//coloring
 	return fbm(p * makem2((TIME * speed) * 0.2));
 }
 
-float circ(vec2 p) 
+float circ(vec2 p)
 {
 	float tau = 6.2831853;
 	float r = length(p);
@@ -75,13 +75,13 @@ void fragment()
 	vec2 p = UV.xy / (1.0 / TEXTURE_PIXEL_SIZE).xy - 0.5;
 	p.x *= (1.0 / TEXTURE_PIXEL_SIZE).x / (1.0 / TEXTURE_PIXEL_SIZE).y;
 	p *= 4.0;
-	
+
 	float rz = dualfbm(p);
-	
+
 	//rings
 	p /= exp(mod((TIME * speed) * 10.0, 3.14159));
 	rz *= pow(abs((0.1 - circ(p))), 0.9);
-	
+
 	//final color
 	vec3 col = baseColorRGB / rz;
 	col = pow(abs(col), vec3(0.99));

@@ -58,12 +58,12 @@ shader_parameter/anim_offset_random = null
 shader_parameter/lifetime_randomness = 0.8
 shader_parameter/trail_divisor = 1
 shader_parameter/gravity = null
-shader_parameter/progress = 0.5
-shader_parameter/particle_lifetime_fraction = 0.3
 shader_parameter/color_ramp = SubResource("GradientTexture1D_ainwx")
 shader_parameter/burn_ramp = SubResource("GradientTexture1D_ist1a")
 shader_parameter/sprite = ExtResource("2_3ll65")
 shader_parameter/noise = ExtResource("2_a4wji")
+shader_parameter/progress = 0.5
+shader_parameter/particle_lifetime_fraction = 0.3
 
 [sub_resource type="Gradient" id="Gradient_ctce3"]
 offsets = PackedFloat32Array(0, 0.044, 1)
@@ -111,12 +111,12 @@ shader_parameter/anim_offset_random = null
 shader_parameter/lifetime_randomness = 0.3
 shader_parameter/trail_divisor = 1
 shader_parameter/gravity = null
-shader_parameter/progress = 0.5
-shader_parameter/particle_lifetime_fraction = 0.1
 shader_parameter/color_ramp = SubResource("GradientTexture1D_qkwst")
 shader_parameter/fade_ramp = SubResource("GradientTexture1D_dd34o")
 shader_parameter/sprite = ExtResource("6_qt546")
 shader_parameter/noise = ExtResource("2_a4wji")
+shader_parameter/progress = 0.5
+shader_parameter/particle_lifetime_fraction = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7sd8o"]
 shader = ExtResource("7_ombb7")
@@ -150,10 +150,10 @@ shader_parameter/anim_offset_random = null
 shader_parameter/lifetime_randomness = 0.0
 shader_parameter/trail_divisor = 1
 shader_parameter/gravity = Vector3(0, 100, 0)
-shader_parameter/progress = 0.5
-shader_parameter/particle_lifetime_fraction = 0.5
 shader_parameter/sprite = ExtResource("8_vulan")
 shader_parameter/noise = ExtResource("2_a4wji")
+shader_parameter/progress = 0.5
+shader_parameter/particle_lifetime_fraction = 0.5
 
 [sub_resource type="Gradient" id="Gradient_t7w6p"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -193,10 +193,10 @@ shader_parameter/anim_offset_random = null
 shader_parameter/lifetime_randomness = 0.2
 shader_parameter/trail_divisor = 1
 shader_parameter/gravity = Vector3(0, -20, 0)
-shader_parameter/progress = 0.5
-shader_parameter/particle_lifetime_fraction = 0.5
 shader_parameter/color_ramp = SubResource("GradientTexture1D_0vmp0")
 shader_parameter/sprite = ExtResource("8_vulan")
+shader_parameter/progress = 0.5
+shader_parameter/particle_lifetime_fraction = 0.5
 
 [sub_resource type="Gradient" id="Gradient_5su7y"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -236,10 +236,10 @@ shader_parameter/anim_offset_random = null
 shader_parameter/lifetime_randomness = 0.2
 shader_parameter/trail_divisor = 1
 shader_parameter/gravity = Vector3(0, -20, 0)
-shader_parameter/progress = 0.5
-shader_parameter/particle_lifetime_fraction = 0.5
 shader_parameter/color_ramp = SubResource("GradientTexture1D_j485p")
 shader_parameter/sprite = ExtResource("8_vulan")
+shader_parameter/progress = 0.5
+shader_parameter/particle_lifetime_fraction = 0.5
 
 [sub_resource type="Gradient" id="Gradient_8rv1v"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -271,47 +271,47 @@ zoom = Vector2(2, 2)
 [node name="Burn" type="GPUParticles2D" parent="."]
 position = Vector2(50, 200)
 amount = 2500
-process_material = SubResource("ShaderMaterial_r6yx1")
 lifetime = 3.0
 explosiveness = 1.0
+process_material = SubResource("ShaderMaterial_r6yx1")
 script = ExtResource("2_ax0tb")
 
 [node name="Crack" type="GPUParticles2D" parent="."]
 position = Vector2(250, 200)
 amount = 2500
-process_material = SubResource("ShaderMaterial_b2j60")
 lifetime = 3.0
 explosiveness = 1.0
+process_material = SubResource("ShaderMaterial_b2j60")
 script = ExtResource("2_ax0tb")
 
 [node name="Sand" type="GPUParticles2D" parent="."]
 self_modulate = Color(0.521569, 0.521569, 0.521569, 1)
 position = Vector2(450, 200)
 amount = 2500
-process_material = SubResource("ShaderMaterial_7sd8o")
 lifetime = 3.0
 explosiveness = 1.0
+process_material = SubResource("ShaderMaterial_7sd8o")
 script = ExtResource("2_ax0tb")
 
 [node name="Undertale" type="GPUParticles2D" parent="."]
 position = Vector2(650, 200)
 amount = 2500
-process_material = SubResource("ShaderMaterial_v3ryh")
 lifetime = 3.0
 explosiveness = 1.0
+process_material = SubResource("ShaderMaterial_v3ryh")
 script = ExtResource("2_ax0tb")
 
 [node name="UndertaleLines" type="GPUParticles2D" parent="."]
 position = Vector2(850, 200)
 amount = 2500
-process_material = SubResource("ShaderMaterial_x6pvv")
 lifetime = 3.0
 explosiveness = 1.0
+process_material = SubResource("ShaderMaterial_x6pvv")
 script = ExtResource("2_ax0tb")
 
 [node name="UndertaleCleaned" type="GPUParticles2D" parent="."]
 position = Vector2(650, 400)
 amount = 2500
-process_material = SubResource("ShaderMaterial_y3gyd")
 lifetime = 3.0
 explosiveness = 1.0
+process_material = SubResource("ShaderMaterial_y3gyd")

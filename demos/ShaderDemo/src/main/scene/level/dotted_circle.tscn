@@ -8,7 +8,7 @@ shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/diameter = 0.795
 shader_parameter/thickness = 0.01
 shader_parameter/frequency = 8.0
-shader_parameter/phase = 0.0
+shader_parameter/phase = -0.21
 
 [node name="DottedCircle" type="Control"]
 layout_mode = 3

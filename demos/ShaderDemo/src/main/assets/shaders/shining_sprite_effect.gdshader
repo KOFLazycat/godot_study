@@ -19,6 +19,6 @@ void fragment() {
 		float mx = clamp(1. - diff / span, 0., 1.);
 		colour = mix(colour, tint, mx);
 	}
-	
+
 	COLOR = colour;
 }

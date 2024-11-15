@@ -18,14 +18,14 @@ void fragment() {
 	// Add a slight oscillation to the size of the ring
 	float o = cos(TIME * speed);
 	float ring_size = ring_radius + o * oscillation_scalar;
-	
+
 	float inner_hardness = 0.0;
 	// Solve for ring alpha channel
 	float alpha = step(dist, ring_size) * smoothstep(ring_size * (1.0 - thickness_scalar), ring_size, dist);
-	
+
 	// Solve w mix amount for optional color lerping
 	float w = range_lerp(o, -1.0, 1.0, 1.0, 0.0);
-	
+
 	// Output the final color
 	COLOR = vec4(mix(main_color.rgb, lerp_color.rgb, w), alpha );
 }
